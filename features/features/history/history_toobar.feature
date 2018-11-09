@@ -7,7 +7,7 @@ Feature:  History Toolbar
   Scenario: History Filter Panel functions
     Then sign-in to orders
     Then navigate to History
-    Then select row 1 on history grid
+    Then check row 1 on history grid
     Then click refund button on history toolbar
     Then expect refund modal on history is present
     Then close refund modal on history
