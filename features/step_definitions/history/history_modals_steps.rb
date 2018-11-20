@@ -439,19 +439,24 @@ Then /^click save button on change cost code modal$/ do
   SdcHistory.modals.change_cost_code.save.click
 end
 
-Then /^select new cost code on change cost code modal (.*)$/ do |str|
-  new_cost_code = SdcHistory.modals.change_cost_code.new_cost_code
-  unless new_cost_code.text_field.text_value.include?(str)
-    new_cost_code.drop_down.click
-    new_cost_code.selection(str)
-    new_cost_code.drop_down.click unless selection_obj.present?
-    selection_obj.scroll_into_view unless selection_obj.present?
-    selection_obj.click if selection_obj.present?
+Then /^select new cost code on change cost code modal (?:to existing|(.*))$/ do |str|
+    cost_code = SdcHistory.modals.change_cost_code.new_cost_code
+    cost_code.drop_down.click
+    count=cost_code.costcode_list.count
+    str||=cost_code.costcode_random(Random.rand(2..count-1)).text_value
+  unless cost_code.text_field.text_value.include?(str)
+    cost_code.drop_down.click
+    cost_code.selection(str)
+    cost_code.drop_down.click unless cost_code.selection(str).present?
+    cost_code.selection(str).scroll_into_view unless cost_code.selection(str).present?
+    cost_code.selection(str).click if cost_code.selection(str).present?
+    expect(cost_code.text_field.text_value).to include(str)
   end
-  step "expect new cost code on return label modal is #{str}"
+  step "expect new cost code on change cost code modal is #{str}"
+  TestData.hash[:cost_code]=str
 end
 
-Then /^expect new cost code on return label modal is (.*)$/ do |str|
+Then /^expect new cost code on change cost code modal is (.*)$/ do |str|
   expect(SdcHistory.modals.change_cost_code.new_cost_code.text_field.text_value).to eql(str)
 end
 
@@ -623,4 +628,41 @@ Then /^click through tutorial modal on history$/ do
   end
   step 'click close button on welcome modal'
 end
+
+# Advance Search
+
+Then /^expect advance search modal is displayed$/ do
+  advanced_search = SdcHistory.modals.advance_search
+  advanced_search.title.safe_wait_until_present(timeout: 10)
+  expect(advanced_search.title.present?).to be(true)
+end
+
+Then /^expect advance search modal is not displayed$/ do
+  advanced_search = SdcHistory.modals.advance_search
+  expect(advanced_search.title.present?).to be(false)
+end
+
+Then /^expect date range drop down in advance search modal is present$/ do
+  date_range = SdcHistory.modals.advance_search.date_range
+  date_range.text_field.safe_wait_until_present(timeout: 10)
+  expect(date_range.text_field.present?).to be (true)
+end
+
+Then /^set date range drop down value to(.*)/ do |str|
+  date_range = SdcHistory.modals.advance_search.date_range
+  date_range.selection_date_range(value: str)
+  date_range.drop_down.click unless date_range.selection.present?
+  date_range.text_field.set(str)
+  date_range.selection_date_range(value: str).click
+  #date_range.selection.click
+  expect(date_range.text_field.text_value).to include(str)
+end
+
+Then /^click search button on advance search modal$/ do
+  advance_search = SdcHistory.modals.advance_search
+  expect(advance_search.search_button.present?).to be(true)
+  advance_search.search_button.click
+end
+
+
 

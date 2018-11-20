@@ -4,6 +4,9 @@ module SdcHistory
     page_object(:header) { { xpath: '//div[text()="Date Printed"]' } }
     page_object(:after_date_printed_tool) { { xpath: '//div[text()="Date Printed"]/../../div[starts-with(@id,"tool")]/img' } }
 
+    page_object(:expand_button) { { xpath: '//div[text()="Date Printed"]//following::img[contains(@class,"x-tool-img x-tool-expand-bottom")][1]' } }
+    page_object(:collapse_button) { { xpath: '//div[text()="Date Printed"]//following::img[contains(@class,"x-tool-img x-tool-collapse-top")][1]' } }
+
     page_object(:today_chooser) { { xpath: '//*[contains(@class,"badgebutton")]//div[text()="Today"]' } }
     page_object(:today_verify) { { xpath: '//*[contains(@class,"badgebutton")]//div[text()="Today"]/../../../..' } }
     chooser(:today, :today_chooser, :today_verify, :class, :selected)
@@ -53,6 +56,9 @@ module SdcHistory
   class HistoryEligibleFor < SdcPage
     page_object(:header) { { xpath: '//div[text()="Eligible For"]' } }
     page_object(:after_eligible_for_tool) { { xpath: '//div[text()="Eligible For"]/../../div[starts-with(@id,"tool")]/img' } }
+
+    page_object(:expand_button) { { xpath: '//div[text()="Eligible For"]//following::img[contains(@class,"x-tool-img x-tool-expand-bottom")][1]' } }
+    page_object(:collapse_button) { { xpath: '//div[text()="Eligible For"]//following::img[contains(@class,"x-tool-img x-tool-collapse-top")][1]' } }
 
     page_object(:refund_chooser) { { xpath: '//*[contains(@class,"badgebutton")]//*[text()="Refund"]' } }
     page_object(:refund_verify) { { xpath: '//*[contains(@class,"badgebutton")]//*[text()="Refund"]/../../../..' } }
@@ -132,14 +138,40 @@ module SdcHistory
     page_object(:username) { { xpath: '//div[text()="User"]/../../../../../div[contains(@id,"-body")]//div[@class="table-cell-inner sdc-badgebutton-text"]' } }
     page_object(:username_count) { { xpath: '//div[text()="User"]/../../../../../div[contains(@id,"-body")]//div[@class="sdc-badge"]' } }
   end
+  class HistorySearch < SdcPage
+    text_field(:search_prints,tag: :text_field) { { xpath: '//*[@placeholder="Search Prints"]' } }
+    page_object(:advanced_search_arrow) { { xpath: '//*[contains(@class, "search-advance-trigger")]' } }
+    page_object(:search_icon) { {xpath: '//*[contains(@class, "search-trigger-grey")]'} }
+  end
 
   class CollapsedView < SdcPage
     page_object(:expand) { { xpath: '//img[contains(@class,"x-tool-expand-right")]' } }
     page_object(:username) { { xpath: '//div[@id="filter-panel-view-placeholder-innerCt"]//div[contains(@class,"x-title-item")]' } }
   end
 
+  class SearchResults < SdcPage
+    page_object(:filter) { { xpath: '//*[contains(@class, "sdc-badgebutton-")]//div[text()="Search Results"]' } }
+    page_object(:count) { { xpath: '(//*[contains(@class, "sdc-badgebutton-widget")]//div[contains(@class, "sdc-badge")])[1]' } }
+    page_object(:label) { { xpath: '(//*[contains(@class, "sdc-badgebutton-text")])[1]' } }
+  end
+
+  class Search < SdcPage
+    page_object(:search_prints) { { xpath: '//*[@placeholder="Search Prints"]' } }
+    page_object(:advanced_search_arrow) { { xpath: '//*[contains(@class, "search-advance-trigger")]' } }
+    page_object(:search_icon) { { xpath: '//*[contains(@class, "search-trigger-grey")]' } }
+  end
+
+
   module FilterPanel
     class << self
+      def search
+        Search.new
+      end
+
+      def search_results
+        SearchResults.new
+      end
+
       def date_printed
         HistoryDatePrinted.new
       end
@@ -154,6 +186,9 @@ module SdcHistory
 
       def user
         HistoryUser.new
+      end
+      def search
+        HistorySearch.new
       end
 
       def collapse
@@ -174,6 +209,7 @@ module SdcHistory
         end
         klass.new.loading
       end
+
     end
   end
 
