@@ -656,3 +656,4 @@ contacts_print_postage_single_from_details: --tags @contacts_print_postage_singl
 contacts_print_postage_multiple_from_top_nav: --tags @contacts_print_postage_multiple_from_top_nav --guess LOG_LEVEL=info
 
 history_export:  --tags @history_export --guess LOG_LEVEL=info
+dropdown_tooltips:  --tags @dropdown_tooltips --guess LOG_LEVEL=info
