@@ -60,6 +60,11 @@ module SdcHistory
       def advance_search
         AdvanceSearch.new
       end
+
+      def insurance_claim_form
+        InsuranceClaimForm.new
+      end
+
     end
 
     class SchedulePickupState < SdcPage
@@ -451,6 +456,10 @@ module SdcHistory
       def selection_date_range(name: 'selection', value: 'None')
         page_object(name) { { xpath: "//li[text()='#{value}']" } }
       end
+    end
+
+    class InsuranceClaimForm
+
     end
 
   end

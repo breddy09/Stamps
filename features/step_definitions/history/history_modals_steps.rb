@@ -362,6 +362,8 @@ Then /^select service on return label modal (.*)$/ do |str|
 end
 
 Then /^expect service on return label modal is (.*)$/ do |str|
+  expect(service.text_field.text_value).to include str
+
   expect(SdcHistory.modals.return_label.service.text_field.text_value).to eql(str)
 end
 

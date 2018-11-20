@@ -20,3 +20,6 @@ tcs_stgw10ff18 win10_firefox »
 tcs_stgw10ff19 win10_firefox »
 tcs_stgw10ff20 win10_firefox »
 
+
+tcs_stgw10gc1 win10_chrome » file_insurance_claim
+
