@@ -107,6 +107,33 @@ Then /^expect orders toolbar tags is present$/ do
   expect(SdcOrders.toolbar.tags).to be_present, "Orders Toolbar Tags button is not present!"
 end
 
+Then /^click orders toolbar tags$/ do
+  SdcOrders.toolbar.tags.click
+end
+
+Then /^hover on orders toolbar tags$/ do
+  SdcOrders.toolbar.tags.hover
+end
+
+Then /^wait for orders toolbar tags tooltip$/ do
+  SdcOrders.toolbar.tags_tooltip.safe_wait_until_present(timeout: 2)
+end
+
+Then /^expect orders toolbar tags tooltip is present$/ do
+  step 'wait for orders toolbar tags tooltip'
+  expect(SdcOrders.toolbar.tags_tooltip).to be_present
+end
+
+Then /^expect orders toolbar tags tooltip is not present$/ do
+  step 'wait for orders toolbar tags tooltip'
+  expect(SdcOrders.toolbar.tags_tooltip).not_to be_present
+end
+
 Then /^expect orders toolbar more actions is present$/ do
   expect(SdcOrders.toolbar.more_actions).to be_present, "Orders Toolbar More Actions button is not present!"
+end
+
+Then /^blur out on orders$/ do
+  SdcOrders.filter_panel.search_orders.safe_double_click
+  step 'check for server error'
 end

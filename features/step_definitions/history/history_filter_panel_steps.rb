@@ -276,3 +276,8 @@ Then /^wait while loading history filters grid$/ do
   SdcHistory.filter_panel.loading.safe_wait_until_present(timeout: 8)
   SdcHistory.filter_panel.loading.wait_while_present(timeout: 240)
 end
+
+Then /^blur out on history/ do
+  SdcHistory.filter_panel.search_orders.safe_double_click
+  step 'check for server error'
+end
