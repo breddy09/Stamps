@@ -1187,6 +1187,11 @@ Cucumber::Rake::Task.new(:bvt_orders_ship_date) do |t|
   t.cucumber_opts = "-p cuke_reports"
 end
 
+Cucumber::Rake::Task.new(:bvt_orders_print_all) do |t|
+  t.profile = 'bvt_orders_print_all'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
 Cucumber::Rake::Task.new(:bvt_shipstation_search) do |t|
   t.profile = 'bvt_shipstation_search'
   t.cucumber_opts = "-p cuke_reports"
