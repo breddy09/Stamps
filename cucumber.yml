@@ -12,7 +12,7 @@ local_browser: --tags @mail_advanced_options_paper URL=stg BROWSER=gc MAX_WINDOW
 sauce_mobile: --tags @mail_authentication_mobile --guess URL=stg USR=sauce0020 PW=pass111 SELENIUM_DEVICE='iPhone X Simulator' SELENIUM_PLATFORM=iOS SELENIUM_BROWSER=Safari SELENIUM_VERSION=12.0 TUNNEL_IDENTIFIER=rob LOG_LEVEL=info
 #sauce_browser: --tags @bvt_shipstation_updates_domestic URL=stg USR=stgvoc0kcnt6rw PW=pass111 SELENIUM_BROWSER=chrome SELENIUM_VERSION=latest SELENIUM_PLATFORM='Mac 10.10' TUNNEL_IDENTIFIER=rob LOG_LEVEL=info
 #sauce_browser: --tags @history_filter_direct_url URL=stg USR=bvtstgw7ff8 PW=pass111 SELENIUM_BROWSER=safari SELENIUM_VERSION=latest SELENIUM_PLATFORM='macOS 10.13' TUNNEL_IDENTIFIER=rob LOG_LEVEL=info SCREEN_RESOLUTION=1376x1032
-sauce_browser: --tags @history_filter_direct_url_1 --guess URL=cc USR=cctruer0u PW=pass111 SELENIUM_BROWSER=chrome SELENIUM_VERSION=latest SELENIUM_PLATFORM='macOS 10.13' TUNNEL_IDENTIFIER=rob LOG_LEVEL=info SCREEN_RESOLUTION=1376x1032
+sauce_browser: --tags @bvt_orders_print_all --guess URL=sc USR=wbap-631 PW=pass111 SELENIUM_BROWSER=chrome SELENIUM_VERSION=latest SELENIUM_PLATFORM='macOS 10.13' TUNNEL_IDENTIFIER=58eedd7ec5f0407e865a7e0cca759506 LOG_LEVEL=info SCREEN_RESOLUTION=1376x1032
 #sauce_browser: --tags @bvt_orders_ship_date URL=cc USR=bvtsauce00020cc PW=pass111 SELENIUM_BROWSER=firefox SELENIUM_VERSION=latest SELENIUM_PLATFORM='Mac 10.12' TUNNEL_IDENTIFIER=rob LOG_LEVEL=info SCREEN_RESOLUTION=1152x864
 #mhossain1_cc: --tags @registration_normal_workflow JENKINS=true URL=cc LOG_LEVEL=info BROWSER=ff MAX_WINDOW=false WEB_APP=registration USR=mhossain1 PW=Password1
 #mhossain1_cc: --tags @pp_header_favicons_browser_mobile JENKINS=true URL=qacc BROWSER=gc BROWSER_MOBILE_EMULATOR=gc,'iPhone X' USR=wteam@stamps.com PW=password1 WEB_DEV=true
@@ -29,7 +29,7 @@ alex_mail:  --tags @mail_dropdown_tooltip BROWSER=firefox URL=stg USR=abqasttest
 alex_regress:  --tags @bvt_shipping_address_management BROWSER=ff WEB_APP=orders URL=cc USR=abqacc10 PW=password1  --guess LOG_LEVEL=info HEALTHCHECK=false MAX_WINDOW=false
 alex_rates:  --tags @rates_orders_pme_comm_plus_zone_5 BROWSER=ff URL=stg USR=abqast2 PW=password1  --guess LOG_LEVEL=info HEALTHCHECK=false
 alex_rates_pmi:  --tags @rates_mail_pmei_comm_base_group_2 BROWSER=ff URL=stg USR=abqast5 PW=password1  --guess LOG_LEVEL=info HEALTHCHECK=false MAX_WINDOW=false
-alex_orders:  --tags @bvt_orders_print_all BROWSER=ff URL=stg USR=abqastsas1 PW=password1  PRINTER=factory --guess LOG_LEVEL=info HEALTHCHECK=false
+alex_orders:  --tags @bvt_orders_print_all BROWSER=ff URL=sc USR=wbap-631 PW=pass111  PRINTER=factory --guess LOG_LEVEL=info HEALTHCHECK=false
 alex_test:  --tags @bvt_shipping_address_management BROWSER=ff URL=qacc USR=abqacc10 PW=password1  --guess LOG_LEVEL=info HEALTHCHECK=false MAX_WINDOW=false
 saucelabs_alex: --tags @history_filter_direct_url URL=qacc USR=abqaccsas1 PW=password1 --guess SAUCE_USERNAME=robcruz SAUCE_ACCESS_KEY=0e60dbc9-5bbf-425a-988b-f81c42d6b7ef SELENIUM_BROWSER=firefox SELENIUM_VERSION=latest SELENIUM_PLATFORM='Windows 10' SELENIUM_HOST=ondemand.saucelabs.com SELENIUM_PORT=443
 mail_print_envelope_11: --tags @mail_print_envelope_11 --guess PRINTER=factory
