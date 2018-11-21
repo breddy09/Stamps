@@ -572,3 +572,14 @@ Feature:  BVT tests for Orders
     Then check customs form i agree to the usps privacy act statement
     Then close customs information form
     Then sign out
+
+  #  WEBAPPS-13017
+  @bvt_orders_print_all
+  Scenario:  BVT Orders print all
+    Then sign-in to orders
+    Then add new order
+    Then uncheck orders grid row 1
+    Then click orders top toolbar print button
+    Then expect orders modal no orders is present
+    Then close orders modal no orders
+    Then sign out
