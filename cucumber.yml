@@ -344,7 +344,7 @@ bvt_orders_ship_date: --tags @bvt_orders_ship_date --guess
 bvt_orders_ship_date_calendar: --tags @bvt_orders_ship_date_calendar --guess
 bvt_form_validation_orders_details: --tags @bvt_form_validation_orders_details --guess
 bvt_form_validation_bulk_update: --tags @bvt_form_validation_bulk_update --guess
-bvt_orders_print_all: --tags @orders_print_all --guess
+bvt_orders_print_all: --tags @bvt_orders_print_all --guess
 bvt_all_tests: --tags @bvt_all_tests --guess
 dev_bvt_shipping_address_management: --tags @bvt_shipping_address_management --guess
 dev_bvt_address_cleansing: --tags @bvt_address_cleansing --guess
