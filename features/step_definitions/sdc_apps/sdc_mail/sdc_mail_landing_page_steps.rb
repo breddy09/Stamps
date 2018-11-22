@@ -54,13 +54,10 @@ Then /^sign out$/ do
     unless TestSession.env.responsive
       user_drop_down = SdcWebsite.navigation.user_drop_down
       landing_page = SdcWebsite.landing_page
-      4.times do
-        user_drop_down.signed_in_user.hover
-        user_drop_down.sign_out_link.safe_wait_until_present(timeout: 1)
-        user_drop_down.sign_out_link.click
-        landing_page.username.safe_wait_until_present(timeout: 1)
-        break if landing_page.username.present?
-      end
+      user_drop_down.signed_in_user.hover
+      user_drop_down.sign_out_link.safe_wait_until_present(timeout: 1)
+      user_drop_down.sign_out_link.click
+      landing_page.username.safe_wait_until_present(timeout: 1)
     end
   rescue
     # ignore
@@ -97,8 +94,6 @@ Then /^mail rating error$/ do
   end
 end
 
-
-
 Then /^close whats new modal in mail$/ do
   whats_new = SdcWebsite.modals.whats_new
   if whats_new.title.present?
@@ -109,7 +104,7 @@ end
 Then /^expect user is signed in$/ do
   user_drop_down = SdcWebsite.navigation.user_drop_down
   user_drop_down.signed_in_user.safe_wait_until_present(timeout: 30)
-  expect(user_drop_down.signed_in_user.text_value).to eql TestData.hash[:username]
+  expect(user_drop_down.signed_in_user.text_value.to_s.downcase).to eql TestData.hash[:username].to_s.downcase
 end
 
 Then /^set Mail username(?: to (.+)|)$/ do |usr|

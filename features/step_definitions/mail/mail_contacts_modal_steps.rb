@@ -7,11 +7,21 @@ Then /^expect search contacts modal is not present$/ do
   expect(SdcMail.modals.search_contacts.title).not_to be_present
 end
 
+Then /^expect title on search contacts modal is (.*)$/ do |str|
+  SdcMail.modals.search_contacts.title.wait_until_present(timeout: 5)
+  expect(SdcMail.modals.search_contacts.title.text_value).to eql(str)
+  end
+
 Then /^close search contacts modal$/ do
   SdcMail.modals.search_contacts.x_btn.click
   step 'expect search contacts modal is not present'
 end
 
+Then /^expect mail-to link on print form is displayed$/ do
+  mail_to = SdcMail.print_form.mail_to
+  mail_to.link.wait_until_present(timeout: 5)
+  expect(mail_to.link.text).to eql 'Mail To:'
+end
 
 Then /^click mail-to link on print form$/ do
   mail_to = SdcMail.print_form.mail_to
@@ -24,23 +34,25 @@ Then /^click mail-to link on print form$/ do
   expect(search_contacts.title.text).to eql 'Search Contacts'
 end
 
-Then /^check search contacts grid name (.+)$/ do |str|
+Then /^check search contacts grid name (.*)$/ do |str|
   grid = SdcMail.modals.search_contacts.grid
   row = grid.row_number_for_name(str)
   checkbox = grid.checkbox_for_row(row)
-  checkbox.check
+  checkbox.check unless checkbox.checked?
   expect(checkbox.checked?).to be(true)
 end
 
-Then /^set search contacts grid name (.+)$/ do |str|
+Then /^set search contacts grid name (.*)$/ do |str|
   search_filter = SdcMail.modals.search_contacts
-  search_filter.search_text.flash
+  search_filter.search_text.wait_until_present(timeout:30)
   search_filter.search_text.set(str)
 end
 
 Then /^click search icon on search contacts modal$/ do
   search_contact_modal = SdcMail.modals.search_contacts
+  search_contact_modal.search_icon.wait_until_present(timeout:30)
   search_contact_modal.search_icon.click
+  sleep(5)
 end
 
 

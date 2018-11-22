@@ -317,6 +317,8 @@ module SdcMail
     class ContactsView < SdcPage
       page_object(:container) { { xpath: '//div[starts-with(@id,"multiplecontactsview-")][contains(@id,"-innerCt")]' } }
       page_objects(:contacts_list) { { xpath: '//div[starts-with(@id,"multiplecontactsview-")][contains(@id,"-innerCt")]//li[@id="ContactId"]//div[@class="x-tagfield-item-text"]' } }
+      page_objects(:remove_contact_button) { { xpath: '//div[@class="x-tagfield-item-close"]' } }
+
     end
 
     class MailToAddAddress < SdcPage
@@ -356,7 +358,6 @@ module SdcMail
       page_object(:x_button) { { xpath: '//span[contains(@class, "icon-mobile-close-light")]' } }
       page_object(:close) { { xpath: '//span[text()="Close"]' } }
     end
-
 
     class AddressCleansingModal < SdcPage
       page_object(:title) { { xpath: '//div[contains(@class, "x-window-header-title")]//div[contains(text(),"Address Cleansing")][@class="x-title-text x-title-text-default x-title-item"]' } }
@@ -408,6 +409,19 @@ module SdcMail
       page_object(:title) { { xpath: '//*[text()="Server Error"]' } }
       page_object(:body) { { xpath: '//div[contains(@class, "sdc-warning")]//div[contains(@id, "-innerCt")]' } }
       page_object(:ok) { { xpath: '//span[text()="OK"]' } }
+    end
+
+    class YourInternationalLabel < SdcPage
+      page_object(:title) { { xpath: '//*[text()="Your International Label"]' } }
+      page_object(:ok) { { xpath: '//span[text()="OK"]' } }
+      page_object(:x_btn) { { xpath: '//span[contains(@class, "icon-mobile-close-light")]' } }
+    end
+
+    class YourGlobalPostLabel < SdcPage
+      page_object(:title) { { xpath: '//*[text()="Your GlobalPost Label"]' } }
+      page_object(:continue) { { xpath: '//span[text()="Continue"]' } }
+      page_object(:more_info) { { xpath: '//span[text()="More Info"]' } }
+      page_object(:x_btn) { { xpath: '//span[contains(@class, "icon-mobile-close-light")]' } }
     end
 
     class << self
@@ -506,6 +520,16 @@ module SdcMail
       def address_cleansing_accept
         CleansingAcceptErrorModal.new
       end
+
+      def your_international_label
+        YourInternationalLabel.new
+      end
+
+      def your_global_post_label
+        YourGlobalPostLabel.new
+      end
+
+
 
       # def settings
       #   SdcSettings.new
