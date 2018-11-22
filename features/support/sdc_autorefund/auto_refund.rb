@@ -59,7 +59,7 @@ module SdcAutoRefund
 
     def not_shipped_label(num)
       klass = Class.new(SdcPage) do
-        page_object(:not_shipped_label) { { xpath: "(//*[contains(@id, 'is-not-opt-out')]/following-sibling::*)[#{num}]" } }
+        page_object(:not_shipped_label) { { xpath: "(//*[text()='Not Shipped'])[#{num}]" } }
       end
       klass.new.not_shipped_label
     end
@@ -73,7 +73,7 @@ module SdcAutoRefund
 
     def shipped_label(num)
       klass = Class.new(SdcPage) do
-        page_object(:shipped_label) { { xpath: "(//*[contains(@id, 'is-opt-out')]/following-sibling::*)[#{num}]" } }
+        page_object(:shipped_label) { { xpath: "(//*[text()='Shipped'])[#{num}]" } }
       end
       klass.new.shipped_label
     end
