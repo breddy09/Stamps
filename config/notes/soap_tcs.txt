@@ -22,4 +22,5 @@ tcs_stgw10ff20 win10_firefox »
 
 Win10 Latest Google Chrome Staging
 tcs_stgw10gc1 win10_chrome » file_insurance_claim
+tcs_stgw10gc18 win10_chrome » create_scan_form
 
