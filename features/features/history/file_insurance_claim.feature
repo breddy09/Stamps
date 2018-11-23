@@ -3,6 +3,7 @@ Feature:  History :File an Insurance Claim
   Background:
     Given Start test driver
 
+
   @file_insurance_claim
   Scenario: Verify File Insurance Claim Page loads and Date Selections Drop Down menu is available
     Then sign-in to orders
@@ -31,6 +32,7 @@ Feature:  History :File an Insurance Claim
     Then expect file claim link on the transaction details panel is available
     Then expect file claim link on the transaction details panel is enabled
     Then click file claim link on transaction details panel
+    Then expect file claim
     Then click close button on insurance claim form modal
     Then expect file claim link on the transaction details menu dropdown is available
     Then expect file claim link on the transaction details menu dropdown is enabled

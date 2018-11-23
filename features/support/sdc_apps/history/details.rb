@@ -91,12 +91,15 @@ module SdcHistory
     end
 
     class Reference < SdcPage
-      page_object(:title) { { xpath: '' } }
+      page_object(:title) { { xpath: '//div[contains(@class,"sdc-detailssection-header-title")]//div[contains(@class,"x-title-item")][text()="Reference"]' } }
       page_object(:after_title_tool) { { xpath: '' } }
+      page_object(:user) { { xpath: '//span[text()="User:"]//following::div[contains(@class,"x-form-display-field")][1]'}}
+      page_object(:printed_on) { { xpath: '//span[text()="Printed On:"]//following::div[contains(@class,"x-form-display-field")][1]'}}
+      page_object(:sacan_form_id) { { xpath: '//span[text()="SCAN Form ID:"]//following::div[contains(@class,"x-form-display-field")][1]'}}
 
-      def cost_code
+    def cost_code
         HistoryDetailCostcode.new
-      end
+    end
     end
 
     class HistoryDetailCostcode <SdcPage

@@ -22,3 +22,30 @@ Then /^expect value of cost code in history print details panel is (?:correct|(.
   expect(actual_value.strip).to eql str.strip
 end
 
+Then /^expect file claim link on the transaction details panel is available$/ do
+history_detail=SdcHistory.details
+end
+
+Then /^expect file claim link on the transaction details panel is enabled$/ do
+
+end
+
+Then /^click file claim link on transaction details panel$/ do
+
+end
+
+Then /^expect file claim$/ do
+
+end
+
+Then /^click close button on insurance claim form modal$/ do
+
+end
+
+Then /^expect file claim link on the transaction details menu dropdown is available$/ do
+
+end
+
+Then /^expect file claim link on the transaction details menu dropdown is enabled$/do
+
+end

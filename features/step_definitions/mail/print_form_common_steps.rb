@@ -11,6 +11,7 @@ Then /^set print form mail-from to (.*)$/ do |str|
     selection.safe_wait_until_present(timeout: 1)
     selection.safe_click
   end
+
 end
 
 Then /^[Cc]heck Print form [Ee]mail [Tt]racking checkbox$/ do
