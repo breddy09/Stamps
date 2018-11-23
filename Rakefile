@@ -70,6 +70,10 @@ end
 #CONTACTS
 #
 #
+Cucumber::Rake::Task.new(:create_scan_form) do |t|
+  t.profile = 'create_scan_form'
+  t.cucumber_opts = "-p cuke_reports"
+end
 Cucumber::Rake::Task.new(:file_insurance_claim) do |t|
   t.profile = 'file_insurance_claim'
   t.cucumber_opts = "-p cuke_reports"

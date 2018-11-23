@@ -658,4 +658,4 @@ contacts_print_postage_multiple_from_top_nav: --tags @contacts_print_postage_mul
 aloha_history: --tags @file_claim URL=stg LOG_LEVEL=info HEALTHCHECK=false BROWSER=ff MAX_WINDOW=false USR=tcs_core007 PW=password1
 history_export:  --tags @history_export --guess LOG_LEVEL=info
 file_insurance_claim:  --tags @file_insurance_claim --guess LOG_LEVEL=info
-
+create_scan_form: --tags @create_scan_form --guess LOG_LEVEL=info
