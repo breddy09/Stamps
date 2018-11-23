@@ -671,13 +671,13 @@ end
 Then /^expect insurance claim form modal is displayed$/ do
   ins_claim_form=SdcHistory.modals.insurance_claim_form
   ins_claim_form.window.safe_wait_until_present(timeout: 10)
-  expect(ins_claim_form.window.file_claim.present?).to be (true)
+  expect(ins_claim_form.window.present?).to be (true)
 end
 
 Then /^expect insurance claim form modal is not displayed$/ do
   ins_claim_form=SdcHistory.modals.insurance_claim_form
   ins_claim_form.window.safe_wait_until_present(timeout: 10)
-  expect(ins_claim_form.window.file_claim.present?).to be (flase)
+  expect(ins_claim_form.window.present?).to be (false)
 end
 
 Then /^click print form button on insurance claim form modal$/ do

@@ -3,7 +3,6 @@ Feature:  History :File an Insurance Claim
   Background:
     Given Start test driver
 
-
   @file_insurance_claim
   Scenario: Verify File Insurance Claim Page loads and Date Selections Drop Down menu is available
     Then sign-in to orders
@@ -24,8 +23,7 @@ Feature:  History :File an Insurance Claim
 #    Then click mail toolbar print label
 #    Then expect postage message panel tracking label is Postage was sent to your printer. Your Tracking Number is
 #    Then save tracking number on print form message panel
-    #Then hover on navigation history then select File an Insurance Claim
-    Then navigate to History
+    Then hover on navigation history then select File an Insurance Claim
 #    Then set search prints to newly added tracking number on history filter panel
 #    Then click search icon on history filter panel
 #    Then check row for saved tracking number on history grid
@@ -33,13 +31,21 @@ Feature:  History :File an Insurance Claim
     Then expect file claim link on the transaction detail panel is available
     Then expect file claim link on the transaction detail panel is enabled
     Then click file claim link on transaction detail panel
-    Then expect file claim modal is displayed
+    Then expect insurance claim form modal is displayed
     Then click close button on insurance claim form modal
-    Then expect insurance claim form modal
+    Then expect insurance claim form modal is not displayed
+    Then click transaction details header menu dropdown
     Then expect file claim link on the transaction detail menu dropdown is available
     Then click file claim link on transaction detail menu dropdown
-    Then expect file claim modal is displayed
+    Then expect insurance claim form modal is displayed
     Then click cancel button on insurance claim form modal
+    Then expect file claim link in services section of transaction detail panel is available
+    Then expect file claim link in services section of transaction detail panel is enabled
+    Then click file claim link in services section of transaction detail panel
+    Then expect insurance claim form modal is displayed
+    Then click close button on insurance claim form modal
+    Then expect insurance claim form modal is not displayed
+
 
 
 
