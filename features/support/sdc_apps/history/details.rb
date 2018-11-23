@@ -35,6 +35,13 @@ module SdcHistory
         end
         klass.new.email_tracking_info
       end
+	  
+	  def file_claim
+        klass = Class.new(SdcPage) do
+          page_object(:file_claim) { { xpath: '//*[text()="File Claim"][contains(@id, "button")][1]' } }
+        end
+        klass.new.file_claim
+      end
 
       def header
         Header.new
@@ -57,7 +64,7 @@ module SdcHistory
       page_object(:title) { { xpath: '//*[contains(@id, "singlePrintDetailsForm_header")]//*[contains(@id, "title")]//*' } }
       page_object(:toolbar_menu) { { xpath: '//*[contains(@class, "x-btn-after-title")]' } }
       page_object(:toolbar_menu_tooltip) { { xpath: '//b[text()="More"]' } }
-
+      page_object(:file_claim) { { xpath: '//div[contains(@id, "menu")]//*[text()="File Claim"]' } }
       page_object(:create_return_label) { { xpath: '//div[contains(@id, "menu")]//*[text()="Create Return Label"]' } }
       page_object(:email_tracking_info) { { xpath: '//div[contains(@id, "menu")]//*[text()="Email Tracking Info"]' } }
       page_object(:track_on_usps) { { xpath: '//div[contains(@id, "menu")]//*[text()="Track on USPS.com"]' } }
@@ -75,7 +82,7 @@ module SdcHistory
     end
 
     class Services < SdcPage
-      page_object(:title) { { xpath: '' } }
+      page_object(:title) { { xpath: '//div[contains(@class,"x-title-item")][text()="Services"]' } }
       page_object(:after_title_tool) { { xpath: '' } }
       page_object(:price) { { xpath: '' } }
 
@@ -86,6 +93,7 @@ module SdcHistory
       page_object(:incsurance) { { xpath: '' } }
       page_object(:tracking) { { xpath: '' } }
       page_object(:weight) { { xpath: '' } }
+      page_object(:file_claim) { { xpath: '//div[contains(@class,"x-title-item")][text()="Services"]//following::span[contains(text(),"File Claim")][1]' } }
 
 
     end

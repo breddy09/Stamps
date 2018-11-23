@@ -24,18 +24,23 @@ Feature:  History :File an Insurance Claim
 #    Then click mail toolbar print label
 #    Then expect postage message panel tracking label is Postage was sent to your printer. Your Tracking Number is
 #    Then save tracking number on print form message panel
-    Then hover on navigation history then select File an Insurance Claim
+    #Then hover on navigation history then select File an Insurance Claim
+    Then navigate to History
 #    Then set search prints to newly added tracking number on history filter panel
 #    Then click search icon on history filter panel
 #    Then check row for saved tracking number on history grid
     Then check row 1 on history grid
-    Then expect file claim link on the transaction details panel is available
-    Then expect file claim link on the transaction details panel is enabled
-    Then click file claim link on transaction details panel
-    Then expect file claim
+    Then expect file claim link on the transaction detail panel is available
+    Then expect file claim link on the transaction detail panel is enabled
+    Then click file claim link on transaction detail panel
+    Then expect file claim modal is displayed
     Then click close button on insurance claim form modal
-    Then expect file claim link on the transaction details menu dropdown is available
-    Then expect file claim link on the transaction details menu dropdown is enabled
+    Then expect insurance claim form modal
+    Then expect file claim link on the transaction detail menu dropdown is available
+    Then click file claim link on transaction detail menu dropdown
+    Then expect file claim modal is displayed
+    Then click cancel button on insurance claim form modal
+
 
 
 

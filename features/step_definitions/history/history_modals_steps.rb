@@ -667,4 +667,38 @@ Then /^click search button on advance search modal$/ do
 end
 
 
+#Insurance Claim Form
+Then /^expect insurance claim form modal is displayed$/ do
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.window.safe_wait_until_present(timeout: 10)
+  expect(ins_claim_form.window.file_claim.present?).to be (true)
+end
+
+Then /^expect insurance claim form modal is not displayed$/ do
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.window.safe_wait_until_present(timeout: 10)
+  expect(ins_claim_form.window.file_claim.present?).to be (flase)
+end
+
+Then /^click print form button on insurance claim form modal$/ do
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.close_button.safe_wait_until_present(timeout: 10)
+  ins_claim_form.close_button.click
+end
+
+Then /^click close button on insurance claim form modal$/ do
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.close_button.safe_wait_until_present(timeout: 10)
+  ins_claim_form.close_button.click
+end
+
+
+Then /^click cancel button on insurance claim form modal$/ do
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.cancel_button.safe_wait_until_present(timeout: 10)
+  ins_claim_form.cancel_button.click
+end
+
+
+
 
