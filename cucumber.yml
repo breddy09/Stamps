@@ -1,5 +1,5 @@
 
-default: --backtrace --profile aloha_history
+default: --backtrace --profile local_browser
 
 cuke_reports: --format json --out report.json --backtrace -f pretty -r features --format pretty --format html --out reports
 

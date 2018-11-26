@@ -330,7 +330,7 @@ module TestSession
         begin
           @driver.window.resize_to(width, height)
           @driver.window.move_to(0, 0)
-        rescue Exception
+        rescue StandardError
           #ignore
         end
       else

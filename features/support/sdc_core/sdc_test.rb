@@ -4,28 +4,34 @@ class SdcTest
     def configure
       SdcLogger.debug "Initializing test driver...\n"
 
-      if TestSession.env.mobile_device
-        SdcPage.browser = TestSession.mobile_device
-        print "\n"
-        print "\n"
-        print TestSession.env.session_info(SdcPage.browser.session_id)
-        print "\n"
-        print "\n"
+      begin
+        if TestSession.env.mobile_device
+          SdcPage.browser = TestSession.mobile_device
+          print "\n"
+          print "\n"
+          print TestSession.env.session_info(SdcPage.browser.session_id)
+          print "\n"
+          print "\n"
 
-      elsif TestSession.env.selenium_platform
-        SdcPage.browser = TestSession.sauce_browser
-        print "\n"
-        print "\n"
-        print TestSession.env.session_info(SdcPage.browser.driver.session_id)
-        print "\n"
-        print "\n"
+        elsif TestSession.env.selenium_platform
+          SdcPage.browser = TestSession.sauce_browser
+          print "\n"
+          print "\n"
+          print TestSession.env.session_info(SdcPage.browser.driver.session_id)
+          print "\n"
+          print "\n"
 
-      elsif TestSession.env.local_browser
-        SdcPage.browser = TestSession.local_browser
-
-      else
-        error_msg = 'Cannot determine if this is a browser, iOS or Android test'
-        raise ArgumentError, error_msg
+        elsif TestSession.env.local_browser
+          SdcPage.browser = TestSession.local_browser
+        else
+          error_msg = 'Cannot determine if this is a browser, iOS or Android test'
+          raise ArgumentError, error_msg
+        end
+      rescue StandardError => e
+        SdcLogger.error e.message
+        SdcLogger.error e.backtrace.join("\n")
+        error_msg = "#{e.message}: #{TestSession.env.browser_test || TestSession.env.mobile_device}"
+        raise error_msg, e
       end
 
       SdcLogger.debug 'SdcTest.configure... done!'
