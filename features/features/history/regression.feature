@@ -83,6 +83,7 @@ Feature:  History regression
     Then expect return to on history print details contain EL SEGUNDO, CA
     Then sign out
 
+  @container_label_reprint_1
   @container_label_reprint
   Scenario: Container label reprint for Shipping label 8x11 paper
     Then sign-in to mail
