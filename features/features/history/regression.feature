@@ -125,8 +125,8 @@ Feature:  History regression
     Then expect Shipping Label - 8 ½" x 11" Paper is present on printing on on ready to print modal
     Then expect Shipping Label - SDC-1200 is present on printing on on ready to print modal
     Then expect Shipping Label - 5 ½" x 8 ½" is present on printing on on ready to print modal
-    Then expect Roll - 4" x 6" Shipping Label is not present on printing on on ready to print modal
-    Then expect Roll - 4 ⅛" x 6 ¼" Shipping Label is not present on printing on on ready to print modal
+#    Then expect Roll - 4" x 6" Shipping Label is not present on printing on on ready to print modal
+#    Then expect Roll - 4 ⅛" x 6 ¼" Shipping Label is not present on printing on on ready to print modal
     Then select Shipping Label - 8 ½" x 11" Paper on printing on drop down on ready to print modal
     Then expect total cost on ready to print modal is 0
     Then click print button on ready to print modal

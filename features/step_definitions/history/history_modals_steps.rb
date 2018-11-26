@@ -521,7 +521,7 @@ Then /^expect (.*) is present on printing on on ready to print modal$/ do |str|
 end
 
 Then /^expect (.*) is not present on printing on on ready to print modal$/ do |str|
-  SdcHistory.modals.ready_to_print.printing_on.selection_element(str)
+  SdcHistory.modals.ready_to_print.printing_on.selection_element(value: str)
   expect(SdcHistory.modals.ready_to_print.printing_on.selection).not_to be_present
 end
 

@@ -148,7 +148,7 @@ module SdcHistory
       page_object(:text_field) { { xpath: '//input[contains(@id, "printmediadroplist")]' } }
       page_object(:drop_down) { { xpath: '//div[contains(@id, "printmediadroplist")]//div[contains(@class, "arrow")]' } }
 
-      def selection_element(name: :selection, value: 'factory')
+      def selection_element(name: :selection, value: 'Shipping Label - 8 ½" x 11" Paper')
         page_object(name) { { xpath: "//li[contains(text(), '#{value}')]" } }
       end
     end

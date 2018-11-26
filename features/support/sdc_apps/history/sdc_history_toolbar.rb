@@ -1,12 +1,7 @@
 module SdcHistory
 
   module Toolbar
-
-    class Toolbar < SdcPage
-      page_object(:export) { {xpath: '//span[contains(@class,"sdc-icon-export")]'} }
-      page_object(:feedback) { { xpath: 'XXX' } }
-      page_object(:settings) { { xpath: 'XXX' } }
-
+    class << self
       def refund
         SdcHistoryRefund.new
       end
@@ -31,9 +26,29 @@ module SdcHistory
         ToolbarCreateContainerLabel.new
       end
 
-    end
+      def export
+        klass = Class.new(SdcPage) do
+          page_object(:export) { {xpath: '//span[contains(@class,"sdc-icon-export")]'} }
+        end
+        klass.new.export
+      end
 
+      def feedback
+        klass = Class.new(SdcPage) do
+          page_object(:feedback) { { xpath: 'XXX' } }
+        end
+        klass.new.feedback
+      end
+
+      def settings
+        klass = Class.new(SdcPage) do
+          page_object(:settings) { { xpath: 'XXX' } }
+        end
+        klass.new.settings
+      end
+    end
   end
+
   class SdcHistoryToolbarPickup < SdcPage
     page_object(:link) { {xpath: '//span[text()="Schedule Pickup"]'} }
     page_object(:all_eligible_packages) { {xpath: '//*[text()="Manage Pickups"]/../../..//*[text()="Selected Packages"]'} }
