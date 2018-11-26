@@ -246,7 +246,7 @@ module TestSession
 
     def local_browser
 
-      chrome_switches = %w(--ignore-certificate-errors --disable-popup-blocking --disable-translate)
+      chrome_switches = %w(--ignore-certificate-errors --disable-popup-blocking --disable-translate --disable-print-preview)
       # Watir.always_locate = true
       case(env.local_browser)
 
