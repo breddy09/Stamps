@@ -40,6 +40,9 @@ end
 
 Then /^launch the browser$/ do
   SdcTest.configure
+
+  window = RAutomation::Window.new(:title => /Print/i)
+  window
 end
 
 Then /^close the browser$/ do

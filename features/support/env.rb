@@ -19,6 +19,7 @@ require 'watir_drops'
 require 'socket'
 require 'csv'
 require 'em/pure_ruby'
+require "rautomation"
 
 require_relative 'sdc_core/sdc_patch'
 require_relative 'sdc_core/sdc_core'
