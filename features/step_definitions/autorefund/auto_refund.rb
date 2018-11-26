@@ -20,6 +20,11 @@ Then /^wait while auto refund page ready$/ do
   SdcAutoRefund.loading.wait_while_present(timeout: 240)
 end
 
+Then /^wait while auto refund page updating$/ do
+  SdcAutoRefund.updating.safe_wait_until_present(timeout: 2)
+  SdcAutoRefund.updating.wait_while_present(timeout: 8)
+end
+
 Then /^expect title on auto refund present$/ do
   expect(SdcAutoRefund.title).to be_present
 end
@@ -55,6 +60,7 @@ Then /^click update label status button on auto refund present$/ do
 end
 
 Then /^expect success message on auto refund present$/ do
+  step 'wait while auto refund page updating'
   expect(SdcAutoRefund.success_msg).to be_present
 end
 
