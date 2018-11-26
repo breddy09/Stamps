@@ -5,7 +5,7 @@ Feature: Stamps WebReg: Workflow
   @sdcwr_random_workflow
   Scenario: Stamps WebReg: Normal Workflow
    # Profile Page
-    Then WL: navigates to default registration page for stamps with the following offer id random value
+    Then WL: navigates to default registration page for stamps with the following offer id 404
     Then WL: set profile page email to random value
     Then WL: set profile page username to random value
     Then WL: set profile page password to random value
