@@ -76,7 +76,7 @@ Then /^expect not shipped for all rows on auto refund selected$/ do
   end
 end
 
-Then /^select shipped for all rows on auto refund/ do
+Then /^select shipped for all rows on auto refund$/ do
   (1..SdcAutoRefund.rows.count).each do |index|
     step "select shipped on row #{index} on auto refund"
   end
