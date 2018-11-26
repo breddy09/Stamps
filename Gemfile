@@ -13,6 +13,7 @@ gem 'faker'
 gem 'sauce_whisk'
 gem 'watir_drops'
 gem 'rautomation'
+gem 'win32ole'
 
 group :web_dev do
   gem 'tiny_tds'
