@@ -90,5 +90,9 @@ Then /^cancel print on gif printing dialog$/ do
   rescue
     # ignore
   end
-  browser.windows.first.use
+  begin
+    browser.windows.first.use
+  rescue
+    # ignore
+  end
 end

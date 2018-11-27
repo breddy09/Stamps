@@ -38,8 +38,3 @@ Then /^set search prints tracking number on history filter panel to (?:newly add
   search.search_prints.set(str)
 end
 
-Then /^click search icon on history filter panel$/ do
-  search =  SdcHistory.filter_panel.search
-  search.search_icon.click
-end
-
