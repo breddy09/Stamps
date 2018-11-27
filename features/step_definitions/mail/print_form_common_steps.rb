@@ -6,13 +6,19 @@ Then /^set print form mail-from to (.*)$/ do |str|
   selection = mail_from.selection(:selection_element, str)
   text = mail_from.text_field.text_value
   if str.casecmp('default').zero?
-
-  end
-  unless text.eql?(str)
-    mail_from.drop_down.click
-    selection.scroll_into_view
-    selection.safe_wait_until_present(timeout: 1)
-    selection.safe_click
+    if text.size.zero?
+      mail_from.drop_down.click
+      selection.scroll_into_view
+      selection.safe_wait_until_present(timeout: 1)
+      selection.safe_click
+    end
+  else
+    if !text.eql?(str)
+      mail_from.drop_down.click
+      selection.scroll_into_view
+      selection.safe_wait_until_present(timeout: 1)
+      selection.safe_click
+    end
   end
 end
 
