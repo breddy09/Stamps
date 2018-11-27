@@ -11,6 +11,7 @@ Feature:  History Details Addresses displayed in Ship to Field
     #Then set print form mail-to to a random address in zone 1
     Then set print form mail-from to default
     Then set print form mail-to to address random name, random company, 3217 Shasta Circle S., Los Angeles, CA 90065
+    Then set print form email tracking sdoma@stamps.com
     Then select print form service PM Large/Thick Envelope
     Then set print form weight to lbs 0 oz 1
     Then click print label
