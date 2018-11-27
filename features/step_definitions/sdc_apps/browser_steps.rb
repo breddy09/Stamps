@@ -80,8 +80,8 @@ Then /^cancel print on gif printing dialog$/ do
     browser.windows.count.eql?(2)
   end
   browser.windows.last.use
-  browser.safe_send_keys(:tab)
+  browser.send_keys(:tab)
   sleep(0.25)
-  browser.safe_send_keys(:enter)
+  browser.send_keys(:enter)
   browser.windows.first.use
 end
