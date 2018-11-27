@@ -79,12 +79,11 @@ Then /^cancel print on gif printing dialog$/ do
   browser.wait_until(timeout: 5) do |browser|
     browser.windows.count.eql?(2)
   end
-  sleep(0.25)
   begin
-    browser.send_keys(:enter)
-    browser.windows.first.use
     browser.windows.last.use
     browser.send_keys(:tab)
+    browser.send_keys(:enter)
+    browser.windows.first.use
   rescue
     # ignore
   end

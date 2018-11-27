@@ -5,6 +5,9 @@ Then /^set print form mail-from to (.*)$/ do |str|
   mail_from = SdcMail.print_form.mail_from
   selection = mail_from.selection(:selection_element, str)
   text = mail_from.text_field.text_value
+  if str.casecmp('default').zero?
+
+  end
   unless text.eql?(str)
     mail_from.drop_down.click
     selection.scroll_into_view
@@ -33,9 +36,10 @@ Then /^set print form pounds to (.+)$/ do |str|
 end
 
 Then /^set print form pounds to (\d+) by arrows$/ do |lbs|
-  iterations = lbs.to_i - SdcMail.print_form.weight.lbs.text_value.to_i
-  iterations.abs.times do SdcMail.print_form.weight.lbs.increment.click end if iterations > 0
-  iterations.abs.times do SdcMail.print_form.weight.lbs.decrement.click end if iterations < 0
+  weight = SdcMail.print_form.weight
+  iterations = lbs.to_i - weight.lbs.text_value.to_i
+  iterations.abs.times do weight.lbs.increment.click end if iterations > 0
+  iterations.abs.times do weight.lbs.decrement.click end if iterations < 0
   step "expect print form pounds is #{lbs}"
   TestData.hash[:lbs] = lbs
   step 'blur out on print form'
