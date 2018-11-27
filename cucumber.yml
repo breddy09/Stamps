@@ -11,7 +11,7 @@ local_browser: --tags @container_label_reprint_1 URL=stg BROWSER=gc MAX_WINDOW=f
 #local_browser: --tags @bvt_shipstation_updates_domestic URL=sc BROWSER=ff MAX_WINDOW=false USR=scsejsglwa PW=pass111 PRINTER=factory LOG_LEVEL=info
 sauce_mobile: --tags @mail_authentication_mobile --guess URL=stg USR=sauce0020 PW=pass111 SELENIUM_DEVICE='iPhone X Simulator' SELENIUM_PLATFORM=iOS SELENIUM_BROWSER=Safari SELENIUM_VERSION=12.0 TUNNEL_IDENTIFIER=rob LOG_LEVEL=info
 #sauce_browser: --tags @bvt_shipstation_updates_domestic URL=stg USR=stgvoc0kcnt6rw PW=pass111 SELENIUM_BROWSER=chrome SELENIUM_VERSION=latest SELENIUM_PLATFORM='Mac 10.10' TUNNEL_IDENTIFIER=rob LOG_LEVEL=info
-sauce_browser: --tags @container_label_reprint_1 URL=stg USR=bvtstgw7ff8 PW=pass111 SELENIUM_BROWSER=safari SELENIUM_VERSION=latest SELENIUM_PLATFORM='macOS 10.13' TUNNEL_IDENTIFIER=rob LOG_LEVEL=info SCREEN_RESOLUTION=1376x1032
+sauce_browser: --tags @container_label_reprint_1 URL=stg USR=gapstage02 PW=password1 SELENIUM_BROWSER=chrome SELENIUM_VERSION=latest SELENIUM_PLATFORM='Windows 10' TUNNEL_IDENTIFIER=rob LOG_LEVEL=info SCREEN_RESOLUTION=1280x1024
 #sauce_browser: --tags @container_label_reprint_1 --guess URL=cc USR=cctruer0u PW=pass111 SELENIUM_BROWSER=chrome SELENIUM_VERSION=latest SELENIUM_PLATFORM='macOS 10.13' TUNNEL_IDENTIFIER=rob LOG_LEVEL=info SCREEN_RESOLUTION=1376x1032
 #sauce_browser: --tags @bvt_orders_ship_date URL=cc USR=bvtsauce00020cc PW=pass111 SELENIUM_BROWSER=firefox SELENIUM_VERSION=latest SELENIUM_PLATFORM='Mac 10.12' TUNNEL_IDENTIFIER=rob LOG_LEVEL=info SCREEN_RESOLUTION=1152x864
 #mhossain1_cc: --tags @registration_normal_workflow JENKINS=true URL=cc LOG_LEVEL=info BROWSER=ff MAX_WINDOW=false WEB_APP=registration USR=mhossain1 PW=Password1
