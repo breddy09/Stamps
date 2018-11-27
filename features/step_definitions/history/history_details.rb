@@ -24,6 +24,7 @@ end
 
 Then /^expect file claim link on the transaction detail panel is available$/ do
 history_detail=SdcHistory.details
+history_detail.file_claim.flash
 expect(history_detail.file_claim.present?).to be (true)
 end
 
@@ -41,6 +42,7 @@ end
 
 Then /^expect email tracking info link on the transaction detail panel is available$/ do
   history_detail=SdcHistory.details
+  history_detail.email_tracking_info.flash
   expect(history_detail.email_tracking_info.present?).to be (true)
 end
 
@@ -66,6 +68,7 @@ end
 
 Then /^expect email tracking info link on the transaction detail menu dropdown is available$/ do
   history_detail=SdcHistory.details.header
+  history_detail.email_tracking_info.flash
   expect(history_detail.email_tracking_info.present?).to be (true)
 end
 
