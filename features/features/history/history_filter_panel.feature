@@ -70,3 +70,24 @@ Feature:  History Filter Panel
     Then wait while loading history filters grid
     Then expect undeliverable is selected on history filter panel status
     Then sign out
+
+
+  @verify_search_by_recipient
+  Scenario: Verify for File Insurance Claim Search Recipient works
+    Then sign-in to mail
+    Then select print on Shipping Label - 5 ½" x 8 ½"
+    Then set print form mail-from to default
+    Then set print form mail-to to address  Diana Dolly, random company, Attn RMA Department, 3345 Point Pleasant Road, Hebron, KY 41048-9711
+    Then select print form service PM Large/Thick Envelope
+    Then set print form weight to lbs 0 oz 1
+    Then click print label
+    Then confirm print on gif printing dialog
+    Then click continue on confirm print modal
+    Then expect postage message panel tracking label is Postage was sent to your printer. Your Tracking Number is
+    Then save tracking number on print form message panel
+    Then navigate to History
+    Then set search prints tracking number on history filter panel to Diana Dolly
+    Then click search icon on history filter panel
+   # Then verify the grid count based on recipient column as Diana Doly
+    Then expect history filter panel search results tab is present
+    Then expect recipient column include Diana Dolly

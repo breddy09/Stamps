@@ -133,10 +133,17 @@ module SdcHistory
     page_object(:username) { { xpath: '//div[text()="User"]/../../../../../div[contains(@id,"-body")]//div[@class="table-cell-inner sdc-badgebutton-text"]' } }
     page_object(:username_count) { { xpath: '//div[text()="User"]/../../../../../div[contains(@id,"-body")]//div[@class="sdc-badge"]' } }
   end
+
   class HistorySearch < SdcPage
     text_field(:search_prints,tag: :text_field) { { xpath: '//*[@placeholder="Search Prints"]' } }
     page_object(:advanced_search_arrow) { { xpath: '//*[contains(@class, "search-advance-trigger")]' } }
     page_object(:search_icon) { {xpath: '//*[contains(@class, "search-trigger-grey")]'} }
+  end
+
+  class HistorySearchResults < SdcPage
+    page_object(:search_results_count) { { xpath: '//div[@class="sdc-badge"]' } }
+    page_object(:search_results_label) { { xpath: '//*[contains(@class, "sdc-badgebutton-text")][text()="Search Results"]' } }
+
   end
 
   class CollapsedView < SdcPage
@@ -161,8 +168,13 @@ module SdcHistory
       def user
         HistoryUser.new
       end
+
       def search
         HistorySearch.new
+      end
+
+      def search_results
+        HistorySearchResults.new
       end
 
       def collapse

@@ -49,3 +49,62 @@ Then /^set search prints to (?:newly added|(.*)) tracking number on history filt
   str||= TestData.hash[:tracking_number]
   search.search_prints.set(str)
 end
+Then /^expect history filter panel search results tab is present$/ do
+  expect(SdcHistory.filter_panel.search_results.search_results_label).present?
+end
+
+Then /^expect recipient column include (.*)$/ do |str|
+  history_search =  SdcHistory.filter_panel.search_results
+  search_count = history_search.search_results_count.text_value.to_i
+  p search_count
+  i = 1
+  tracking_number_hardcoded=TestData.hash[:tracking_number]
+  p     tracking_number_hardcoded
+  while  i<= search_count
+    p i
+    recipient = SdcHistory.grid.grid_column(:recipient).text_at_row(i)
+    p recipient
+    expect(recipient).to include(str)
+    #tracking_number_hardcoded = '9405511899564363066857'
+    tracking_number = SdcHistory.grid.grid_column(:tracking_number).text_at_row(i).to_i
+    SdcLogger.info "row tracking number is #{tracking_number}"
+    if tracking_number_hardcoded.equal?(tracking_number)
+      SdcLogger.info "USPS carrier is displayed for the newly added tracking number #{TestData.hash[:tracking_number]}"
+      break
+    else
+      i = i+1
+    end
+  end
+end
+
+Then /^expect history pagination works$/ do
+  history_gird_pagination = SdcHistory.pagination.history_pagination
+
+  # SdcLogger.info "#{'next'} Page disabled #{pagination.page_arrow_disabled('next')}"
+  if expect(history_gird_pagination.page_arrow_disabled('next')).to be (false)
+    p "inside pagination if"
+    max_pages_text = history_gird_pagination.max_pages.text_value
+    max_pages_text = max_pages_text.split("of ")
+    max_pages = max_pages_text[1]
+    SdcLogger.info "max_pages #{max_pages}"
+
+    i=1
+    while i < max_pages.to_i
+      next_button = SdcHistory.pagination.history_pagination
+      p next_button.page_next.enabled?
+      if expect(next_button.page_next.enabled?).to be(true)
+        step 'click on the pagination next button of history page'
+      else
+        SdcLogger.info "Next arrow is disabled"
+      end
+      i= i+1
+    end
+
+  end
+end
+
+Then /^click on the pagination next button of history page$/ do
+  next_button = SdcHistory.pagination.history_pagination
+  next_button.page_next.click
+
+end
