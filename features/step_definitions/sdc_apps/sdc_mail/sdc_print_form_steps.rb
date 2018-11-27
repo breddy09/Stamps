@@ -10,9 +10,9 @@ Then /^set print form mail-to (?:|to )(?:|a )(?:|random )address(?: to| in| betw
     sleep 1
     break if mail_to.add_button.present?
   end
-
   step 'blur out on print form'
   TestData.hash[:address] = mail_to.text_area.text_value
+  TestData.hash[:mail_from_address] = SdcMail.print_form.mail_from.text_field.text_value
 end
 
 Then /^select address from print form mail-to (.+), (.+)$/ do |name, company|

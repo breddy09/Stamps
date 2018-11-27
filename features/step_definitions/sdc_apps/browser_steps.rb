@@ -68,7 +68,27 @@ Then /^confirm print on gif printing dialog$/ do
   browser.wait_until(timeout: 5) do |browser|
     browser.windows.count.eql?(2)
   end
-  browser.windows.last.use
-  browser.send_keys(:enter)
+  begin
+    browser.windows.last.use
+    browser.send_keys(:enter)
+    browser.windows.first.use
+  rescue
+    # ignore
+  end
+end
+
+
+Then /^cancel print on gif printing dialog$/ do
+  browser = SdcPage.browser
+  browser.wait_until(timeout: 5) do |browser|
+    browser.windows.count.eql?(2)
+  end
+  begin
+    browser.windows.last.use
+    browser.send_keys(:tab)
+    browser.send_keys(:enter)
+  rescue
+    # ignore
+  end
   browser.windows.first.use
 end
