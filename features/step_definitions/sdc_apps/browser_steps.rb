@@ -81,7 +81,6 @@ Then /^cancel print on gif printing dialog$/ do
   end
   browser.windows.last.use
   browser.send_keys(:tab)
-  browser.windows.last.use
   browser.send_keys(:enter)
   browser.windows.first.use
 end
