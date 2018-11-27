@@ -43,9 +43,3 @@ Then /^click search icon on history filter panel$/ do
   search.search_icon.click
 end
 
-Then /^set search prints to (?:newly added|(.*)) tracking number on history filter panel$/ do |str|
-  search =  SdcHistory.filter_panel.search
-  search.search_prints.safe_wait_until_present(timeout: 10)
-  str||= TestData.hash[:tracking_number]
-  search.search_prints.set(str)
-end

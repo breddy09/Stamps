@@ -139,7 +139,7 @@ module SdcHistory
     page_object(:search_icon) { {xpath: '//*[contains(@class, "search-trigger-grey")]'} }
   end
 
-  class CollapsedView < SdcPage
+    class CollapsedView < SdcPage
     page_object(:expand) { { xpath: '//img[contains(@class,"x-tool-expand-right")]' } }
     page_object(:username) { { xpath: '//div[@id="filter-panel-view-placeholder-innerCt"]//div[contains(@class,"x-title-item")]' } }
   end
