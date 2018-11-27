@@ -3313,3 +3313,7 @@ Cucumber::Rake::Task.new(:reports_filter_panel) do |t|
   t.profile = 'reports_filter_panel'
   t.cucumber_opts = "-p cuke_reports"
 end
+Cucumber::Rake::Task.new(:refund_assist) do |t|
+  t.profile = 'refund_assist'
+  t.cucumber_opts = "-p cuke_reports"
+end
