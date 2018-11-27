@@ -74,6 +74,7 @@ Then /^confirm print on gif printing dialog$/ do
   rescue
     #ignore
   ensure
+    puts browser.windows.count
     browser.windows.first.use
   end
 end
