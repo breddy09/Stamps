@@ -657,5 +657,60 @@ Then /^click search button on advance search modal$/ do
   advance_search.search_button.click
 end
 
+# date printed
+Then /^expect date printed radio button in advance search modal is present/ do
+  advance_search_modal = SdcHistory.modals.advance_search
+  advance_search_modal.date_printed_chooser.flash
+  expect(advance_search_modal.date_printed_chooser.present?).to be(true)
+end
+
+Then /^select date printed radio button in advance search modal/ do
+  advance_search_modal = SdcHistory.modals.advance_search
+  advance_search_modal.date_printed_chooser.flash
+  advance_search_modal.date_printed_chooser.safe_wait_until_present(timeout: 10)
+  advance_search_modal.date_printed_chooser.select
+  expect(advance_search_modal.date_printed_chooser.selected?).to be(true)
+end
+
+# date delivered
+Then /^expect date delivered radio button in advance search modal is present/ do
+  advance_search_modal = SdcHistory.modals.advance_search
+  advance_search_modal.date_delivered_chooser.flash
+  expect(advance_search_modal.date_delivered_chooser.present?).to be(true)
+end
+
+Then /^select date delivered radio button in advance search modal/ do
+  advance_search_modal = SdcHistory.modals.advance_search
+  advance_search_modal.date_delivered_chooser.flash
+  p "checked or not date delivered"
+  p advance_search_modal.date_delivered_chooser.checked?
+  p "before clicking date delived check"
+  advance_search_modal.date_delivered_chooser.safe_wait_until_present(timeout: 10)
+  # advance_search_modal.date_delivered_chooser.check
+  # p advance_search_modal.date_delivered_chooser.checked?
+  # p advance_search_modal.date_delivered_chooser.attribute_value("class")
+  advance_search_modal.date_delivered_chooser.select
+  #unless  advance_search_modal.date_delivered_chooser.checked?
+  p "afrer clicking date delived check"
+  expect(advance_search_modal.date_delivered_chooser.selected?).to be(true)
+end
+
+# ship date
+Then /^expect ship date radio button in advance search modal is present/ do
+  advance_search_modal = SdcHistory.modals.advance_search
+  advance_search_modal.ship_date_chooser.flash
+  expect(advance_search_modal.ship_date_chooser.present?).to be(true)
+end
+
+Then /^select ship date radio button in advance search modal/ do
+  advance_search_modal = SdcHistory.modals.advance_search
+  advance_search_modal.ship_date_chooser.flash
+  advance_search_modal.ship_date_chooser.safe_wait_until_present(timeout: 10)
+  advance_search_modal.ship_date_chooser.select
+  expect(advance_search_modal.ship_date_chooser.selected?).to be(true)
+end
+
+
+
 
 

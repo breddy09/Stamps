@@ -368,9 +368,31 @@ module SdcHistory
 
 
       page_object(:title) { { xpath: '//div[contains(@id , "advance-search-window-")]//div[text()="Advanced Search"]' } }
-      page_object(:date_printed) { { xpath: '//div[contains(@id , "advance-search-window-")]//*[contains(@id, "radiofield-")][text()="Date Printed"]/preceding-sibling::input[1]' } }
-      page_object(:date_delivered) { { xpath: '//div[contains(@id , "advance-search-window-")]//*[contains(@id, "radiofield-")][text()="Date Delivered"]/preceding-sibling::input[1]' } }
-      page_object(:ship_date) { { xpath: '//div[contains(@id , "advance-search-window-")]//*[contains(@id, "radiofield-")][text()="Ship Date"]/preceding-sibling::input[1]' } }
+
+
+      def date_printed_chooser
+        page_object(:chooser_name) { { xpath: '//div[contains(@id , "advance-search-window-")]//label[contains(@id, "radiofield-")][text()="Date Printed"]/preceding-sibling::span[1]' } }
+        page_object(:verify_name) { { xpath: '//div[contains(@id , "advance-search-window-")]//*[contains(@id, "radiofield-")][text()="Date Printed"]/ancestor::div[contains(@class,"checkboxgroup")][1]' } }
+        chooser(:date_printed_chooser, :chooser_name, :verify_name,
+                :class, :checked)
+      end
+
+      def date_delivered_chooser
+        # page_object(:chooser_name) { { xpath: '//div[contains(@id , "advance-search-window-")]//*[contains(@id, "radiofield-")][text()="Date Delivered"]/preceding-sibling::input[1]' } }
+        page_object(:chooser_name) { { xpath: '//div[contains(@id , "advance-search-window-")]//label[contains(@id, "radiofield-")][text()="Date Delivered"]/preceding-sibling::span[1]' } }
+        page_object(:verify_name) { { xpath: '//div[contains(@id , "advance-search-window-")]//*[contains(@id, "radiofield-")][text()="Date Delivered"]/ancestor::div[contains(@class,"checkboxgroup")][1]' } }
+        chooser(:date_delivered_chooser, :chooser_name, :verify_name,
+                :class, :checked)
+        # SdcPage.chooser("radio_button", :chooser_name, :verify_name, :class, 'checked')
+        # instance_eval("radio_button")
+      end
+
+      def ship_date_chooser
+        page_object(:chooser_name) { { xpath: '//div[contains(@id , "advance-search-window-")]//label[contains(@id, "radiofield-")][text()="Ship Date"]/preceding-sibling::span[1]' } }
+        page_object(:verify_name) { { xpath: '//div[contains(@id , "advance-search-window-")]//*[contains(@id, "radiofield-")][text()="Ship Date"]/ancestor::div[contains(@class,"checkboxgroup")][1]' } }
+        chooser(:ship_date_chooser, :chooser_name, :verify_name,
+                :class, :checked)
+      end
 
       def date_range
         DateRange.new

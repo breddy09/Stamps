@@ -57,6 +57,17 @@ module SdcHistory
         end
       end
 
+      def column_header_dropdown(column)
+        column = column_names[column] if column.class.eql?(Symbol)
+        xpath="//span[text()='#{column}']/following::div[@class='x-column-header-trigger'][1]"
+        page_object(:header_dropdown) { { xpath: xpath } }
+      end
+
+      def header_dropdown_menu(menuitem)
+        xpath="//*[contains(@class,'x-menu-item-text')][contains(text(), '#{menuitem}')]"
+        page_object(:menu) { { xpath: xpath }}
+      end
+
       def scroll_to(column)
         field = header_element(column)
         field.scroll_into_view
@@ -199,6 +210,21 @@ module SdcHistory
       def header_text
         element = scroll_into_view
         element.text_value
+      end
+
+      def header
+        element = scroll_into_view
+        element
+      end
+
+      def header_dropdown
+        element = column_header_dropdown(@column)
+        element
+      end
+
+      def header_dropdown_item(menu)
+        element = header_dropdown_menu(menu)
+        element
       end
 
       def present?

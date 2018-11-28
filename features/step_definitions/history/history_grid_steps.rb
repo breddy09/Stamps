@@ -73,52 +73,196 @@ Then /^expect history grid Ship Date is correct for row (\d+)$/ do |row|
   step "expect history grid column Weight is #{TestData.hash[:ship_date]} for row #{row}"
 end
 
+Then /^expect prints are displayed within given date range$/ do
+  history_search =  SdcHistory.filter_panel.search_results
+  search_count = history_search.count.text_value.to_i
+  p search_count
+  if search_count.eql? 0
+    SdcLogger.info "There is no data available with defined date range for comparison , Test can not be continued"
+    break
+  else
+    SdcLogger.info " Search prints count is #{search_count}"
+  end
+end
+
+#date printed
+Then /^hover on history grid column date printed$/ do
+  column = SdcHistory.grid.grid_column(:date_printed)
+  column.header.flash
+  column.header.hover
+end
+
+
+Then /^click on header dropdown trigger of column date printed$/ do
+  column_trigger = SdcHistory.grid.grid_column(:date_printed)
+  column_trigger.header_dropdown.flash
+  SdcLogger.info "Header Element Trigger Present : #{column_trigger.present?}"
+  column_trigger.header_dropdown.click
+end
+
+Then /^expect (.*) is available in the date printed column header dropdown menu list$/ do |str|
+  menu_list = SdcHistory.grid.grid_column(:date_printed)
+  menu_item = menu_list.header_dropdown_item(str)
+  menu_item.flash
+  expect(menu_item.text_value).to eql(str)
+  expect(menu_item.present?).to be(true)
+  SdcLogger.info "#{str} menu item is available in the contacts header dropdown menu list"
+end
+
+Then /^click on (.*) in the date printed column header dropdown menu list$/ do |str|
+  menu_list = SdcHistory.grid.grid_column(:date_printed)
+  menu_item = menu_list.header_dropdown_item(str)
+  menu_item.click
+end
+
+Then /^save (.*) date range value on grid for column date printed$/ do |str|
+  SdcHistory.grid.body.safe_wait_until_present(timeout: 60)
+  column = SdcHistory.grid.grid_column(:date_printed)
+  column.element(1).flash
+  grid_date = column.text_at_row(1)
+  SdcLogger.info "grid date value is #{grid_date}"
+  tmp_date=Date.strptime(grid_date,'%m/%d/%Y')
+  p tmp_date
+  TestData.hash["#{str}_date"]||=tmp_date
+
+end
+
+Then /^save (.*) date value on grid for column date printed$/ do |str|
+  SdcHistory.grid.body.safe_wait_until_present(timeout: 60)
+  column = SdcHistory.grid.grid_column(:date_printed)
+  column.element(1).flash
+  grid_date = column.text_at_row(1)
+  if grid_date.equal? nil
+    p "grid date is null hence comparison is not possible"
+    break
+  else
+    TestData.hash["#{str}_date"]||= grid_date
+  end
+end
+
+#date delivered
+Then /^hover on history grid column date delivered$/ do
+  column = SdcHistory.grid.grid_column(:date_delivered)
+  column.header.flash
+  column.header.hover
+end
+
+Then /^click on header dropdown trigger of column date delivered$/ do
+  column_trigger = SdcHistory.grid.grid_column(:date_delivered)
+  column_trigger.header_dropdown.flash
+  SdcLogger.info "Header Element Trigger Present : #{column_trigger.present?}"
+  column_trigger.header_dropdown.click
+end
+
+Then /^expect (.*) is available in the date delivered column header dropdown menu list$/ do |str|
+  menu_list = SdcHistory.grid.grid_column(:date_delivered)
+  menu_item = menu_list.header_dropdown_item(str)
+  menu_item.flash
+  expect(menu_item.text_value).to eql(str)
+  expect(menu_item.present?).to be(true)
+  SdcLogger.info "#{str} menu item is available in the contacts header dropdown menu list"
+end
+
+Then /^click on (.*) in the date delivered column header dropdown menu list$/ do |str|
+  menu_list = SdcHistory.grid.grid_column(:date_delivered)
+  menu_item = menu_list.header_dropdown_item(str)
+  menu_item.click
+end
+
+Then /^save (.*) date range value on grid for column date delivered$/ do |str|
+  SdcHistory.grid.body.safe_wait_until_present(timeout: 60)
+  column = SdcHistory.grid.grid_column(:date_delivered)
+  column.element(1).flash
+  grid_date = column.text_at_row(1)
+  tmp_date=Date.strptime(grid_date,'%m/%d/%Y')
+  p tmp_date
+  TestData.hash["#{str}_date"]||=tmp_date
+end
+
+#ship date
+Then /^hover on history grid column ship date$/ do
+  column = SdcHistory.grid.grid_column(:ship_date)
+  column.header.flash
+  column.header.hover
+end
+
+Then /^click on header dropdown trigger of column ship date$/ do
+  column_trigger = SdcHistory.grid.grid_column(:ship_date)
+  column_trigger.header_dropdown.flash
+  SdcLogger.info "Header Element Trigger Present : #{column_trigger.present?}"
+  column_trigger.header_dropdown.click
+end
+
+Then /^expect (.*) is available in the ship date column header dropdown menu list$/ do |str|
+  menu_list = SdcHistory.grid.grid_column(:ship_date)
+  menu_item = menu_list.header_dropdown_item(str)
+  menu_item.flash
+  expect(menu_item.text_value).to eql(str)
+  expect(menu_item.present?).to be(true)
+  SdcLogger.info "#{str} menu item is available in the contacts header dropdown menu list"
+end
+
+Then /^click on (.*) in the ship date column header dropdown menu list$/ do |str|
+  menu_list = SdcHistory.grid.grid_column(:ship_date)
+  menu_item = menu_list.header_dropdown_item(str)
+  menu_item.click
+end
+
+Then /^save (.*) date range value on grid for column ship date$/ do |str|
+  SdcHistory.grid.body.safe_wait_until_present(timeout: 60)
+  column = SdcHistory.grid.grid_column(:ship_date)
+  column.element(1).flash
+  grid_date = column.text_at_row(1)
+
+  history_search =  SdcHistory.filter_panel.search_results
+  search_count = history_search.search_results_count.text_value.to_i
+  if grid_date.empty?
+    SdcLogger.info "There is no data available with defined date range"
+    break
+  else
+    tmp_date=Date.strptime(grid_date,'%m/%d/%Y')
+    p tmp_date
+    TestData.hash["#{str}_date"]||=tmp_date
+  end
+end
+
+
+Then /^choose (.*) on history settings columns menu list$/ do |column|
+  settings = SdcHistory.toolbar.toolbar_setting
+  checkbox = settings.column_menu_checkbox(column)
+  checkbox.flash
+  # checkbox.checked? will return true if it is unchecked as the property_name in chooser item 'unchecked'
+  checkbox.check if checkbox.checked?
+  # step 'click on search bar of history left navigation panel'
+end
+
+Then /^click on search bar of history left navigation panel$/ do
+  contacts_left_navigation = SdcHistory.filter_panel.search
+  contacts_left_navigation.search_prints.safe_wait_until_present(timeout: 15)
+  contacts_left_navigation.search_prints.click
+end
+
 
 
 Then /^expect prints within date range (.*) for column (.*) are retrieved in the grid$/ do |date_range,column_name|
 
   case date_range
   when 'Past 7 Days'
-    new_date=Date.today-7
+    from_date=Date.today-7
   when 'Past 30 Days'
-    new_date=Date.today-30
+    from_date=Date.today-30
   when 'Past 6 Months'
-    new_date=Date.today<<6
+    from_date=Date.today<<6
   when 'Past 12 Months'
-    new_date=Date.today<<12
+    from_date=Date.today<<12
   when 'Past 2 Years'
-    new_date=Date.today<<24
+    from_date=Date.today<<24
   end
+  start_date= TestData.hash['first_date']
+  end_date= TestData.hash['last_date']
 
-  SdcHistory.grid.body.safe_wait_until_present(timeout: 60)
-  column = SdcHistory.grid.grid_column(:date_printed)
-  pagination = SdcHistory.pagination
-
-  # if count =0
-  # No search results
-  # else
-
- loop do
-   #Get the search counts
-   search_results = SdcHistory.filter_panel.search_results
-   search_count = search_results.count.text_value.to_i
-   p search_count
-   i =1
-  while i < search_count
-    column.element(i).flash
-    grid_date = column.text_at_row(i)
-    formated_date=Date.strptime(grid_date,'%m/%d/%Y')
-    expect(formated_date.between?(new_date,Date.today)).to be(true)
-    i=i+1
-  end
-
-   if pagination.page_arrow_disabled('next').eql? ('false')
-     step 'click on the pagination next button of history page'
-   else
-     break
-   end
-
- end
+  expect(start_date.between?(from_date,Date.today)).to be(true)
+  expect(end_date.between?(from_date,Date.today)).to be(true)
 end
 
   Then /^click on the pagination next button of history page$/ do
