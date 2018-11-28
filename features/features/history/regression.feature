@@ -84,6 +84,23 @@ Feature:  History regression
     Then sign out
 
   @container_label_reprint_1
+  Scenario: Temp test for GIF printing
+    Then sign-in to mail
+    Then select print on Shipping Label - 8 ½" x 11" Paper
+    Then show advanced options
+    Then set print form mail-to to a random address in zone 1
+#    Then save print form mail from
+    Then set print form weight to lbs 0 oz 1
+    Then select print form service PM Flat Rate Envelope
+    Then click print label
+    Then click continue on confirm print modal
+    Then confirm print on gif printing dialog
+    Then close your international label modal
+    Then expect postage message panel tracking label is Postage was sent to your printer. Your Tracking Number is
+    Then save tracking number on print form message panel
+    Then navigate to History
+    Then sign out
+
   @container_label_reprint
   Scenario: Container label reprint for Shipping label 8x11 paper
     Then sign-in to mail
@@ -106,7 +123,6 @@ Feature:  History regression
     Then add customs associated item 1, description Item 1, qty 1, Price 1, Made In United States, Tariff 1
     Then check customs form i agree to the usps privacy act statement
     Then close customs information form
-    Then set print form weight to lbs 0 oz 1
     Then click print label
     Then click continue on confirm print modal
     Then confirm print on gif printing dialog

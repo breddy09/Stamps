@@ -246,8 +246,11 @@ module TestSession
 
     def local_browser
 
+      # kiosk-printing
+      # kiosk
+      # enable-cloud-print-xps
       # --disable-print-preview
-      chrome_switches = %w(--ignore-certificate-errors --disable-popup-blocking --disable-translate)
+      chrome_switches = %w(--ignore-certificate-errors --disable-popup-blocking --disable-translate --kiosk --kiosk-printing --cloud-print-file )
       # Watir.always_locate = true
       case(env.local_browser)
 
@@ -270,7 +273,29 @@ module TestSession
 
       when :gc, :chrome
         kill('taskkill /im chrome.exe /f')
-        @driver = SdcDriverDecorator.new(Watir::Browser.new(:chrome, switches: chrome_switches))
+
+
+
+        prefs = {
+            cloud_print: {
+                enabled: true,
+                proxy_id: 'cb485280-5379-48ca-9dd5-4b41e11bdb72',
+                email: 'info@ezwebsupport.com',
+                submit_enabled: true
+            },
+            printing: {
+                default_destination_selection_rules: 'factory'
+            },
+            native_printing: {
+                recommended_printers: 'factory',
+                recommended_printers_whitelist: 'factory',
+                user_native_printers_allowed: true
+            }
+        }
+
+
+        @driver = SdcDriverDecorator.new(Watir::Browser.new(:chrome, switches: chrome_switches, options: {prefs: prefs}))
+        # @driver = SdcDriverDecorator.new(Watir::Browser.new(:chrome, switches: chrome_switches))
 
       when :ff_web_dev
         kill('taskkill /im firefox.exe /f')

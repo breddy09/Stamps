@@ -70,11 +70,12 @@ Then /^confirm print on gif printing dialog$/ do
   end
   browser.windows.last.use
   begin
+    # browser.send_keys(:tab)
     browser.send_keys(:enter)
   rescue
     #ignore
   ensure
-    puts browser.windows.count
+    # puts browser.windows.count
     browser.windows.first.use
   end
 end
