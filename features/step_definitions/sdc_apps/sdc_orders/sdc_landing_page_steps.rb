@@ -44,21 +44,6 @@ Then /^initialize test parameters$/ do
   TestData.hash[:test] = ENV['USER_CREDENTIALS']
 end
 
-Then /^fetch user credentials from MySQL$/ do
-  unless TestData.hash[:username]
-    if TestSession.env.usr.nil? || TestSession.env.usr.downcase == 'default'
-      credentials = SdcUserCredentials.fetch(SdcGlobal.scenario.tags[0].name)
-      usr = credentials[:username]
-      pw = credentials[:password]
-    else
-      usr = TestSession.env.usr
-      pw = TestSession.env.pw
-    end
-    TestData.hash[:username] = usr
-    TestData.hash[:password] = pw
-  end
-end
-
 Then /^sign-in to orders$/ do
  # step 'verify health check for Orders' if TestSession.env.healthcheck
   step 'visit Orders landing page'
