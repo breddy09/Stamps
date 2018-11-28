@@ -34,6 +34,8 @@ Feature:  History :File an Insurance Claim
     # Insurance claim form modal
     Then click file claim link on transaction detail panel
     Then expect insurance claim form modal is displayed
+    Then expect package recipient's name field on insurance claim form modal is present
+    Then expect package recipient's name value on insurance claim form modal is blank
 
 
 #  #File Claim - Transaction Detail Printed Section
