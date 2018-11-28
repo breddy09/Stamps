@@ -468,10 +468,13 @@ module SdcHistory
       page_object(:print_form_button) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[text()="Print Form"]'} }
       page_object(:cancel_button) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[text()="Cancel"]'} }
 
-      page_object(:package_recipient_name_label){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(text(),"Package Recipient")]'}}
+      page_object(:package_recipient_name_label){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(text(),"Package Recipient:")]'}}
       page_object(:recipient_name_value){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="recipientname"]'}}
       page_object(:recipient_name_error) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="recipientname"]//following::div[contains(@class,"error-msg")][1]'} }
 
+      page_object(:date_mailed){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(text(),"Date Mailed:")]'}}
+      page_object(:date_mailed){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="mailDate"]'}}
+      page_object(:recipient_name_error) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="mailDate"]//following::div[contains(@class,"error-msg")][1]'} }
 
 
     end

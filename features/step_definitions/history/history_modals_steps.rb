@@ -692,12 +692,29 @@ Then /^click close button on insurance claim form modal$/ do
   ins_claim_form.close_button.click
 end
 
-
 Then /^click cancel button on insurance claim form modal$/ do
   ins_claim_form=SdcHistory.modals.insurance_claim_form
   ins_claim_form.cancel_button.safe_wait_until_present(timeout: 10)
   ins_claim_form.cancel_button.click
 end
+
+Then /^expect package recipient's name field on insurance claim form modal is present$/ do
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.package_recipient_name_label.safe_wait_until_present(timeout: 10)
+  expect(ins_claim_form.package_recipient_name_label.present?).to be (true)
+end
+
+Then /^expect package recipient's name value on insurance claim form modal is (.*)$/ do |str|
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.recipient_name_value.safe_wait_until_present(timeout: 10)
+  if str.eql? 'blank'
+    expect(ins_claim_form.recipient_name_value.text_value).to be('')
+  else
+    expect(ins_claim_form.recipient_name_value.text_value).to eql(str)
+  end
+end
+
+
 
 
 

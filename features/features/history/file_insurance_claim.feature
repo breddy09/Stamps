@@ -31,43 +31,48 @@ Feature:  History :File an Insurance Claim
     Then click search icon on history filter panel
     Then check row for saved tracking number on history grid
 
-  #File Claim - Transaction Detail Printed Section
-    Then expect file claim link on the transaction detail panel is available
-    Then expect file claim link on the transaction detail panel is enabled
+    # Insurance claim form modal
     Then click file claim link on transaction detail panel
     Then expect insurance claim form modal is displayed
-    Then click close button on insurance claim form modal
-    Then expect insurance claim form modal is not displayed
 
-  #Email Tracking Info - Transaction Detail Printed Section
-    Then expect email tracking info link on the transaction detail panel is available
-    Then expect email tracking info link on the transaction detail panel is enabled
-    Then click email tracking info link on transaction detail panel
 
-   # File Claim - Transaction Detail Services Section
-    Then expect file claim link in services section of transaction detail panel is available
-    Then expect file claim link in services section of transaction detail panel is enabled
-    Then click file claim link in services section of transaction detail panel
-    Then expect insurance claim form modal is displayed
-    Then click close button on insurance claim form modal
-    Then expect insurance claim form modal is not displayed
-
-    #Email Tracking Info- Transaction Detail Menu Dropdown
-    Then click transaction details header menu dropdown
-    Then expect email tracking info link on the transaction detail menu dropdown is available
-    Then click email tracking info link on transaction detail menu dropdown
-    #Then expect insurance claim form modal is displayed
-
-    #Print Receipt - Transaction Detail Menu Dropdown
-    Then expect print receipt link on the transaction detail menu dropdown is available
-    Then click print receipt link on transaction detail menu dropdown
-    #Then expect insurance claim form modal is displayed
-
-    # File Claim - Transaction Detail Menu Dropdown
-    Then expect file claim link on the transaction detail menu dropdown is available
-    Then click file claim link on transaction detail menu dropdown
-    Then expect insurance claim form modal is displayed
-    Then click cancel button on insurance claim form modal
+#  #File Claim - Transaction Detail Printed Section
+#    Then expect file claim link on the transaction detail panel is available
+#    Then expect file claim link on the transaction detail panel is enabled
+#    Then click file claim link on transaction detail panel
+#    Then expect insurance claim form modal is displayed
+#    Then click close button on insurance claim form modal
+#    Then expect insurance claim form modal is not displayed
+#
+#  #Email Tracking Info - Transaction Detail Printed Section
+#    Then expect email tracking info link on the transaction detail panel is available
+#    Then expect email tracking info link on the transaction detail panel is enabled
+#    Then click email tracking info link on transaction detail panel
+#
+#   # File Claim - Transaction Detail Services Section
+#    Then expect file claim link in services section of transaction detail panel is available
+#    Then expect file claim link in services section of transaction detail panel is enabled
+#    Then click file claim link in services section of transaction detail panel
+#    Then expect insurance claim form modal is displayed
+#    Then click close button on insurance claim form modal
+#    Then expect insurance claim form modal is not displayed
+#
+#    #Email Tracking Info- Transaction Detail Menu Dropdown
+#    Then click transaction details header menu dropdown
+#    Then expect email tracking info link on the transaction detail menu dropdown is available
+#    Then click email tracking info link on transaction detail menu dropdown
+#    #Then expect insurance claim form modal is displayed
+#
+#    #Print Receipt - Transaction Detail Menu Dropdown
+#    Then expect print receipt link on the transaction detail menu dropdown is available
+#    Then click print receipt link on transaction detail menu dropdown
+#    #Then expect insurance claim form modal is displayed
+#
+#    # File Claim - Transaction Detail Menu Dropdown
+#    Then expect file claim link on the transaction detail menu dropdown is available
+#    Then click file claim link on transaction detail menu dropdown
+#    Then expect insurance claim form modal is displayed
+#    Then click cancel button on insurance claim form modal
 
 
 
