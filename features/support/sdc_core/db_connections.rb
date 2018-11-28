@@ -1,22 +1,22 @@
 module SdcCore
-  class MySqlConnDecorator < BasicObject
-    #require 'mysql2'
-
-    attr_reader :host, :username, :password
-
-    def initialize(host: nil, username: nil, password: nil)
-      @connection = ::Mysql2::Client.new(host: host, username: username, password: password)
-    end
-
-    def respond_to_missing?(name, include_private = false)
-      @connection.respond_to?(name, include_private) || super
-    end
-
-    def method_missing(name, *args, &block)
-      super unless @connection.respond_to?(name)
-      @connection.send(name, *args, &block)
-    end
-  end
+  # class MySqlConnDecorator < BasicObject
+  #   #require 'mysql2'
+  #
+  #   attr_reader :host, :username, :password
+  #
+  #   def initialize(host: nil, username: nil, password: nil)
+  #     @connection = ::Mysql2::Client.new(host: host, username: username, password: password)
+  #   end
+  #
+  #   def respond_to_missing?(name, include_private = false)
+  #     @connection.respond_to?(name, include_private) || super
+  #   end
+  #
+  #   def method_missing(name, *args, &block)
+  #     super unless @connection.respond_to?(name)
+  #     @connection.send(name, *args, &block)
+  #   end
+  # end
 
   class UserCredentialsConn < BasicObject
     def initialize
