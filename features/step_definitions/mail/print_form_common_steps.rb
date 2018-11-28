@@ -20,6 +20,7 @@ Then /^set print form mail-from to (.*)$/ do |str|
       selection.safe_click
     end
   end
+
 end
 
 Then /^[Cc]heck Print form [Ee]mail [Tt]racking checkbox$/ do

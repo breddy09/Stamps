@@ -60,6 +60,11 @@ module SdcHistory
       def advance_search
         AdvanceSearch.new
       end
+
+      def insurance_claim_form
+        InsuranceClaimForm.new
+      end
+
     end
 
     class SchedulePickupState < SdcPage
@@ -451,6 +456,24 @@ module SdcHistory
       def selection_date_range(name: 'selection', value: 'None')
         page_object(name) { { xpath: "//li[text()='#{value}']" } }
       end
+    end
+
+
+
+    class InsuranceClaimForm < SdcPage
+
+      page_object(:window){{xpath: '//div[contains(@id,"insurance-claim-form-window")][contains(@class,"x-window-closable")]'}}
+      page_object(:title) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//div[contains(@class,"x-title-text")]'} }
+      page_object(:close_button) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(@class,"sdc-icon-mobile-close-light")]'} }
+      page_object(:print_form_button) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[text()="Print Form"]'} }
+      page_object(:cancel_button) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[text()="Cancel"]'} }
+
+      page_object(:package_recipient_name_label){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(text(),"Package Recipient")]'}}
+      page_object(:recipient_name_value){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="recipientname"]'}}
+      page_object(:recipient_name_error) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="recipientname"]//following::div[contains(@class,"error-msg")][1]'} }
+
+
+
     end
 
   end

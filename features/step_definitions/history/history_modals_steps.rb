@@ -362,6 +362,8 @@ Then /^select service on return label modal (.*)$/ do |str|
 end
 
 Then /^expect service on return label modal is (.*)$/ do |str|
+  expect(service.text_field.text_value).to include str
+
   expect(SdcHistory.modals.return_label.service.text_field.text_value).to eql(str)
 end
 
@@ -663,6 +665,40 @@ Then /^click search button on advance search modal$/ do
   expect(advance_search.search_button.present?).to be(true)
   advance_search.search_button.click
 end
+
+
+#Insurance Claim Form
+Then /^expect insurance claim form modal is displayed$/ do
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.window.safe_wait_until_present(timeout: 10)
+  expect(ins_claim_form.window.present?).to be (true)
+end
+
+Then /^expect insurance claim form modal is not displayed$/ do
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.window.safe_wait_until_present(timeout: 10)
+  expect(ins_claim_form.window.present?).to be (false)
+end
+
+Then /^click print form button on insurance claim form modal$/ do
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.close_button.safe_wait_until_present(timeout: 10)
+  ins_claim_form.close_button.click
+end
+
+Then /^click close button on insurance claim form modal$/ do
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.close_button.safe_wait_until_present(timeout: 10)
+  ins_claim_form.close_button.click
+end
+
+
+Then /^click cancel button on insurance claim form modal$/ do
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.cancel_button.safe_wait_until_present(timeout: 10)
+  ins_claim_form.cancel_button.click
+end
+
 
 
 

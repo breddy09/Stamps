@@ -254,6 +254,12 @@ Then /^expect default selected value on eligible for history filter panel is ins
   eligible_for.insurance_claim.safe_wait_until_present(timeout: 5)
   expect(eligible_for.insurance_claim.checked?).to be (true)
 end
+Then /^expect default selected value on eligible for history filter panel is scan form$/ do
+  eligible_for = SdcHistory.filter_panel.eligible_for
+  eligible_for.insurance_claim.safe_wait_until_present(timeout: 5)
+  expect(eligible_for.scan_form.checked?).to be (true)
+end
+
 
 Then /^select refund on history filter panel eligible for$/ do
   refund = SdcHistory.filter_panel.eligible_for.refund
