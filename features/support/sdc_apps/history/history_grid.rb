@@ -218,11 +218,13 @@ module SdcHistory
       end
 
       def header_dropdown
+        scroll_into_view
         element = column_header_dropdown(@column)
         element
       end
 
       def header_dropdown_item(menu)
+        scroll_into_view
         element = header_dropdown_menu(menu)
         element
       end

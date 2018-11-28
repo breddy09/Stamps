@@ -73,18 +73,6 @@ Then /^expect history grid Ship Date is correct for row (\d+)$/ do |row|
   step "expect history grid column Weight is #{TestData.hash[:ship_date]} for row #{row}"
 end
 
-Then /^expect prints are displayed within given date range$/ do
-  history_search =  SdcHistory.filter_panel.search_results
-  search_count = history_search.count.text_value.to_i
-  p search_count
-  if search_count.eql? 0
-    SdcLogger.info "There is no data available with defined date range for comparison , Test can not be continued"
-    break
-  else
-    SdcLogger.info " Search prints count is #{search_count}"
-  end
-end
-
 #date printed
 Then /^hover on history grid column date printed$/ do
   column = SdcHistory.grid.grid_column(:date_printed)
@@ -96,6 +84,10 @@ end
 Then /^click on header dropdown trigger of column date printed$/ do
   column_trigger = SdcHistory.grid.grid_column(:date_printed)
   column_trigger.header_dropdown.flash
+  if(column_trigger.header_dropdown.present?)
+  else
+    column_trigger.header.hover
+  end
   SdcLogger.info "Header Element Trigger Present : #{column_trigger.present?}"
   column_trigger.header_dropdown.click
 end
@@ -116,14 +108,25 @@ Then /^click on (.*) in the date printed column header dropdown menu list$/ do |
 end
 
 Then /^save (.*) date range value on grid for column date printed$/ do |str|
-  SdcHistory.grid.body.safe_wait_until_present(timeout: 60)
-  column = SdcHistory.grid.grid_column(:date_printed)
-  column.element(1).flash
-  grid_date = column.text_at_row(1)
-  SdcLogger.info "grid date value is #{grid_date}"
-  tmp_date=Date.strptime(grid_date,'%m/%d/%Y')
-  p tmp_date
-  TestData.hash["#{str}_date"]||=tmp_date
+  history_search =  SdcHistory.filter_panel.search_results
+  search_count = history_search.count.text_value.to_i
+  p search_count
+  if search_count > 0
+    SdcLogger.info " Search prints count is #{search_count}"
+    SdcHistory.grid.body.safe_wait_until_present(timeout: 60)
+    column = SdcHistory.grid.grid_column(:date_printed)
+    column.element(1).flash
+    grid_date = column.text_at_row(1)
+    SdcLogger.info "grid date value is #{grid_date}"
+    tmp_date=Date.strptime(grid_date,'%m/%d/%Y')
+    p tmp_date
+    TestData.hash["#{str}_date"]||=tmp_date
+
+  else
+    TestData.hash["#{str}_date"]||= nil
+    SdcLogger.info 'There is no data available with defined date range'
+  end
+
 
 end
 
@@ -148,10 +151,13 @@ Then /^hover on history grid column date delivered$/ do
 end
 
 Then /^click on header dropdown trigger of column date delivered$/ do
-  column_trigger = SdcHistory.grid.grid_column(:date_delivered)
-  column_trigger.header_dropdown.flash
+  column_trigger = SdcHistory.grid.grid_column(:date_delivered).header_dropdown
+    # if(column_trigger.header_dropdown.present?)
+    # else
+    #   column_trigger.header.hover
+    # end
   SdcLogger.info "Header Element Trigger Present : #{column_trigger.present?}"
-  column_trigger.header_dropdown.click
+  column_trigger.click
 end
 
 Then /^expect (.*) is available in the date delivered column header dropdown menu list$/ do |str|
@@ -170,14 +176,27 @@ Then /^click on (.*) in the date delivered column header dropdown menu list$/ do
 end
 
 Then /^save (.*) date range value on grid for column date delivered$/ do |str|
-  SdcHistory.grid.body.safe_wait_until_present(timeout: 60)
-  column = SdcHistory.grid.grid_column(:date_delivered)
-  column.element(1).flash
-  grid_date = column.text_at_row(1)
-  tmp_date=Date.strptime(grid_date,'%m/%d/%Y')
-  p tmp_date
-  TestData.hash["#{str}_date"]||=tmp_date
+  history_search =  SdcHistory.filter_panel.search_results
+  search_count = history_search.count.text_value.to_i
+  p search_count
+  if search_count > 0
+    SdcLogger.info " Search prints count is #{search_count}"
+    SdcHistory.grid.body.safe_wait_until_present(timeout: 60)
+    column = SdcHistory.grid.grid_column(:date_delivered)
+    column.element(1).flash
+    grid_date = column.text_at_row(1)
+    SdcLogger.info "grid date value is #{grid_date}"
+    tmp_date=Date.strptime(grid_date,'%m/%d/%Y')
+    p tmp_date
+    TestData.hash["#{str}_date"]||=tmp_date
+
+  else
+    TestData.hash["#{str}_date"]||= nil
+    SdcLogger.info 'There is no data available with defined date range'
+  end
+
 end
+
 
 #ship date
 Then /^hover on history grid column ship date$/ do
@@ -188,7 +207,10 @@ end
 
 Then /^click on header dropdown trigger of column ship date$/ do
   column_trigger = SdcHistory.grid.grid_column(:ship_date)
-  column_trigger.header_dropdown.flash
+  # if(column_trigger.header_dropdown.present?)
+  # else
+  #   column_trigger.header.hover
+  # end
   SdcLogger.info "Header Element Trigger Present : #{column_trigger.present?}"
   column_trigger.header_dropdown.click
 end
@@ -209,21 +231,25 @@ Then /^click on (.*) in the ship date column header dropdown menu list$/ do |str
 end
 
 Then /^save (.*) date range value on grid for column ship date$/ do |str|
-  SdcHistory.grid.body.safe_wait_until_present(timeout: 60)
-  column = SdcHistory.grid.grid_column(:ship_date)
-  column.element(1).flash
-  grid_date = column.text_at_row(1)
-
   history_search =  SdcHistory.filter_panel.search_results
-  search_count = history_search.search_results_count.text_value.to_i
-  if grid_date.empty?
-    SdcLogger.info "There is no data available with defined date range"
-    break
-  else
+  search_count = history_search.count.text_value.to_i
+  p search_count
+  if search_count > 0
+    SdcLogger.info " Search prints count is #{search_count}"
+    SdcHistory.grid.body.safe_wait_until_present(timeout: 60)
+    column = SdcHistory.grid.grid_column(:ship_date)
+    column.element(1).flash
+    grid_date = column.text_at_row(1)
+    SdcLogger.info "grid date value is #{grid_date}"
     tmp_date=Date.strptime(grid_date,'%m/%d/%Y')
     p tmp_date
     TestData.hash["#{str}_date"]||=tmp_date
+
+  else
+    TestData.hash["#{str}_date"]||= nil
+    SdcLogger.info 'There is no data available with defined date range'
   end
+
 end
 
 
@@ -261,8 +287,13 @@ Then /^expect prints within date range (.*) for column (.*) are retrieved in the
   start_date= TestData.hash['first_date']
   end_date= TestData.hash['last_date']
 
-  expect(start_date.between?(from_date,Date.today)).to be(true)
-  expect(end_date.between?(from_date,Date.today)).to be(true)
+  if (start_date && end_date != nil)
+    expect(start_date.between?(from_date,Date.today)).to be(true)
+    expect(end_date.between?(from_date,Date.today)).to be(true)
+  else
+    SdcLogger.info 'There are no Records available for the selectd date Range'
+  end
+
 end
 
   Then /^click on the pagination next button of history page$/ do
