@@ -704,6 +704,30 @@ Then /^expect package recipient's name field on insurance claim form modal is pr
   expect(ins_claim_form.package_recipient_name_label.present?).to be (true)
 end
 
+Then /^expect date mailed field on insurance claim form modal is present$/ do
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.date_mailed_label.safe_wait_until_present(timeout: 10)
+  expect(ins_claim_form.date_mailed_label.present?).to be (true)
+end
+
+Then /^expect package recipient's name field on insurance claim form modal is present$/ do
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.package_recipient_name_label.safe_wait_until_present(timeout: 10)
+  expect(ins_claim_form.package_recipient_name_label.present?).to be (true)
+end
+
+Then /^expect package recipient's name field on insurance claim form modal is present$/ do
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.package_recipient_name_label.safe_wait_until_present(timeout: 10)
+  expect(ins_claim_form.package_recipient_name_label.present?).to be (true)
+end
+
+Then /^expect package recipient's name field on insurance claim form modal is present$/ do
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.package_recipient_name_label.safe_wait_until_present(timeout: 10)
+  expect(ins_claim_form.package_recipient_name_label.present?).to be (true)
+end
+
 Then /^expect package recipient's name value on insurance claim form modal is (.*)$/ do |str|
   ins_claim_form=SdcHistory.modals.insurance_claim_form
   ins_claim_form.recipient_name_value.safe_wait_until_present(timeout: 10)
@@ -713,6 +737,13 @@ Then /^expect package recipient's name value on insurance claim form modal is (.
     expect(ins_claim_form.recipient_name_value.text_value).to eql(str)
   end
 end
+
+Then /^expect date mailed value on insurance claim form modal is (?:correct|(.*))$/ do |str|
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.date_mailed_value.safe_wait_until_present(timeout: 10)
+  str||=TestData.hash(:date_mailed)
+end
+
 
 
 
