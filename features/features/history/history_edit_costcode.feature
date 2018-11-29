@@ -12,6 +12,8 @@ Feature:  History : Verify "Cost code" edit works
     Then set print form weight to lbs 0 oz 1
     Then select print form service PM Large/Thick Envelope
     Then click mail toolbar print label
+    Then click continue on confirm print modal
+    Then cancel print on gif printing dialog
     Then expect postage message panel tracking label is Postage was sent to your printer. Your Tracking Number is
     Then save tracking number on print form message panel
     Then navigate to History
