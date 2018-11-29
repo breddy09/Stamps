@@ -68,6 +68,11 @@ Cucumber::Rake::Task.new(:extra_services_cost_for_rrb_service) do |t|
 end
 
 #HISTORY
+Cucumber::Rake::Task.new(:transaction_address_6lines) do |t|
+  t.profile = 'transaction_address_6lines'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
 Cucumber::Rake::Task.new(:transaction_address_5lines) do |t|
   t.profile = 'transaction_address_5lines'
   t.cucumber_opts = "-p cuke_reports"
@@ -92,8 +97,6 @@ Cucumber::Rake::Task.new(:transaction_address_4lines) do |t|
 end
 
 #CONTACTS
-
-
 
 Cucumber::Rake::Task.new(:contacts_print_postage_multiple_from_top_nav) do |t|
   t.profile = 'contacts_print_postage_multiple_from_top_nav'
