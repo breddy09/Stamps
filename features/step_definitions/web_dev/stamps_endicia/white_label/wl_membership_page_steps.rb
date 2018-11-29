@@ -583,7 +583,7 @@ Then /^WL: check membership page terms & conditions$/ do
   mm_page.terms_conditions.scroll_into_view
   mm_page.terms_conditions.send_keys(:tab)
   att_value = mm_page.addr_enable_disable_check.attribute_value('class')
-  mm_page.terms_conditions.click! if att_value == 'form-group checkbox has-error'
+  mm_page.terms_conditions.click! if att_value == 'form-group checkbox'
 end
 
 Then /^WL: uncheck membership page terms & conditions$/ do

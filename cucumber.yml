@@ -18,7 +18,7 @@ sauce_browser: --tags @history_filter_direct_url_1 --guess URL=cc USR=cctruer0u 
 #mhossain1_cc: --tags @pp_header_favicons_browser_mobile JENKINS=true URL=qacc BROWSER=gc BROWSER_MOBILE_EMULATOR=gc,'iPhone X' USR=wteam@stamps.com PW=password1 WEB_DEV=true
 #mhossain1_cc: --tags @pp_log_in_page_validation JENKINS=true URL=stg BROWSER=ff USR=wteam@stamps.com PW=password1 FIREFOX_PROFILE=true WEB_DEV=true
 
-kaushal_cc: --tags @sdcwr_security_question_page_validation URL=stg BROWSER=gc #USR=qawebdevelopment@stamps.com PW=password1
+kaushal_cc: --tags @sdcwr_random_workflow URL=stg BROWSER=gc #USR=qawebdevelopment@stamps.com PW=password1
 
 web_apps_dev: --tags @bvt_new_order USR=default PW=pass111 URL=tcarney-win7-3.corp.stamps.com --guess BROWSER=ff MAX_WINDOW=false
 eli_dev: --tags @sdc_contacts_print_to_mail --guess JENKINS=false WEB_APP=mail URL=cc BROWSER=ff USR=hal9000qa12 PW=password1 PRINTER=factory
