@@ -72,7 +72,7 @@ Then /^search contacts from contacts filter panel with name (?:newly added|(.*))
 end
 
 Then /^expect contacts filter panel search result count is (\d+)$/ do |count|
-  search_results.SdcContacts.contacts_filter.search_results
+  search_results = SdcContacts.contacts_filter.search_results
   expect(search_results.search_results_count).to be_present
   expect(search_results.search_results_count.text_value.to_i).to eql count.to_i
 end
