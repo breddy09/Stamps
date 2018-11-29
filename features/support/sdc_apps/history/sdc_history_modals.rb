@@ -476,6 +476,22 @@ module SdcHistory
       page_object(:date_mailed_value){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="mailDate"]'}}
       page_object(:date_mailed_error) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="mailDate"]//following::div[contains(@class,"error-msg")][1]'} }
 
+      page_object(:customer_id_label){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(text(),"Your Customer ID:")]'}}
+      page_object(:customer_id_value){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="id"]'}}
+      page_object(:customer_id_error) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="id"]//following::div[contains(@class,"error-msg")][1]'} }
+
+      page_object(:insurance_id_label){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(text(),"Stamps.com Insurance ID/Tracking #:")]'}}
+      page_object(:insurance_id_value){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="insuranceId"]'}}
+      page_object(:insurance_id_error) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="insuranceId"]//following::div[contains(@class,"error-msg")][1]'} }
+
+      page_object(:claim_type_label){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(text(),"Claim Type:")]'}}
+      page_object(:claim_type_value){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="claimType"]'}}
+      page_object(:claim_type_error) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="claimType"]//following::div[contains(@class,"error-msg")][1]'} }
+
+      page_object(:customer_id_label){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(text(),"Description of items:")]'}}
+      page_object(:customer_id_value){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="id"]'}}
+      page_object(:customer_id_error) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="id"]//following::div[contains(@class,"error-msg")][1]'} }
+
 
     end
 

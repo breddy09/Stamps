@@ -38,6 +38,14 @@ Feature:  History :File an Insurance Claim
     Then expect package recipient's name value on insurance claim form modal is blank
     Then expect date mailed field on insurance claim form modal is present
     Then expect date mailed value on insurance claim form modal is correct
+    Then expect customer id field on insurance claim form modal is present
+    Then expect customer id value on insurance claim form modal is correct
+    Then expect insurance id field on insurance claim form modal is present
+    Then expect insurance id value on insurance claim form modal is correct
+    Then expect claim type field on insurance claim form modal is present
+    Then expect claim type value on insurance claim form modal is loss
+
+
 
 #  #File Claim - Transaction Detail Printed Section
 #    Then expect file claim link on the transaction detail panel is available
