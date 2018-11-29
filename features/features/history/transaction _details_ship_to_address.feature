@@ -24,5 +24,5 @@ Feature:  History Details Addresses displayed in Ship to Field
     Then click search icon on history filter panel
     Then check row for saved tracking number on history grid
     Then expect address shipped to in history transaction details displayed correct
-    Then expect address shipped to contains 4 lines
+    Then expect address shipped to contains 5 lines
     Then sign out

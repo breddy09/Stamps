@@ -17,13 +17,14 @@ Then /^expect address shipped to in history transaction details displayed (?:cor
   shipped_address = SdcHistory.details.addresses
   shipped_address.shipped_to.flash
   address ||= TestData.hash[:address]
-  address_arr = address.split("\n")
-  expect(shipped_address.shipped_to.text_value). to eql(TestData.hash[:address])
+  total_address =  address + "\n" + TestData.hash[:email_tracking]
+  expect(shipped_address.shipped_to.text_value). to eql(total_address)
 end
 
 
 Then /^expect address shipped to contains (\d+) lines$/ do |lines|
-  address = TestData.hash[:address]
+  shipped_address = SdcHistory.details.addresses
+  address = shipped_address.shipped_to.text_value
   address = address.split("\n")
   address_lines_count = address.length
   expect(address_lines_count.to_i). to eql(lines.to_i)
