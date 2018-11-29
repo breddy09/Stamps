@@ -312,6 +312,11 @@ Cucumber::Rake::Task.new(:sdc_contacts_print_to_mail) do |t|
   t.cucumber_opts = "-p cuke_reports"
 end
 
+Cucumber::Rake::Task.new(:validate_contacts_without_name) do |t|
+  t.profile = 'validate_contacts_without_name'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
 #History
 
 #
