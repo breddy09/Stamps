@@ -141,7 +141,7 @@ module SdcHistory
   class HistorySearch < SdcPage
     text_field(:search_prints,tag: :text_field) { { xpath: '//*[@placeholder="Search Prints"]' } }
     page_object(:advanced_search_arrow) { { xpath: '//*[contains(@class, "search-advance-trigger")]' } }
-    page_object(:search_icon) { {xpath: '//*[contains(@class, "search-trigger-grey")]'} }
+    page_object(:search_icon) { { xpath: '//*[contains(@class, "search-trigger-grey")]' } }
   end
 
     class CollapsedView < SdcPage
