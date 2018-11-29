@@ -52,7 +52,7 @@ Then /^close save as favorite modal$/ do
   step 'expect save as favorite modal is not present'
 end
 
-Then /^save save as favorite modal$/ do
+Then /^click save button on save as favorite modal$/ do
   SdcMail.modals.save_as_favorite.save.click
   step 'expect save as favorite modal is not present'
 end

@@ -390,11 +390,11 @@ Feature:  Mail BVT
     Then expect mail toolbar print sample is present
     Then blur out on print form
     Then click mail toolbar favorites
-    Then pause for 15 seconds
+#    Then pause for 15 seconds
     Then click mail toolbar save as favorite
     Then set save as favorite modal name to random
     Then check save as favorite modal include delivery address
-    Then save save as favorite modal
+    Then click save button on save as favorite modal
     Then click mail toolbar favorites
     Then click mail toolbar manage favorites
     Then select on manage favorites modal row 1

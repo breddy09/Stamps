@@ -109,11 +109,26 @@ Then /^click mail toolbar print sample$/ do
   SdcMail.toolbar.print_sample.click
 end
 
-Then /^expect mail toolbar print (?:postage|label|stamps|envelope) is present$/ do
-  expect(SdcMail.toolbar.print).to be_present, "Toolbar Print button is not present"
+Then /^expect mail toolbar print postage is present$/ do
+    expect(SdcMail.toolbar.print).to be_present, "Toolbar Print button is not present"
 end
+Then /^expect mail toolbar print label is present$/ do
+  expect(SdcMail.toolbar.print_label).to be_present, "Toolbar Print button is not present"
+end
+
+Then /^expect mail toolbar print stamps is present$/ do
+  expect(SdcMail.toolbar.print_stamps).to be_present, "Toolbar Print button is not present"
+end
+
+Then /^expect mail toolbar print envelope is present$/ do
+  expect(SdcMail.toolbar.print_envelope).to be_present, "Toolbar Print button is not present"
+end
+
+
+
+
 Then /^expect mail toolbar print sample is present$/ do
-  expect(SdcMail.toolbar.print).to be_present, "Toolbar Print button is not present"
+  expect(SdcMail.toolbar.print_sample).to be_present, "Toolbar Print button is not present"
 end
 
 Then /^click mail toolbar favorites$/ do
