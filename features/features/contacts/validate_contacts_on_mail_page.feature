@@ -2,7 +2,7 @@ Feature:  Validate contacts on the mail page
 
   Background:
     Given Start test driver
-  @validate_contacts_wihtout_name
+  @validate_contacts_without_name
   Scenario: Create new contact wihout name and validate it on the mail page
     Then sign-in to mail
     Then select print on Shipping Label - 5 ½" x 8 ½"
@@ -15,12 +15,13 @@ Feature:  Validate contacts on the mail page
     Then click print postage button on contacts toolbar
     Then select print on Shipping Label - 5 ½" x 8 ½"
     Then expect error icon is not present on the print form
-    Then set mail to to empty on the print form
-    Then click mail to link on the print form
-    Then search for the contact in contacts modal
-    Then check row 1 in contacts modal grid
-    Then click select button
-    Then expect adress cleansing modal is not present
+    Then set print form mail-to address to empty
+    Then click print form mail to link
+    Then set search bar to saved company on search contacts modal
+    Then click search icon on search contacts modal
+    Then check row 1 on search contacts modal
+    Then click select button on search contacts modal
+    Then expect address cleansing modal is not present
     Then expect error icon is not present on the print form
     Then sign out
 
