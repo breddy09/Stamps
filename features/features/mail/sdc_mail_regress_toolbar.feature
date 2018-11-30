@@ -23,6 +23,7 @@ Feature:  Mail Print Form Toolbar
     Then click mail toolbar print dropdown
     Then expect mail toolbar print dropdown tooltip is not present
     Then click mail toolbar print dropdown
+    Then blur out on print form
     Then hover on mail toolbar print dropdown
     Then expect mail toolbar print dropdown tooltip is present
 
