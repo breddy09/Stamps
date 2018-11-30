@@ -146,13 +146,13 @@ end
 #export
 #
 Then /^expect export button on history toolbar is present$/ do
-  toolbar=SdcHistory.toolbar
+  toolbar=SdcHistory.toolbar.toolbar
   toolbar.export.wait_until_present(timeout: 10)
   expect(toolbar.export.present?).to be(true)
 end
 
 Then /^click export button on history toolbar$/ do
-  toolbar=SdcHistory.toolbar
+  toolbar=SdcHistory.toolbar.toolbar
   toolbar.export.wait_until_present(timeout: 10)
   toolbar.export.click
 end

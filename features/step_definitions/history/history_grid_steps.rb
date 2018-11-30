@@ -28,6 +28,7 @@ Then /^check row for saved tracking number on history grid$/ do
   checkbox = SdcHistory.grid.grid_column(:checkbox)
   row = checkbox.checkbox_row(row_number)
   row.check
+  expect(row.checked?).to be true
 end
 
 Then /^expect history grid column (.+) is (.+) for row (\d+)$/ do |column, value, row|

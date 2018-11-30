@@ -14,7 +14,7 @@ Then /^set contact details to$/ do |table|
   reference_number = param['reference_number']
   cost_code = param['cost_code']
 
-  if full_name.downcase.include?('random')
+  if full_name && full_name.downcase.include?('random')
     full_name = TestHelper.rand_full_name
   end
 
@@ -59,7 +59,7 @@ Then /^set contact details to$/ do |table|
     step "set contact details phone to #{full_phone}"
   end
 
-  if groups.empty?
+  if groups.nil? || groups.empty?
     # Do not set value of groups
   elsif groups.downcase.include?('random')
     step 'click on groups expand button of contacts left navigation'
@@ -80,7 +80,7 @@ Then /^set contact details to$/ do |table|
     step "set contact details groups to #{groups}"
   end
 
-  if reference_number.empty?
+  if reference_number.nil? || reference_number.empty?
     # Do not set value of reference number
   elsif reference_number.downcase.include?('random')
     reference_number = TestHelper.rand_reference_number
@@ -89,10 +89,10 @@ Then /^set contact details to$/ do |table|
     step "set contact details reference number to #{reference_number}"
   end
 
-  if cost_code.empty?
+  if cost_code.nil? || cost_code.empty?
     # Do not do anything
   elsif
-  step 'click on cost codes expand button of contacts left navigation'
+    step 'click on cost codes expand button of contacts left navigation'
     left_nav_costcode = SdcContacts.contacts_filter.cost_codes
     row_count = left_nav_costcode.total_costcodes.count
     cost_code = left_nav_costcode.cost_code_name(rand(1..row_count - 1)).text_value
@@ -102,21 +102,39 @@ Then /^set contact details to$/ do |table|
     step "set contact details cost code to #{cost_code}"
   end
 
-  TestData.hash[:full_name] = full_name
-  TestData.hash[:company] = company
-  TestData.hash[:country] = country
-  TestData.hash[:street_address] = street_address
-  TestData.hash[:city] = city
-  TestData.hash[:state] = state
-  TestData.hash[:postal_code] = postal_code
-  TestData.hash[:email] = email
-  TestData.hash[:full_phone] = full_phone
-  TestData.hash[:phone] = full_phone
-  TestData.hash[:phone_ext] = phone_ext
-  TestData.hash[:groups] = groups
-  TestData.hash[:cost_code] = cost_code
-  TestData.hash[:reference_number] = reference_number
+  step 'save new contact details'
+  # TestData.hash[:full_name] = full_name
+  # TestData.hash[:company] = company
+  # TestData.hash[:country] = country
+  # TestData.hash[:street_address] = street_address
+  # TestData.hash[:city] = city
+  # TestData.hash[:state] = state
+  # TestData.hash[:postal_code] = postal_code
+  # TestData.hash[:email] = email
+  # TestData.hash[:full_phone] = full_phone
+  # TestData.hash[:phone] = full_phone
+  # TestData.hash[:phone_ext] = phone_ext
+  # TestData.hash[:groups] = groups
+  # TestData.hash[:cost_code] = cost_code
+  # TestData.hash[:reference_number] = reference_number
+end
 
+Then /^save new contact details$/ do
+  contacts_details = SdcContacts.details
+  TestData.hash[:full_name] = contacts_details.name.text_value
+  TestData.hash[:company] = contacts_details.company.text_value
+  TestData.hash[:country] = contacts_details.country.text_field.text_value
+  TestData.hash[:street_address] = contacts_details.street_address.text_value
+  TestData.hash[:city] = contacts_details.city.text_value
+  TestData.hash[:state] = contacts_details.state.text_field.text_value
+  TestData.hash[:postal_code] = contacts_details.postal_code.text_value
+  TestData.hash[:email] = contacts_details.email.text_value
+  TestData.hash[:full_phone] = contacts_details.phone.text_value
+  TestData.hash[:phone] = contacts_details.phone.text_value
+  TestData.hash[:phone_ext] = contacts_details.phone_ext.text_value
+  TestData.hash[:groups] = contacts_details.group.text_field.text_value
+  TestData.hash[:cost_code] = contacts_details.cost_code.text_field.text_value
+  TestData.hash[:reference_number] = contacts_details.reference_number.text_value
 end
 
 Then /^set contact details name to (.*)$/ do |str|
@@ -149,16 +167,16 @@ Then /^split name to details for (.*)$/ do |full_name|
     words.delete(words[0])
   end
   if words.length.eql?(1)
-    last_name=words[0]
+    last_name = words[0]
   elsif words.length.eql?(2)
-    first_name=words[0]
-    last_name=words[1]
+    first_name = words[0]
+    last_name = words[1]
   elsif words.length.eql?(3)
-    first_name =words[0]
-    middle_name =words[1]
-    last_name =words[2]
+    first_name = words[0]
+    middle_name = words[1]
+    last_name = words[2]
   elsif words.length >3
-    last_name =words[words.length-1]
+    last_name = words[words.length-1]
     middle_name = words[words.length - 2]
     i=0
     firstname = ''
@@ -166,7 +184,7 @@ Then /^split name to details for (.*)$/ do |full_name|
       firstname = firstname + words[i]  + " "
       i = i + 1
     end
-    first_name =firstname.rstrip
+    first_name = firstname.rstrip
   end
   TestData.hash[:prefix ]||= prefix
   TestData.hash[:first_name]||=first_name

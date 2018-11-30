@@ -17,8 +17,23 @@ Then /^expect address shipped to in history transaction details displayed (?:cor
   shipped_address = SdcHistory.details.addresses
   shipped_address.shipped_to.flash
   address ||= TestData.hash[:address]
-  total_address =  address + "\n" + TestData.hash[:email_tracking]
-  expect(shipped_address.shipped_to.text_value). to eql(total_address)
+  if TestData.hash[:email_tracking].nil?
+    total_address =  address
+  else
+    total_address =  address + "\n" + TestData.hash[:email_tracking]
+  end
+  #total_address =  address + "\n" + TestData.hash[:email_tracking]
+  #expect(shipped_address.shipped_to.text_value). to eql(total_address)
+  address_arr = address.split("\n")
+  address_lines_count = address_arr.length
+  total_address_arr = total_address.split("\n")
+  if address_lines_count.to_i.eql? 6
+    #remove department value from the address array
+    total_address_arr.delete(total_address_arr[2])
+    expect(shipped_address.shipped_to.text_value.split("\n")). to eql(total_address_arr)
+  else
+    expect(shipped_address.shipped_to.text_value). to eql(total_address)
+  end
 end
 
 

@@ -44,7 +44,7 @@ Then /^select print on (.+)$/ do |str|
     print_on.selection_element.click
   end
   expect(print_on.text_field.text_value).to eql(str) unless str.include? 'Manage'
-  #step 'blur out on print form'
+  step 'blur out on print form'
   TestData.hash[:print_media] = str
 end
 

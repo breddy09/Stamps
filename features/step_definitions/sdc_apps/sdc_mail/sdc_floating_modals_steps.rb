@@ -42,8 +42,6 @@ Then /^expect add address email error message is (.*)$/ do |str|
   expect(add_address.email_error_message.attribute_value 'data-errorqtip').to include str
 end
 
-
-
 Then /^set email on add address modal(?:| (.+))$/ do |str|
   str ||= TestHelper.rand_email
   add_address = SdcMail.modals.add_address
@@ -89,6 +87,12 @@ Then /^expect address cleansing modal is present$/ do
   address_cleansing=SdcMail.modals.address_cleansing
   address_cleansing.title.safe_wait_until_present(timeout:10)
   expect(address_cleansing.title.present?).to be(true)
+end
+
+Then /^expect address cleansing modal is not present$/ do
+  address_cleansing=SdcMail.modals.address_cleansing
+  address_cleansing.title.safe_wait_until_present(timeout:3)
+  expect(address_cleansing.title).not_to be_present
 end
 
 Then /^click accept button on address cleansing modal$/ do
