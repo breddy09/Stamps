@@ -82,7 +82,6 @@ Then /^click file claim link on transaction detail menu dropdown$/ do
 end
 
 #Services
-
 Then /^expect file claim link in services section of transaction detail panel is available$/ do
   services=SdcHistory.details.services
   expect(services.file_claim.present?).to be (true)

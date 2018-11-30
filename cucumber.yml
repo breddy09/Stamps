@@ -651,7 +651,6 @@ reports_toolbar:  --tags @reports_toolbar --guess LOG_LEVEL=info
 reports_filter_panel:  --tags @reports_filter_panel --guess LOG_LEVEL=info
 refund_assist:  --tags @refund_assist --guess LOG_LEVEL=info
 changes_to_landing_page:  --tags @changes_to_landing_page --guess LOG_LEVEL=info
-
 sdc_contacts_pagination_navigate_different_pages: --tags @sdc_contacts_pagination_navigate_different_pages --guess LOG_LEVEL=info
 sdc_contacts_search_country_results: --tags @sdc_contacts_search_country_results --guess LOG_LEVEL=info
 sdc_contact_top_nav_print_postage: --tags @sdc_contact_top_nav_print_postage --guess LOG_LEVEL=info

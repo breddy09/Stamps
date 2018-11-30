@@ -70,7 +70,6 @@ end
 #HISTORY
 #
 #
-
 Cucumber::Rake::Task.new(:file_claim_link_for_print_with_sdc_insurance) do |t|
   t.profile = 'file_claim_link_for_print_with_sdc_insurance'
   t.cucumber_opts = "-p cuke_reports"
