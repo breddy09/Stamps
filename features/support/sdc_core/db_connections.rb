@@ -1,45 +1,46 @@
 module SdcCore
-  class MySqlConnDecorator < BasicObject
-    #require 'mysql2'
+  # class MySqlConnDecorator < BasicObject
+  #
+  #
+  #   attr_reader :host, :username, :password
+  #
+  #   def initialize(host: nil, username: nil, password: nil)
+  #     @connection = ::Mysql2::Client.new(host: host, username: username, password: password)
+  #   end
+  #
+  #   def respond_to_missing?(name, include_private = false)
+  #     @connection.respond_to?(name, include_private) || super
+  #   end
+  #
+  #   def method_missing(name, *args, &block)
+  #     super unless @connection.respond_to?(name)
+  #     @connection.send(name, *args, &block)
+  #   end
+  # end
 
-    attr_reader :host, :username, :password
-
-    def initialize(host: nil, username: nil, password: nil)
-      @connection = ::Mysql2::Client.new(host: host, username: username, password: password)
-    end
-
-    def respond_to_missing?(name, include_private = false)
-      @connection.respond_to?(name, include_private) || super
-    end
-
-    def method_missing(name, *args, &block)
-      super unless @connection.respond_to?(name)
-      @connection.send(name, *args, &block)
-    end
-  end
-
-  class UserCredentialsConn < BasicObject
-    def initialize
-      host = data_for(:database, {})['mysql']['host']
-      username = data_for(:database, {})['mysql']['username']
-      password = data_for(:database, {})['mysql']['password']
-      @connection = MySqlConnDecorator.new(host: host, username: username, password: password)
-      @connection.automatic_close = true
-      @connection.select_db('stamps')
-    end
-
-    def respond_to_missing?(name, include_private = false)
-      @connection.respond_to?(name, include_private) || super
-    end
-
-    def method_missing(name, *args, &block)
-      super unless @connection.respond_to?(name)
-      @connection.send(name, *args, &block)
-    end
-  end
+  # class UserCredentialsConn < BasicObject
+  #   def initialize
+  #     host = data_for(:database, {})['mysql']['host']
+  #     username = data_for(:database, {})['mysql']['username']
+  #     password = data_for(:database, {})['mysql']['password']
+  #     @connection = MySqlConnDecorator.new(host: host, username: username, password: password)
+  #     @connection.automatic_close = true
+  #     @connection.select_db('stamps')
+  #   end
+  #
+  #   def respond_to_missing?(name, include_private = false)
+  #     @connection.respond_to?(name, include_private) || super
+  #   end
+  #
+  #   def method_missing(name, *args, &block)
+  #     super unless @connection.respond_to?(name)
+  #     @connection.send(name, *args, &block)
+  #   end
+  # end
 
   class SQLServerClient
     require 'tiny_tds'
+
     attr_reader :host, :database, :username, :password, :port, :azure, :connection
 
     def initialize(username: nil, password: nil, server: nil, port: nil, database: nil, azure: nil)

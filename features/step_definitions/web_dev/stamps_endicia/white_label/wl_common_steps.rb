@@ -17,14 +17,14 @@ end
 #..................................Modal....................#
 Then /^WL: click modal continue button$/ do
   modal_continue = WhiteLabel.common_page.modal_continue
-  modal_continue.wait_until_present(timeout: 2)
+  modal_continue.wait_until_present(timeout: 5)
   modal_continue.click
   step 'pause for 1 second'
 end
 
 Then /^WL: click modal cancel button$/ do
   modal_cancel = WhiteLabel.common_page.modal_cancel
-  modal_cancel.wait_until_present(timeout: 2)
+  modal_cancel.wait_until_present(timeout: 5)
   modal_cancel.click
   step 'pause for 1 second'
 end
@@ -34,7 +34,7 @@ Then /^WL: click modal x button$/ do
   step 'pause for 1 second'
   modal_x = WhiteLabel.common_page.modal_x
   modal_x.scroll_into_view
-  modal_x.wait_until_present(timeout: 2)
+  modal_x.wait_until_present(timeout: 5)
   modal_x.click if modal_x.present?
   step 'pause for 1 second'
 end
@@ -237,7 +237,7 @@ Then /WL: expect security questions second security answer is (?:correct|(.*))$/
 end
 
 Then /^WL: expect second security answer tooltip index (\d+) to be (.*)$/ do |index, str|
-  second_security_answer_help_block = WhiteLabel.common_page.second_security_answer_help_block
+  second_security_answer_help_block = WhiteLabel.common_page.second_security_answer_help_block_pro_page
   second_security_answer_help_block.wait_until_present(timeout: 5)
   help_block = second_security_answer_help_block.text_value.split("\n")
   expect(help_block[index - 1]).to eql(str)
@@ -248,7 +248,7 @@ Then /^WL: expect security question page tooltip to be (.*)$/ do |str|
   expect(sq_page_sq_help_block[0].inner_text.strip).to eql(str)
   expect(sq_page_sq_help_block[1].inner_text.strip).to eql(str)
   expect(sq_page_sq_help_block[2].inner_text.strip).to eql(str)
-  expect(sq_page_sq_help_block[3].inner_text.strip).to eql(str)
+  #expect(WhiteLabel.common_page.second_security_answer_help_block.inner_text.strip).to eql(str)
 end
 
 Then /^WL: click security questions get started button$/ do
@@ -350,7 +350,7 @@ Then /^WL: expect username taken tooltip to be (.*)$/ do |str|
   membership_page = WhiteLabel.membership_page
   membership_page.new_username.click
   membership_page.new_username.send_keys(:tab)
-  membership_page.new_username_help_block.wait_until_present(timeout: 3)
+  membership_page.new_username_help_block.wait_until_present(timeout: 5)
   expect(membership_page.new_username_help_block.text_value.strip).to eql(str)
 end
 
@@ -443,7 +443,7 @@ Then /^WL: expect user is navigated to print page for (.*)$/ do |str|
   case TestSession.env.url
     when :qacc
       if str == 'stamps'
-      expect(SdcPage.browser.url).to include('https://print.qacc.stamps.com')
+      expect(SdcPage.browser.url).to include('https://printext.qacc.stamps.com')
       else
         expect(SdcPage.browser.url).to include('https://print.qacc.endicia.com')
       end
@@ -455,25 +455,31 @@ Then /^WL: expect user is navigated to print page for (.*)$/ do |str|
       end
     when ''
       if str == 'stamps'
-        expect(SdcPage.browser.url).to include('https://print.stamps.com')
+        expect(SdcPage.browser.url).to include('https://printext.stamps.com')
       else
         expect(SdcPage.browser.url).to include('https://print.endicia.com')
       end
   end
-  if SdcGlobal.scenario.tags[0].name == "@sdcwr_choose_supplies_page_not_present_workflow"
-    #Todo Bug: Offer that has no atg promotion redirects to web postage without user not logged in.
-    # When fixed, remove this conditions and just keep: expect(common_page.print_username.attribute_value('title').strip).to eql(TestData.hash[:username])
-  else
-    expect(common_page.print_username.attribute_value('title').strip).to eql(TestData.hash[:username])
-  end
+  # if SdcGlobal.scenario.tags[0].name == "@sdcwr_choose_supplies_page_not_present_workflow"
+  #   #Todo Bug: Offer that has no atg promotion redirects to web postage without user not logged in.
+  #   # When fixed, remove this conditions and just keep: expect(common_page.print_username.attribute_value('title').strip).to eql(TestData.hash[:username])
+  # else
+  #   expect(common_page.print_username.attribute_value('title').strip).to eql(TestData.hash[:username])
+  # end
 end
 
 
 ################ Header ############
 Then /^WL: expect registration navigation bar stamps logo exists$/ do
-  stamps_logo = WhiteLabel.common_page.stamps_logo
-  stamps_logo.wait_until_present(timeout: 60)
-  expect(stamps_logo).to be_present
+  common = WhiteLabel.common_page
+
+  if SdcGlobal.web_dev_device || TestSession.env.mobile_device
+    common.stamps_logo_xs.wait_until_present(timeout: 60)
+    expect(common.stamps_logo_xs).to be_present
+  else
+    common.stamps_logo.wait_until_present(timeout: 60)
+    expect(common.stamps_logo).to be_present
+  end
 end
 
 Then /^WL: expect registration navigation bar usps logo exists$/ do

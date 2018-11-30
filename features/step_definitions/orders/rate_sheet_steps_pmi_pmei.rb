@@ -491,7 +491,7 @@ Then /^run rate sheet (.*) in country price group (\d+)$/ do |param_sheet, group
         end
 
       end
-    rescue Exception => e
+    rescue StandardError => e
       SdcLogger.info e.message
       SdcLogger.info e.backtrace.join("\n")
       TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:error_msg]] = "Group #{group} - Row #{row_number}: #{e.message}"

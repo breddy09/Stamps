@@ -34,6 +34,10 @@ module SdcHistory
         end
         klass.new.export
       end
+
+      #TODO - complete
+      # page_object(:feedback) { { xpath: 'XXX' } }
+      # page_object(:settings) { { xpath: 'XXX' } }
     end
   end
   class SdcHistoryToolbarPickup < SdcPage
@@ -75,4 +79,4 @@ module SdcHistory
     page_object(:reprint_scan_form) { {xpath: '//*[text()="Reprint Last Label"]'} }
   end
 
-end
+  end

@@ -7,7 +7,12 @@ module SdcMail
         page_object(:text_field, tag: :text_field) { { xpath: '//*[@name="ShipFrom"]' } }
 
         def selection(name, str)
-          page_object(name) { { xpath: "//li[contains(text(), '#{str}')]" } }
+          xpath = if str.casecmp('default').zero?
+                    '//li[contains(text()," - ")][@data-recordindex="0"]'
+                  else
+                    "//li[contains(text(), '#{str}')]"
+                  end
+          page_object(name) { { xpath: xpath } }
         end
       end
 
@@ -41,6 +46,8 @@ module SdcMail
         page_object(:postal_code, tag: :text_field) { { xpath: '//input[@name="ShipPostalCode"]' } }
         page_objects(:phone, tag: :text_fields, index: 0) { { xpath: '//input[@name="ShipPhone"]' } }
         page_objects(:int_phone, tag: :text_fields, index: 1) { { xpath: '//input[@name="ShipPhone"]' } }
+
+        page_object(:error_icon) { { xpath: '//*[contains(@class, "sdc-icon-stop")]' } }
 
         def add_button
           add_buttons.each do |button|

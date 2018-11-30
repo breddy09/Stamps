@@ -16,7 +16,7 @@ Feature: Print On List Of Values
     Then select print on Envelope - 10
     Then select print on Envelope - 9
     Then select print on Envelope - A9
-    Then select print on Envelope - 6
+    Then select print on Envelope - #6, 3 ⅝" x 6 ½"
     Then select print on Envelope - A2
     Then select print on Envelope - 7
     Then select print on Envelope - 11

@@ -242,7 +242,7 @@ Then /^[Ii]n Settings modal, Postdate Set (.*)$/ do |value|
   #   when "10:00 p.m."
   #     stamps.orders.modals.orders_settings_modal.general_tab.post_date.ten_pm
   #   when "11:00 p.m."
-  #     stamps.orders.modals.orders_settings_modal.general_tab.post_date.eleven_pm
+      stamps.orders.modals.orders_settings_modal.general_tab.post_date.eleven_pm
   #   else
   #     expect("Invalid Postdate Selection -  In Settings modal, Postdate #{value}").to eql "Settings"
   # end

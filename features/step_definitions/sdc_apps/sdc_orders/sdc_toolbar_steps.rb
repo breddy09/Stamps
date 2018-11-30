@@ -83,6 +83,10 @@ Then /^click orders toolbar print button$/ do
   expect(print.title.text_value).to match(/You have \d label ready to print/)
 end
 
+Then /^click orders top toolbar print button$/ do
+  SdcOrders.toolbar.print.click
+end
+
 
 Then /^click orders toolbar print all button$/ do
   step 'save order details data'

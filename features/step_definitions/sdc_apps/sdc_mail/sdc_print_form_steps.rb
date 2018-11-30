@@ -1,5 +1,17 @@
 
 # common Print form steps for Envelope|Label|Roll|CM
+Then /^set print form mail-to address to empty$/ do
+  mail_to = SdcMail.print_form.mail_to
+  # 5.times do
+  mail_to.text_area.set('')
+  step 'blur out on print form'
+  #   sleep 1
+  #   break if mail_to.add_button.present?
+  # end
+  step 'blur out on print form'
+  TestData.hash[:address] = ''
+  TestData.hash[:mail_from_address] = ''
+end
 
 Then /^set print form mail-to (?:|to )(?:|a )(?:|random )address(?: to| in| between|) (.*)$/ do |str|
   address = TestHelper.address_helper(str)
@@ -10,9 +22,9 @@ Then /^set print form mail-to (?:|to )(?:|a )(?:|random )address(?: to| in| betw
     sleep 1
     break if mail_to.add_button.present?
   end
-
   step 'blur out on print form'
-  TestData.hash[:address] = address
+  TestData.hash[:address] = mail_to.text_area.text_value
+  TestData.hash[:mail_from_address] = SdcMail.print_form.mail_from.text_field.text_value
 end
 
 Then /^select address from print form mail-to (.+), (.+)$/ do |name, company|
@@ -271,4 +283,10 @@ Then /^set print form tracking (.+)$/ do |value|
   expect(tracking.selection).to be_present, "#{value} is not present in Tracking list"
   tracking.selection.click
   expect(tracking.text_field.text_value).to include(value)
+end
+
+Then /^expect error icon is not present on the print form$/ do
+  error_icon = SdcMail.print_form.mail_to.error_icon
+  error_icon.safe_wait_until_present(timeout: 2)
+  expect(error_icon.present?).not_to be(true)
 end

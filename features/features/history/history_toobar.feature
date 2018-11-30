@@ -62,7 +62,7 @@ Feature:  History Toolbar
     Then set from address on return label modal to test test,\n1990 east grand ave,\nEl Segundo, CA 90245-5013
     Then set to address on return label modal to test test,\n1990 east grand ave,\nEl Segundo, CA 90245-5013
     Then set weight on return label modal to 1 lbs 1 oz
-#    Then select service on return label modal PM Flat Rate Envelope
+    Then select service on return label modal PM Flat Rate Envelope
     Then close return label modal on history
     Then expect return label modal on history is not present
 

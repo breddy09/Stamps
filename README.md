@@ -1,6 +1,6 @@
 # Stamps
-Stamps.com Web Client Automated Test Framework
+**Stamps.com's Automated Test Framework**
 
-Automated functional tests for Orders, Mail and Registration components of Stamp.com's web client application.
+Web Client automated functional tests for Orders, Mail, History and Reports. The framework also contains automated tests for WebDev's Web Registration and Partner Portals.
 
 Email Rob Cruz at rcruz@stamps.com for questions.

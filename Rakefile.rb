@@ -82,6 +82,11 @@ Cucumber::Rake::Task.new(:sdc_contacts_print_to_mail) do |t|
   t.cucumber_opts = "-p cuke_reports"
 end
 
+Cucumber::Rake::Task.new(:validate_contacts_without_name) do |t|
+  t.profile = 'validate_contacts_without_name'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
   Cucumber::Rake::Task.new(:pp_authenticate) do |t|
     t.profile = 'pp_authenticate'
     t.cucumber_opts = "-p cuke_reports"
@@ -1184,6 +1189,11 @@ end
 
 Cucumber::Rake::Task.new(:bvt_orders_ship_date) do |t|
   t.profile = 'bvt_orders_ship_date'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:bvt_orders_print_all) do |t|
+  t.profile = 'bvt_orders_print_all'
   t.cucumber_opts = "-p cuke_reports"
 end
 
@@ -3306,5 +3316,9 @@ Cucumber::Rake::Task.new(:reports_toolbar) do |t|
 end
 Cucumber::Rake::Task.new(:reports_filter_panel) do |t|
   t.profile = 'reports_filter_panel'
+  t.cucumber_opts = "-p cuke_reports"
+end
+Cucumber::Rake::Task.new(:refund_assist) do |t|
+  t.profile = 'refund_assist'
   t.cucumber_opts = "-p cuke_reports"
 end
