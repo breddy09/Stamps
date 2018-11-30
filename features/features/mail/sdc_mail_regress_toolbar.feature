@@ -40,9 +40,9 @@ Feature:  Mail Print Form Toolbar
     Then click orders toolbar tags
     Then expect orders toolbar tags tooltip is not present
     Then click orders toolbar tags
-    Then blur out on orders
-    Then hover on orders toolbar tags
-    Then expect orders toolbar tags tooltip is present
+#    Then blur out on orders
+#    Then hover on orders toolbar tags
+#    Then expect orders toolbar tags tooltip is present
 
     Then navigate to History
 #    history
