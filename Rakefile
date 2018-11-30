@@ -70,6 +70,17 @@ end
 #HISTORY
 #
 #
+
+Cucumber::Rake::Task.new(:file_claim_link_for_print_with_sdc_insurance) do |t|
+  t.profile = 'file_claim_link_for_print_with_sdc_insurance'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:file_claim_link_for_print_with_extra_services_usps_insurance) do |t|
+  t.profile = 'file_claim_link_for_print_with_extra_services_usps_insurance'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
 Cucumber::Rake::Task.new(:history_change_costcode) do |t|
   t.profile = 'history_change_costcode'
   t.cucumber_opts = "-p cuke_reports"
