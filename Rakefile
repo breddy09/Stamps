@@ -70,7 +70,10 @@ end
 #HISTORY
 #
 #
-#
+Cucumber::Rake::Task.new(:history_change_costcode) do |t|
+  t.profile = 'history_change_costcode'
+  t.cucumber_opts = "-p cuke_reports"
+end
 
 Cucumber::Rake::Task.new(:transaction_details_email_tracking_info) do |t|
   t.profile = 'transaction_details_email_tracking_info'
