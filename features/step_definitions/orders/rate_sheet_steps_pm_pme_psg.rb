@@ -423,7 +423,7 @@ Then /^run rate sheet (.*) in Zone (\d+)$/ do |param_sheet, zone|
         end
 
       end
-    rescue Exception => e
+    rescue StandardError => e
       SdcLogger.info e.message
       SdcLogger.info e.backtrace.join("\n")
       TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:error_msg]] = "Zone #{zone} - Row #{row_number}: #{e.message}"

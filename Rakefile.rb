@@ -1187,6 +1187,11 @@ Cucumber::Rake::Task.new(:bvt_orders_ship_date) do |t|
   t.cucumber_opts = "-p cuke_reports"
 end
 
+Cucumber::Rake::Task.new(:bvt_orders_print_all) do |t|
+  t.profile = 'bvt_orders_print_all'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
 Cucumber::Rake::Task.new(:bvt_shipstation_search) do |t|
   t.profile = 'bvt_shipstation_search'
   t.cucumber_opts = "-p cuke_reports"
@@ -3306,5 +3311,9 @@ Cucumber::Rake::Task.new(:reports_toolbar) do |t|
 end
 Cucumber::Rake::Task.new(:reports_filter_panel) do |t|
   t.profile = 'reports_filter_panel'
+  t.cucumber_opts = "-p cuke_reports"
+end
+Cucumber::Rake::Task.new(:refund_assist) do |t|
+  t.profile = 'refund_assist'
   t.cucumber_opts = "-p cuke_reports"
 end

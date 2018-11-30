@@ -67,9 +67,37 @@ Cucumber::Rake::Task.new(:extra_services_cost_for_rrb_service) do |t|
   t.cucumber_opts = "-p cuke_reports"
 end
 
+#HISTORY
+Cucumber::Rake::Task.new(:transaction_address_6lines) do |t|
+  t.profile = 'transaction_address_6lines'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:transaction_address_5lines) do |t|
+  t.profile = 'transaction_address_5lines'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:create_scan_form) do |t|
+  t.profile = 'create_scan_form'
+  t.cucumber_opts = "-p cuke_reports"
+end
+Cucumber::Rake::Task.new(:file_insurance_claim) do |t|
+  t.profile = 'file_insurance_claim'
+  t.cucumber_opts = "-p cuke_reports"
+end
+Cucumber::Rake::Task.new(:history_change_costcode) do |t|
+  t.profile = 'history_change_costcode'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:transaction_address_4lines) do |t|
+  t.profile = 'transaction_address_4lines'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
 #CONTACTS
-#
-#
+
 Cucumber::Rake::Task.new(:contacts_print_postage_multiple_from_top_nav) do |t|
   t.profile = 'contacts_print_postage_multiple_from_top_nav'
   t.cucumber_opts = "-p cuke_reports"
@@ -2051,6 +2079,11 @@ end
 
 Cucumber::Rake::Task.new(:bvt_orders_ship_date) do |t|
   t.profile = 'bvt_orders_ship_date'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:bvt_orders_print_all) do |t|
+  t.profile = 'bvt_orders_print_all'
   t.cucumber_opts = "-p cuke_reports"
 end
 
@@ -4201,5 +4234,9 @@ end
 
 Cucumber::Rake::Task.new(:reports_filter_panel) do |t|
   t.profile = 'reports_filter_panel'
+  t.cucumber_opts = "-p cuke_reports"
+end
+Cucumber::Rake::Task.new(:refund_assist) do |t|
+  t.profile = 'refund_assist'
   t.cucumber_opts = "-p cuke_reports"
 end

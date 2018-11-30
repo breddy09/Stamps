@@ -20,6 +20,9 @@ require 'socket'
 require 'csv'
 require 'em/pure_ruby'
 
+# require 'rautomation'
+# require 'win32ole'
+
 require_relative 'sdc_core/sdc_patch'
 require_relative 'sdc_core/sdc_core'
 require_relative 'sdc_core/sdc_test'

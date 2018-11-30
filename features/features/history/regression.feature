@@ -24,7 +24,7 @@ Feature:  History regression
     Then set print form weight to lbs 0 oz 1
     Then click print label
     #Then expct print form print message labels
-    Then click print button on mail print modal
+#    Then click print button on mail print modal
     Then expect postage message panel tracking label is Postage was sent to your printer. Your Tracking Number is
     Then save tracking number on print form message panel
     Then navigate to History
@@ -83,6 +83,7 @@ Feature:  History regression
     Then expect return to on history print details contain EL SEGUNDO, CA
     Then sign out
 
+  @container_label_reprint_1
   @container_label_reprint
   Scenario: Container label reprint for Shipping label 8x11 paper
     Then sign-in to mail

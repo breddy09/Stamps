@@ -3,38 +3,6 @@ Feature:  Mail BVT
   Background:
     Given Start test driver
 
-
-  @alex_mail_test
-  Scenario: Alex Test Services
-    Then sign-in to mail
-    Then select print on Shipping Label - 8 ½" x 11" Paper
-    Then select print form service FCM Large Envelope/Flat
-    Then set print form weight to lbs 0 oz 1
-    Then select print form service FCM Package/Thick Envelope
-    Then set print form weight to lbs 1 oz 2
-    Then select print form service PM Large/Thick Envelope
-#    Then set print form weight to lbs 0 oz 3
-    Then select print form service PM Flat Rate Envelope
-    Then set print form weight to lbs 5 oz 0
-    Then select print form service PM Large Package
-#    Then set print form weight to lbs 0 oz 3
-    Then select print form service PM Padded Flat Rate Envelope
-    Then select print form service PM Legal Flat Rate Envelope
-    Then select print form service PM Small Flat Rate Box
-#    Then select print form service PM Medium Flat Rate Box
-#    Then select print form service PM Large Flat Rate Box
-#    Then select print form service PM Regional Rate Box A
-#    Then select print form service PM Regional Rate Box B
-#    Then select print form service PME Package/Flat/Thick Envelope
-#    Then select print form service PME Flat Rate Envelope
-#    Then select print form service PME Padded Flat Rate Envelope
-#    Then select print form service PME Legal Flat Rate Envelope
-#    Then select print form service MM Package/Flat/Thick Envelope
-#    Then select print form service PSG Package/Flat/Thick Envelope
-#    Then select print form service PSG Large Package
-#    Then select print form service PSG Oversized Package
-    Then sign out
-
   @mail_bvt_international
   Scenario: International Shipping
     Then sign-in to mail
@@ -135,37 +103,6 @@ Feature:  Mail BVT
     #Then sign-in to orders
     Then sign out
 
-  @rob_cccc
-  Scenario: Address Cleansing
-    Then sign-in to mail
-    Then select print on Shipping Label - 8 ½" x 11" Paper
-#    Then set print form mail-from to Manage Mailing Addresses...
-    Then set print form mail-to country to United States
-    Then set print form mail-to country to Brazil
-    Then set print form mail-to country to United States
-    Then set print form mail-to country to Japan
-    Then set print form mail-to country to United States
-    Then set print form mail-to to address to Address Cleansing, BVT, 1350 Market Street #2905, San Francisco, CA
-#    Then set print form ounces to 1
-#    Then select print form service PM Package
-#    Then expect Print form Domestic Address field displays Address Cleansing, BVT, 1350 Market Street, San Francisco, CA 94102-5401
-    Then sign out
-
-  @mail_bvt_stamps
-  Scenario: Mail BVT-Stamps
-    Then sign-in to mail
-    Then select print on Stamps
-    Then set print form serial number to C12345
-    Then select print form specify postage amount
-    Then select print form service Media Mail
-    Then set print form stamp amount to 3.00
-    Then set print form stamp quantity to 1
-    Then set print form serial number to B12345
-    Then select print form calculate postage amount
-    Then set print form ounces to 1
-    Then select print form service FCM Large Envelope/Flat
-    Then sign out
-
   @mail_print_on_lov
   Scenario: Print-on list of values
     Then sign-in to mail
@@ -194,83 +131,10 @@ Feature:  Mail BVT
     Then select print on Stamps
     Then select print on Manage Printing Options...
 
-  @rob_test
-  Scenario: Advanced Options for Envelope - 10
-    Then sign-in to mail
-    Then select print on Shipping Label - 8 ½" x 11" Paper
-    Then set print form mail-to to a random address in zone 8
-    Then select print form service PM Package
-    Then set print form weight to lbs 1 oz 1
-    Then set print form dimensions to length 2 width 2 height 2
-
-    Then show advanced options
-    Then hide advanced options
-    Then show advanced options
-    #Then expect print form advanced options extra services button is visible
-
-    Then set mail ship date to 05/31/2018
-    Then open mail ship date picker
-    Then click today on mail ship date picker
-    Then click mail ship date picker today plus 0
-    Then click mail ship date picker today plus 1
-    Then click mail ship date picker today plus 2
-    Then click mail ship date picker today plus 3
-    Then click mail ship date picker today plus 4
-    Then click mail ship date picker today plus 5
-
-
-#    Then set Advanced Options Mail Date to today
-#    Then expect print form advanced options mail date is present
-#    Then set Advanced Options Mail Date to date 04/04/2017
-#    Then expect Advanced Options Mail Date is 04/04/2017
-#    Then set Advanced Options Mail Date to today
-#    Then expect Advanced Options Mail Date is correct
-#    Then set Advanced Options Mail Date to tomorrow
-#    Then expect Advanced Options Mail Date is correct
-#    Then set Advanced Options Mail Date to today plus 0
-#    Then expect Advanced Options Mail Date is correct
-#    Then set Advanced Options Mail Date to today plus 1
-#    Then expect Advanced Options Mail Date is correct
-#    Then set Advanced Options Mail Date to today plus 2
-#    Then expect Advanced Options Mail Date is correct
-#    Then set Advanced Options Mail Date to today plus 3
-#    Then expect Advanced Options Mail Date is correct
-#    Then set Advanced Options Mail Date to today plus 4
-#    Then expect Advanced Options Mail Date is correct
-#    Then set Advanced Options Mail Date to today plus 5
-#    Then expect Advanced Options Mail Date is correct
-#
-#    Then expect advanced options include return address is present
-#    Then check advanced options include return address
-#    Then expect advanced options include return address is checked
-#    Then uncheck advanced options include return address
-#    Then expect advanced options include return address is unchecked
-#
-#    Then expect advanced options include delivery address is present
-#    Then check advanced options include delivery address
-#    Then expect advanced options include delivery address is checked
-#    Then uncheck advanced options include delivery address
-#    Then expect advanced options include delivery address is unchecked
-#
-#    Then expect advanced options include postage is present
-#    Then check advanced options include postage
-#    Then expect advanced options include postage is checked
-#    Then uncheck advanced options include postage
-#    Then expect advanced options include postage is unchecked
-#
-#    Then expect print form advanced options reference number field is present
-#    Then set print form advanced options reference number to random string
-#    Then expect print form advanced options reference number is correct
-#
-#    Then expect advanced options cost code field is present
-#    Then set print form advanced options cost code None
-#    Then expect print form advanced options cost code is None
-
-  @mail_bvt_ui_validation
+  @mail_bvt_stamps
   Scenario: BVT Mail UI Validation for Print On options
     Then sign-in to mail
-
-#    STAMPS
+    # STAMPS
     Then select print on Stamps
     Then set print form serial number to random
     Then blur out on print form
@@ -298,31 +162,7 @@ Feature:  Mail BVT
     Then uncheck print form print all
     Then sign out
 
-  @mail_bvt_ui_validation
-  Scenario: BVT Mail UI Validation for Print On options
-    Then sign-in to mail
-    Then select print on Shipping Label - SDC-1200, 4 ¼" x 6 ¾"
-    Then select print on Shipping Label - 5 ½" x 8 ½"
-    Then select print on Envelope - #10, 4 ⅛" x 9 ½"
-    Then select print on Envelope - #9, 3 ⅞" x 8 ⅞"
-    Then select print on Envelope - #A9, 5 ¾" x 8 ¾"
-    Then select print on Envelope - #6, 3 ⅝" x 6 ½"
-    Then select print on Envelope - #A2, 4 ⅜" x 5 ¾"
-    Then select print on Envelope - #7, 3 ⅞" x 7 ½"
-    Then select print on Envelope - #11, 4 ½" x 10 ⅜"
-    Then select print on Envelope - #12, 4 ¾" x 11"
-    Then select print on Certified Mail Label - SDC-3610
-    Then select print on Certified Mail Label - SDC-3710
-    Then select print on Certified Mail Label - SDC-3910
-    Then select print on Certified Mail Label - SDC-3930
-    Then select print on Certified Mail #11 Envelope - SDC-3810
-    Then select print on Certified Mail #11 Envelope - SDC-3830
-    Then select print on Roll - 4" x 6" Shipping Label
-    Then select print on Roll - 4 ⅛" x 6 ¼" Shipping Label
-    Then select print on Shipping Label - 8 ½" x 11" Paper
-    Then sign out
-
-  @mail_bvt_ui_validation
+  @mail_bvt_print_services
   Scenario: BVT Mail UI Validation for Print Services
     Then sign-in to mail
     Then select print on Shipping Label - 8 ½" x 11" Paper
@@ -352,7 +192,7 @@ Feature:  Mail BVT
     Then select print form service PSG Oversized Package
     Then sign out
 
-  @mail_bvt_ui_validation
+  @mail_bvt_extra_services_paper
   Scenario: BVT Mail UI Validation - Extra Services
     Then sign-in to mail
     Then select print on Shipping Label - 8 ½" x 11" Paper
@@ -422,7 +262,7 @@ Feature:  Mail BVT
 
     Then sign out
 
-  @mail_bvt_ui_validation
+  @mail_bvt_envelope_10
   Scenario: BVT Mail UI Validation for Envelopes
     Then sign-in to mail
     Then select print on Envelope - #10, 4 ⅛" x 9 ½"
@@ -439,15 +279,13 @@ Feature:  Mail BVT
     Then uncheck advanced options include postage
     Then sign out
 
-  @mail_bvt_ui_validation
+  @mail_bvt_certified_mail
   Scenario: BVT Mail UI Validation for Certified Mail
     Then sign-in to mail
     Then select print on Certified Mail Label - SDC-3610
     Then set print form mail-to to a random address in zone 8
     Then set print form weight to lbs 0 oz 1
     Then select print form service FCM Letter
-
-
     Then check restricted delivery on extra services modal
     Then uncheck restricted delivery on extra services modal
     Then select print on Certified Mail Label - SDC-3910
@@ -455,7 +293,7 @@ Feature:  Mail BVT
     Then uncheck return receipt on extra services modal
     Then sign out
 
-  @mail_bvt_ui_validation
+  @mail_bvt_shipping_label_paper
   Scenario: BVT Mail UI Validation International form
     Then sign-in to mail
     Then select print on Shipping Label - 8 ½" x 11" Paper
@@ -538,7 +376,7 @@ Feature:  Mail BVT
 
     Then sign out
 
-  @mail_bvt_ui_validation
+  @mail_bvt_toolbar_settings
   Scenario: BVT Mail UI Validation of Toolbar
     Then sign-in to mail
     Then select print on Shipping Label - 8 ½" x 11" Paper
@@ -612,7 +450,7 @@ Feature:  Mail BVT
     Then close mail settings modal
     Then sign out
 
-  @mail_bvt_extra_services
+  @mail_bvt_extra_services_5x8
   Scenario: Extra Services
     Then sign-in to mail
     Then select print on Shipping Label - 5 ½" x 8 ½"
@@ -667,7 +505,6 @@ Feature:  Mail BVT
     Then expect Print form Domestic Address field displays Address Cleansing, Google, 1600 Amphitheatre Pkwy, Mountain View, CA 94043-1351
     Then sign out
 
-    # ------------------------------------------------------------ Shipping Labels Advanced Options
   @mail_bvt_advanced_options
   @mail_advanced_options_paper
   Scenario: Advanced Options for Shipping Label - 8 ½" x 11" Paper
@@ -699,3 +536,137 @@ Feature:  Mail BVT
     Then set print form advanced options cost code None
     Then expect print form advanced options cost code is None
     Then sign out
+
+
+#  @alex_mail_test
+#  Scenario: Alex Test Services
+#    Then sign-in to mail
+#    Then select print on Shipping Label - 8 ½" x 11" Paper
+#    Then select print form service FCM Large Envelope/Flat
+#    Then set print form weight to lbs 0 oz 1
+#    Then select print form service FCM Package/Thick Envelope
+#    Then set print form weight to lbs 1 oz 2
+#    Then select print form service PM Large/Thick Envelope
+##    Then set print form weight to lbs 0 oz 3
+#    Then select print form service PM Flat Rate Envelope
+#    Then set print form weight to lbs 5 oz 0
+#    Then select print form service PM Large Package
+##    Then set print form weight to lbs 0 oz 3
+#    Then select print form service PM Padded Flat Rate Envelope
+#    Then select print form service PM Legal Flat Rate Envelope
+#    Then select print form service PM Small Flat Rate Box
+##    Then select print form service PM Medium Flat Rate Box
+##    Then select print form service PM Large Flat Rate Box
+##    Then select print form service PM Regional Rate Box A
+##    Then select print form service PM Regional Rate Box B
+##    Then select print form service PME Package/Flat/Thick Envelope
+##    Then select print form service PME Flat Rate Envelope
+##    Then select print form service PME Padded Flat Rate Envelope
+##    Then select print form service PME Legal Flat Rate Envelope
+##    Then select print form service MM Package/Flat/Thick Envelope
+##    Then select print form service PSG Package/Flat/Thick Envelope
+##    Then select print form service PSG Large Package
+##    Then select print form service PSG Oversized Package
+#    Then sign out
+#  @rob_cccc
+#  Scenario: Address Cleansing
+#    Then sign-in to mail
+#    Then select print on Shipping Label - 8 ½" x 11" Paper
+##    Then set print form mail-from to Manage Mailing Addresses...
+#    Then set print form mail-to country to United States
+#    Then set print form mail-to country to Brazil
+#    Then set print form mail-to country to United States
+#    Then set print form mail-to country to Japan
+#    Then set print form mail-to country to United States
+#    Then set print form mail-to to address to Address Cleansing, BVT, 1350 Market Street #2905, San Francisco, CA
+##    Then set print form ounces to 1
+##    Then select print form service PM Package
+##    Then expect Print form Domestic Address field displays Address Cleansing, BVT, 1350 Market Street, San Francisco, CA 94102-5401
+#    Then sign out
+#  @rob_test
+#  Scenario: Advanced Options for Envelope - 10
+#    Then sign-in to mail
+#    Then select print on Shipping Label - 8 ½" x 11" Paper
+#    Then set print form mail-to to a random address in zone 8
+#    Then select print form service PM Package
+#    Then set print form weight to lbs 1 oz 1
+#    Then set print form dimensions to length 2 width 2 height 2
+#
+#    Then show advanced options
+#    Then hide advanced options
+#    Then show advanced options
+#    #Then expect print form advanced options extra services button is visible
+#
+#    Then set mail ship date to 05/31/2018
+#    Then open mail ship date picker
+#    Then click today on mail ship date picker
+#    Then click mail ship date picker today plus 0
+#    Then click mail ship date picker today plus 1
+#    Then click mail ship date picker today plus 2
+#    Then click mail ship date picker today plus 3
+#    Then click mail ship date picker today plus 4
+#    Then click mail ship date picker today plus 5
+
+
+#    Then set Advanced Options Mail Date to today
+#    Then expect print form advanced options mail date is present
+#    Then set Advanced Options Mail Date to date 04/04/2017
+#    Then expect Advanced Options Mail Date is 04/04/2017
+#    Then set Advanced Options Mail Date to today
+#    Then expect Advanced Options Mail Date is correct
+#    Then set Advanced Options Mail Date to tomorrow
+#    Then expect Advanced Options Mail Date is correct
+#    Then set Advanced Options Mail Date to today plus 0
+#    Then expect Advanced Options Mail Date is correct
+#    Then set Advanced Options Mail Date to today plus 1
+#    Then expect Advanced Options Mail Date is correct
+#    Then set Advanced Options Mail Date to today plus 2
+#    Then expect Advanced Options Mail Date is correct
+#    Then set Advanced Options Mail Date to today plus 3
+#    Then expect Advanced Options Mail Date is correct
+#    Then set Advanced Options Mail Date to today plus 4
+#    Then expect Advanced Options Mail Date is correct
+#    Then set Advanced Options Mail Date to today plus 5
+#    Then expect Advanced Options Mail Date is correct
+#
+#    Then expect advanced options include return address is present
+#    Then check advanced options include return address
+#    Then expect advanced options include return address is checked
+#    Then uncheck advanced options include return address
+#    Then expect advanced options include return address is unchecked
+#
+#    Then expect advanced options include delivery address is present
+#    Then check advanced options include delivery address
+#    Then expect advanced options include delivery address is checked
+#    Then uncheck advanced options include delivery address
+#    Then expect advanced options include delivery address is unchecked
+#
+#    Then expect advanced options include postage is present
+#    Then check advanced options include postage
+#    Then expect advanced options include postage is checked
+#    Then uncheck advanced options include postage
+#    Then expect advanced options include postage is unchecked
+#
+#    Then expect print form advanced options reference number field is present
+#    Then set print form advanced options reference number to random string
+#    Then expect print form advanced options reference number is correct
+#
+#    Then expect advanced options cost code field is present
+#    Then set print form advanced options cost code None
+#    Then expect print form advanced options cost code is None
+
+#  mail_bvt_international
+#  mail_bvt_stamps
+#  mail_print_on_lov
+#  mail_bvt_extra_services_paper
+#  mail_bvt_specify_postage
+#  mail_bvt_extra_services
+#  mail_bvt_envelope_10
+#  mail_bvt_certified_mail
+#  mail_bvt_shipping_label_paper
+#  mail_bvt_toolbar_settings
+#  mail_bvt_ship_date
+#  mail_bvt_extra_services_5x8
+#  mail_bvt_purchasing
+#  mail_bvt_address_cleansing
+#  mail_bvt_advanced_options
