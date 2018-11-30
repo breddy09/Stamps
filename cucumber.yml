@@ -20,7 +20,7 @@ sauce_browser: --tags @history_filter_direct_url_1 --guess URL=cc USR=cctruer0u 
 
 kaushal_cc: --tags @ewwr_security_question_page_validation URL=stg BROWSER=edge #USR=qawebdevelopment@stamps.com PW=password1
 web_apps_dev: --tags @bvt_new_order USR=default PW=pass111 URL=tcarney-win7-3.corp.stamps.com --guess BROWSER=ff MAX_WINDOW=false
-eli_dev: --tags @sdc_contacts_print_to_mail --guess JENKINS=false WEB_APP=mail URL=cc BROWSER=ff USR=hal9000qa12 PW=password1 PRINTER=factory
+eli_dev: --tags @sdc_contacts_print_to_mail --guess KJENKINS=false WEB_APP=mail URL=cc BROWSER=ff USR=hal9000qa12 PW=password1 PRINTER=factory
 ray_dev: --tags @rates_parcel_select_ground --guess JENKINS=false URL=stg BROWSER=ff USR=default PW=pass111
 sap: --tags @registration_orders WEB_APP=registration URL=cc --guess BROWSER=ff MAX_WINDOW=false
 alex_history:  --tags @container_label_reprint BROWSER=gc URL=stg USR=gapstage02 PW=password1 new_framework=true  --guess LOG_LEVEL=info HEALTHCHECK=true
