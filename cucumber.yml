@@ -670,5 +670,5 @@ transaction_address_6lines: --tags @transaction_address_6lines --guess LOG_LEVEL
 transaction_details_email_tracking_info: --tags @transaction_details_email_tracking_info --guess LOG_LEVEL=info
 history_change_costcode: --tags @history_change_costcode --guess LOG_LEVEL=info
 
-file_claim_link_for_print_with_sdc_insurance: --tags @file_claim_link_for_print_with_sdc_insurance
-file_claim_link_for_print_with_extra_services_usps_insurance: --tags @file_claim_link_for_print_with_extra_services_usps_insurance
+file_claim_link_for_print_with_sdc_insurance: --tags @file_claim_link_for_print_with_sdc_insurance --guess LOG_LEVEL=info
+file_claim_link_for_print_with_extra_services_usps_insurance: --tags @file_claim_link_for_print_with_extra_services_usps_insurance --guess LOG_LEVEL=info
