@@ -31,6 +31,7 @@ Feature:  Mail Print Form Toolbar
     Then click mail toolbar favorites
     Then expect mail toolbar favorites tooltip is not present
     Then click mail toolbar favorites
+    Then blur out on print form
     Then hover on mail toolbar favorites dropdown
     Then expect mail toolbar favorites tooltip is present
 
@@ -39,6 +40,7 @@ Feature:  Mail Print Form Toolbar
     Then click orders toolbar tags
     Then expect orders toolbar tags tooltip is not present
     Then click orders toolbar tags
+    Then blur out on orders
     Then hover on orders toolbar tags
     Then expect orders toolbar tags tooltip is present
 
@@ -48,6 +50,7 @@ Feature:  Mail Print Form Toolbar
     Then click schedule pickup button on history toolbar
     Then expect schedule pickup tooltip on history toolbar is not present
     Then click schedule pickup button on history toolbar
+    Then blur out on history
     Then hover on schedule pickup button on history toolbar
     Then expect schedule pickup tooltip on history toolbar is present
 
@@ -55,6 +58,7 @@ Feature:  Mail Print Form Toolbar
     Then click create scan form button on history toolbar
     Then expect create scan form tooltip on history toolbar is not present
     Then click create scan form button on history toolbar
+    Then blur out on history
     Then hover on create scan form button on history toolbar
     Then expect create scan form tooltip on history toolbar is present
 
@@ -62,6 +66,7 @@ Feature:  Mail Print Form Toolbar
     Then click cost codes button on history toolbar
     Then expect cost codes tooltip on history toolbar is not present
     Then click cost codes button on history toolbar
+    Then blur out on history
     Then hover on cost codes button on history toolbar
     Then expect cost codes tooltip on history toolbar is present
 
@@ -70,6 +75,7 @@ Feature:  Mail Print Form Toolbar
     Then click date link on reports toolbar
     Then expect date tooltip on reports toolbar is not present
     Then click date link on reports toolbar
+    Then blur out on reports
     Then hover on date link on reports toolbar
     Then expect date tooltip on reports toolbar is present
 
@@ -77,6 +83,7 @@ Feature:  Mail Print Form Toolbar
     Then click view link on reports toolbar
     Then expect view tooltip on reports toolbar is not present
     Then click view link on reports toolbar
+    Then blur out on reports
     Then hover on view link on reports toolbar
     Then expect view tooltip on reports toolbar is present
 
@@ -84,6 +91,7 @@ Feature:  Mail Print Form Toolbar
     Then click interval link on reports toolbar
     Then expect interval tooltip on reports toolbar is not present
     Then click interval link on reports toolbar
+    Then blur out on reports
     Then hover on interval link on reports toolbar
     Then expect interval tooltip on reports toolbar is present
 

@@ -12,6 +12,10 @@ Then /^set search prints to (?:newly added|(.*)) tracking number on history filt
   search.search_prints.set(str)
 end
 
+Then /^blur out on history$/ do
+  SdcHistory.filter_panel.search_prints.double_click
+end
+
 #Date Printed
 Then /^expand date printed on history filter panel$/ do
   date_printed = SdcHistory.filter_panel.date_printed
