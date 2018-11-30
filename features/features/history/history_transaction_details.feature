@@ -8,6 +8,7 @@ Feature:  History Transaction Details
     Then sign-in to mail
     Then select print on Shipping Label - 5 ½" x 8 ½"
     Then set print form mail-to to a random address in zone 2
+    Then set print form email tracking sdoma@stamps.com
     Then select print form service PM Large/Thick Envelope
     Then set print form weight to lbs 0 oz 1
     Then click print label
