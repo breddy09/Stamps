@@ -904,7 +904,7 @@ end
 #........................................Invalid Address Modal...................................#
 Then /^WL: expect membership page invalid address modal header to be Invalid Address$/ do
   invalid_addr_header = WhiteLabel.membership_page.invalid_addr_header
-  invalid_addr_header.wait_until_present(timeout: 2)
+  invalid_addr_header.wait_until_present(timeout: 15)
   expect(invalid_addr_header).to be_present
 end
 

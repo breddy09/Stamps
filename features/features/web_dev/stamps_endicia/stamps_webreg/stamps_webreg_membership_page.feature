@@ -357,6 +357,7 @@ Feature: Stamps WebReg: Membership Page
     Then WL: expect membership page billing city is Merced
     Then WL: expect membership page billing state is CA
     Then WL: expect membership page billing zip is 95341
+    Then WL: check membership page billing address same as mailing address
 
     #Verify Physical Address Zone wise
     Then WL: set membership page personal info to random info between zone 1 and zone 3
@@ -379,11 +380,12 @@ Feature: Stamps WebReg: Membership Page
     Then WL: set pp username to an existing username from db
     Then WL: click profile page continue button
 
-
     #Invalid Address Modal
     Then WL: set membership page default values
     Then WL: set membership page address to kdjfkd
+    Then WL: check membership page terms & conditions
     Then WL: click membership page submit button
+    Then pause for 1 second
     Then WL: expect membership page invalid address modal header to be Invalid Address
     Then WL: expect membership page invalid address modal paragraph to be
     """
@@ -397,9 +399,8 @@ Feature: Stamps WebReg: Membership Page
     Then WL: select membership page state FL
     Then WL: set membership page zip to 34450
     Then WL: check membership page billing address same as mailing address
-    Then WL: check membership page terms & conditions
     Then WL: click membership page submit button
-
+    Then pause for 1 second
     Then WL: expect membership page standardized addr modal header to be Your address has been standardized
     Then WL: expect membership page standardized addr modal paragraph to be
     """
@@ -450,6 +451,7 @@ Feature: Stamps WebReg: Membership Page
     Then WL: set profile page promo code to PR33-NH77
     Then WL: set pp username to an existing username from db
     Then WL: click profile page continue button
+
     Then WL: set membership page default values
     Then WL: click membership page submit button
 

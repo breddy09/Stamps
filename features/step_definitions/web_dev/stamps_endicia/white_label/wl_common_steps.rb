@@ -17,14 +17,14 @@ end
 #..................................Modal....................#
 Then /^WL: click modal continue button$/ do
   modal_continue = WhiteLabel.common_page.modal_continue
-  modal_continue.wait_until_present(timeout: 2)
+  modal_continue.wait_until_present(timeout: 5)
   modal_continue.click
   step 'pause for 1 second'
 end
 
 Then /^WL: click modal cancel button$/ do
   modal_cancel = WhiteLabel.common_page.modal_cancel
-  modal_cancel.wait_until_present(timeout: 2)
+  modal_cancel.wait_until_present(timeout: 5)
   modal_cancel.click
   step 'pause for 1 second'
 end
@@ -34,7 +34,7 @@ Then /^WL: click modal x button$/ do
   step 'pause for 1 second'
   modal_x = WhiteLabel.common_page.modal_x
   modal_x.scroll_into_view
-  modal_x.wait_until_present(timeout: 2)
+  modal_x.wait_until_present(timeout: 5)
   modal_x.click if modal_x.present?
   step 'pause for 1 second'
 end
@@ -248,7 +248,7 @@ Then /^WL: expect security question page tooltip to be (.*)$/ do |str|
   expect(sq_page_sq_help_block[0].inner_text.strip).to eql(str)
   expect(sq_page_sq_help_block[1].inner_text.strip).to eql(str)
   expect(sq_page_sq_help_block[2].inner_text.strip).to eql(str)
-  expect(WhiteLabel.common_page.second_security_answer_help_block.inner_text.strip).to eql(str)
+  #expect(WhiteLabel.common_page.second_security_answer_help_block.inner_text.strip).to eql(str)
 end
 
 Then /^WL: click security questions get started button$/ do
@@ -350,7 +350,7 @@ Then /^WL: expect username taken tooltip to be (.*)$/ do |str|
   membership_page = WhiteLabel.membership_page
   membership_page.new_username.click
   membership_page.new_username.send_keys(:tab)
-  membership_page.new_username_help_block.wait_until_present(timeout: 3)
+  membership_page.new_username_help_block.wait_until_present(timeout: 5)
   expect(membership_page.new_username_help_block.text_value.strip).to eql(str)
 end
 
