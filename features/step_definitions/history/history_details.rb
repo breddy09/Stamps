@@ -64,4 +64,21 @@ Then /^click file claim link in services section of transaction detail panel$/ d
   step 'expect insurance claim form modal is displayed'
 end
 
+Then /^expect email tracking info link on the transaction detail panel is available$/ do
+  history_detail=SdcHistory.details
+  history_detail.email_tracking_info.flash
+  expect(history_detail.email_tracking_info.present?).to be (true)
+end
+
+Then /^expect email tracking info link on the transaction detail panel is enabled$/ do
+  history_detail=SdcHistory.details
+  expect(history_detail.email_tracking_info.enabled?).to be (true)
+end
+
+Then /^click email tracking info link on transaction detail panel$/ do
+  history_detail=SdcHistory.details
+  history_detail.file_claim.safe_wait_until_present(timeout: 10)
+  history_detail.email_tracking_info.click
+end
+
 
