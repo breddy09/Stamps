@@ -10,6 +10,7 @@ Feature:  History Transaction Details
     Then set print form mail-to to a random address in zone 2
     Then select print form service PM Large/Thick Envelope
     Then set print form weight to lbs 0 oz 1
+    Then set print form email tracking sdoma@stamps.com
     Then click print label
     Then click continue on confirm print modal
     Then cancel print on gif printing dialog
