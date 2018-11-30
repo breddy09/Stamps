@@ -334,6 +334,8 @@ Then /^expect resulting web reg url is correct$/ do
                    'https://staging-registration.stamps.com/registration/#!&p=profile'
                  when :prod
                    'https://registration.stamps.com/registration/#!&p=profile'
+                 when :qasc
+                   'https://registrationext.qasc.stamps.com/registration/#!&p=profile'
                  else
                    "https://#{TestSession.env.url}-win10.corp.stamps.com/registration/#!&p=profile"
                  end
