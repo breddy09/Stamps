@@ -55,6 +55,7 @@ end
 
 Then /^expect print receipt link on the transaction detail menu dropdown is available$/ do
   history_detail=SdcHistory.details.header
+  history_detail.print_receipt.flash
   expect(history_detail.print_receipt.present?).to be (true)
 end
 
@@ -62,6 +63,7 @@ Then /^click print receipt link on transaction detail menu dropdown$/ do
   history_detail=SdcHistory.details.header
   history_detail.print_receipt.safe_wait_until_present(timeout: 10)
   history_detail.print_receipt.click
+  sleep 3
 end
 
 Then /^expect file claim link on the transaction detail menu dropdown is available$/ do
