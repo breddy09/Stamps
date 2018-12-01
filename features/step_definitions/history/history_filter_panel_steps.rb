@@ -13,7 +13,7 @@ Then /^set search prints to (?:newly added|(.*)) tracking number on history filt
 end
 
 Then /^blur out on history$/ do
-  SdcHistory.filter_panel.search_prints.double_click
+  SdcHistory.filter_panel.search.search_prints.double_click
 end
 
 #Date Printed

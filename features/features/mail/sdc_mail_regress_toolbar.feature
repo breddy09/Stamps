@@ -70,11 +70,11 @@ Feature:  Mail Print Form Toolbar
     Then hover on cost codes button on history toolbar
     Then expect cost codes tooltip on history toolbar is present
 
+    Then navigate to Reports
 #    reports
 #    date
     Then click date link on reports toolbar
     Then expect date tooltip on reports toolbar is not present
-    Then click date link on reports toolbar
     Then blur out on reports
     Then hover on date link on reports toolbar
     Then expect date tooltip on reports toolbar is present
@@ -82,7 +82,6 @@ Feature:  Mail Print Form Toolbar
 #    view
     Then click view link on reports toolbar
     Then expect view tooltip on reports toolbar is not present
-    Then click view link on reports toolbar
     Then blur out on reports
     Then hover on view link on reports toolbar
     Then expect view tooltip on reports toolbar is present
@@ -90,7 +89,6 @@ Feature:  Mail Print Form Toolbar
 #    interval
     Then click interval link on reports toolbar
     Then expect interval tooltip on reports toolbar is not present
-    Then click interval link on reports toolbar
     Then blur out on reports
     Then hover on interval link on reports toolbar
     Then expect interval tooltip on reports toolbar is present

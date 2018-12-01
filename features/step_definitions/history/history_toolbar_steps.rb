@@ -91,7 +91,7 @@ end
 
 Then /^expect cost codes tooltip on history toolbar is present$/ do
   step 'wait for cost codes tooltip on history toolbar'
-  expect(SdcHistory.toolbar.create_scan_form.tooltip).to be_present
+  expect(SdcHistory.toolbar.cost_codes.tooltip).to be_present
 end
 
 Then /^expect cost codes tooltip on history toolbar is not present$/ do
