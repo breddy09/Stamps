@@ -69,7 +69,21 @@ end
 
 #HISTORY
 #
-#
+Cucumber::Rake::Task.new(:history_details_header_file_ins_claim_email_tracking_info) do |t|
+  t.profile = 'history_details_header_file_ins_claim_email_tracking_info'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:history_details_file_ins_claim_email_tracking_info) do |t|
+  t.profile = 'history_details_file_ins_claim_email_tracking_info'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:history_details_file_ins_claim_print_receipt) do |t|
+  t.profile = 'history_details_file_ins_claim_print_receipt'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
 Cucumber::Rake::Task.new(:file_claim_link_for_print_with_sdc_insurance) do |t|
   t.profile = 'file_claim_link_for_print_with_sdc_insurance'
   t.cucumber_opts = "-p cuke_reports"
