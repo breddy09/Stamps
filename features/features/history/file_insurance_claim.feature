@@ -114,10 +114,6 @@ Feature:  History :File an Insurance Claim
     Then set search prints to newly added tracking number on history filter panel
     Then click search icon on history filter panel
     Then check row for saved tracking number on history grid
-    Then navigate to History
-    Then set search prints tracking number on history filter panel to newly added
-    Then click search icon on history filter panel
-    Then check row for saved tracking number on history grid
     Then expect email tracking info link on the transaction detail panel is available
     Then expect email tracking info link on the transaction detail panel is enabled
     Then click email tracking info link on transaction detail panel
@@ -140,10 +136,6 @@ Feature:  History :File an Insurance Claim
     Then save tracking number on print form message panel
     Then hover on navigation history then select File an Insurance Claim
     Then set search prints to newly added tracking number on history filter panel
-    Then click search icon on history filter panel
-    Then check row for saved tracking number on history grid
-    Then navigate to History
-    Then set search prints tracking number on history filter panel to newly added
     Then click search icon on history filter panel
     Then check row for saved tracking number on history grid
     Then click transaction details header menu dropdown
