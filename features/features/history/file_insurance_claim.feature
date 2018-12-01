@@ -90,16 +90,7 @@ Feature:  History :File an Insurance Claim
     Then set search prints to newly added tracking number on history filter panel
     Then click search icon on history filter panel
     Then check row for saved tracking number on history grid
-    Then navigate to History
-    Then set search prints tracking number on history filter panel to newly added
-    Then click search icon on history filter panel
-    Then check row for saved tracking number on history grid
     Then click transaction details header menu dropdown
     Then expect print receipt link on the transaction detail menu dropdown is available
     Then click print receipt link on transaction detail menu dropdown
     Then sign out
-
-
-
-
-
