@@ -28,7 +28,7 @@ tcs_stgw10gc4 win10_chrome » transaction_address_6lines
 tcs_stgw10gc5 win10_chrome » transaction_details_email_tracking_info
 tcs_stgw10gc6 win10_chrome »
 tcs_stgw10gc7 win10_chrome » history_change_costcode
-tcs_stgw10gc8 win10_chrome » file_claim_link_for_print_with_extra_services_usps_insurance
-tcs_stgw10gc9 win10_chrome » file_claim_link_for_print_with_sdc_insurance
+tcs_stgw10gc8 win10_chrome » file_claim_link_for_print_with_sdc_insurance
+tcs_stgw10gc9 win10_chrome » file_claim_link_for_print_with_extra_services_usps_insurance
 tcs_stgw10gc10 win10_chrome » history_details_file_ins_claim_print_receipt
 tcs_stgw10gc18 win10_chrome » create_scan_form
