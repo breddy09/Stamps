@@ -605,6 +605,8 @@ ewwr_security_question_page_validation: --tags @ewwr_security_question_page_vali
 ewwr_header_footer_validation: --tags @ewwr_header_footer_validation --guess  LOG_LEVEL=info
 swwr_create_your_account_page_validation: --tags @swwr_create_your_account_page_validation --guess LOG_LEVEL=info
 mail_bvt_shipping_label_paper: --tags @mail_bvt_shipping_label_paper -- guess LOG_LEVEL=info
+mail_print_on_lov: --tags @mail_print_on_lov -- guess LOG_LEVEL=info
+
 
 
 aloha_contacts: --tags @multiple_shipto_contacts_view URL=stg LOG_LEVEL=info HEALTHCHECK=false BROWSER=ff MAX_WINDOW=false USR=tcs_core002 PW=password1
