@@ -4023,6 +4023,12 @@ Cucumber::Rake::Task.new(:mail_print_postage_fields) do |t|
   t.cucumber_opts = "-p cuke_reports"
 end
 
+Cucumber::Rake::Task.new(:mail_bvt_shipping_label_paper) do |t|
+  t.profile = 'mail_bvt_shipping_label_paper'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+
 
 #--------------------### Mail Bugs ##---------------------
 
@@ -4160,6 +4166,8 @@ Cucumber::Rake::Task.new(:mail_contacts_comm_error) do |t|
   t.profile = 'mail_contacts_comm_error'
   t.cucumber_opts = "-p cuke_reports"
 end
+
+
 
 
 
