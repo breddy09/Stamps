@@ -22,6 +22,13 @@ module SdcHistory
         klass.new.tracking
       end
 
+      def tracking_number
+        klass = Class.new(SdcPage) do
+          page_object(:tracking) { { xpath: '//div[contains(@class, "tracking-collapsed")][not(contains(@class, "disabled"))]//div[@role="textbox"]' } }
+        end
+        klass.new.tracking
+      end
+
       def create_return_label
         klass = Class.new(SdcPage) do
           page_object(:create_return_label) { { xpath: '//*[text()="Create Return Label"][contains(@class, "small")]' } }
@@ -72,28 +79,40 @@ module SdcHistory
       page_object(:collapse_panel) { { xpath: '//div[contains(@id, "menu")]//*[text()="Collapse Panel"]' } }
     end
 
+
     class Addresses < SdcPage
       page_object(:title) { { xpath: '//div[text()="Loading..."]' } }
       page_object(:after_title_tool) { { xpath: '//div[text()="Loading..."]' } }
 
       page_object(:shipped_to) { { xpath: '//*[text()="Shipped To:"]/../../div/*' } }
+      page_object(:shipped_to_label) { { xpath: '//*[text()="Shipped To:"]' } }
       page_object(:shipped_from) { { xpath: '//*[text()="Shipped From:"]/../../div/*' } }
+      page_object(:shipped_from_label) { { xpath: '//*[text()="Shipped From:"]' } }
       page_object(:return_to) { { xpath: '//*[text()="Return To:"]/../../div/*' } }
+      page_object(:return_to_label) { { xpath: '//*[text()="Return To:"]' } }
     end
 
     class Services < SdcPage
-      page_object(:title) { { xpath: '//div[contains(@class,"x-title-item")][text()="Services"]' } }
-      page_object(:after_title_tool) { { xpath: '' } }
-      page_object(:price) { { xpath: '' } }
-
-      page_object(:carrier) { { xpath: '' } }
-      page_object(:service) { { xpath: '' } }
-      page_object(:service_price) { { xpath: '' } }
-      page_object(:packaging) { { xpath: '' } }
-      page_object(:incsurance) { { xpath: '' } }
-      page_object(:tracking) { { xpath: '' } }
-      page_object(:weight) { { xpath: '' } }
+      page_object(:title) { { xpath: '//div[text()="Services"][contains(@id, "title")]' } }
+      page_object(:after_title_tool) { { xpath: '//a[contains(@class,"before-title")]//*[contains(@class, "sdc-icon-services")]' } }
+      page_object(:price) { { xpath: '//*[contains(@class,"after-title")][contains(@class, "services-total")]' } }
       page_object(:file_claim) { { xpath: '//div[contains(@class,"x-title-item")][text()="Services"]//following::span[contains(text(),"File Claim")][1]' } }
+      page_object(:carrier) { { xpath: '//*[text()="Carrier:"]/../../div/*' } }
+      page_object(:carrier_label) { { xpath: '//*[text()="Carrier:"]' } }
+      page_object(:service) { { xpath: '//*[text()="Service:"]/../../div/*' } }
+      page_object(:service_label) { { xpath: '//*[text()="Service:"]' } }
+      page_object(:service_price) { { xpath: '//*[text()="Service:"]//following::div[contains(@class,"service-detail-amt")][1]' } }
+      page_object(:packaging) { { xpath: '//*[text()="Packaging:"]/../../div/*' } }
+      page_object(:packaging_label) { { xpath: '//*[text()="Packaging:"]' } }
+      page_object(:insurance) { { xpath: '//*[text()="Insurance:"]/../../div/*' } }
+      page_object(:insurance_label) { { xpath: '//*[text()="Insurance:"]' } }
+      page_object(:file_claim_cost) { { xpath: '//div[contains(@class,"x-title-item")][text()="Services"]//following::span[contains(text(),"File Claim")][1]//following::div[@role="textbox"][1]' } }
+      page_object(:tracking_label) { { xpath: '//*[text()="Insurance:"]//following::span[text()="Tracking:"][2]' } }
+      page_object(:tracking) { { xpath: '//*[text()="Insurance:"]//following::span[text()="Tracking:"][2]//following::div[2]' } }
+      page_object(:tracking_signature) { { xpath: '//*[text()="Electronic Signature Confirmation"]' } }
+      page_object(:signature_cost) { { xpath: '//*[text()="Electronic Signature Confirmation"]//following::div[contains(@class,"service-detail-amt")][1]' } }
+      page_object(:weight) { { xpath: '//*[text()="Weight:"]/../../div/*' } }
+      page_object(:weight_label) { { xpath: '//*[text()="Weight:"]' } }
 
 
     end
@@ -102,10 +121,14 @@ module SdcHistory
       page_object(:title) { { xpath: '//div[contains(@class,"sdc-detailssection-header-title")]//div[contains(@class,"x-title-item")][text()="Reference"]' } }
       page_object(:after_title_tool) { { xpath: '' } }
       page_object(:user) { { xpath: '//span[text()="User:"]//following::div[contains(@class,"x-form-display-field")][1]'}}
+      page_object(:user_label) { { xpath: '//span[text()="User:"]'}}
       page_object(:printed_on) { { xpath: '//span[text()="Printed On:"]//following::div[contains(@class,"x-form-display-field")][1]'}}
+      page_object(:printed_on_label) { { xpath: '//span[text()="Printed On:"]'}}
       page_object(:sacan_form_id) { { xpath: '//span[text()="SCAN Form ID:"]//following::div[contains(@class,"x-form-display-field")][1]'}}
+      page_object(:reference) { { xpath: '//span[text()="Reference #:"]//following::div[contains(@class,"x-form-display-field")][1]'}}
 
-    def cost_code
+
+      def cost_code
         HistoryDetailCostcode.new
     end
     end
@@ -113,6 +136,7 @@ module SdcHistory
     class HistoryDetailCostcode <SdcPage
       page_object(:text_field, tag: :text_field) { { xpath: '//span[text()="Cost Code:"]/following::input[1]' } }
       page_object(:drop_down) { { xpath: '//span[text()="Cost Code:"]//following::div[contains(@class, "arrow")]' } }
+      page_object(:cost_code_label) { { xpath: '//span[text()="Cost Code:"]' } }
       page_objects(:costcode_list){ { xpath: '//div[contains(@id, "changeCostCode")]//following::li' } }
 
       def costcode_random(position)
