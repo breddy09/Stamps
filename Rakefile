@@ -4165,6 +4165,7 @@ Cucumber::Rake::Task.new(:mail_dropdown_tooltip) do |t|
   t.profile = 'mail_dropdown_tooltip'
   t.cucumber_opts = "-p cuke_reports"
 end
+
 Cucumber::Rake::Task.new(:mail_contacts_comm_error) do |t|
   t.profile = 'mail_contacts_comm_error'
   t.cucumber_opts = "-p cuke_reports"
