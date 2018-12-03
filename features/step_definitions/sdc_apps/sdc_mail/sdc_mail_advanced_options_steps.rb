@@ -324,7 +324,7 @@ Then /^expect advanced options include return address is present$/ do
 end
 
 Then /^check advanced options include return address$/ do
-  SdcMail.print_form.advanced_options.return_address.check
+  SdcMail.print_form.advanced_options.return_address.check unless SdcMail.print_form.advanced_options.return_address.checked?
   step 'expect advanced options include return address is checked'
 end
 
@@ -346,7 +346,7 @@ Then /^expect advanced options include delivery address is present$/ do
 end
 
 Then /^check advanced options include delivery address$/ do
-  SdcMail.print_form.advanced_options.delivery_address.check
+  SdcMail.print_form.advanced_options.delivery_address.check unless SdcMail.print_form.advanced_options.delivery_address.checked?
   step 'expect advanced options include delivery address is checked'
 end
 
@@ -368,7 +368,7 @@ Then /^expect advanced options include postage is present$/ do
 end
 
 Then /^check advanced options include postage$/ do
-  SdcMail.print_form.advanced_options.postage.check
+  SdcMail.print_form.advanced_options.postage.check unless SdcMail.print_form.advanced_options.postage.checked?
   step 'expect advanced options include postage is checked'
 end
 
