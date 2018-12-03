@@ -673,3 +673,5 @@ file_claim_link_for_print_with_extra_services_usps_insurance: --tags @file_claim
 history_details_file_ins_claim_print_receipt: --tags @history_details_file_ins_claim_print_receipt --guess LOG_LEVEL=info
 history_details_file_ins_claim_email_tracking_info: --tags @history_details_file_ins_claim_email_tracking_info --guess LOG_LEVEL=info
 history_details_header_file_ins_claim_email_tracking_info: --tags @history_details_header_file_ins_claim_email_tracking_info --guess LOG_LEVEL=info
+view_single_transaction_details: --tags @view_single_transaction_details --guess LOG_LEVEL=info
+view_multiple_transaction_details: --tags @view_multiple_transaction_details --guess LOG_LEVEL=info
