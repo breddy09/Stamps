@@ -1,24 +1,24 @@
 Then /^run rate test PMI Comm Base in country price group (\d+)$/ do |group|
   param_sheet = data_for(:rates_test, {})['rates_pmi_comm_base']
-  step "run rate sheet #{param_sheet} in country price group #{group}"
+  step "run rates sheet #{param_sheet} in country price group #{group}"
 end
 
 Then /^run rate test PMI Comm Plus in country price group (\d+)$/ do |group|
   param_sheet = data_for(:rates_test, {})['rates_pmi_comm_plus']
-  step "run rate sheet #{param_sheet} in country price group #{group}"
+  step "run rates sheet #{param_sheet} in country price group #{group}"
 end
 
 Then /^run rate test PMEI Comm Base in country price group (\d+)$/ do |group|
   param_sheet = data_for(:rates_test, {})['rates_pmei_comm_base']
-  step "run rate sheet #{param_sheet} in country price group #{group}"
+  step "run rates sheet #{param_sheet} in country price group #{group}"
 end
 
 Then /^run rate test PMEI Comm Plus in country price group (\d+)$/ do |group|
   param_sheet = data_for(:rates_test, {})['rates_pmei_comm_plus']
-  step "run rate sheet #{param_sheet} in country price group #{group}"
+  step "run rates sheet #{param_sheet} in country price group #{group}"
 end
 
-Then /^run rate sheet (.*) in country price group (\d+)$/ do |param_sheet, group|
+Then /^run rates sheet (.*) in country price group (\d+)$/ do |param_sheet, group|
   group = group.to_i
 
   TestData.hash[:result_file] = Spreadsheet::Workbook.new
@@ -439,10 +439,10 @@ Then /^run rate sheet (.*) in country price group (\d+)$/ do |param_sheet, group
             TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight_lb]] = weight_lb
             TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight]] = "#{weight_lb} lb."
             step "set order details pounds to #{weight_lb}" if SdcGlobal.web_app == :orders
-            step "set print form pounds to #{weight_lb} by arrows" if SdcGlobal.web_app == :mail
+            step "set print form pounds by arrows to #{weight_lb}" if SdcGlobal.web_app == :mail
           else
             step 'set order details pounds to 0'  if SdcGlobal.web_app == :orders
-            step 'set print form pounds to 0 by arrows'  if SdcGlobal.web_app == :mail
+            step 'set print form pounds by arrows to 0'  if SdcGlobal.web_app == :mail
             weight_oz = Measured::Weight.new(weight_lb, "lb").convert_to("oz").value.to_f
             TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight]] = "#{weight_oz} oz."
             TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight_lb]] = weight_oz
@@ -450,7 +450,6 @@ Then /^run rate sheet (.*) in country price group (\d+)$/ do |param_sheet, group
             step "set print form ounces to #{weight_oz}" if SdcGlobal.web_app == :mail
           end
           sleep(0.025)
-
           # Set Service
           row[@rate_sheet_columns[:service]].should_not be nil
           service = row[@rate_sheet_columns[:service]]

@@ -42,7 +42,7 @@ Then /^set print form pounds to (.+)$/ do |str|
   step 'blur out on print form'
 end
 
-Then /^set print form pounds to (\d+) by arrows$/ do |lbs|
+Then /^set print form pounds by arrows to (\d+)$/ do |lbs|
   weight = SdcMail.print_form.weight
   iterations = lbs.to_i - weight.lbs.text_value.to_i
   iterations.abs.times do weight.lbs.increment.click end if iterations > 0
@@ -56,7 +56,6 @@ Then /^set print form ounces to (.+)$/ do |oz|
   SdcMail.print_form.weight.oz.set(oz)
   TestData.hash[:oz] = oz.to_f
 end
-
 
 Then /^increment print form weight by lbs (\d+) oz (\d+)$/ do |lbs, oz|
   step "increment print form pounds by #{lbs}"
