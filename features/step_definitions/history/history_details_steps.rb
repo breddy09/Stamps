@@ -101,18 +101,21 @@ end
 
 Then /^expect email tracking info present on history transaction details$/ do
   email = SdcHistory.details.email_tracking_info
+  email.scroll_into_view
   email.flash
   expect(email).to be_present
 end
 
 Then /^except create return label on history transaction details is enabled$/ do
   return_label = SdcHistory.details.create_return_label
+  return_label.scroll_into_view
   return_label.flash
   expect(return_label.attribute_value('class').include?('disabled')).to be false
 end
 
 Then /^except create return label on history transaction details is disabled$/ do
   return_label = SdcHistory.details.create_return_label
+  return_label.scroll_into_view
   return_label.flash
   expect(return_label.attribute_value('class').include?('disabled')).to be true
 end
@@ -132,24 +135,28 @@ end
 
 Then /^expect shipped to field on history transaction details is present$/ do
   details = SdcHistory.details.addresses
+  details.shipped_to_label.scroll_into_view
   details.shipped_to_label.flash
   expect(details.shipped_to_label).to be_present
 end
 
 Then /^expect shipped from field on history transaction details is present$/ do
   details = SdcHistory.details.addresses
+  details.shipped_from_label.scroll_into_view
   details.shipped_from_label.flash
   expect(details.shipped_from_label).to be_present
 end
 
 Then /^expect return to field on history transaction details is present$/ do
   details = SdcHistory.details.addresses
+  details.return_to_label.scroll_into_view
   details.return_to_label.flash
   expect(details.return_to_label).to be_present
 end
 
 Then /^expect carrier field on history transaction details is present$/ do
   details = SdcHistory.details.services
+  details.carrier_label.scroll_into_view
   details.carrier_label.flash
   expect(details.carrier_label).to be_present
 end
@@ -170,36 +177,42 @@ end
 
 Then /^expect insurance field on history transaction details is present$/ do
   details = SdcHistory.details.services
+  details.insurance_label.scroll_into_view
   details.insurance_label.flash
   expect(details.insurance_label).to be_present
 end
 
 Then /^expect tracking field on history transaction details is present$/ do
   details = SdcHistory.details.services
+  details.tracking_label.scroll_into_view
   details.tracking_label.flash
   expect(details.tracking_label).to be_present
 end
 
 Then /^expect weight field on history transaction details is present$/ do
   details = SdcHistory.details.services
+  details.weight_label.scroll_into_view
   details.weight_label.flash
   expect(details.weight_label).to be_present
 end
 
 Then /^expect cost code field on history transaction details is present$/ do
   details = SdcHistory.details.reference.cost_code
+  details.cost_code_label.scroll_into_view
   details.cost_code_label.flash
   expect(details.cost_code_label).to be_present
 end
 
 Then /^expect user field on history transaction details is present$/ do
   details = SdcHistory.details.reference
+  details.user_label.scroll_into_view
   details.user_label.flash
   expect(details.user_label).to be_present
 end
 
 Then /^expect printed on field on history transaction details is present$/ do
   details = SdcHistory.details.reference
+  details.printed_on_label.scroll_into_view
   details.printed_on_label.flash
   expect(details.printed_on_label).to be_present
 end
@@ -230,10 +243,3 @@ Then /^click transaction multiple details header menu dropdown$/ do
   history_detail.toolbar_menu.safe_wait_until_present(timeout: 10)
   history_detail.toolbar_menu.click
 end
-
-
-
-
-
-
-
