@@ -77,6 +77,7 @@ module SdcHistory
       page_object(:track_on_usps) { { xpath: '//div[contains(@id, "menu")]//*[text()="Track on USPS.com"]' } }
       page_object(:print_receipt) { { xpath: '//div[contains(@id, "menu")]//*[text()="Print Receipt"]' } }
       page_object(:collapse_panel) { { xpath: '//div[contains(@id, "menu")]//*[text()="Collapse Panel"]' } }
+
     end
 
 

@@ -15,7 +15,6 @@ module SdcHistory
     end
 
     class Header < SdcPage
-      #to-do Navya to change the xpaths
       page_object(:title) { { xpath: '//*[contains(@id, "multiPrintDetails")]//*[contains(@id, "title")]//*' } }
       page_object(:toolbar_menu) { { xpath: '//*[contains(@id, "multiPrintDetails")]//*[contains(@class, "x-btn-after-title")]' } }
       page_object(:collapse_panel) { { xpath: '//div[contains(@id, "menu")]//*[text()="Collapse Panel"]' } }

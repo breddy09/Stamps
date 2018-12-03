@@ -163,6 +163,7 @@ end
 
 Then /^expect packing field on history transaction details is present$/ do
   details = SdcHistory.details.services
+  details.packaging_label.scroll_into_view
   details.packaging_label.flash
   expect(details.packaging_label).to be_present
 end

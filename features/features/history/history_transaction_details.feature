@@ -74,6 +74,7 @@ Feature:  History Transaction Details
     Then expect printed on field on history transaction details is present
     Then sign out
 
+
   @view_multiple_transaction_details
   Scenario: History: View Transaction Details page
     Then sign-in to mail
