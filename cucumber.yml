@@ -606,6 +606,7 @@ ewwr_header_footer_validation: --tags @ewwr_header_footer_validation --guess  LO
 swwr_create_your_account_page_validation: --tags @swwr_create_your_account_page_validation --guess LOG_LEVEL=info
 mail_bvt_shipping_label_paper: --tags @mail_bvt_shipping_label_paper -- guess LOG_LEVEL=info
 mail_print_on_lov: --tags @mail_print_on_lov -- guess LOG_LEVEL=info
+mail_bvt_envelope_10: --tags @mail_bvt_envelope_10 -- guess LOG_LEVEL=info
 
 
 
