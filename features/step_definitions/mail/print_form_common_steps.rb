@@ -52,7 +52,7 @@ Then /^set print form pounds to (\d+) by arrows$/ do |lbs|
   step 'blur out on print form'
 end
 
-Then /^set print form ounces to (\d+)$/ do |oz|
+Then /^set print form ounces to (.+)$/ do |oz|
   SdcMail.print_form.weight.oz.set(oz)
   TestData.hash[:oz] = oz.to_f
 end
