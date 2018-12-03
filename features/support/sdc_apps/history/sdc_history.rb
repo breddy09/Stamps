@@ -23,7 +23,10 @@ module SdcHistory
     def details
       Details
     end
-
+    
+     def multiple_details
+      MultipleDetails
+    end
     def modals
       Modals
     end
