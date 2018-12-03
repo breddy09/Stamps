@@ -245,7 +245,6 @@ module TestSession
     end
 
     def local_browser
-
       # --disable-print-preview
       chrome_switches = %w(--ignore-certificate-errors --disable-popup-blocking --disable-translate)
       # Watir.always_locate = true
