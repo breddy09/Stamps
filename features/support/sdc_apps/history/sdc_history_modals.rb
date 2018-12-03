@@ -377,7 +377,6 @@ module SdcHistory
 
     class AdvanceSearch < SdcPage
 
-
       page_object(:title) { { xpath: '//div[contains(@id , "advance-search-window-")]//div[text()="Advanced Search"]' } }
       page_object(:date_printed) { { xpath: '//div[contains(@id , "advance-search-window-")]//*[contains(@id, "radiofield-")][text()="Date Printed"]/preceding-sibling::input[1]' } }
       page_object(:date_delivered) { { xpath: '//div[contains(@id , "advance-search-window-")]//*[contains(@id, "radiofield-")][text()="Date Delivered"]/preceding-sibling::input[1]' } }
@@ -458,8 +457,6 @@ module SdcHistory
       end
     end
 
-
-
     class InsuranceClaimForm < SdcPage
 
       page_object(:window){{xpath: '//div[contains(@id,"insurance-claim-form-window")][contains(@class,"x-window-closable")]'}}
@@ -468,7 +465,9 @@ module SdcHistory
       page_object(:print_form_button) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[text()="Print Form"]'} }
       page_object(:cancel_button) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[text()="Cancel"]'} }
 
-      page_object(:package_recipient_name_label){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(text(),"Package Recipient:")]'}}
+      page_object(:sub_header_info) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//div[contains(@class,"x-component modal-sub-header")][contains(text(),"Claim Form Information")]'}}
+	  
+	    page_object(:package_recipient_name_label){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(text(),"Package Recipient:")]'}}
       page_object(:recipient_name_value){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="recipientname"]'}}
       page_object(:recipient_name_error) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="recipientname"]//following::div[contains(@class,"error-msg")][1]'} }
 
@@ -487,13 +486,55 @@ module SdcHistory
       page_object(:claim_type_label){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(text(),"Claim Type:")]'}}
       page_object(:claim_type_value){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="claimType"]'}}
       page_object(:claim_type_error) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="claimType"]//following::div[contains(@class,"error-msg")][1]'} }
+ 
+	    page_object(:item_description_label){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(text(),"Description of items:")]'}}
+      page_object(:item_description_value){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="itemDescription"]'}}
+      page_object(:item_description_error) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="itemDescription"]//following::div[contains(@class,"error-msg")][1]'} }
+  
+	    page_object(:claim_amount_label){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(text(),"Amount of Claim:$")]'}}
+      page_object(:claim_amount_value){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="claimAmount"]'}}
+      page_object(:claim_amount_error) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="claimAmount"]//following::div[contains(@class,"error-msg")][1]'} }
 
-      page_object(:customer_id_label){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(text(),"Description of items:")]'}}
-      page_object(:customer_id_value){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="id"]'}}
-      page_object(:customer_id_error) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="id"]//following::div[contains(@class,"error-msg")][1]'} }
+      page_object(:salvage_value_label){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(text(),"Less Salvage value:-$")]'}}
+      page_object(:salvage_value_value){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="salvageValue"]'}}
+      page_object(:salvage_value_error) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="salvageValue"]//following::div[contains(@class,"error-msg")][1]'} }
 
+	    page_object(:usps_amount_label){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(text(),"Amount Paid by USPS:-$)]'}}
+      page_object(:usps_amount_value){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="uspsAmount"]'}}
+      page_object(:usps_amount_error) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="uspsAmount"]//following::div[contains(@class,"error-msg")][1]'} }
 
-    end
+	    page_object(:sub_header_refund) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//div[contains(@class,"x-component modal-sub-header")][contains(text(),"Your Contact Information For a Refund")]'}}
+    
+	
+	    page_object(:name_label){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(text(),"Name:")]'}}
+      page_object(:name_value){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="name"]'}}
+      page_object(:name_error) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="name"]//following::div[contains(@class,"error-msg")][1]'} }
+
+      page_object(:mailing_address_label){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(text(),"Mailing Address:")]'}}
+      page_object(:mailing_address_value){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="mailingAddress"]'}}
+      page_object(:mailing_address_error) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="mailingAddress"]//following::div[contains(@class,"error-msg")][1]'} }
+
+      page_object(:city_label){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(text(),"City:")]'}}
+      page_object(:city_value){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="city"]'}}
+      page_object(:city_error) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="city"]//following::div[contains(@class,"error-msg")][1]'} }
+
+      page_object(:state_label){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(text(),"State:")]'}}
+      page_object(:state_value){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="state"]'}}
+      page_object(:state_error) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="state"]//following::div[contains(@class,"error-msg")][1]'} }
+
+      page_object(:zip_label){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(text(),"Zip:")]'}}
+      page_object(:zip_value){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="zip"]'}}
+      page_object(:zip_error) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="zip"]//following::div[contains(@class,"error-msg")][1]'} }
+ 
+	    page_object(:telephone_label){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(text(),"Telephone:")]'}}
+      page_object(:telephone_value){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="telephone"]'}}
+      page_object(:telephone_error) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="telephone"]//following::div[contains(@class,"error-msg")][1]'} }
+  
+	    page_object(:email_label){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(text(),"E-mail:")]'}}
+      page_object(:email_value){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="email"]'}}
+      page_object(:email_error) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="email"]//following::div[contains(@class,"error-msg")][1]'} }
+	
+	end
 
   end
 

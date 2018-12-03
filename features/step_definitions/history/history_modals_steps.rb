@@ -704,28 +704,100 @@ Then /^expect package recipient's name field on insurance claim form modal is pr
   expect(ins_claim_form.package_recipient_name_label.present?).to be (true)
 end
 
-Then /^expect date mailed field on insurance claim form modal is present$/ do
+  Then /^expect date mailed field on insurance claim form modal is present$/ do
+    ins_claim_form=SdcHistory.modals.insurance_claim_form
+    ins_claim_form.date_mailed_label.safe_wait_until_present(timeout: 10)
+    expect(ins_claim_form.date_mailed_label.present?).to be (true)
+  end
+
+  Then /^expect customer id field on insurance claim form modal is present$/ do
+    ins_claim_form=SdcHistory.modals.insurance_claim_form
+    ins_claim_form.customer_id_label.safe_wait_until_present(timeout: 10)
+    expect(ins_claim_form.customer_id_label.present?).to be (true)
+  end
+
+  Then /^expect insurance id field on insurance claim form modal is present$/ do
+    ins_claim_form=SdcHistory.modals.insurance_claim_form
+    ins_claim_form.insurance_id_label.safe_wait_until_present(timeout: 10)
+    expect(ins_claim_form.insurance_id_label.present?).to be (true)
+  end
+
+  Then /^expect claim type field on insurance claim form modal is present$/ do
+    ins_claim_form=SdcHistory.modals.insurance_claim_form
+    ins_claim_form.claim_type_label.safe_wait_until_present(timeout: 10)
+    expect(ins_claim_form.claim_type_label.present?).to be (true)
+  end
+
+  Then /^expect item description field on insurance claim form modal is present$/ do
+    ins_claim_form=SdcHistory.modals.insurance_claim_form
+    ins_claim_form.item_description_label.safe_wait_until_present(timeout: 10)
+    expect(ins_claim_form.item_description_label.present?).to be (true)
+  end
+
+  Then /^expect claim amount field on insurance claim form modal is present$/ do
+    ins_claim_form=SdcHistory.modals.insurance_claim_form
+    ins_claim_form.claim_amount_label.safe_wait_until_present(timeout: 10)
+    expect(ins_claim_form.claim_amount_label.present?).to be (true)
+  end
+
+  Then /^expect salvage value field on insurance claim form modal is present$/ do
+    ins_claim_form=SdcHistory.modals.insurance_claim_form
+    ins_claim_form.salvage_value_label.safe_wait_until_present(timeout: 10)
+    expect(ins_claim_form.salvage_value_label.present?).to be (true)
+  end
+
+Then /^expect usps amount field on insurance claim form modal is present$/ do
   ins_claim_form=SdcHistory.modals.insurance_claim_form
-  ins_claim_form.date_mailed_label.safe_wait_until_present(timeout: 10)
-  expect(ins_claim_form.date_mailed_label.present?).to be (true)
+  ins_claim_form.usps_amount_label.safe_wait_until_present(timeout: 10)
+  expect(ins_claim_form.usps_amount_label.present?).to be (true)
 end
 
-Then /^expect customer id field on insurance claim form modal is present$/ do
+Then /^expect refund sub header on insurance claim form modal is present$/ do
   ins_claim_form=SdcHistory.modals.insurance_claim_form
-  ins_claim_form.customer_id_label.safe_wait_until_present(timeout: 10)
-  expect(ins_claim_form.customer_id_label.present?).to be (true)
+  ins_claim_form.sub_header_refund.safe_wait_until_present(timeout: 10)
+  expect(ins_claim_form.sub_header_refund.present?).to be (true)
 end
 
-Then /^expect insurance id field on insurance claim form modal is present$/ do
+Then /^expect name field on insurance claim form modal is present$/ do
   ins_claim_form=SdcHistory.modals.insurance_claim_form
-  ins_claim_form.insurance_id_label.safe_wait_until_present(timeout: 10)
-  expect(ins_claim_form.insurance_id_label.present?).to be (true)
+  ins_claim_form.name_label.safe_wait_until_present(timeout: 10)
+  expect(ins_claim_form.name_label.present?).to be (true)
 end
 
-Then /^expect claim type field on insurance claim form modal is present$/ do
+Then /^expect mailing address field on insurance claim form modal is present$/ do
   ins_claim_form=SdcHistory.modals.insurance_claim_form
-  ins_claim_form.claim_type_label.safe_wait_until_present(timeout: 10)
-  expect(ins_claim_form.claim_type_label.present?).to be (true)
+  ins_claim_form.mailing_address_label.safe_wait_until_present(timeout: 10)
+  expect(ins_claim_form.mailing_address_label.present?).to be (true)
+end
+
+Then /^expect city field on insurance claim form modal is present$/ do
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.city_label.safe_wait_until_present(timeout: 10)
+  expect(ins_claim_form.city_label.present?).to be (true)
+end
+
+Then /^expect state field on insurance claim form modal is present$/ do
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.state_label.safe_wait_until_present(timeout: 10)
+  expect(ins_claim_form.state_label.present?).to be (true)
+end
+
+Then /^expect zip field on insurance claim form modal is present$/ do
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.zip_label.safe_wait_until_present(timeout: 10)
+  expect(ins_claim_form.zip_label.present?).to be (true)
+end
+
+Then /^expect telephone field on insurance claim form modal is present$/ do
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.telephone_label.safe_wait_until_present(timeout: 10)
+  expect(ins_claim_form.telephone_label.present?).to be (true)
+end
+
+Then /^expect email field on insurance claim form modal is present$/ do
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.email_label.safe_wait_until_present(timeout: 10)
+  expect(ins_claim_form.email_label.present?).to be (true)
 end
 
 Then /^expect package recipient's name value on insurance claim form modal is (.*)$/ do |str|
@@ -744,6 +816,146 @@ Then /^expect date mailed value on insurance claim form modal is (?:correct|(.*)
   str ||= TestData.hash[:date_mailed]
   p str
   actual_value = ins_claim_form.date_mailed_value.text_value
+  p actual_value
+  expect(actual_value.strip).to eql str
+end
+
+Then /^expect customer id value on insurance claim form modal is (?:correct|(.*))$/ do |str|
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.customer_id_value.safe_wait_until_present(timeout: 10)
+  str ||= TestData.hash[:customer_id]
+  p str
+  actual_value = ins_claim_form.customer_id_value.text_value
+  p actual_value
+  expect(actual_value.strip).to eql str
+end
+
+Then /^expect insurance id value on insurance claim form modal is (?:correct|(.*))$/ do |str|
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.insurance_id_value.safe_wait_until_present(timeout: 10)
+  str ||= TestData.hash[:insurance_id]
+  p str
+  actual_value = ins_claim_form.insurance_id_value.text_value
+  p actual_value
+  expect(actual_value.strip).to eql str
+end
+
+Then /^expect claim type value on insurance claim form modal is (?:correct|(.*))$/ do |str|
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.claim_type_value.safe_wait_until_present(timeout: 10)
+  str ||= TestData.hash[:claim_type]
+  p str
+  actual_value = ins_claim_form.claim_type_value.text_value
+  p actual_value
+  expect(actual_value.strip).to eql str
+end
+
+Then /^expect item discription value on insurance claim form modal is (?:correct|(.*))$/ do |str|
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.item_description_value.safe_wait_until_present(timeout: 10)
+  str ||= TestData.hash[:item_discription]
+  p str
+  actual_value = ins_claim_form.item_description_value.text_value
+  p actual_value
+  expect(actual_value.strip).to eql str
+end
+
+Then /^expect claim amount value on insurance claim form modal is (?:correct|(.*))$/ do |str|
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.claim_amount_value.safe_wait_until_present(timeout: 10)
+  str ||= TestData.hash[:claim_amount]
+  p str
+  actual_value = ins_claim_form.claim_amount_value.text_value
+  p actual_value
+  expect(actual_value.strip).to eql str
+end
+
+Then /^expect slavage value on insurance claim form modal is (?:correct|(.*))$/ do |str|
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.salvage_value_value.safe_wait_until_present(timeout: 10)
+  str ||= TestData.hash[:salvage_value]
+  p str
+  actual_value = ins_claim_form.salvage_value_value.text_value
+  p actual_value
+  expect(actual_value.strip).to eql str
+end
+
+Then /^expect usps amount value on insurance claim form modal is (?:correct|(.*))$/ do |str|
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.usps_amount_value.safe_wait_until_present(timeout: 10)
+  str ||= TestData.hash[:usps_amount]
+  p str
+  actual_value = ins_claim_form.usps_amount_value.text_value
+  p actual_value
+  expect(actual_value.strip).to eql str
+end
+
+Then /^expect name value on insurance claim form modal is (?:correct|(.*))$/ do |str|
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.name_value.safe_wait_until_present(timeout: 10)
+  str ||= TestData.hash[:user_name]
+  p str
+  actual_value = ins_claim_form.name_value.text_value
+  p actual_value
+  expect(actual_value.strip).to eql str
+end
+
+Then /^expect mailing address value on insurance claim form modal is (?:correct|(.*))$/ do |str|
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.mailing_address_value.safe_wait_until_present(timeout: 10)
+  str ||= TestData.hash[:user_address]
+  p str
+  actual_value = ins_claim_form.mailing_address_value.text_value
+  p actual_value
+  expect(actual_value.strip).to eql str
+end
+
+Then /^expect city value on insurance claim form modal is (?:correct|(.*))$/ do |str|
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.city_value.safe_wait_until_present(timeout: 10)
+  str ||= TestData.hash[:user_city]
+  p str
+  actual_value = ins_claim_form.city_value.text_value
+  p actual_value
+  expect(actual_value.strip).to eql str
+end
+
+Then /^expect state value on insurance claim form modal is (?:correct|(.*))$/ do |str|
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.state_value.safe_wait_until_present(timeout: 10)
+  str ||= TestData.hash[:user_state]
+  p str
+  actual_value = ins_claim_form.state_value.text_value
+  p actual_value
+  expect(actual_value.strip).to eql str
+end
+
+Then /^expect zip value on insurance claim form modal is (?:correct|(.*))$/ do |str|
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.zip_value.safe_wait_until_present(timeout: 10)
+  str ||= TestData.hash[:user_zip]
+  p str
+  actual_value = ins_claim_form.zip_value.text_value
+  p actual_value
+  expect(actual_value.strip).to eql str
+end
+
+Then /^expect telephone value on insurance claim form modal is (?:correct|(.*))$/ do |str|
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.telephone_value.safe_wait_until_present(timeout: 10)
+  str ||= TestData.hash[:user_telephone]
+  p str
+  actual_value = ins_claim_form.telephone_value.text_value
+  p actual_value
+  expect(actual_value.strip).to eql str
+end
+
+Then /^expect email value on insurance claim form modal is (?:correct|(.*))$/ do |str|
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.email_value.safe_wait_until_present(timeout: 10)
+  str ||= TestData.hash[:user_mail]
+  p str
+  actual_value = ins_claim_form.email_value.text_value
   p actual_value
   expect(actual_value.strip).to eql str
 end
