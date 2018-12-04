@@ -722,6 +722,11 @@ end
 Cucumber::Rake::Task.new(:mail_bvt_advanced_options) do |t|
   t.profile = 'mail_bvt_advanced_options'
   t.cucumber_opts = "-p cuke_reports"
+end                      
+
+Cucumber::Rake::Task.new(:mail_bvt_toolbar_settings) do |t|
+  t.profile = 'mail_bvt_toolbar_settings'
+  t.cucumber_opts = "-p cuke_reports"
 end
 
 Cucumber::Rake::Task.new(:mail_bvt_ship_date) do |t|
