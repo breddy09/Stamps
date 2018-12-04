@@ -514,6 +514,7 @@ Feature:  Mail BVT
     Then select print form service PM Package
     Then show advanced options
     Then expect print form advanced options extra services button is present
+    Then expect print form advanced options mail date field is present
     Then expect advanced options hide label value is present
     Then check advanced options hide label value
     Then expect advanced options hide label value is checked
