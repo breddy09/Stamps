@@ -1,29 +1,29 @@
 Then /^run rate test PME Comm Base in Zone (\d+)$/ do |zone|
   param_sheet = data_for(:rates_test, {})['rates_pme_comm_base']
-  step "run rate sheet #{param_sheet} in Zone #{zone}"
+  step "run rates sheet #{param_sheet} in Zone #{zone}"
 end
 
 Then /^run rate test PME Comm Plus in Zone (\d+)$/ do |zone|
   param_sheet = data_for(:rates_test, {})['rates_pme_comm_plus']
-  step "run rate sheet #{param_sheet} in Zone #{zone}"
+  step "run rates sheet #{param_sheet} in Zone #{zone}"
 end
 
 Then /^run rate test PM Comm Base in Zone (\d+)$/ do |zone|
   param_sheet = data_for(:rates_test, {})['rates_pm_comm_base']
-  step "run rate sheet #{param_sheet} in Zone #{zone}"
+  step "run rates sheet #{param_sheet} in Zone #{zone}"
 end
 
 Then /^run rate test PM Comm Plus in Zone (\d+)$/ do |zone|
   param_sheet = data_for(:rates_test, {})['rates_pm_comm_plus']
-  step "run rate sheet #{param_sheet} in Zone #{zone}"
+  step "run rates sheet #{param_sheet} in Zone #{zone}"
 end
 
 Then /^run rate test Parcel Select Ground in Zone (\d+)$/ do |zone|
   param_sheet = data_for(:rates_test, {})['rates_parcel_select_ground']
-  step "run rate sheet #{param_sheet} in Zone #{zone}"
+  step "run rates sheet #{param_sheet} in Zone #{zone}"
 end
 
-Then /^run rate sheet (.*) in Zone (\d+)$/ do |param_sheet, zone|
+Then /^run rates sheet (.*) in Zone (\d+)$/ do |param_sheet, zone|
   zone = zone.to_i
 
   TestData.hash[:result_file] = Spreadsheet::Workbook.new
