@@ -289,8 +289,7 @@ rates_orders_pmei_comm_plus_group_15: --tags @rates_orders_pmei_comm_plus_group_
 rates_orders_pmei_comm_plus_group_16: --tags @rates_orders_pmei_comm_plus_group_16 --guess LOG_LEVEL=info
 rates_orders_pmei_comm_plus_group_17: --tags @rates_orders_pmei_comm_plus_group_17 --guess LOG_LEVEL=info
 bvt_mail_piece_validation: --tags @bvt_mail_piece_validation --guess PRINTER=factory
-pam_db_user_appscap_provisioning: --tags @pam_db_user_appscap_provisioning --guess WEB_APP=pam --guess LOG_LEVEL=info MAX_WINDOW=false
-mail_bvt_advanced_options: --tags @mail_bvt_advanced_options --guess
+pam_db_user_appscap_provisioning: --tags @pam_db_user_appscap_provisioning --guess WEB_APP=pam --guess LOG_LEVEL=info MAX_WINDOW=false 
 registration_normal_workflow: --tags @registration_normal_workflofoxw WEB_APP=registration --guess MAX_WINDOW=true
 registration_profile_page_ui_validation: --tags @registration_profile_page_ui_validation WEB_APP=registration --guess MAX_WINDOW=true
 registration_membership_page_ui_validation: --tags @registration_membership_page_ui_validation WEB_APP=registration --guess MAX_WINDOW=true
