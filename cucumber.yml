@@ -496,7 +496,8 @@ mail_bvt_envelopes: --tags @mail_bvt_envelopes --guess PRINTER=factory
 mail_bvt_extra_services: --tags @mail_bvt_extra_services --guess
 mail_bvt_purchasing: --tags @mail_bvt_purchasing --guess
 mail_bvt_stamps: --tags @mail_bvt_stamps --guess PRINTER=factory
-mail_bvt_international: --tags @mail_bvt_international --guess
+mail_bvt_international: --tags @mail_bvt_international --guess   
+mail_bvt_toolbar_settings: --tags @mail_bvt_toolbar_settings --guess 
 mail_reset: --tags @mail_reset --guess
 mail_bvt_ui_validation: --tags @mail_bvt_ui_validation --guess
 dev_mail_authentication: --tags @mail_authentication --guess HEALTHCHECK=false
