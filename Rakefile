@@ -733,6 +733,11 @@ Cucumber::Rake::Task.new(:mail_bvt_certified_mail) do |t|
   t.cucumber_opts = "-p cuke_reports"
 end
 
+Cucumber::Rake::Task.new(:mail_bvt_extra_services_5x8) do |t|
+  t.profile = 'mail_bvt_extra_services_5x8'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
 Cucumber::Rake::Task.new(:mail_bvt_ship_date) do |t|
   t.profile = 'mail_bvt_ship_date'
   t.cucumber_opts = "-p cuke_reports"
