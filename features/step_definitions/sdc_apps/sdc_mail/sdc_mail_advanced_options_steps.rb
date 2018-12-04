@@ -92,7 +92,7 @@ end
 
 
 Then /^expect print form advanced options mail date field is present$/ do
-  expect(SdcMail.print_form.advanced_options.mail_date).to be_present
+ expect(SdcMail.print_form.mail_date.text_field).to be_present
 end
 
 Then /^[Ss]et Advanced Options Mail Date to ((?:date|today plus|tomorrow|today|))? ?(.*)?$/ do |time_str, value|
