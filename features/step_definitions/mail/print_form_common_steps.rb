@@ -373,7 +373,7 @@ Then /^set print form mail-to country to (.*)$/ do |str|
     mail_to.selection_element.safe_wait_until_present(timeout: 2)
     mail_to.selection_element.safe_click if mail_to.selection_element.present?
   end
-  expect(text_field.text_value).to eql(str)
+  expect(text_field.text_value).to include(str)
 end
 
 Then /^expect print form mail-to country is disabled$/ do
