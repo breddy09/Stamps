@@ -504,6 +504,7 @@ mail_bvt_toolbar_settings: --tags @mail_bvt_toolbar_settings --guess
 mail_bvt_advanced_options: --tags @mail_bvt_advanced_options --guess
 mail_bvt_extra_services_5x8: --tags @mail_bvt_extra_services_5x8 --guess
 mail_bvt_certified_mail: --tags @mail_bvt_certified_mail --guess
+mail_bvt_ship_date: --tags @mail_bvt_ship_date --guess
 dev_mail_authentication: --tags @mail_authentication --guess HEALTHCHECK=false
 dev_mail_bvt_address_cleansing: --tags @mail_bvt_address_cleansing --guess HEALTHCHECK=false
 dev_mail_bvt_contacts: --tags @mail_bvt_contacts --guess HEALTHCHECK=false
