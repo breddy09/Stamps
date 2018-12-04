@@ -433,7 +433,7 @@ module SdcMail
       chooser(:certified_mail, :cm_chooser, :cm_verify, :class, :checked)
       page_object(:certified_mail_cost) { { xpath: '//*[@id="sdc-mainpanel-cmpricelabel"]' } }
 
-      page_object(:rr_chooser) { { xpath: '//span[@id="sdc-mainpanel-rrcheckbox-inputEl"]' } }
+      page_object(:rr_chooser) { { xpath: '//span[@id="sdc-mainpanel-rrcheckbox-displayEl"]' } }
       page_object(:rr_verify) { { xpath: '//*[@id="sdc-mainpanel-rrcheckbox"]' } }
       chooser(:return_receipt, :rr_chooser, :rr_verify, :class, :checked)
       page_object(:return_receipt_cost) { { xpath: '//*[@id="sdc-mainpanel-rrpricelabel"]' } }
