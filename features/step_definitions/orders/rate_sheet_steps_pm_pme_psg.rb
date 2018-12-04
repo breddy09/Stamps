@@ -359,7 +359,7 @@ Then /^run rates sheet (.*) in Zone (\d+)$/ do |param_sheet, zone|
             TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight_lb]] = weight_lb
             TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight]] = "#{weight_lb} lb."
             step "set order details pounds to #{weight_lb}"  if SdcGlobal.web_app == :orders
-            step "set print form pounds to #{weight_lb} by arrows"  if SdcGlobal.web_app == :mail
+            step "set print form pounds by arrows to #{weight_lb}"  if SdcGlobal.web_app == :mail
           else
             step 'set order details pounds to 0'  if SdcGlobal.web_app == :orders
             step 'set print form pounds to 0 by arrows'  if SdcGlobal.web_app == :mail
