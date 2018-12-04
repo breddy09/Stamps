@@ -330,7 +330,7 @@ bugs_print_modal: --tags @bugs_print_modal --guess
 bvt_shipping_address_management: --tags @bvt_shipping_address_management --guess
 bvt_ambigious_address: --tags @bvt_ambigious_address --guess
 bvt_bulk_update: --tags @bvt_bulk_update --guess
-bvt_address_cleansing: --tags @bvt_address_cleansing --guess
+mail_bvt_address_cleansing: --tags @mail_bvt_address_cleansing --guess
 bvt_international_shipping: --tags @bvt_international_shipping --guess
 bvt_new_order: --tags @bvt_new_order --guess LOG_LEVEL=info
 bvt_printing: --tags @bvt_printing --guess PRINTER=factory
