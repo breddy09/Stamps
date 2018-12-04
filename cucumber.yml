@@ -502,6 +502,7 @@ mail_bvt_international: --tags @mail_bvt_international --guess
 mail_reset: --tags @mail_reset --guess
 mail_bvt_ui_validation: --tags @mail_bvt_ui_validation --guess
 mail_bvt_toolbar_settings: tags @mail_bvt_toolbar_settings --guess
+mail_bvt_advanced_options: tags @mail_bvt_advanced_options --guess
 dev_mail_authentication: --tags @mail_authentication --guess HEALTHCHECK=false
 dev_mail_bvt_address_cleansing: --tags @mail_bvt_address_cleansing --guess HEALTHCHECK=false
 dev_mail_bvt_contacts: --tags @mail_bvt_contacts --guess HEALTHCHECK=false
