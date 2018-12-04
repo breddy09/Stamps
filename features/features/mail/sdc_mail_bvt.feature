@@ -279,6 +279,7 @@ Feature:  Mail BVT
     Then uncheck advanced options include postage
     Then sign out
 
+  
   @mail_bvt_certified_mail
   Scenario: BVT Mail UI Validation for Certified Mail
     Then sign-in to mail
@@ -286,11 +287,11 @@ Feature:  Mail BVT
     Then set print form mail-to to a random address in zone 8
     Then set print form weight to lbs 0 oz 1
     Then select print form service FCM Letter
-    Then check restricted delivery on extra services modal
-    Then uncheck restricted delivery on extra services modal
+    Then check restricted delivery on print form
+    Then uncheck restricted delivery on print form
     Then select print on Certified Mail Label - SDC-3910
-    Then check return receipt on extra services modal
-    Then uncheck return receipt on extra services modal
+    Then check return receipt on print form
+    Then uncheck return receipt on print form
     Then sign out
 
   @mail_bvt_shipping_label_paper
