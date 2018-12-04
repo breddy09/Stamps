@@ -23,7 +23,7 @@ Feature: New Sprint 12/6/17 WEBAPPS-6803 Add Print Split button to Mail Page. Pr
   @mail_print_envelope_6
   Scenario: Print On: Envelope #6
 
-    Then select print on Envelope - 6
+    Then select print on Envelope - #6, 3 ⅝" x 6 ½"
     Then set print form mail-from to default
     Then set print form mail-to to a random address in zone 1 through 4
     Then set print form ounces to 1

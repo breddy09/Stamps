@@ -10,9 +10,9 @@ module SdcWebsite
     page_url { |env| "https://print#{env}.stamps.com/SignIn/Default.aspx?env=Orders&" }
 
     # WEBAPPS-11290
-    page_object(:help_link) { { xpath: 'xxxxxxx' } }
-    page_object(:sign_up) { { xpath: 'xxxxxxx' } }
-    page_object(:learning_center) { { xpath: 'xxxxxxx' } }
+    page_object(:help_link) { { xpath: '//a[text()="Visit our Learning Center"]' } }
+    page_object(:sign_up) { { xpath: '//a[text()="New to Stamps.com? Sign Up"]' } }
+    # page_object(:learning_center) { { xpath: 'xxxxxxx' } }
 
   end
 

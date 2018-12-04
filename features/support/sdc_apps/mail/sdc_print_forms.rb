@@ -47,6 +47,8 @@ module SdcMail
         page_objects(:phone, tag: :text_fields, index: 0) { { xpath: '//input[@name="ShipPhone"]' } }
         page_objects(:int_phone, tag: :text_fields, index: 1) { { xpath: '//input[@name="ShipPhone"]' } }
 
+        page_object(:error_icon) { { xpath: '//*[contains(@class, "sdc-icon-stop")]' } }
+
         def add_button
           add_buttons.each do |button|
             return SdcElement.new(button) if button.present?

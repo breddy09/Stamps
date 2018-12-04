@@ -40,6 +40,7 @@ module SdcCore
 
   class SQLServerClient
     require 'tiny_tds'
+
     attr_reader :host, :database, :username, :password, :port, :azure, :connection
 
     def initialize(username: nil, password: nil, server: nil, port: nil, database: nil, azure: nil)
