@@ -284,6 +284,7 @@ Feature:  Mail BVT
   Scenario: BVT Mail UI Validation for Certified Mail
     Then sign-in to mail
     Then select print on Certified Mail Label - SDC-3610
+    Then show advanced options
     Then set print form mail-to to a random address in zone 8
     Then set print form weight to lbs 0 oz 1
     Then select print form service FCM Letter
