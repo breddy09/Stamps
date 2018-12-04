@@ -505,7 +505,12 @@ Feature:  Mail BVT
     Then set print form ounces to 1
     Then select print form service PM Package
     Then expect Print form Domestic Address field displays Address Cleansing, Google, 1600 Amphitheatre Pkwy, Mountain View, CA 94043-1351
+    Then set print form mail-to to address to Address Cleansing, Google, 1925 Florence Ave, Kingman, Arizona 86401-4617
+    Then set print form ounces to 1
+    Then select print form service PM Package
+    Then expect Print form Domestic Address field displays Address Cleansing, Google, 1925 Florence Ave, Kingman, AZ 86401-4617
     Then sign out
+
 
   @mail_bvt_advanced_options
   @mail_advanced_options_paper
