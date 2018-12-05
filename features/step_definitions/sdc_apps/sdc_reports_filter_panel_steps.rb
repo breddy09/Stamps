@@ -1,3 +1,8 @@
+Then /^blur out on reports$/ do
+  step 'expand prints on reports filter panel'
+  step 'select by service on reports filter panel prints'
+end
+
 Then /^click prints on reports filter panel$/ do
   SdcReports.filter_panel.prints.link.click
   step 'expect by service on reports filter panel print is present'

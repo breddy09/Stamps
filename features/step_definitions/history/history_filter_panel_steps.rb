@@ -12,6 +12,10 @@ Then /^set search prints to (?:newly added|(.*)) tracking number on history filt
   search.search_prints.set(str)
 end
 
+Then /^blur out on history$/ do
+  SdcHistory.filter_panel.search.search_prints.double_click
+end
+
 #Date Printed
 Then /^expand date printed on history filter panel$/ do
   date_printed = SdcHistory.filter_panel.date_printed
@@ -116,6 +120,7 @@ Then /^expect past 30 days count on history filter panel is greater than (\d+)$/
   date_printed = SdcHistory.filter_panel.date_printed
   expect(date_printed.past_30_days_count.text.to_i).to be > num.to_i
 end
+
 # Past 3 Months
 Then /^select past 3 months on history filter panel$/ do
   date_printed = SdcHistory.filter_panel.date_printed
@@ -341,6 +346,10 @@ Then /^wait while loading history filters grid$/ do
   SdcHistory.filter_panel.loading.wait_while_present(timeout: 240)
 end
 
+Then /^blur out on history/ do
+  SdcHistory.filter_panel.search_orders.safe_double_click
+  step 'check for server error'
+end
 #Eligible For
 
 

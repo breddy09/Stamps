@@ -4152,8 +4152,8 @@ Cucumber::Rake::Task.new(:mail_bvt_ui_validation) do |t|
   t.cucumber_opts = "-p cuke_reports"
 end
 
-Cucumber::Rake::Task.new(:mail_dropdown_tooltip) do |t|
-  t.profile = 'mail_dropdown_tooltip'
+Cucumber::Rake::Task.new(:dropdown_tooltips) do |t|
+  t.profile = 'dropdown_tooltips'
   t.cucumber_opts = "-p cuke_reports"
 end
 Cucumber::Rake::Task.new(:mail_contacts_comm_error) do |t|

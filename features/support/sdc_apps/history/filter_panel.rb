@@ -138,13 +138,14 @@ module SdcHistory
     page_object(:username) { { xpath: '//div[text()="User"]/../../../../../div[contains(@id,"-body")]//div[@class="table-cell-inner sdc-badgebutton-text"]' } }
     page_object(:username_count) { { xpath: '//div[text()="User"]/../../../../../div[contains(@id,"-body")]//div[@class="sdc-badge"]' } }
   end
+
   class HistorySearch < SdcPage
     text_field(:search_prints,tag: :text_field) { { xpath: '//*[@placeholder="Search Prints"]' } }
     page_object(:advanced_search_arrow) { { xpath: '//*[contains(@class, "search-advance-trigger")]' } }
     page_object(:search_icon) { { xpath: '//*[contains(@class, "search-trigger-grey")]' } }
   end
 
-    class CollapsedView < SdcPage
+  class CollapsedView < SdcPage
     page_object(:expand) { { xpath: '//img[contains(@class,"x-tool-expand-right")]' } }
     page_object(:username) { { xpath: '//div[@id="filter-panel-view-placeholder-innerCt"]//div[contains(@class,"x-title-item")]' } }
   end
@@ -155,18 +156,18 @@ module SdcHistory
     page_object(:label) { { xpath: '(//*[contains(@class, "sdc-badgebutton-text")])[1]' } }
   end
 
-  class Search < SdcPage
-    page_object(:search_prints) { { xpath: '//*[@placeholder="Search Prints"]' } }
-    page_object(:advanced_search_arrow) { { xpath: '//*[contains(@class, "search-advance-trigger")]' } }
-    page_object(:search_icon) { { xpath: '//*[contains(@class, "search-trigger-grey")]' } }
-  end
+  # class Search < SdcPage
+  #   page_object(:search_prints) { { xpath: '//*[@placeholder="Search Prints"]' } }
+  #   page_object(:advanced_search_arrow) { { xpath: '//*[contains(@class, "search-advance-trigger")]' } }
+  #   page_object(:search_icon) { { xpath: '//*[contains(@class, "search-trigger-grey")]' } }
+  # end
 
 
   module FilterPanel
     class << self
-      def search
-        Search.new
-      end
+      # def search
+      #   Search.new
+      # end
 
       def search_results
         SearchResults.new

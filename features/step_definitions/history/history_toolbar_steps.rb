@@ -12,6 +12,24 @@ Then /^click schedule pickup button on history toolbar$/ do
   SdcHistory.toolbar.schedule_pickup.link.click
 end
 
+Then /^hover on schedule pickup button on history toolbar$/ do
+  SdcHistory.toolbar.schedule_pickup.link.hover
+end
+
+Then /^wait for schedule pickup tooltip on history toolbar$/ do
+  SdcHistory.toolbar.schedule_pickup.tooltip.safe_wait_until_present(timeout: 2)
+end
+
+Then /^expect schedule pickup tooltip on history toolbar is present$/ do
+  step 'wait for schedule pickup tooltip on history toolbar'
+  expect(SdcHistory.toolbar.schedule_pickup.tooltip).to be_present
+end
+
+Then /^expect schedule pickup tooltip on history toolbar is not present$/ do
+  step 'wait for schedule pickup tooltip on history toolbar'
+  expect(SdcHistory.toolbar.schedule_pickup.tooltip).not_to be_present
+end
+
 Then /^click create scan form button on history toolbar$/ do
   create_scan_form = SdcHistory.toolbar.create_scan_form
   create_scan_form.link.click
@@ -22,9 +40,28 @@ Then /^click create scan form button on history toolbar$/ do
   end
 end
 
+Then /^hover on create scan form button on history toolbar$/ do
+  SdcHistory.toolbar.create_scan_form.link.hover
+end
+
 Then /^hover on create scan form button tooltip on history toolbar$/ do
   SdcHistory.toolbar.create_scan_form.tooltip.hover if SdcHistory.toolbar.create_scan_form.tooltip.present?
 end
+
+Then /^wait for create scan form tooltip on history toolbar$/ do
+  SdcHistory.toolbar.create_scan_form.tooltip.safe_wait_until_present(timeout: 2)
+end
+
+Then /^expect create scan form tooltip on history toolbar is present$/ do
+  step 'wait for create scan form tooltip on history toolbar'
+  expect(SdcHistory.toolbar.create_scan_form.tooltip).to be_present
+end
+
+Then /^expect create scan form tooltip on history toolbar is not present$/ do
+  step 'wait for create scan form tooltip on history toolbar'
+  expect(SdcHistory.toolbar.create_scan_form.tooltip).not_to be_present
+end
+
 
 Then /^click create return label button on history toolbar$/ do
   SdcHistory.toolbar.create_return_label.link.click
@@ -48,6 +85,19 @@ Then /^hover on cost codes button tooltip on history toolbar$/ do
   SdcHistory.toolbar.cost_codes.tooltip.hover if SdcHistory.toolbar.cost_codes.tooltip.present?
 end
 
+Then /^wait for cost codes tooltip on history toolbar$/ do
+  SdcHistory.toolbar.cost_codes.tooltip.safe_wait_until_present(timeout: 2)
+end
+
+Then /^expect cost codes tooltip on history toolbar is present$/ do
+  step 'wait for cost codes tooltip on history toolbar'
+  expect(SdcHistory.toolbar.cost_codes.tooltip).to be_present
+end
+
+Then /^expect cost codes tooltip on history toolbar is not present$/ do
+  step 'wait for cost codes tooltip on history toolbar'
+  expect(SdcHistory.toolbar.create_scan_form.tooltip).not_to be_present
+end
 
 Then /^click create container label on history toolbar$/ do
   create_container_label = SdcHistory.toolbar.create_container_label
