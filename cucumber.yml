@@ -658,3 +658,4 @@ contacts_print_postage_multiple_from_top_nav: --tags @contacts_print_postage_mul
 history_export:  --tags @history_export --guess LOG_LEVEL=info
 
 advanced_search_date_printed_date_ranges: --tags @advanced_search_date_printed_date_ranges --guess LOG_LEVEL=info
+advanced_search_date_custom_dates: --tags @advanced_search_date_custom_dates --guess LOG_LEVEL=info
