@@ -366,7 +366,7 @@ module SdcHistory
 
     class AdvanceSearch < SdcPage
 
-
+      page_object(:custom_date_range) { { xpath:'//*[@placeholder="Custom"]' } }
       page_object(:title) { { xpath: '//div[contains(@id , "advance-search-window-")]//div[text()="Advanced Search"]' } }
 
 
@@ -398,19 +398,96 @@ module SdcHistory
         DateRange.new
       end
 
-      text_field(:from_date_text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advFromDate"]' } }
-      page_object(:from_date_calender_icon) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advFromDate"]/following::div[contains(@id,"-trigger-picker")][1]' } }
+      def from_date
+        FromDate.new
+      end
 
-      button(:from_date_today_button_selection , tag: :button) {{xpath:'//span[contains(@id, "button-")][text()="Today"]'}}
+      def to_date
+        ToDate.new
+      end
+      class ToDate<SdcPage
 
-      text_field(:to_date_text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advToDate"]' } }
-      page_object(:to_date_calender_icon) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advToDate"]/following::div[contains(@id,"-trigger-picker")][1]' } }
-      button(:to_date_today_button_selection , tag: :button) {{xpath:'//span[contains(@id, "button-")][text()="Today"]'}}
+        text_field(:text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advToDate"]' } }
+        page_object(:calender_icon) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advToDate"]/following::div[contains(@id,"-trigger-picker")][1]' } }
+        #button(:today_button_selection , tag: :button) {{xpath:'//span[contains(@id, "button-")][text()="Today"]'}}
 
-      text_field(:recepient_text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advRecipient"]' } }
+        def pp_rand_date from = 0.0, to = Time.now
+          Time.at(from + rand * (to.to_f - from.to_f))
+        end
 
-      text_field(:cost_code_text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advCostCode"]' } }
-      page_object(:drop_down) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advCostCode"]/following::div[contains(@id,"-trigger-picker")][1]' } }
+        def todatepicker
+          ToDatePicker.new
+        end
+      end
+      class ToDatePicker< SdcPage
+        page_object(:head_link) { { xpath: '//*[@class="x-datepicker-header"]//span[contains(@id, "btnWrap")]' } }
+        page_object(:today) { { xpath: '//*[contains(@class, "x-datepicker-footer")]//*[contains(@id, "btnWrap")]' } }
+
+        def selection_day(day)
+          page_object(:day) { { xpath: "//td[contains(@class, 'x-datepicker-active')]/*[text()='#{day}']/.." } }
+        end
+
+        def month_picker
+          @month_year ||= ToDateMonthPicker.new
+        end
+
+      end
+      class ToDateMonthPicker <SdcPage
+        page_object(:ok) { { xpath: '//*[@class="x-monthpicker-buttons"]//*[text()="OK"]' } }
+        page_object(:cancel) { { xpath: '//*[@class="x-monthpicker-buttons"]//*[text()="Cancel"]' } }
+        page_object(:year_prev) { { xpath: '//*[contains(@class,"x-monthpicker-yearnav-prev")]' } }
+        page_object(:year_next) { { xpath: '//*[contains(@class,"x-monthpicker-yearnav-next")]' } }
+
+        def selection_month(month)
+          page_object(:month) { { xpath: "//a[text()='#{month}']" } }
+        end
+
+        def selection_year(year)
+          page_object(:year) { { xpath: "//*[contains(@class, 'x-monthpicker-year')]//a[text()='#{year}']" } }
+        end
+
+      end
+
+      class FromDate <SdcPage
+        text_field(:text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advFromDate"]' } }
+        page_object(:drop_down) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advFromDate"]/following::div[contains(@id,"-trigger-picker")][1]' } }
+
+        def pp_rand_date from = 0.0, to = Time.now
+          Time.at(from + rand * (to.to_f - from.to_f))
+        end
+
+        def fromdatepicker
+          FromDatePicker.new
+        end
+        # button(:from_date_today_button_selection , tag: :button) {{xpath:'//span[contains(@id, "button-")][text()="Today"]'}}
+
+      end
+      class FromDatePicker<SdcPage
+        page_object(:head_link) { { xpath: '//*[@class="x-datepicker-header"]//span[contains(@id, "btnWrap")]' } }
+        page_object(:today) { { xpath: '//*[contains(@class, "x-datepicker-footer")]//*[contains(@id, "btnWrap")]' } }
+
+        def selection_day(day)
+          page_object(:day) { { xpath: "//td[contains(@class, 'x-datepicker-active')]/*[text()='#{day}']/.." } }
+        end
+
+        def month_picker
+          @month_year ||= FromDateMonthPicker.new
+        end
+      end
+      class FromDateMonthPicker<SdcPage
+        page_object(:ok) { { xpath: '//*[@class="x-monthpicker-buttons"]//*[text()="OK"]' } }
+        page_object(:cancel) { { xpath: '//*[@class="x-monthpicker-buttons"]//*[text()="Cancel"]' } }
+        page_object(:year_prev) { { xpath: '//*[contains(@class,"x-monthpicker-yearnav-prev")]' } }
+        page_object(:year_next) { { xpath: '//*[contains(@class,"x-monthpicker-yearnav-next")]' } }
+
+        def selection_month(month)
+          page_object(:month) { { xpath: "//a[text()='#{month}']" } }
+        end
+
+        def selection_year(year)
+          page_object(:year) { { xpath: "//*[contains(@class, 'x-monthpicker-year')]//a[text()='#{year}']" } }
+        end
+      end
 
       def selection_cost_code(name: 'selection', value: 'None')
         page_object(name) { { xpath: "//li[text()='#{value}']" } }

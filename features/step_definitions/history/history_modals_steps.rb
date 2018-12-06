@@ -682,16 +682,8 @@ end
 Then /^select date delivered radio button in advance search modal/ do
   advance_search_modal = SdcHistory.modals.advance_search
   advance_search_modal.date_delivered_chooser.flash
-  p "checked or not date delivered"
-  p advance_search_modal.date_delivered_chooser.checked?
-  p "before clicking date delived check"
   advance_search_modal.date_delivered_chooser.safe_wait_until_present(timeout: 10)
-  # advance_search_modal.date_delivered_chooser.check
-  # p advance_search_modal.date_delivered_chooser.checked?
-  # p advance_search_modal.date_delivered_chooser.attribute_value("class")
   advance_search_modal.date_delivered_chooser.select
-  #unless  advance_search_modal.date_delivered_chooser.checked?
-  p "afrer clicking date delived check"
   expect(advance_search_modal.date_delivered_chooser.selected?).to be(true)
 end
 
@@ -709,6 +701,118 @@ Then /^select ship date radio button in advance search modal/ do
   advance_search_modal.ship_date_chooser.select
   expect(advance_search_modal.ship_date_chooser.selected?).to be(true)
 end
+
+
+Then /^expect date range field value changed to custom/ do
+  custom_date_range = SdcHistory.modals.advance_search
+  expect(custom_date_range.custom_date_range.present?).to be(true)
+
+end
+
+Then /^set advanced search modal from date field to random date$/ do
+  advance_search_from_date = SdcHistory.modals.advance_search.from_date
+  from_date_default = advance_search_from_date.text_field.text_value()
+  SdcLogger.info "from_date_default is #{from_date_default}"
+  TestData.hash[:from_date]||=from_date_default
+  SdcLogger.info "TestData.hash[:from_date] is #{TestData.hash[:from_date]}"
+  tmp = Date.strptime(from_date_default, "%m/%d/%Y")
+  SdcLogger.info "tmp is #{tmp}"
+  from_date_new = tmp - 7
+  TestData.hash[:from_date_new] ||=from_date_new
+  SdcLogger.info "TestData.hash[:from_date_new] is #{TestData.hash[:from_date_new]}"
+  advance_search_from_date.text_field.set(TestData.hash[:from_date_new])
+end
+
+Then /^save advanced search modal to date field value$/ do
+  advance_search_to_date = SdcHistory.modals.advance_search.to_date
+  to_date_default = advance_search_to_date.text_field.text_value()
+  SdcLogger.info "to_date_default is #{to_date_default}"
+  TestData.hash[:to_date]||=to_date_default
+  SdcLogger.info "TestData.hash[:to_date] is #{TestData.hash[:to_date]}"
+end
+
+Then /^save (.*) date value on grid for column date delivered$/ do |str|
+  history_search =  SdcHistory.filter_panel.search_results
+  search_count = history_search.search_results_count.text_value.to_i
+  if search_count > 0
+    SdcLogger.info " Search prints count is #{search_count}"
+    SdcHistory.grid.body.safe_wait_until_present(timeout: 60)
+    column = SdcHistory.grid.grid_column(:date_delivered)
+    column.element(1).flash
+    grid_date = column.text_at_row(1)
+    SdcLogger.info "grid date value is #{grid_date}"
+    TestData.hash["#{str}_date"]||=grid_date
+
+  else
+    TestData.hash["#{str}_date"]||= nil
+    SdcLogger.info 'There is no data available with defined date range'
+  end
+end
+
+Then /^save (.*) date value on grid for column ship date$/ do |str|
+  history_search =  SdcHistory.filter_panel.search_results
+  search_count = history_search.count.text_value.to_i
+  if search_count > 0
+    SdcLogger.info " Search prints count is #{search_count}"
+    SdcHistory.grid.body.safe_wait_until_present(timeout: 60)
+    column = SdcHistory.grid.grid_column(:ship_date)
+    column.element(1).flash
+    grid_date = column.text_at_row(1)
+    TestData.hash["#{str}_date"]||=grid_date
+  else
+    TestData.hash["#{str}_date"]||= nil
+    SdcLogger.info 'There is no data available with defined date range'
+  end
+end
+
+Then /^expect prints displayed are within from and to date range$/ do
+  start_date= TestData.hash['first_date']
+  if (start_date && end_date != nil)
+    expect(start_date.between?(from_date,to_date)).to be(true)
+    expect(end_date.between?(from_date,to_date)).to be(true)
+  else
+    SdcLogger.info 'There are no Records available for the selectd date Range'
+  end
+end
+
+Then /^expect from date field in advance search modal is present$/ do
+  from_date = SdcHistory.modals.advance_search.from_date
+  from_date.text_field.safe_wait_until_present(timeout: 10)
+  expect(from_date.text_field.present?).to be (true)
+end
+
+Then /^expect to date field in advance search modal is present$/ do
+  advance_search = SdcHistory.modals.advance_search.to_date
+  advance_search.text_field.safe_wait_until_present(timeout: 10)
+  expect(advance_search.text_field.present?).to be (true)
+end
+
+Then /^set advanced search modal to date field to random date$/ do
+  advance_search_to_date = SdcHistory.modals.advance_search.to_date
+  to_date_default = advance_search_to_date.text_field.text_value()
+  TestData.hash[:to_date]||=to_date_default
+  tmp = Date.strptime(to_date_default, "%m/%d/%Y")
+  to_date_new = tmp - 7
+  TestData.hash[:to_date_new] ||= to_date_new
+  advance_search_to_date.text_field.set(TestData.hash[:to_date_new])
+end
+
+Then /^generate and set random date for from date while to date is auto selected$/ do
+  to_date_default = SdcHistory.modals.advance_search.to_date.text_field.text_value.split(':').last.strip
+  date = to_date_default.split('/')
+  TestData.hash[:to_date_default] = date[2] + ',' + date[0] + ',' + date[1]
+  tmp = Date.strptime(to_date_default, "%m/%d/%Y")
+  from_date =  (tmp.year - rand(1..1)).to_s + ',' + tmp.month.to_s + ',' + tmp.day.to_s
+  rand_from_date = SdcHistory.modals.advance_search.to_date.pp_rand_date(Time.local(from_date), Time.local(TestData.hash[:to_date_default]))
+  from_date = rand_from_date.to_date.to_s.split('-')
+  TestData.hash[:from_date] = from_date[1].to_s + '/' + from_date[2].to_s + '/' + (from_date[0][2]+ from_date[0][3]).to_s
+  SdcLogger.info "TestData.hash[:from_date] is #{TestData.hash[:from_date]}"
+  text_field = SdcHistory.modals.advance_search.from_date.text_field
+  text_field.set(TestData.hash[:from_date])
+end
+
+
+
 
 
 
