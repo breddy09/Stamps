@@ -85,6 +85,7 @@ Then /^cancel print on gif printing dialog$/ do
   end
   begin
     browser.windows.last.use
+    browser.safe_wait_until(timeout:15)
     browser.send_keys(:tab)
     browser.send_keys(:enter)
   rescue
