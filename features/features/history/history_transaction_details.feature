@@ -74,7 +74,6 @@ Feature:  History Transaction Details
     Then expect printed on field on history transaction details is present
     Then sign out
 
-
   @view_multiple_transaction_details
   Scenario: History: View Transaction Details page
     Then sign-in to mail
@@ -87,4 +86,27 @@ Feature:  History Transaction Details
     Then expect recipient names in history details is correct
     Then click transaction multiple details header menu dropdown
     Then expect collapse panel link on the transaction multiple detail menu dropdown is available
+    Then sign out
+
+
+  @printed_link_transaction_details
+  Scenario: History: Verify clicking Printed link shows Transaction Details for this postage print
+    Then sign-in to mail
+    Then select print on Shipping Label - 5 ½" x 8 ½"
+    Then set print form mail-to to a random address in zone 1
+    Then select print form service PSG Package/Flat/Thick Envelope
+    Then set print form weight to lbs 0 oz 1
+    Then click print label
+    Then click continue on confirm print modal
+    Then cancel print on gif printing dialog
+    Then expect postage message panel tracking label is Postage was sent to your printer. Your Tracking Number is
+    Then save tracking number on print form message panel
+    Then navigate to History
+    Then set search prints tracking number on history filter panel to newly added
+    Then click search icon on history filter panel
+    Then check row for saved tracking number on history grid
+    Then expect print details on history is present
+    Then expect printed status on history transaction details is present
+    Then click tracking number link on history transaction details
+    Then expect status displayed below tracking number link on history transaction details is Printed
     Then sign out

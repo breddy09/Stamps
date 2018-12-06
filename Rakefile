@@ -69,6 +69,12 @@ end
 
 #HISTORY
 #
+
+Cucumber::Rake::Task.new(:printed_link_transaction_details) do |t|
+  t.profile = 'printed_link_transaction_details'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
 Cucumber::Rake::Task.new(:history_details_header_file_ins_claim_email_tracking_info) do |t|
   t.profile = 'history_details_header_file_ins_claim_email_tracking_info'
   t.cucumber_opts = "-p cuke_reports"

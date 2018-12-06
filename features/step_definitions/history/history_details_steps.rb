@@ -91,7 +91,7 @@ end
 
 Then /^expect printed status on history transaction details is present$/ do
   step 'wait while loading history details panel'
-  SdcHistory.details.status.flash
+  SdcHistory.details.status.blur_out
   expect(SdcHistory.details.status).to be_present
 end
 
@@ -127,8 +127,14 @@ end
 Then /click tracking number link on history transaction details$/ do
   tracking = SdcHistory.details.tracking_number
   tracking.click
+
 end
 
+Then /expect status displayed below tracking number link on history transaction details is (.*)$/ do |status|
+  tracking_status = SdcHistory.details.tracking_link_status
+  tracking_status.tracking_number_status.flash
+  expect(tracking_status.tracking_number_status.text_value).to eql(status.to_s.upcase)
+end
 
 Then /^expect shipped to field on history transaction details is present$/ do
   details = SdcHistory.details.addresses

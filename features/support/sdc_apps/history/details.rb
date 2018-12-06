@@ -65,6 +65,15 @@ module SdcHistory
       def reference
         Reference.new
       end
+
+      def tracking_link_status
+        TrackingLinkStatus.new
+      end
+
+    end
+
+    class TrackingLinkStatus <SdcPage
+      page_object(:tracking_number_status) { { xpath: '//*[contains(@class,"delivery-status-list")]//li[2]//p[@class="status"]' } }
     end
 
     class Header < SdcPage
