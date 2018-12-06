@@ -67,6 +67,10 @@ Cucumber::Rake::Task.new(:extra_services_cost_for_rrb_service) do |t|
   t.cucumber_opts = "-p cuke_reports"
 end
 
+Cucumber::Rake::Task.new(:advanced_search_date_printed_date_ranges) do |t|
+  t.profile = 'advanced_search_date_printed_date_ranges'
+  t.cucumber_opts = "-p cuke_reports"
+end
 #CONTACTS
 #
 #
