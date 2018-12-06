@@ -766,7 +766,10 @@ Then /^save (.*) date value on grid for column ship date$/ do |str|
 end
 
 Then /^expect prints displayed are within from and to date range$/ do
+  from_date = TestData.hash[:from_date]
+  to_date = TestData.hash[:to_date]
   start_date= TestData.hash['first_date']
+  end_date= TestData.hash['last_date']
   if (start_date && end_date != nil)
     expect(start_date.between?(from_date,to_date)).to be(true)
     expect(end_date.between?(from_date,to_date)).to be(true)
