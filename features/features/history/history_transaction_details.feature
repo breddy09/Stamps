@@ -93,7 +93,7 @@ Feature:  History Transaction Details
   Scenario: History: Verify clicking Printed link shows Transaction Details for this postage print
     Then sign-in to mail
     Then select print on Shipping Label - 5 ½" x 8 ½"
-    Then set print form mail-to to a random address in zone 1
+    Then set print form mail-to to a random address in zone 4
     Then select print form service PSG Package/Flat/Thick Envelope
     Then set print form weight to lbs 0 oz 1
     Then click print label
