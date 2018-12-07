@@ -2,7 +2,6 @@ module SdcHistory
 
   module Toolbar
 
-
     class << self
       def refund
         SdcHistoryRefund.new

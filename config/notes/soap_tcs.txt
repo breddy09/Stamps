@@ -22,5 +22,10 @@ tcs_stgw10ff20 win10_firefox »
 
 Win10 Latest Google Chrome Staging
 tcs_stgw10gc1 win10_chrome » file_insurance_claim
+tcs_stgw10gc2 win10_chrome » transaction_address_4lines
+tcs_stgw10gc3 win10_chrome » transaction_address_5lines
+tcs_stgw10gc4 win10_chrome » transaction_address_6lines
+tcs_stgw10gc5 win10_chrome » transaction_details_email_tracking_info
+
 tcs_stgw10gc18 win10_chrome » create_scan_form
 
