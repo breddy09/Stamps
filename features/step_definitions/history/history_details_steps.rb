@@ -48,7 +48,6 @@ end
 
 Then /^set search prints tracking number on history filter panel to (?:newly added|(.*))$/ do |str|
   search =  SdcHistory.filter_panel.search
-  #SdcPage.browser.driver.action.send_keys(:esc)
   search.search_prints.safe_wait_until_present(timeout: 10)
   str ||= TestData.hash[:tracking_number]
   search.search_prints.set(str)

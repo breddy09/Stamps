@@ -27,7 +27,7 @@ Then /^expect file claim link on the transaction detail panel is enabled$/ do
 end
 
 Then /^click file claim link on transaction detail panel$/ do
-  history_detail=SdcHistory.details
+  history_detail = SdcHistory.details
   history_detail.file_claim.safe_wait_until_present(timeout: 10)
   history_detail.file_claim.click
   step 'expect insurance claim form modal is displayed'
@@ -36,48 +36,48 @@ end
 #Header Menu
 
 Then /^click transaction details header menu dropdown$/ do
-  history_detail=SdcHistory.details.header
+  history_detail = SdcHistory.details.header
   history_detail.toolbar_menu.safe_wait_until_present(timeout: 10)
   history_detail.toolbar_menu.click
 end
 
 Then /^expect email tracking info link on the transaction detail menu dropdown is available$/ do
-  history_detail=SdcHistory.details.header
+  history_detail = SdcHistory.details.header
   history_detail.email_tracking_info.flash
   expect(history_detail.email_tracking_info.present?).to be (true)
 end
 
 Then /^click email tracking info link on transaction detail menu dropdown$/ do
-  history_detail=SdcHistory.details.header
+  history_detail = SdcHistory.details.header
   history_detail.email_tracking_info.safe_wait_until_present(timeout: 10)
   history_detail.email_tracking_info.click
 end
 
 Then /^expect print receipt link on the transaction detail menu dropdown is available$/ do
-  history_detail=SdcHistory.details.header
+  history_detail = SdcHistory.details.header
   history_detail.print_receipt.flash
   expect(history_detail.print_receipt.present?).to be (true)
 end
 
 Then /^click print receipt link on transaction detail menu dropdown$/ do
-  history_detail=SdcHistory.details.header
+  history_detail = SdcHistory.details.header
   history_detail.print_receipt.safe_wait_until_present(timeout: 10)
   history_detail.print_receipt.click
   sleep 3
 end
 
 Then /^expect file claim link on the transaction detail menu dropdown is available$/ do
-history_detail=SdcHistory.details.header
+history_detail = SdcHistory.details.header
 expect(history_detail.file_claim.present?).to be (true)
 end
 
 Then /^expect file claim link on the transaction detail menu dropdown is not available$/ do
-  history_detail=SdcHistory.details.header
+  history_detail = SdcHistory.details.header
   expect(history_detail.file_claim.present?).to be (false)
 end
 
 Then /^click file claim link on transaction detail menu dropdown$/ do
-  history_detail=SdcHistory.details.header
+  history_detail = SdcHistory.details.header
   history_detail.file_claim.safe_wait_until_present(timeout: 10)
   history_detail.file_claim.click
   step 'expect insurance claim form modal is displayed'
@@ -85,40 +85,40 @@ end
 
 #Services
 Then /^expect file claim link in services section of transaction detail panel is available$/ do
-  services=SdcHistory.details.services
+  services = SdcHistory.details.services
   expect(services.file_claim.present?).to be (true)
 end
 
 Then /^expect file claim link in services section of transaction detail panel is not available$/ do
-  services=SdcHistory.details.services
+  services = SdcHistory.details.services
   expect(services.file_claim.present?).to be (false)
 end
 
 Then /^expect file claim link in services section of transaction detail panel is enabled$/ do
-  services=SdcHistory.details.services
+  services = SdcHistory.details.services
   expect(services.file_claim.enabled?).to be (true)
 end
 
 Then /^click file claim link in services section of transaction detail panel$/ do
-  services=SdcHistory.details.services
+  services = SdcHistory.details.services
   services.file_claim.safe_wait_until_present(timeout: 10)
   services.file_claim.click
   step 'expect insurance claim form modal is displayed'
 end
 
 Then /^expect email tracking info link on the transaction detail panel is available$/ do
-  history_detail=SdcHistory.details
+  history_detail = SdcHistory.details
   history_detail.email_tracking_info.flash
   expect(history_detail.email_tracking_info.present?).to be (true)
 end
 
 Then /^expect email tracking info link on the transaction detail panel is enabled$/ do
-  history_detail=SdcHistory.details
+  history_detail = SdcHistory.details
   expect(history_detail.email_tracking_info.enabled?).to be (true)
 end
 
 Then /^click email tracking info link on transaction detail panel$/ do
-  history_detail=SdcHistory.details
+  history_detail = SdcHistory.details
   history_detail.file_claim.safe_wait_until_present(timeout: 10)
   history_detail.email_tracking_info.click
 end
