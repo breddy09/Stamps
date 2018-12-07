@@ -68,6 +68,34 @@ Cucumber::Rake::Task.new(:extra_services_cost_for_rrb_service) do |t|
 end
 
 #HISTORY
+#
+
+
+Cucumber::Rake::Task.new(:history_details_file_ins_claim_print_receipt) do |t|
+  t.profile = 'history_details_file_ins_claim_print_receipt'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:file_claim_link_for_print_with_sdc_insurance) do |t|
+  t.profile = 'file_claim_link_for_print_with_sdc_insurance'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:file_claim_link_for_print_with_extra_services_usps_insurance) do |t|
+  t.profile = 'file_claim_link_for_print_with_extra_services_usps_insurance'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:history_change_costcode) do |t|
+  t.profile = 'history_change_costcode'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:transaction_details_email_tracking_info) do |t|
+  t.profile = 'transaction_details_email_tracking_info'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
 Cucumber::Rake::Task.new(:transaction_address_6lines) do |t|
   t.profile = 'transaction_address_6lines'
   t.cucumber_opts = "-p cuke_reports"
