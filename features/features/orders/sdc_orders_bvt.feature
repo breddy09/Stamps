@@ -388,7 +388,7 @@ Feature:  BVT tests for Orders
 
 #  Check 1st two orders
     Then check orders grid row 1
-    Then check orders grid row 2
+    #Then check orders grid row 2
 
   # Updating order details
     Then expect bulk update is present
