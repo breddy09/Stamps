@@ -8,7 +8,7 @@ Then /^run rate sheet (.*)$/ do |param_sheet|
 
   #TestData.store[:starting_time]=Time.now
   #TestData.store[:max_time]=60 #seconds or 4 min
-
+  SdcLogger.info "******"
   TestData.hash[:result_file] = Spreadsheet::Workbook.new
   TestData.hash[:result_sheet] = TestData.hash[:result_file].create_worksheet
 
@@ -195,7 +195,8 @@ Then /^run rate sheet (.*)$/ do |param_sheet|
     TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:zone]] = "zone#{zone}"
     begin
       if row_number > 0
-        SdcLogger.info "#{"#" * 80} Rate Sheet: #{param_sheet}: Zone #{zone} - Row #{row_number}"
+        # SdcLogger.info "#{"#" * 80} Rate Sheet: #{param_sheet}: Zone #{zone} - Row #{row_number}"
+        SdcLogger.info "Rate Sheet: #{param_sheet}: Zone #{zone} - Row #{row_number}"
 
         # Set address to proper zone
         # step "set order details ship-to to random address between zone 1 and 4"  if SdcEnv.sdc_app == :orders
@@ -305,7 +306,7 @@ Then /^run rate sheet (.*)$/ do |param_sheet|
           # SdcLogger.info "#{"#" * 10} Ship-To Address: #{TestData.hash[:full_name]}, #{TestData.hash[:street_address]}, #{TestData.hash[:city]}, #{TestData.hash[:state]}, #{TestData.hash[:zip]}" if SdcGlobal.web_app == :orders
           SdcLogger.info "Ship-To Address: #{TestData.hash[:full_name]}, #{TestData.hash[:street_address]}, #{TestData.hash[:city]}, #{TestData.hash[:state]}, #{TestData.hash[:zip]}" if SdcGlobal.web_app == :orders
           # SdcLogger.info "#{"#" * 10} #{"*" * 5} Test #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:status]] } - Expected #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:zone]]}, Got #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:total_ship_cost]]} #{"*" * 5}"
-          SdcLogger.info "Test #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:status]] } - Expected #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:zone]]}, Got #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:total_ship_cost]]} #{"*" * 5}"
+          SdcLogger.info "Test #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:status]] } - Expected #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:zone]]}, Got #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:total_ship_cost]]}"
           # SdcLogger.info "#{"#" * 10} "
         end
 
@@ -344,12 +345,12 @@ Then /^run rate sheet (.*)$/ do |param_sheet|
   # SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
   # SdcLogger.info "#{"*" * 80}"
   # SdcLogger.info "#{"*" * 80}"
-  SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
+  # SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
 end
 
 
 Then /^Rates: Number of failed test should be less than (\d+)$/ do |count|
-  SdcLogger.info "#{"*" * 80}"
+  #SdcLogger.info "#{"*" * 80}"
   SdcLogger.info "Rates: Number of failed test should be less than #{count}"
   count = count.to_i
   # SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
