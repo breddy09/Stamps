@@ -12,41 +12,85 @@ Feature:  History :File an Insurance Claim
     Then expect default selected value on eligible for history filter panel is insurance claim
     Then sign out
 
-  @file_claim
-  Scenario: Verify clicking "File Claim" icon in Transaction Details page will display Insurance Claim Form popup.
+  @file_claim_link_for_print_with_sdc_insurance
+  Scenario: Verify File an Insurance Claim will allow users to File Claim for print with SDC Insurance
     Then sign-in to mail
-#    Then select print on Shipping Label - 8 ½" x 11" Paper
-#    Then set print form mail-from to default
-#    Then set print form mail-to to a random address in zone 1
-#    Then set print form weight to lbs 0 oz 1
-#    Then select print form service PM Large/Thick Envelope
-#    Then click mail toolbar print label
-#    Then expect postage message panel tracking label is Postage was sent to your printer. Your Tracking Number is
-#    Then save tracking number on print form message panel
+    Then select print on Shipping Label - 8 ½" x 11" Paper
+    Then set print form mail-from to default
+    Then set print form mail-to to a random address in zone 1
+    Then set print form email tracking aanand@stamps.com
+    Then set print form weight to lbs 0 oz 1
+    Then select print form service PM Large/Thick Envelope
+    Then set print form insure for to $1
+    Then click mail toolbar print label
+    Then click continue on confirm print modal
+    Then cancel print on gif printing dialog
+    Then expect postage message panel tracking label is Postage was sent to your printer. Your Tracking Number is
+    Then save tracking number on print form message panel
     Then hover on navigation history then select File an Insurance Claim
-#    Then set search prints to newly added tracking number on history filter panel
-#    Then click search icon on history filter panel
-#    Then check row for saved tracking number on history grid
-    Then check row 1 on history grid
+    Then set search prints to newly added tracking number on history filter panel
+    Then click search icon on history filter panel
+    Then check row for saved tracking number on history grid
+   #F ile Claim - Transaction Detail Printed Section
     Then expect file claim link on the transaction detail panel is available
     Then expect file claim link on the transaction detail panel is enabled
-    Then click file claim link on transaction detail panel
-    Then expect insurance claim form modal is displayed
-    Then click close button on insurance claim form modal
-    Then expect insurance claim form modal is not displayed
-    Then click transaction details header menu dropdown
-    Then expect file claim link on the transaction detail menu dropdown is available
-    Then click file claim link on transaction detail menu dropdown
-    Then expect insurance claim form modal is displayed
-    Then click cancel button on insurance claim form modal
+   # File Claim - Transaction Detail Services Section
     Then expect file claim link in services section of transaction detail panel is available
     Then expect file claim link in services section of transaction detail panel is enabled
-    Then click file claim link in services section of transaction detail panel
-    Then expect insurance claim form modal is displayed
-    Then click close button on insurance claim form modal
-    Then expect insurance claim form modal is not displayed
+   # File Claim - Transaction Detail Menu Dropdown
+    Then click transaction details header menu dropdown
+    Then expect file claim link on the transaction detail menu dropdown is available
 
+  @file_claim_link_for_print_with_extra_services_usps_insurance
+  Scenario: Verify File an Insurance Claim will not allow users to File Claim for print with USPS Insurance via Extra Services
+    Then sign-in to mail
+    Then select print on Shipping Label - 8 ½" x 11" Paper
+    Then set print form mail-from to default
+    Then set print form mail-to to a random address in zone 1
+    Then set print form email tracking aanand@stamps.com
+    Then set print form weight to lbs 0 oz 1
+    Then select print form service PM Large/Thick Envelope
+    Then click select extra services button on print form
+    Then set extra services security to USPS Insurance
+    Then set extra services security value to 1
+    Then save extra services
+    Then click mail toolbar print label
+    Then click continue on confirm print modal
+    Then cancel print on gif printing dialog
+    Then expect postage message panel tracking label is Postage was sent to your printer. Your Tracking Number is
+    Then save tracking number on print form message panel
+    Then hover on navigation history then select File an Insurance Claim
+    Then set search prints to newly added tracking number on history filter panel
+    Then click search icon on history filter panel
+    Then check row for saved tracking number on history grid
+   # File Claim - Transaction Detail Printed Section
+    Then expect file claim link on the transaction detail panel is not available
+   # File Claim - Transaction Detail Services Section
+    Then expect file claim link in services section of transaction detail panel is not available
+   # File Claim - Transaction Detail Menu Dropdown
+    Then click transaction details header menu dropdown
+    Then expect file claim link on the transaction detail menu dropdown is not available
 
-
-
-
+  @history_details_file_ins_claim_print_receipt
+  Scenario: Verify Transaction Details page in File an Insurance Claim view will allow user to "Print Receipt"
+    Then sign-in to mail
+    Then select print on Shipping Label - 8 ½" x 11" Paper
+    Then set print form mail-from to default
+    Then set print form mail-to to a random address in zone 1
+    Then set print form email tracking aanand@stamps.com
+    Then set print form weight to lbs 0 oz 1
+    Then select print form service PM Large/Thick Envelope
+    Then set print form insure for to $2
+    Then click mail toolbar print label
+    Then click continue on confirm print modal
+    Then cancel print on gif printing dialog
+    Then expect postage message panel tracking label is Postage was sent to your printer. Your Tracking Number is
+    Then save tracking number on print form message panel
+    Then hover on navigation history then select File an Insurance Claim
+    Then set search prints tracking number on history filter panel to newly added
+    Then click search icon on history filter panel
+    Then check row for saved tracking number on history grid
+    Then click transaction details header menu dropdown
+    Then expect print receipt link on the transaction detail menu dropdown is available
+    Then click print receipt link on transaction detail menu dropdown
+    Then sign out

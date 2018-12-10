@@ -2,7 +2,11 @@ module SdcHistory
 
   module Toolbar
 
-    class << self
+    class Toolbar < SdcPage
+      page_object(:export) { {xpath: '//span[contains(@class,"sdc-icon-export")]'} }
+      page_object(:feedback) { { xpath: 'XXX' } }
+      page_object(:settings) { { xpath: 'XXX' } }
+
       def refund
         SdcHistoryRefund.new
       end

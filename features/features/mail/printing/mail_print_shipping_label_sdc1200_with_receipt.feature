@@ -73,3 +73,4 @@ Feature: Mail Shipping Label - SDC-1200 with receipt
     Then click print button on mail print modal
 
     Then sign out
+    Then set print form ship date to today
