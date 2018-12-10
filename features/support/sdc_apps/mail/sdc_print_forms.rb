@@ -457,6 +457,7 @@ module SdcMail
       include DimensionsContainer
       include ExtraServicesContainer
       include MailDateContainer
+      include PostageMessagePanelContainer
 
       def contents
         Contents.new

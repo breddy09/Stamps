@@ -509,7 +509,7 @@ Then /^click print button on ready to print modal$/ do
   rescue
     # ignore
   end
-  step 'expect your container label modal on history is not present'
+  step 'expect your container label modal on history is present'
 end
 
 Then /^click printing on drop down on ready to print modal$/ do
@@ -595,6 +595,36 @@ end
 Then /^click reprint button on reprint modal$/ do
   SdcHistory.modals.reprint.reprint.click
   step 'expect your container label modal on history is present'
+end
+
+Then /^expect (.*) is present on printing on on reprint modal$/ do |str|
+  printing_on = SdcHistory.modals.reprint.printing_on
+  printing_on.selection_element(value: str)
+  expect(printing_on.selection).to be_present
+end
+
+Then /^expect (.*) is not present on printing on on reprint modal$/ do |str|
+  printing_on = SdcHistory.modals.reprint.printing_on
+  printing_on.selection_element(value: str)
+  expect(printing_on.selection).not_to be_present
+end
+
+Then /^select (.*) on printing on drop down on reprint modal$/ do |str|
+  printing_on = SdcHistory.modals.reprint.printing_on
+  printing_on.drop_down.click
+  printing_on.selection_element(value: str)
+  expect(printing_on.selection).to be_present
+  printing_on.selection.click
+  step "expect printing on on ready to print modal is #{str}"
+end
+
+Then /^blur out on reprint modal$/ do
+  SdcHistory.modals.reprint.blur_element.blur_out
+end
+
+Then /^close reprint modal$/ do
+  SdcHistory.modals.reprint.x_btn.click
+  step 'expect reprint modal on history is not present'
 end
 
 #welcome modal
