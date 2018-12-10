@@ -198,68 +198,16 @@ Feature:  Mail BVT
     Then select print on Shipping Label - 8 ½" x 11" Paper
     Then set print form mail-to to a random address in zone 8
     Then set print form email tracking stamps@mailinator.com
-    Then select print form service PM Package
-    Then set print form weight to lbs 1 oz 1
-    Then increment print form dimensions by length 2 width 2 height 2
-    Then decrement print form dimensions by length 2 width 2 height 2
-    Then set print form dimensions to length 2 width 2 height 2
+    Then select print form service PME Flat Rate Envelope
+    Then set print form weight to lbs 0 oz 1
     Then set print form tracking Signature Required
     Then set print form tracking USPS Tracking
     Then set print form insure for to $100
     Then set print form insure for to $0
-
-#    EXTRA SERVICES
-    Then click select extra services button on print form
-    Then check fragile on extra services modal
-    Then uncheck fragile on extra services modal
-
-    Then expect value must be shown modal is present
-    Then click continue button on value must be shown modal
-    Then click extra services form 3811
-    Then close form 3811 modal
-    Then check hold for pickup on extra services modal
-    Then uncheck hold for pickup on extra services modal
-    Then set extra services security to USPS Insurance
-    Then set extra services security to Registered Mail
-    Then increment extra services security value by 2
-    Then decrement extra services security value by 2
-    Then set extra services security value to 3
-    Then set extra services security value to 0
-    Then check return receipt on extra services modal
-    Then uncheck return receipt on extra services modal
-    Then check restricted delivery on extra services modal
-    Then uncheck restricted delivery on extra services modal
-    Then blur out on extra services form
-    Then increment extra services cod by 2
-    Then decrement extra services cod by 2
-    Then set extra services cod to 3
-    Then pause for 15 second
-
-    Then set extra services cod to 0
-    Then blur out on extra services form
-    Then set extra services handling to Hazardous Materials
-    Then click special contents warning modal i agree
-    Then set extra services handling to Live Animal
-    Then click special contents warning modal i agree
-    Then set extra services handling to Live Animal (with Fee)
-    Then click special contents warning modal i agree
-    Then set extra services handling to Normal
-    Then close extra services
-    Then select print form service PME Flat Rate Envelope
     Then click select extra services button on print form
     Then close extra services
-
     Then click advanced options service commitments
     Then close advanced options service commitments modal
-
-#    ADVANCED OPTIONS
-    Then uncheck advanced options hide label value
-    Then check advanced options hide label value
-    Then check advanced options print receipt
-    Then uncheck advanced options print receipt
-    Then check advanced options print reference #
-    Then uncheck advanced options print reference #
-
     Then sign out
 
   @mail_bvt_envelope_10
