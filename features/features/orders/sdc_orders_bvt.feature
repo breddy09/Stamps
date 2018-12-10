@@ -447,7 +447,7 @@ Feature:  BVT tests for Orders
     Then set order details height to 1
     Then click orders toolbar print button
     Then set print modal print-on to Shipping Label - 8 ½" x 11" Paper
-    Then set orders print modal printer
+   # Then set orders print modal printer
     Then click print modal print button
     Then select orders filter shipped tab
     Then select orders filter awaiting shippment tab
