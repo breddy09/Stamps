@@ -307,16 +307,18 @@ Then /^run rates sheet (.*) in Zone (\d+)$/ do |param_sheet, zone|
     TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:zone]] = "zone#{zone}"
     begin
       if row_number > 0
-        SdcLogger.info "#{"#" * 80} Rate Sheet: #{param_sheet}: Zone #{zone} - Row #{row_number}"
-
+        #SdcLogger.info "#{"#" * 80} Rate Sheet: #{param_sheet}: Zone #{zone} - Row #{row_number}"
+        SdcLogger.info "#{"#" * 10}"
+        SdcLogger.info "Rate Sheet: #{param_sheet}: Zone #{zone} - Row #{row_number}"
         # spreadsheet price for zone
         if row[zone_column] == nil
-          SdcLogger.info "#{"#" * 10} "
-          SdcLogger.info "#{"#" * 10} "
-          SdcLogger.info "#{"#" * 10} Test Row #{row_number} Skipped. No rates found on sheet."
-          SdcLogger.info "#{"#" * 10} "
-          SdcLogger.info "#{"#" * 10} "
-          SdcLogger.info "#{"#" * 80} "
+          # SdcLogger.info "#{"#" * 10} "
+          # SdcLogger.info "#{"#" * 10} "
+          # SdcLogger.info "#{"#" * 10} Test Row #{row_number} Skipped. No rates found on sheet."
+          # SdcLogger.info "#{"#" * 10} "
+          # SdcLogger.info "#{"#" * 10} "
+          # SdcLogger.info "#{"#" * 80} "
+          SdcLogger.info "Test Row #{row_number} Skipped. No rates found on sheet."
           TestData.hash[:result_sheet].row(row_number).set_format(TestData.hash[:result_sheet_columns][:zone], format)
           TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight_lb]] = row[@rate_sheet_columns[:weight_lb]]
           TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:zone]] = row[zone_column]
@@ -348,11 +350,13 @@ Then /^run rates sheet (.*) in Zone (\d+)$/ do |param_sheet, zone|
           # Set weight per spreadsheet
           #row[@rate_sheet_columns[:weight_lb]].should_not be nil
           weight_lb = row[@rate_sheet_columns[:weight_lb]]
-          SdcLogger.info "#{"#" * 10} "
-          SdcLogger.info "#{"#" * 10} Weight: #{weight_lb}"
-          SdcLogger.info "#{"#" * 10} Price: #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:zone]]}"
-          SdcLogger.info "#{"#" * 10} "
-          SdcLogger.info "#{"#" * 50}"
+          # SdcLogger.info "#{"#" * 10} "
+          # SdcLogger.info "#{"#" * 10} Weight: #{weight_lb}"
+           SdcLogger.info "Weight: #{weight_lb}"
+          # SdcLogger.info "#{"#" * 10} Price: #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:zone]]}"
+          SdcLogger.info "Price: #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:zone]]}"
+          # SdcLogger.info "#{"#" * 10} "
+          # SdcLogger.info "#{"#" * 50}"
 
           if TestHelper.is_whole_number?(weight_lb)
             weight_lb = weight_lb.to_i
@@ -413,14 +417,20 @@ Then /^run rates sheet (.*) in Zone (\d+)$/ do |param_sheet, zone|
             TestData.hash[:result_sheet].row(row_number).set_format(TestData.hash[:result_sheet_columns][:status], fail_format)
             TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:results]] = "Expected #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:zone]]}, Got #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:total_ship_cost]]}"
           end
-          SdcLogger.info "#{"#" * 10} "
-          SdcLogger.info "#{"#" * 10} Weight: #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight]]}"
-          SdcLogger.info "#{"#" * 10} Selected Service: #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:service_selected]]}"
-          SdcLogger.info "#{"#" * 10} Ship-To Address: #{TestData.hash[:address]}" if SdcGlobal.web_app == :mail
-          SdcLogger.info "#{"#" * 10} Ship-To Address: #{TestData.hash[:full_name]}, #{TestData.hash[:street_address]}, #{TestData.hash[:city]}, #{TestData.hash[:state]}, #{TestData.hash[:zip]}" if SdcGlobal.web_app == :orders
-          SdcLogger.info "#{"#" * 10} #{"*" * 5} Test #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:status]] } - Expected #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:zone]]}, Got #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:total_ship_cost]]} #{"*" * 5}"
-          SdcLogger.info "#{"#" * 10} "
-        end
+          # SdcLogger.info "#{"#" * 10} "
+          # SdcLogger.info "#{"#" * 10} Weight: #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight]]}"
+          # SdcLogger.info "#{"#" * 10} Selected Service: #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:service_selected]]}"
+          # SdcLogger.info "#{"#" * 10} Ship-To Address: #{TestData.hash[:address]}" if SdcGlobal.web_app == :mail
+          # SdcLogger.info "#{"#" * 10} Ship-To Address: #{TestData.hash[:full_name]}, #{TestData.hash[:street_address]}, #{TestData.hash[:city]}, #{TestData.hash[:state]}, #{TestData.hash[:zip]}" if SdcGlobal.web_app == :orders
+          # SdcLogger.info "#{"#" * 10} #{"*" * 5} Test #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:status]] } - Expected #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:zone]]}, Got #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:total_ship_cost]]} #{"*" * 5}"
+          # SdcLogger.info "#{"#" * 10} "
+
+          SdcLogger.info "Weight: #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight]]}"
+          SdcLogger.info "Selected Service: #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:service_selected]]}"
+          SdcLogger.info "Ship-To Address: #{TestData.hash[:address]}" if SdcGlobal.web_app == :mail
+          SdcLogger.info "Ship-To Address: #{TestData.hash[:full_name]}, #{TestData.hash[:street_address]}, #{TestData.hash[:city]}, #{TestData.hash[:state]}, #{TestData.hash[:zip]}" if SdcGlobal.web_app == :orders
+          SdcLogger.info "Test #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:status]] } - Expected #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:zone]]}, Got #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:total_ship_cost]]}"
+          end
 
       end
     rescue StandardError => e
@@ -443,14 +453,14 @@ Then /^run rates sheet (.*) in Zone (\d+)$/ do |param_sheet, zone|
       end
     end
   end
-  SdcLogger.info "#{"*" * 80}"
-  SdcLogger.info "#{"*" * 80}"
+  # SdcLogger.info "#{"*" * 80}"
+  # SdcLogger.info "#{"*" * 80}"
+  # SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
+  # SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
+  # SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
+  # SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
+  # SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
   SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
-  SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
-  SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
-  SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
-  SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
-  SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
-  SdcLogger.info "#{"*" * 80}"
-  SdcLogger.info "#{"*" * 80}"
+  # SdcLogger.info "#{"*" * 80}"
+  # SdcLogger.info "#{"*" * 80}"
 end
