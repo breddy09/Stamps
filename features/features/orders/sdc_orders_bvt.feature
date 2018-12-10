@@ -583,3 +583,23 @@ Feature:  BVT tests for Orders
     Then expect orders modal no orders is present
     Then close orders modal no orders
     Then sign out
+    
+   @bvt_orders_ui_validation
+  Scenario:  BVT UI Validation for Filter tab and toolbar
+    Then sign-in to orders
+    Then expect filter panel search results tab is not present
+    Then expect orders filter awaiting shippment tab is present
+    Then expect orders filter shipped tab is present
+    Then expect orders filter canceled tab is present
+    Then expect orders filter on hold tab is present
+    Then search orders for random expecting to find at least 0
+    Then expect filter panel search results tab is present
+    Then remove filter panel search results tab
+    Then collapse orders filter panel
+    Then expand orders filter panel
+    Then expect orders toolbar print is present
+    Then expect orders toolbar add is present
+    Then expect orders toolbar move is present
+    Then expect orders toolbar tags is present
+    Then expect orders toolbar more actions is present
+    Then sign out
