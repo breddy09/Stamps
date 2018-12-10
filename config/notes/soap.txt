@@ -34,7 +34,7 @@ stgmacgc28
 stgmacgc29
 stgmacgc30
 stgmacgc31
-stgmacgc32 - Multi contact
+stgmacgc32 Multi contact
 
 Win10 Chrome Beta Staging
 bvtstgw10gc1 win10_chrome_beta » bvt_address_cleansing
@@ -331,9 +331,9 @@ bvtccw10edg13
 bvtccw10edg14
 bvtccw10edg15
 bvtccw10edg16
-bvtccw10edg17 - no good
+bvtccw10edg17 no good
 bvtccw10edg18
-bvtccw10edg19 - cukes rob
+bvtccw10edg19 cukes rob
 
 
 
@@ -357,7 +357,7 @@ bvtsauce00013cc bvt_shipstation_search
 bvtsauce00014cc
 bvtsauce00015cc
 bvtsauce00016cc
-bvtsauce00017cc - rubymine
+bvtsauce00017cc rubymine
 bvtsauce00018cc person
 bvtsauce000019cc
 bvtsauce00019cc multiple reprints
