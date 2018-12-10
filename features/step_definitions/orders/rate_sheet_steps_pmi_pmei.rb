@@ -363,8 +363,8 @@ Then /^run rates sheet (.*) in country price group (\d+)$/ do |param_sheet, grou
     TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:group]] = "group#{group}"
     begin
       if row_number > 0
-        SdcLogger.info "#{"#" * 80} Rate Sheet: #{param_sheet}: Group #{group} - Row #{row_number}"
-
+        #SdcLogger.info "#{"#" * 80} Rate Sheet: #{param_sheet}: Group #{group} - Row #{row_number}"
+        SdcLogger.info "Rate Sheet: #{param_sheet}: Group #{group} - Row #{row_number}"
         #Set weight for country weight limit check
         TestData.hash[:pounds] = (row[@rate_sheet_columns[:weight_lb]]).to_i
 
@@ -390,12 +390,13 @@ Then /^run rates sheet (.*) in country price group (\d+)$/ do |param_sheet, grou
         # spreadsheet price for group
 
         if row[group_column] == nil
-          SdcLogger.info "#{"#" * 10} "
-          SdcLogger.info "#{"#" * 10} "
-          SdcLogger.info "#{"#" * 10} Test Row #{row_number} Skipped. No rates found on sheet."
-          SdcLogger.info "#{"#" * 10} "
-          SdcLogger.info "#{"#" * 10} "
-          SdcLogger.info "#{"#" * 80} "
+          # SdcLogger.info "#{"#" * 10} "
+          # SdcLogger.info "#{"#" * 10} "
+          # SdcLogger.info "#{"#" * 10} Test Row #{row_number} Skipped. No rates found on sheet."
+           SdcLogger.info "Test Row #{row_number} Skipped. No rates found on sheet."
+          # SdcLogger.info "#{"#" * 10} "
+          # SdcLogger.info "#{"#" * 10} "
+          # SdcLogger.info "#{"#" * 80} "
           TestData.hash[:result_sheet].row(row_number).set_format(TestData.hash[:result_sheet_columns][:group], format)
           TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight_lb]] = row[@rate_sheet_columns[:weight_lb]]
           TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:group]] = row[group_column]
@@ -418,6 +419,7 @@ Then /^run rates sheet (.*) in country price group (\d+)$/ do |param_sheet, grou
 
           # Set weight to 0
           SdcLogger.info "#{"#" * 10} Desired Weight: #{row[@rate_sheet_columns[:weight_lb]]}"
+          SdcLogger.info "Desired Weight: #{row[@rate_sheet_columns[:weight_lb]]}"
           if SdcGlobal.web_app == :orders
             step "set order details ounces to 0"
           elsif SdcGlobal.web_app == :mail
@@ -428,11 +430,15 @@ Then /^run rates sheet (.*) in country price group (\d+)$/ do |param_sheet, grou
           # Set weight per spreadsheet
           #row[@rate_sheet_columns[:weight_lb]].should_not be nil
           weight_lb = row[@rate_sheet_columns[:weight_lb]]
-          SdcLogger.info "#{"#" * 10} "
-          SdcLogger.info "#{"#" * 10} Weight: #{weight_lb}"
-          SdcLogger.info "#{"#" * 10} Price: #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:group]]}"
-          SdcLogger.info "#{"#" * 10} "
-          SdcLogger.info "#{"#" * 50}"
+          # SdcLogger.info "#{"#" * 10} "
+          # SdcLogger.info "#{"#" * 10} Weight: #{weight_lb}"
+           SdcLogger.info "Weight: #{weight_lb}"
+          # SdcLogger.info "#{"#" * 10} Price: #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:group]]}"
+           SdcLogger.info "Price: #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:group]]}"
+          # SdcLogger.info "#{"#" * 10} "
+          # SdcLogger.info "#{"#" * 50}"
+          #
+
 
           if TestHelper.is_whole_number?(weight_lb)
             weight_lb = weight_lb.to_i
@@ -453,7 +459,7 @@ Then /^run rates sheet (.*) in country price group (\d+)$/ do |param_sheet, grou
           # Set Service
           row[@rate_sheet_columns[:service]].should_not be nil
           service = row[@rate_sheet_columns[:service]]
-          SdcLogger.info "#{"#" * 10} Desired Service: #{service}"
+          SdcLogger.info "Desired Service: #{service}"
           TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:service]] = service
 
           # record execution time as time service was selected.
@@ -481,12 +487,12 @@ Then /^run rates sheet (.*) in country price group (\d+)$/ do |param_sheet, grou
             TestData.hash[:result_sheet].row(row_number).set_format(TestData.hash[:result_sheet_columns][:status], fail_format)
             TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:results]] = "Expected #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:group]]}, Got #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:total_ship_cost]]}"
           end
-          SdcLogger.info "#{"#" * 10} "
-          SdcLogger.info "#{"#" * 10} Selected Weight: #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight]]}"
-          SdcLogger.info "#{"#" * 10} Selected Service: #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:service_selected]]}"
-          SdcLogger.info "#{"#" * 10} Selected Country: #{TestData.hash[:country]}"
-          SdcLogger.info "#{"#" * 10} #{"*" * 5} Test #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:status]] } - Expected #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:group]]}, Got #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:total_ship_cost]]} #{"*" * 5}"
-          SdcLogger.info "#{"#" * 10} "
+          # SdcLogger.info "#{"#" * 10} "
+          SdcLogger.info "Selected Weight: #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight]]}"
+          SdcLogger.info "Selected Service: #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:service_selected]]}"
+          SdcLogger.info "Selected Country: #{TestData.hash[:country]}"
+          SdcLogger.info "Test #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:status]] } - Expected #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:group]]}, Got #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:total_ship_cost]]}"
+          # SdcLogger.info "#{"#" * 10} "
         end
 
       end
@@ -516,14 +522,14 @@ Then /^run rates sheet (.*) in country price group (\d+)$/ do |param_sheet, grou
       end
     end
   end
-  SdcLogger.info "#{"*" * 80}"
-  SdcLogger.info "#{"*" * 80}"
+  # SdcLogger.info "#{"*" * 80}"
+  # SdcLogger.info "#{"*" * 80}"
+  # SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
+  # SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
+  # SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
+  # SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
+  # SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
   SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
-  SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
-  SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
-  SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
-  SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
-  SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
-  SdcLogger.info "#{"*" * 80}"
-  SdcLogger.info "#{"*" * 80}"
+  # SdcLogger.info "#{"*" * 80}"
+  # SdcLogger.info "#{"*" * 80}"
 end

@@ -342,7 +342,7 @@ Then /^[Ee]xpect on [Pp]rint [Pp]review [Pp]anel, right side label is selected$/
   #expect(stamps.mail.print_preview.right_selected?).to be(true), "Right Label image doesn't exists on Print form"
 end
 
-Then /^[Ss]et Print Form Ship-To Country to a random country in PMI Flat Rate price group (.*)$/ do |group|
+Then /^set Print Form Ship-To Country to a random country in PMI Flat Rate price group (.*)$/ do |group|
   country_list = data_for(:country_groups_PMI_flat_rate, {})["group" + group].values
   TestData.hash[:country] = country_list[rand(country_list.size)]
   step "set print form mail-to country to #{TestData.hash[:country]}" unless SdcMail.print_form.mail_to.text_field.text_value.eql?(TestData.hash[:country])
