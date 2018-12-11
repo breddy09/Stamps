@@ -354,10 +354,12 @@ module SdcHistory
       page_object(:reprint) { {xpath: '//span[text()="Reprint"]'} }
       page_object(:total_cost) { {xpath: '//*[text()="Total Cost:"]/..//div[contains(test(), "$")]'} }
       page_object(:x_btn) { {xpath: '//*[contains(@class, "sdc-icon-mobile-close-light")]'} }
+      page_object(:blur_element) { {xpath: '//*[text()="Printing On:"]'} }
 
       def printing_on
         PrintingOn.new
       end
+
       def printer
         Printer.new
       end

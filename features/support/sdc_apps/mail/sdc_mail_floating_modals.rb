@@ -6,7 +6,8 @@ module SdcMail
       page_object(:drop_down) { { xpath: '//input[contains(@name, "printers")]/parent::*/parent::*/div[contains(@id, "trigger-picker")]' } }
 
       def selection_element(name: :selection, value: 'factory')
-        page_object(name) { { xpath: "//li[text()='#{value}']" } }
+        # page_object(name) { { xpath: "//li[text()='#{value}']" } }
+        page_object(name) { { xpath: "//li[contains(text(), '#{value}')]" } }
       end
     end
 
