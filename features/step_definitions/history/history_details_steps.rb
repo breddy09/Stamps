@@ -54,28 +54,56 @@ Then /^expect history filter panel search results tab is present$/ do
 end
 
 Then /^expect recipient column include (.*)$/ do |str|
-  history_search =  SdcHistory.filter_panel.search_results
-  search_count = history_search.search_results_count.text_value.to_i
-  p search_count
+  history_search_results = SdcHistory.filter_panel.search_results
+search_count = history_search_results.search_results_count.text_value.to_i
+p search_count
+j =1
+while j<=10
+  SdcLogger.info "value of j is #{j}"
+  recipient_name = Array.new
   i = 1
-  tracking_number_hardcoded=TestData.hash[:tracking_number]
-  p     tracking_number_hardcoded
-  while  i<= search_count
+  SdcLogger.info "value of i is #{i}"
+
+  while i <= 10
     p i
-    recipient = SdcHistory.grid.grid_column(:recipient).text_at_row(i)
-    p recipient
-    expect(recipient).to include(str)
-    #tracking_number_hardcoded = '9405511899564363066857'
-    tracking_number = SdcHistory.grid.grid_column(:tracking_number).text_at_row(i).to_i
-    SdcLogger.info "row tracking number is #{tracking_number}"
-    if tracking_number_hardcoded.equal?(tracking_number)
-      SdcLogger.info "USPS carrier is displayed for the newly added tracking number #{TestData.hash[:tracking_number]}"
-      break
-    else
-      i = i+1
-    end
+    recipient_name[i] = SdcHistory.grid.grid_column(:recipient).text_at_row(i)
+    tmp = recipient_name[i]
+    SdcLogger.info "value of recipient_name[i] is: #{recipient_name[i]}"
+    SdcLogger.info "value of tmp is: #{tmp}}"
+    p 'next'
+    p str
+    p expect(tmp).to include(str)
+    expect(recipient_name[i].include? str).to be(true)
+
+    tracking_id = SdcHistory.grid.grid_column(:tracking_number).text_at_row(i)
+    SdcLogger.info "value of  tracking_id[i] is: #{ tracking_id}"
   end
+  j = j+1
 end
+end 
+  #old code
+#   history_search =  SdcHistory.filter_panel.search_results
+#   search_count = history_search.search_results_count.text_value.to_i
+#   p search_count
+#   i = 1
+#   tracking_number_hardcoded=TestData.hash[:tracking_number]
+#   p     tracking_number_hardcoded
+#   while  i<= search_count
+#     p i
+#     recipient = SdcHistory.grid.grid_column(:recipient).text_at_row(i)
+#     p recipient
+#     expect(recipient).to include(str)
+#     #tracking_number_hardcoded = '9405511899564363066857'
+#     tracking_number = SdcHistory.grid.grid_column(:tracking_number).text_at_row(i).to_i
+#     SdcLogger.info "row tracking number is #{tracking_number}"
+#     if tracking_number_hardcoded.equal?(tracking_number)
+#       SdcLogger.info "USPS carrier is displayed for the newly added tracking number #{TestData.hash[:tracking_number]}"
+#       break
+#     else
+#       i = i+1
+#     end
+#   end
+# end
 
 Then /^expect history pagination works$/ do
   history_gird_pagination = SdcHistory.pagination.history_pagination
