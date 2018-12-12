@@ -18,7 +18,7 @@ Feature:  History : Verify "Cost code" edit works
     Then expect postage message panel tracking label is Postage was sent to your printer. Your Tracking Number is
     Then save tracking number on print form message panel
     Then navigate to History
-    Then set search prints to newly added tracking number on history filter panel
+    Then set search prints tracking number on history filter panel to newly added
     Then click search icon on history filter panel
     Then check row for saved tracking number on history grid
     Then click cost codes button on history toolbar

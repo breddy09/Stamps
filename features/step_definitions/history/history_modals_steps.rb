@@ -439,13 +439,14 @@ end
 
 Then /^click save button on change cost code modal$/ do
   SdcHistory.modals.change_cost_code.save.click
+  step 'expect change cost code modal on history is not present'
 end
 
 Then /^select new cost code on change cost code modal (?:to existing|(.*))$/ do |str|
-    cost_code = SdcHistory.modals.change_cost_code.new_cost_code
-    cost_code.drop_down.click
-    count=cost_code.costcode_list.count
-    str||=cost_code.costcode_random(Random.rand(2..count-1)).text_value
+  cost_code = SdcHistory.modals.change_cost_code.new_cost_code
+  cost_code.drop_down.click
+  count = cost_code.costcode_list.count
+  str ||= cost_code.costcode_random(Random.rand(2..count-1)).text_value
   unless cost_code.text_field.text_value.include?(str)
     cost_code.drop_down.click
     cost_code.selection(str)
@@ -455,7 +456,7 @@ Then /^select new cost code on change cost code modal (?:to existing|(.*))$/ do 
     expect(cost_code.text_field.text_value).to include(str)
   end
   step "expect new cost code on change cost code modal is #{str}"
-  TestData.hash[:cost_code]=str
+  TestData.hash[:cost_code] = str
 end
 
 Then /^expect new cost code on change cost code modal is (.*)$/ do |str|

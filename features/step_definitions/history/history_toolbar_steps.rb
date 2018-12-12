@@ -162,6 +162,7 @@ end
 Then /^click change cost codes button on history toolbar cost codes$/ do
   SdcHistory.toolbar.cost_codes.change_cost_code.wait_until_present(timeout: 5)
   SdcHistory.toolbar.cost_codes.change_cost_code.click
+  step 'expect change cost code modal on history is present'
 end
 
 Then /^click add\/edit cost codes button on history toolbar cost codes$/ do

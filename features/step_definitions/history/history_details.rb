@@ -10,9 +10,9 @@ Then /^expect value of cost code in history print details panel is (?:correct|(.
 end
 
 Then /^expect file claim link on the transaction detail panel is available$/ do
-history_detail=SdcHistory.details
-history_detail.file_claim.flash
-expect(history_detail.file_claim.present?).to be (true)
+  history_detail=SdcHistory.details
+  history_detail.file_claim.flash
+  expect(history_detail.file_claim.present?).to be (true)
 end
 
 Then /^expect file claim link on the transaction detail panel is not available$/ do
