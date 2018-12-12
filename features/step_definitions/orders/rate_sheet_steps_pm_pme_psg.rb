@@ -51,6 +51,12 @@ Then /^run rate sheet (.*) in Zone (\d+)$/ do |param_sheet, zone|
       TestData.hash[:result_sheet].row(0)[row_number] = 'weight_lb'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
     end
+    if column_name == 'weight_oz'
+      @rate_sheet_columns[:weight_oz] = row_number
+      TestData.hash[:result_sheet_columns][:weight_oz] = row_number
+      TestData.hash[:result_sheet].row(0)[row_number] = 'weight_oz'
+      TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
+    end
     if column_name == 'zone1'
       @rate_sheet_columns[:zone1] = row_number
       TestData.hash[:result_sheet_columns][:zone] = 1
@@ -190,9 +196,9 @@ Then /^run rate sheet (.*) in Zone (\d+)$/ do |param_sheet, zone|
   # Verify all columns exists in parameter sheet
   missing_column = false
   # noinspection RubyScope
-  if @rate_sheet_columns[:weight_lb].nil?
+  if @rate_sheet_columns[:weight_lb].nil? && @rate_sheet_columns[:weight_oz].nil?
     missing_column = true
-    error_msg = "Column weight_lb does not exist in parameter sheet"
+    error_msg = "Column weight_lb and weight_oz does not exist in parameter sheet"
   elsif @rate_sheet_columns[:zone1].nil?
     missing_column = true
     error_msg = "Column zone1 does not exist in parameter sheet"
@@ -342,33 +348,48 @@ Then /^run rate sheet (.*) in Zone (\d+)$/ do |param_sheet, zone|
           TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:ship_to_domestic]] = TestData.hash[:address]  if SdcGlobal.web_app == :mail
 
           # Set ounces to 0
-          step "set order details ounces to 0" if SdcGlobal.web_app == :orders
-          step "set print form ounces to 0" if SdcGlobal.web_app == :mail
+          # step "set order details ounces to 0" if SdcGlobal.web_app == :orders
+          # step "set print form ounces to 0" if SdcGlobal.web_app == :mail
 
           # Set weight per spreadsheet
           #row[@rate_sheet_columns[:weight_lb]].should_not be nil
-          weight_lb = row[@rate_sheet_columns[:weight_lb]]
+          weight_lb = weight_oz = 0
+
+          if @rate_sheet_columns[:weight_lb]
+            if TestHelper.is_whole_number?(weight_lb)
+              weight_lb = row[@rate_sheet_columns[:weight_lb]].to_i
+            else
+              weight_oz = Measured::Weight.new(weight_lb, "lb").convert_to("oz").value.to_i
+            end
+          end
+
+          weight_oz += row[@rate_sheet_columns[:weight_oz]].to_i if @rate_sheet_columns[:weight_oz]
+
           SdcLogger.info "#{"#" * 10} "
-          SdcLogger.info "#{"#" * 10} Weight: #{weight_lb}"
+          SdcLogger.info "#{"#" * 10} Weight: #{weight_lb} lb #{weight_oz} oz"
           SdcLogger.info "#{"#" * 10} Price: #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:zone]]}"
           SdcLogger.info "#{"#" * 10} "
           SdcLogger.info "#{"#" * 50}"
 
-          if TestHelper.is_whole_number?(weight_lb)
-            weight_lb = weight_lb.to_i
-            TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight_lb]] = weight_lb
-            TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight]] = "#{weight_lb} lb."
-            step "set order details pounds to #{weight_lb}"  if SdcGlobal.web_app == :orders
-            step "set print form pounds to #{weight_lb} by arrows"  if SdcGlobal.web_app == :mail
-          else
-            step 'set order details pounds to 0'  if SdcGlobal.web_app == :orders
-            step 'set print form pounds to 0 by arrows'  if SdcGlobal.web_app == :mail
-            weight_oz = Measured::Weight.new(weight_lb, "lb").convert_to("oz").value.to_f
-            TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight]] = "#{weight_oz} oz."
-            TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight_lb]] = weight_oz
-            step "set order details ounces to #{weight_oz} by arrows"  if SdcGlobal.web_app == :orders
-            step "set print form ounces to #{weight_oz}"  if SdcGlobal.web_app == :mail
-          end
+
+          step "set print form weight to lbs #{weight_lb} oz #{weight_oz} by arrows"
+          TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight]] = "#{weight_lb} lb #{weight_oz} oz"
+
+          # if TestHelper.is_whole_number?(weight_lb)
+          #   weight_lb = weight_lb.to_i
+          #   TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight_lb]] = weight_lb
+          #   TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight]] = "#{weight_lb} lb."
+          #   step "set order details pounds to #{weight_lb}"  if SdcGlobal.web_app == :orders
+          #   step "set print form pounds to #{weight_lb} by arrows"  if SdcGlobal.web_app == :mail
+          # else
+          #   step 'set order details pounds to 0'  if SdcGlobal.web_app == :orders
+          #   step 'set print form pounds to 0 by arrows'  if SdcGlobal.web_app == :mail
+          #   weight_oz = Measured::Weight.new(weight_lb, "lb").convert_to("oz").value.to_f
+          #   TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight]] = "#{weight_oz} oz."
+          #   TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight_lb]] = weight_oz
+          #   step "set order details ounces to #{weight_oz} by arrows"  if SdcGlobal.web_app == :orders
+          #   step "set print form ounces to #{weight_oz}"  if SdcGlobal.web_app == :mail
+          # end
           sleep(0.025)
 
           # Set Service

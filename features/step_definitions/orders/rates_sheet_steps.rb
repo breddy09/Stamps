@@ -9,7 +9,7 @@ Then /^excel rate sheet is loaded$/ do
   rate_file = data_for(:rates_test, {})['rate_file']
   source_file = "#{data_for(:rates_test, {})['source_dir']}\\#{rate_file}"
   @rate_file_loc = "#{data_for(:rates_test, {})['test_dir']}\\#{rate_file}"
-  FileUtils.cp(source_file, @rate_file_loc) if !File.file?(@rate_file_loc) || File.mtime(source_file) > File.mtime(@rate_file_loc)
+  # FileUtils.cp(source_file, @rate_file_loc) if !File.file?(@rate_file_loc) || File.mtime(source_file) > File.mtime(@rate_file_loc)
 
   SdcLogger.info "Rate File: #{@rate_file_loc}"
   expect("Rate File: #{@rate_file_loc}").to eql "Rate File does not exist!" unless File.exist?(@rate_file_loc)

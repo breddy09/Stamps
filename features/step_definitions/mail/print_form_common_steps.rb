@@ -42,6 +42,11 @@ Then /^set print form pounds to (.+)$/ do |str|
   step 'blur out on print form'
 end
 
+Then /^set print form weight to lbs (\d+) oz (\d+) by arrows$/ do |lbs, oz|
+  step "set print form pounds to #{lbs} by arrows"
+  step "set print form ounces to #{oz} by arrows"
+end
+
 Then /^set print form pounds to (\d+) by arrows$/ do |lbs|
   weight = SdcMail.print_form.weight
   iterations = lbs.to_i - weight.lbs.text_value.to_i
@@ -49,6 +54,16 @@ Then /^set print form pounds to (\d+) by arrows$/ do |lbs|
   iterations.abs.times do weight.lbs.decrement.click end if iterations < 0
   step "expect print form pounds is #{lbs}"
   TestData.hash[:lbs] = lbs
+  step 'blur out on print form'
+end
+
+Then /^set print form ounces to (.+) by arrows$/ do |oz|
+  weight = SdcMail.print_form.weight
+  iterations = oz.to_i - weight.oz.text_value.to_i
+  iterations.abs.times do weight.oz.increment.click end if iterations > 0
+  iterations.abs.times do weight.oz.decrement.click end if iterations < 0
+  step "expect print form ounces is #{oz}"
+  TestData.hash[:oz] = oz
   step 'blur out on print form'
 end
 

@@ -399,7 +399,6 @@ Then /^set order details ounces to (.+) by arrows$/ do |val|
   step "expect order details ounces is #{val.to_i}"
   TestData.hash[:ounces] = oz.text_value
   step 'save order details data'
-
 end
 
 Then /^set order details length to (\d*)$/ do |str|

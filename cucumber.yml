@@ -1,5 +1,5 @@
 
-default: --backtrace --profile local_browser
+default: --backtrace --profile alex_rates
 cuke_reports: --format json --out report.json --backtrace -f pretty -r features --format pretty --format html --out reports
 
 # tests: bvt_shipstation_updates_domestic
@@ -26,7 +26,7 @@ alex_history:  --tags @container_label_return_address_selected BROWSER=ff URL=sc
 alex_mail:  --tags @dropdown_tooltips BROWSER=firefox URL=qasc USR=abqascsas1 PW=password1 new_framework=true  --guess LOG_LEVEL=info HEALTHCHECK=true
 alex_contacts:  --tags @validate_contacts_without_name BROWSER=firefox URL=stg USR=abqastsas1 PW=password1 new_framework=true  --guess LOG_LEVEL=info HEALTHCHECK=true
 alex_regress:  --tags @bvt_shipping_address_management BROWSER=ff WEB_APP=orders URL=cc USR=abqacc10 PW=password1  --guess LOG_LEVEL=info HEALTHCHECK=false MAX_WINDOW=false
-alex_rates:  --tags @rates_orders_pme_comm_plus_zone_5 BROWSER=ff URL=stg USR=abqast2 PW=password1  --guess LOG_LEVEL=info HEALTHCHECK=false
+alex_rates:  --tags @rates_mail_fcps_comm_base_zone_1 BROWSER=ff URL=stg USR=abqast4 PW=password1  --guess LOG_LEVEL=info HEALTHCHECK=false
 alex_rates_pmi:  --tags @rates_mail_pmei_comm_base_group_2 BROWSER=ff URL=stg USR=abqast5 PW=password1  --guess LOG_LEVEL=info HEALTHCHECK=false MAX_WINDOW=false
 alex_orders:  --tags @bvt_orders_print_all BROWSER=ff URL=sc USR=wbap-631 PW=pass111  PRINTER=factory --guess LOG_LEVEL=info HEALTHCHECK=false
 alex_test:  --tags @bvt_shipping_address_management BROWSER=ff URL=qacc USR=abqacc10 PW=password1  --guess LOG_LEVEL=info HEALTHCHECK=false MAX_WINDOW=false
@@ -110,6 +110,7 @@ rates_mail_pme_comm_plus_zone_6: --tags @rates_mail_pme_comm_plus_zone_6 --guess
 rates_mail_pme_comm_plus_zone_7: --tags @rates_mail_pme_comm_plus_zone_7 --guess LOG_LEVEL=info
 rates_mail_pme_comm_plus_zone_8: --tags @rates_mail_pme_comm_plus_zone_8 --guess LOG_LEVEL=info
 rates_mail_pme_comm_plus_zone_9: --tags @rates_mail_pme_comm_plus_zone_9 --guess LOG_LEVEL=info
+rates_mail_fcps_comm_base_zone_1: --tags @rates_mail_fcps_comm_base_zone_1 --guess LOG_LEVEL=info
 rates_mail_pm_comm_base_zone_1: --tags @rates_mail_pm_comm_base_zone_1 --guess LOG_LEVEL=info
 rates_mail_pm_comm_base_zone_2: --tags @rates_mail_pm_comm_base_zone_2 --guess LOG_LEVEL=info
 rates_mail_pm_comm_base_zone_3: --tags @rates_mail_pm_comm_base_zone_3 --guess LOG_LEVEL=info

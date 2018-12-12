@@ -105,6 +105,8 @@ web_dev_env:
 
 rates_test:
   rate_file: rate_file.xls
+  rates_fcps_comm_base: FCPS Comm Base
+  rates_fcps_comm_plus: FCPS Comm Plus
   rates_pme_comm_base: PME Comm Base
   rates_pme_comm_plus: PME Comm Plus
   rates_pm_comm_base: PM Comm Base
