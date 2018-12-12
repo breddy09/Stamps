@@ -502,8 +502,11 @@ mail_bvt_stamps: --tags @mail_bvt_stamps --guess PRINTER=factory
 mail_bvt_international: --tags @mail_bvt_international --guess
 mail_reset: --tags @mail_reset --guess
 mail_bvt_ui_validation: --tags @mail_bvt_ui_validation --guess
-bvt_mail_piece_validation: --tags @bvt_mail_piece_validation --guess PRINTER=factory
+mail_bvt_toolbar_settings: --tags @mail_bvt_toolbar_settings --guess
 mail_bvt_advanced_options: --tags @mail_bvt_advanced_options --guess
+mail_bvt_certified_mail: --tags @mail_bvt_certified_mail --guess
+mail_bvt_shipping_label_paper: --tags @mail_bvt_shipping_label_paper -- guess LOG_LEVEL=info
+bvt_mail_piece_validation: --tags @bvt_mail_piece_validation --guess PRINTER=factory
 
 dev_mail_authentication: --tags @mail_authentication --guess HEALTHCHECK=false
 dev_mail_bvt_address_cleansing: --tags @mail_bvt_address_cleansing --guess HEALTHCHECK=false
@@ -608,7 +611,6 @@ ewwr_session_state_data_validation: --tags @ewwr_session_state_data_validation -
 ewwr_security_question_page_validation: --tags @ewwr_security_question_page_validation --guess  LOG_LEVEL=info
 ewwr_header_footer_validation: --tags @ewwr_header_footer_validation --guess  LOG_LEVEL=info
 swwr_create_your_account_page_validation: --tags @swwr_create_your_account_page_validation --guess LOG_LEVEL=info
-mail_bvt_shipping_label_paper: --tags @mail_bvt_shipping_label_paper -- guess LOG_LEVEL=info
 mail_print_on_lov: --tags @mail_print_on_lov -- guess LOG_LEVEL=info
 
 
@@ -668,11 +670,24 @@ bug_postal_code_not_added_contact_details: --tags @bug_postal_code_not_added_con
 multiple_shipto_contacts_view: --tags @multiple_shipto_contacts_view --guess LOG_LEVEL=info
 contacts_print_postage_single_from_details: --tags @contacts_print_postage_single_from_details --guess LOG_LEVEL=info
 contacts_print_postage_multiple_from_top_nav: --tags @contacts_print_postage_multiple_from_top_nav --guess LOG_LEVEL=info
+dropdown_tooltips:  --tags @dropdown_tooltips --guess LOG_LEVEL=info
 
-aloha_history: --tags @transaction_address_6lines URL=stg LOG_LEVEL=info HEALTHCHECK=false BROWSER=gc MAX_WINDOW=false USR=tcs_core007 PW=password1
-history_export:  --tags @history_export --guess LOG_LEVEL=info
-file_insurance_claim:  --tags @file_insurance_claim --guess LOG_LEVEL=info
 create_scan_form: --tags @create_scan_form --guess LOG_LEVEL=info
 transaction_address_4lines: --tags @transaction_address_4lines --guess LOG_LEVEL=info
 transaction_address_5lines: --tags @transaction_address_5lines --guess LOG_LEVEL=info
 transaction_address_6lines: --tags @transaction_address_6lines --guess LOG_LEVEL=info
+
+transaction_details_email_tracking_info: --tags @transaction_details_email_tracking_info --guess LOG_LEVEL=info
+history_change_costcode: --tags @history_change_costcode --guess LOG_LEVEL=info
+file_claim_link_for_print_with_sdc_insurance: --tags @file_claim_link_for_print_with_sdc_insurance --guess LOG_LEVEL=info
+file_claim_link_for_print_with_extra_services_usps_insurance: --tags @file_claim_link_for_print_with_extra_services_usps_insurance --guess LOG_LEVEL=info
+history_details_file_ins_claim_print_receipt: --tags @history_details_file_ins_claim_print_receipt --guess LOG_LEVEL=info
+history_details_file_ins_claim_email_tracking_info: --tags @history_details_file_ins_claim_email_tracking_info --guess LOG_LEVEL=info
+history_details_header_file_ins_claim_email_tracking_info: --tags @history_details_header_file_ins_claim_email_tracking_info --guess LOG_LEVEL=info
+
+aloha_history: --tags @transaction_address_6lines URL=stg LOG_LEVEL=info HEALTHCHECK=false BROWSER=gc MAX_WINDOW=false USR=tcs_core007 PW=password1
+history_export:  --tags @history_export --guess LOG_LEVEL=info
+file_insurance_claim:  --tags @file_insurance_claim --guess LOG_LEVEL=info
+
+
+
