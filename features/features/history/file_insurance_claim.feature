@@ -139,11 +139,11 @@ Feature:  History :File an Insurance Claim
     Then expect postage message panel tracking label is Postage was sent to your printer. Your Tracking Number is
     Then save tracking number on print form message panel
     Then hover on navigation history then select File an Insurance Claim
-    Then set search prints to newly added tracking number on history filter panel
+    Then search contacts from contacts filter panel with name newly added
     Then click search icon on history filter panel
     Then check row for saved tracking number on history grid
     Then click transaction details header menu dropdown
-    Then expect email tracking info link on the transaction detail menu dropdown is available
+    Then expect email tracking info link on the transaction detail menu dropdown is present
     Then sign out
 
 
