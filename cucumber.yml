@@ -1,13 +1,11 @@
 
 default: --backtrace --profile local_browser
-
-
 cuke_reports: --format json --out report.json --backtrace -f pretty -r features --format pretty --format html --out reports
 
 # tests: bvt_shipstation_updates_domestic
+local_browser: --tags @authentication URL=stg BROWSER=gc MAX_WINDOW=false USR=stgmacgc6 PW=pass111 PRINTER=factory LOG_LEVEL=info WINDOW_SIZE=1300x900
 #local_mobile: --tags @mail_authentication_mobile URL=stg USR=sauce0020 PW=pass111 SELENIUM_DEVICE='iPhone X 11.3' SELENIUM_PLATFORM=iOS SELENIUM_BROWSER=Safari SELENIUM_VERSION=11.3 LOG_LEVEL=debug
 #local_mobile: --tags @multiple_contact_email_not_required URL=cc USR=bvtsauce00019cc PW=pass111 SELENIUM_DEVICE='iPhone X 11.3' SELENIUM_PLATFORM=iOS SELENIUM_BROWSER=Safari SELENIUM_VERSION=11.3 LOG_LEVEL=debug
-local_browser: --tags @history_details_file_ins_claim_print_receipt URL=stg BROWSER=gc MAX_WINDOW=false USR=stgmacgc6 PW=pass111 PRINTER=factory LOG_LEVEL=info WINDOW_SIZE=1300x900
 #local_browser: --tags @mail_bvt_international --guess URL=cc BROWSER=gc MAX_WINDOW=false USR=bvtccosxgc9 PW=pass111 PRINTER=factory LOG_LEVEL=info #WINDOW_SIZE=1300x900
 #local_browser: --tags @bvt_shipstation_updates_domestic URL=sc BROWSER=ff MAX_WINDOW=false USR=scsejsglwa PW=pass111 PRINTER=factory LOG_LEVEL=info
 sauce_mobile: --tags @mail_authentication_mobile --guess URL=stg USR=sauce0020 PW=pass111 SELENIUM_DEVICE='iPhone X Simulator' SELENIUM_PLATFORM=iOS SELENIUM_BROWSER=Safari SELENIUM_VERSION=12.0 TUNNEL_IDENTIFIER=rob LOG_LEVEL=info
@@ -20,12 +18,11 @@ local_aloha: --tags @rates_mail_pme_comm_base_zone_2 or @rates_mail_pme_comm_bas
 local_aloha1: --tags @rates_mail_pmei_comm_base_group_1 or @rates_mail_pmei_comm_base_group_2 or @rates_mail_pmei_comm_base_group_3 or @rates_mail_pmei_comm_base_group_4 or @rates_mail_pmei_comm_base_group_5 URL=qasc BROWSER=gc USR=bvtqascw10gc20 PW=passs111 PRINTER=factory LOG_LEVEL=info WINDOW_SIZE=1300x900
 
 kaushal_cc: --tags @ewwr_security_question_page_validation URL=stg BROWSER=gc #USR=qawebdevelopment@stamps.com PW=password1
-
 web_apps_dev: --tags @bvt_new_order USR=default PW=pass111 URL=tcarney-win7-3.corp.stamps.com --guess BROWSER=ff MAX_WINDOW=false
 eli_dev: --tags @sdc_contacts_print_to_mail --guess KJENKINS=false WEB_APP=mail URL=cc BROWSER=ff USR=hal9000qa12 PW=password1 PRINTER=factory
 ray_dev: --tags @rates_parcel_select_ground --guess JENKINS=false URL=stg BROWSER=ff USR=default PW=pass111
 sap: --tags @registration_orders WEB_APP=registration URL=cc --guess BROWSER=ff MAX_WINDOW=false
-alex_history:  --tags @transaction_details_email_tracking_info BROWSER=ff URL=stg USR=abqastsas1 PW=password1 new_framework=true  --guess LOG_LEVEL=info HEALTHCHECK=true
+alex_history:  --tags @container_label_return_address_selected BROWSER=ff URL=sc USR=abqascsas4 PW=password1 new_framework=true  --guess LOG_LEVEL=info HEALTHCHECK=true
 alex_mail:  --tags @dropdown_tooltips BROWSER=firefox URL=qasc USR=abqascsas1 PW=password1 new_framework=true  --guess LOG_LEVEL=info HEALTHCHECK=true
 alex_contacts:  --tags @validate_contacts_without_name BROWSER=firefox URL=stg USR=abqastsas1 PW=password1 new_framework=true  --guess LOG_LEVEL=info HEALTHCHECK=true
 alex_regress:  --tags @bvt_shipping_address_management BROWSER=ff WEB_APP=orders URL=cc USR=abqacc10 PW=password1  --guess LOG_LEVEL=info HEALTHCHECK=false MAX_WINDOW=false

@@ -21,8 +21,6 @@ Then /^click print button on mail print modal$/ do
 end
 
 Then /^set mail print modal printer ?(?:|(.*))$/ do |str|
-  #step "expect orders print modal is present"
-  #step "orders print modal printer dropdown is present"
   expect(TestData.hash[:printer] = (str.nil?) ? TestSession.env.printer : str).to_not be_nil, "PRINTER parameter is not defined. Printing tests must define PRINTER value either in cucumber.yml file or in Jenkins."
   if TestData.hash[:printer].include?('\\') #validate printer format
     expect(TestData.hash[:printer]).to match(/\\.+\.*/)
@@ -63,6 +61,10 @@ end
 Then /^Mail: in Print modal, Close$/ do
   pending
   # stamps.mail.mail_toolbar.mail_print_modal.x_button.click
+end
+
+Then /^expect print modal on mail is present$/ do
+  expect(SdcMail.modals.print.title).to be_present
 end
 
 Then /^expect print modal on mail is not present$/ do
