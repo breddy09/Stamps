@@ -3031,6 +3031,11 @@ Cucumber::Rake::Task.new(:mail_bvt_extra_services) do |t|
   t.cucumber_opts = "-p cuke_reports"
 end
 
+Cucumber::Rake::Task.new(:mail_bvt_extra_services_paper) do |t|
+  t.profile = 'mail_bvt_extra_services_paper'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
 Cucumber::Rake::Task.new(:mail_bvt_purchasing) do |t|
   t.profile = 'mail_bvt_purchasing'
   t.cucumber_opts = "-p cuke_reports"
