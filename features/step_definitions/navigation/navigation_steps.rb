@@ -82,6 +82,7 @@ end
 
 Then /^buy mail confirm transction: click confirm button$/ do
   #pending
+  SdcWebsite.navigation.balance.confirm_transaction.confirm.safe_wait_until_present(timeout:15)
   SdcWebsite.navigation.balance.confirm_transaction.confirm.click
   SdcWebsite.navigation.balance.processing_purchase.title.wait_while_present(timeout: 15)
   expect(SdcWebsite.navigation.balance.transaction_complete.title).to be_present
