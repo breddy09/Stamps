@@ -20,6 +20,7 @@ end
 
 Then /^check row for saved tracking number on history grid$/ do
   expect(TestData.hash[:tracking_number]).to be_truthy
+  expect(TestData.hash[:tracking_number].size).to be > 12
   tracking = SdcHistory.grid.grid_column(:tracking_number)
   row_number = tracking.row_num(TestData.hash[:tracking_number])
   checkbox = SdcHistory.grid.grid_column(:checkbox)
