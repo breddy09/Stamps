@@ -25,7 +25,7 @@ Feature:  History regression
     Then click continue on confirm print modal
     Then confirm print on gif printing dialog
     Then close your international label modal
-
+
     Then expect postage message panel tracking label is Postage was sent to your printer. Your Tracking Number is
     Then save tracking number on print form message panel
     Then navigate to History
