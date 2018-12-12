@@ -398,7 +398,7 @@ Feature:  BVT tests for Orders
     Then set bulk update pounds to 0
     Then set bulk update ounces to 3
     Then click bulk update update order button
-    Then wait until orders available
+    Then wait until orders present
 
 #  # Uncheck both orders
     Then uncheck orders grid row 1

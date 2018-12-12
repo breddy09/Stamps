@@ -17,11 +17,11 @@ Feature:  Contacts BVT - Contacts Filter Panel
     Then click on collapse button of contacts left navigation
     Then click on expand button of contacts left navigation
 	#Contacts Filter Panel - SEARCH BAR
-    Then expect search bar is available on the contacts left navigation panel
+    Then expect search bar is present on the contacts left navigation panel
    	#Contacts Filter Panel	Search Contact : Search for exsisting contact based on name
     Then set search text on contacts left navigation search bar to aloha
     Then click search button on contacts left navigation search bar
-    Then expect search results is available on the contacts left navigation panel
+    Then expect search results is present on the contacts left navigation panel
     Then expect contacts with Name containing the value aloha are retrieved in the grid
 	#Contacts Filter Panel	Search Contact : Search for non exsisting contact
     Then set search text on contacts left navigation search bar to Non Exsisting
@@ -29,20 +29,20 @@ Feature:  Contacts BVT - Contacts Filter Panel
     Then expect contacts grid message for searched contact is No contacts found.
     Then click remove button on search results of contacts filter
 	#Contacts Filter Panel - SELECTED Filter
-    Then expect selected filter on the contacts left navigation panel is available
+    Then expect selected filter on the contacts left navigation panel is present
     Then fetch count of selected contacts
 	#Contacts Filter Panel - ALL CONTACTS Filter and its count
-    Then expect all contacts filter is available on the contacts left navigation panel
+    Then expect all contacts filter is present on the contacts left navigation panel
     Then fetch total count of all contacts
    	#Contacts Filter Panel - GROUPS Filter - expand , fetch each group count , collapse
-    Then expect groups filter is available on the contacts left navigation panel
+    Then expect groups filter is present on the contacts left navigation panel
     Then click on groups expand button of contacts left navigation
-    Then fetch total against each group available
+    Then fetch total against each group present
     Then click on groups collapse button of contacts left navigation
 	#Contacts Filter Panel - COST CODES Filter - expand , fetch each cost code count , collpase
-    Then expect cost codes filter is available on the contacts left navigation panel
+    Then expect cost codes filter is present on the contacts left navigation panel
     Then click on cost codes expand button of contacts left navigation
-    Then fetch total against each cost code available
+    Then fetch total against each cost code present
     Then click on cost codes collapse button of contacts left navigation
     Then sign out
 
@@ -83,7 +83,7 @@ Feature:  Contacts BVT - Contacts Filter Panel
     Then click on save button of add groups pop up window
     Then expect error message is not displayed on add groups pop up window
     Then expect manage groups pop up is displayed
-    Then expect group name added is available in the manage group pop up table
+    Then expect group name added is present in the manage group pop up table
     # Groups Left Navigation settings Button - Edit and delete from (manage groups)
     Then click existing row in manage group table
     Then click edit button on manage groups window toolbar
@@ -97,12 +97,12 @@ Feature:  Contacts BVT - Contacts Filter Panel
     Then click on save button of edit groups pop up
     Then expect error message is not displayed on edit groups pop up window
     Then expect manage groups pop up is displayed
-    Then expect group name added is available in the manage group pop up table
+    Then expect group name added is present in the manage group pop up table
     Then click existing row in manage group table
     Then click delete button on manage groups window toolbar
     Then click on yes button of delete groups pop up
     Then expect manage groups pop up is displayed
-    Then expect group name deleted is not available in the manage group pop up table
+    Then expect group name deleted is not present in the manage group pop up table
 
   @sdc_contacts_left_nav_add_edit_cost_code
   Scenario: Contacts BVT Scenario 1: Add/Edit cost code from contact left navigation
@@ -134,7 +134,7 @@ Feature:  Contacts BVT - Contacts Filter Panel
     Then sign-in to orders
     Then navigate to Contacts
     #Selected filter - Default
-    Then expect selected filter on the contacts left navigation panel is available
+    Then expect selected filter on the contacts left navigation panel is present
     Then expect count on selected filter is 0
     #Selected filter - Empty State
     Then click on selected filter of contacts left navigation panel

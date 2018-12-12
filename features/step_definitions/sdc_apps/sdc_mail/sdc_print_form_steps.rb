@@ -175,7 +175,7 @@ Then /^expect tooltip of contact (.*) is correct$/ do |name|
 
 end
 
-Then /^expect remove button is available for contact (.*)$/ do |name|
+Then /^expect remove button is present for contact (.*)$/ do |name|
   contact_name = SdcMail.modals.add_address.contacts_view
   contact_count = contact_name.contacts_list.count
   #SdcLogger.info "Total no of contacts to hover are :#{contact_count}"

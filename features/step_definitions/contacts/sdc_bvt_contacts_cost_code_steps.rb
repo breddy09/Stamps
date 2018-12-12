@@ -183,7 +183,7 @@ Then /^click on cost codes collapse button of contacts left navigation$/ do
   expect(left_cost_code.cost_codes_expand_button.present?).to be(true)
 end
 
-Then /^fetch total against each cost code available$/ do
+Then /^fetch total against each cost code present$/ do
   left_nav_costcode = SdcContacts.contacts_filter.cost_codes
   row_count = left_nav_costcode.total_costcodes.count
   SdcLogger.info "Total no of cost codes : #{row_count.to_s}"

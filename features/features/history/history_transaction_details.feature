@@ -21,7 +21,7 @@ Feature:  History Transaction Details
     Then set search prints tracking number on history filter panel to newly added
     Then click search icon on history filter panel
     Then check row for saved tracking number on history grid
-    Then expect email tracking info link on the transaction detail panel is available
+    Then expect email tracking info link on the transaction detail panel is present
     Then expect email tracking info link on the transaction detail panel is enabled
     Then click email tracking info link on transaction detail panel
     Then sign out

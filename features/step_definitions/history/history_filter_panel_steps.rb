@@ -38,7 +38,7 @@ Then /^expect default selected value on date printed history filter panel is Pas
   expect(date_printed.past_30_days.checked?).to be (true)
 end
 
-Then /^expect search results is available on the history filter panel$/ do
+Then /^expect search results is present on the history filter panel$/ do
   search_results = SdcHistory.filter_panel.search_results
   search_results.label.safe_wait_until_present(timeout: 15)
   expect(search_results.filter.present?).to be (true)

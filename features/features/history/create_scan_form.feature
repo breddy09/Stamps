@@ -5,7 +5,7 @@ Feature:  History :Create Scan Form
 
 
   @create_scan_form
-  Scenario: Verify File Insurance Claim Page loads and Date Selections Drop Down menu is available
+  Scenario: Verify File Insurance Claim Page loads and Date Selections Drop Down menu is present
     Then sign-in to orders
     Then hover on navigation history then select Create a SCAN Form
     Then expect date printed on history filter panel is collapsed

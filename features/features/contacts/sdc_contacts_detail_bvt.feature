@@ -7,7 +7,7 @@ Feature:  Contacts BVT - Contacts Details
   Scenario: Delete Contact Details Menu Scenario 1:Delete single contacts from details panel
     Then sign-in to orders
     Then navigate to Contacts
-    Then delete all available contacts with the value RuthAnand
+    Then delete all present contacts with the value RuthAnand
     Then expect count of contact search results is 0
     Then click remove button on search results of contacts filter
     Then click add button on contacts toolbar
@@ -30,7 +30,7 @@ Feature:  Contacts BVT - Contacts Details
   Scenario: Delete Contact Details Menu Scenario 2 :Delete multiple contacts from Details Panel
     Then sign-in to orders
     Then navigate to Contacts
-    Then delete all available contacts with the value Jon
+    Then delete all present contacts with the value Jon
     Then expect count of contact search results is 0
     Then click remove button on search results of contacts filter
     Then click add button on contacts toolbar
@@ -83,7 +83,7 @@ Feature:  Contacts BVT - Contacts Details
   Scenario: Contacts Details Add Name Scenario 1 :Add/Edit Single Name in Contact Details panel and verify Grid is updated correctly
     Then sign-in to orders
     Then navigate to Contacts
-    Then delete all available contacts with the value  Aloha Mich
+    Then delete all present contacts with the value  Aloha Mich
     Then expect count of contact search results is 0
     Then click remove button on search results of contacts filter
     Then click add button on contacts toolbar
@@ -102,7 +102,7 @@ Feature:  Contacts BVT - Contacts Details
   Scenario: Contacts Details Add Name Scenario 2 :Add/Edit All the Name fields(prefix, firstname, middlename, lastname, suffix) in Contact Details panel and verify Grid is updated correctly
     Then sign-in to orders
     Then navigate to Contacts
-    Then delete all available contacts with the value First
+    Then delete all present contacts with the value First
     Then expect count of contact search results is 0
     Then click remove button on search results of contacts filter
     Then click add button on contacts toolbar
@@ -129,7 +129,7 @@ Feature:  Contacts BVT - Contacts Details
   Scenario: Contacts Details Add Company Scenario 1 :Add/Edit Single Company in Contact Details panel
     Then sign-in to orders
     Then navigate to Contacts
-    Then delete all available contacts with the value CompanySingle
+    Then delete all present contacts with the value CompanySingle
     Then expect count of contact search results is 0
     Then click remove button on search results of contacts filter
     Then click add button on contacts toolbar
@@ -144,7 +144,7 @@ Feature:  Contacts BVT - Contacts Details
   Scenario: Contacts Details - Company Add Title and Department Scenario 1:Expand the Name field in Contact Details panel
     Then sign-in to orders
     Then navigate to Contacts
-    Then delete all available contacts with the value CompanyDetail
+    Then delete all present contacts with the value CompanyDetail
     Then expect count of contact search results is 0
     Then click remove button on search results of contacts filter
     Then click add button on contacts toolbar

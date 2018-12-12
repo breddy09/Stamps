@@ -4,7 +4,7 @@ Feature:  History :File an Insurance Claim
     Given Start test driver
 
   @file_insurance_claim
-  Scenario: Verify File Insurance Claim Page loads and Date Selections Drop Down menu is available
+  Scenario: Verify File Insurance Claim Page loads and Date Selections Drop Down menu is present
     Then sign-in to orders
     Then hover on navigation history then select File an Insurance Claim
     Then expect date printed on history filter panel is collapsed
@@ -32,14 +32,14 @@ Feature:  History :File an Insurance Claim
     Then click search icon on history filter panel
     Then check row for saved tracking number on history grid
    #F ile Claim - Transaction Detail Printed Section
-    Then expect file claim link on the transaction detail panel is available
+    Then expect file claim link on the transaction detail panel is present
     Then expect file claim link on the transaction detail panel is enabled
    # File Claim - Transaction Detail Services Section
-    Then expect file claim link in services section of transaction detail panel is available
+    Then expect file claim link in services section of transaction detail panel is present
     Then expect file claim link in services section of transaction detail panel is enabled
    # File Claim - Transaction Detail Menu Dropdown
     Then click transaction details header menu dropdown
-    Then expect file claim link on the transaction detail menu dropdown is available
+    Then expect file claim link on the transaction detail menu dropdown is present
 
   @file_claim_link_for_print_with_extra_services_usps_insurance
   Scenario: Verify File an Insurance Claim will not allow users to File Claim for print with USPS Insurance via Extra Services
@@ -64,12 +64,12 @@ Feature:  History :File an Insurance Claim
     Then click search icon on history filter panel
     Then check row for saved tracking number on history grid
    # File Claim - Transaction Detail Printed Section
-    Then expect file claim link on the transaction detail panel is not available
+    Then expect file claim link on the transaction detail panel is not present
    # File Claim - Transaction Detail Services Section
-    Then expect file claim link in services section of transaction detail panel is not available
+    Then expect file claim link in services section of transaction detail panel is not present
    # File Claim - Transaction Detail Menu Dropdown
     Then click transaction details header menu dropdown
-    Then expect file claim link on the transaction detail menu dropdown is not available
+    Then expect file claim link on the transaction detail menu dropdown is not present
 
   @history_details_file_ins_claim_print_receipt
   Scenario: Verify Transaction Details page in File an Insurance Claim view will allow user to "Print Receipt"
@@ -91,7 +91,7 @@ Feature:  History :File an Insurance Claim
     Then click search icon on history filter panel
     Then check row for saved tracking number on history grid
     Then click transaction details header menu dropdown
-    Then expect print receipt link on the transaction detail menu dropdown is available
+    Then expect print receipt link on the transaction detail menu dropdown is present
     Then click print receipt link on transaction detail menu dropdown
     Then sign out
 
@@ -111,14 +111,14 @@ Feature:  History :File an Insurance Claim
     Then expect postage message panel tracking label is Postage was sent to your printer. Your Tracking Number is
     Then save tracking number on print form message panel
     Then hover on navigation history then select File an Insurance Claim
-    Then set search prints to newly added tracking number on history filter panel
+    Then set search prints tracking number on history filter panel to newly added
     Then click search icon on history filter panel
     Then check row for saved tracking number on history grid
     Then navigate to History
     Then set search prints tracking number on history filter panel to newly added
     Then click search icon on history filter panel
     Then check row for saved tracking number on history grid
-    Then expect email tracking info link on the transaction detail panel is available
+    Then expect email tracking info link on the transaction detail panel is present
     Then expect email tracking info link on the transaction detail panel is enabled
     Then click email tracking info link on transaction detail panel
     Then sign out
