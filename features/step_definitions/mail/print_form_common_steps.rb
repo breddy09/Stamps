@@ -542,4 +542,57 @@ Then /^[Ee]xpect Print form service is empty$/ do
 end
 
 
+Then /^check restricted delivery on print form$/ do
+  extra_services = SdcMail.print_form
+  extra_services.restricted_delivery.wait_until_present(timeout: 10)
+  extra_services.restricted_delivery.check
+  step 'expect restricted delivery on print form is checked'
+end
 
+
+Then /^expect restricted delivery on print form is checked$/ do
+  extra_services = SdcMail.print_form
+  extra_services.restricted_delivery.wait_until_present(timeout: 1)
+  expect(extra_services.restricted_delivery.checked?).to be(true)
+end
+
+Then /^uncheck restricted delivery on print form$/ do
+  extra_services = SdcMail.print_form
+  extra_services.restricted_delivery.wait_until_present(timeout: 10)
+  extra_services.restricted_delivery.uncheck
+  step 'expect restricted delivery on print form is unchecked'
+end
+
+Then /^expect restricted delivery on print form is unchecked$/ do
+  extra_services = SdcMail.print_form
+  extra_services.restricted_delivery.wait_until_present(timeout: 1)
+  expect(extra_services.restricted_delivery.checked?).to be(false)
+end
+
+
+Then /^check return receipt on print form$/ do
+  extra_services = SdcMail.print_form
+  extra_services.return_receipt.wait_until_present(timeout: 1)
+  extra_services.return_receipt.check
+  step 'expect return receipt on print form is checked'
+end
+
+Then /^uncheck return receipt on print form$/ do
+  extra_services = SdcMail.print_form
+  extra_services.return_receipt.wait_until_present(timeout: 1)
+  extra_services.return_receipt.uncheck
+
+  step 'expect return receipt on print form is unchecked'
+end
+
+Then /^expect return receipt on print form is checked$/ do
+  extra_services = SdcMail.print_form
+  extra_services.return_receipt.wait_until_present(timeout: 1)
+  expect(extra_services.return_receipt.checked?).to be(true)
+end
+
+Then /^expect return receipt on print form is unchecked$/ do
+  extra_services = SdcMail.print_form
+  extra_services.return_receipt.wait_until_present(timeout: 1)
+  expect(extra_services.return_receipt.checked?).to be(false)
+end
