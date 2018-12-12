@@ -45,141 +45,141 @@ Then /^run rates sheet (.*) in Zone (\d+)$/ do |param_sheet, zone|
   @bold = Spreadsheet::Format.new(:weight => :bold)
 
   @rate_sheet_header.each_with_index do |column_name, row_number|
-    if column_name == 'weight_lb'
+    case column_name
+
+    when  'weight_lb'
       @rate_sheet_columns[:weight_lb] = row_number
       TestData.hash[:result_sheet_columns][:weight_lb] = row_number
       TestData.hash[:result_sheet].row(0)[row_number] = 'weight_lb'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'zone1'
+
+    when 'zone1'
       @rate_sheet_columns[:zone1] = row_number
       TestData.hash[:result_sheet_columns][:zone] = 1
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:zone]] = 'zone1'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'zone2'
+
+    when 'zone2'
       @rate_sheet_columns[:zone2] = row_number
       TestData.hash[:result_sheet_columns][:zone] = 1
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:zone]] = 'zone2'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'zone3'
+
+    when 'zone3'
       @rate_sheet_columns[:zone3] = row_number
       TestData.hash[:result_sheet_columns][:zone] = 1
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:zone]] = 'zone3'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'zone4'
+
+    when 'zone4'
       @rate_sheet_columns[:zone4] = row_number
       TestData.hash[:result_sheet_columns][:zone] = 1
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:zone]] = 'zone4'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'zone5'
+
+    when 'zone5'
       @rate_sheet_columns[:zone5] = row_number
       TestData.hash[:result_sheet_columns][:zone] = 1
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:zone]] = 'zone5'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'zone6'
+
+    when 'zone6'
       @rate_sheet_columns[:zone6] = row_number
       TestData.hash[:result_sheet_columns][:zone] = 1
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:zone]] = 'zone6'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'zone7'
+
+    when 'zone7'
       @rate_sheet_columns[:zone7] = row_number
       TestData.hash[:result_sheet_columns][:zone] = 1
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:zone]] = 'zone7'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'zone8'
+
+    when 'zone8'
       @rate_sheet_columns[:zone8] = row_number
       TestData.hash[:result_sheet_columns][:zone] = 1
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:zone]] = 'zone8'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'zone9'
+
+    when 'zone9'
       @rate_sheet_columns[:zone9] = row_number
       TestData.hash[:result_sheet_columns][:zone] = 1
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:zone]] = 'zone9'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
 
-
-    if column_name == 'service'
+    when 'service'
       @rate_sheet_columns[:service] = row_number
       TestData.hash[:result_sheet_columns][:service] = row_number - TestData.hash[:result_sheet_column_offset]
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:service]] = 'service'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'tracking'
+
+    when 'tracking'
       @rate_sheet_columns[:tracking] = row_number
       TestData.hash[:result_sheet_columns][:tracking] = row_number - TestData.hash[:result_sheet_column_offset]
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:tracking]] = 'tracking'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'execution_date'
+
+    when 'execution_date'
       @rate_sheet_columns[:execution_date] = row_number
       TestData.hash[:result_sheet_columns][:execution_date] = row_number - TestData.hash[:result_sheet_column_offset]
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:execution_date]] = 'execution_date'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'username'
+
+    when 'username'
       @rate_sheet_columns[:username] = row_number
       TestData.hash[:result_sheet_columns][:username] = row_number - TestData.hash[:result_sheet_column_offset]
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:username]] = 'username'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'ship_from'
+
+    when 'ship_from'
       @rate_sheet_columns[:ship_from] = row_number
       TestData.hash[:result_sheet_columns][:ship_from] = row_number - TestData.hash[:result_sheet_column_offset]
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:ship_from]] = 'ship_from'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'ship_to_domestic'
+
+    when 'ship_to_domestic'
       @rate_sheet_columns[:ship_to_domestic] = row_number
       TestData.hash[:result_sheet_columns][:ship_to_domestic] = row_number - TestData.hash[:result_sheet_column_offset]
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:ship_to_domestic]] = 'ship_to_domestic'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'weight'
+
+    when 'weight'
       @rate_sheet_columns[:weight] = row_number
       TestData.hash[:result_sheet_columns][:weight] = row_number - TestData.hash[:result_sheet_column_offset]
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:weight]] = 'weight'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'service_selected'
+
+    when 'service_selected'
       @rate_sheet_columns[:service_selected] = row_number
       TestData.hash[:result_sheet_columns][:service_selected] = row_number - TestData.hash[:result_sheet_column_offset]
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:service_selected]] = 'service_selected'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'tracking_selected'
+
+    when 'tracking_selected'
       @rate_sheet_columns[:tracking_selected] = row_number
       TestData.hash[:result_sheet_columns][:tracking_selected] = row_number - TestData.hash[:result_sheet_column_offset]
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:tracking_selected]] = 'tracking_selected'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'total_ship_cost'
+
+    when 'total_ship_cost'
       @rate_sheet_columns[:total_ship_cost] = row_number
       TestData.hash[:result_sheet_columns][:total_ship_cost] = row_number - TestData.hash[:result_sheet_column_offset]
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:total_ship_cost]] = 'total_ship_cost'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'results'
+
+    when 'results'
       @rate_sheet_columns[:results] = row_number
       TestData.hash[:result_sheet_columns][:results] = row_number - TestData.hash[:result_sheet_column_offset]
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:results]] = 'results'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'status'
+
+    when 'status'
       @rate_sheet_columns[:status] = row_number
       TestData.hash[:result_sheet_columns][:status] = row_number - TestData.hash[:result_sheet_column_offset]
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:status]] = 'status'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'error_msg'
+
+    when 'error_msg'
       @rate_sheet_columns[:error_msg] = row_number
       TestData.hash[:result_sheet_columns][:error_msg] = row_number - TestData.hash[:result_sheet_column_offset]
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:error_msg]] = 'error_msg'
