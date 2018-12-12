@@ -19,7 +19,7 @@ Then /^set print form mail-to (?:|to )(?:|a )(?:|random )address(?: to| in| betw
   5.times do
     mail_to.text_area.set(address)
     step 'blur out on print form'
-    sleep 1
+    sleep 2
     break if mail_to.add_button.present?
   end
   step 'blur out on print form'

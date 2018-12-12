@@ -368,7 +368,10 @@ Then /^set print form mail-to country to (.*)$/ do |str|
   text_field = mail_to.text_field
   text_field.safe_wait_until_present(timeout: 1)
   text_field = mail_to.text_field if mail_to.text_field.present?
+  p str
   unless text_field.text_value.eql?(str)
+    p 'str1'
+    p str
     text_field.set(str)
     mail_to.selection_element.safe_wait_until_present(timeout: 2)
     mail_to.selection_element.safe_click if mail_to.selection_element.present?
@@ -474,16 +477,6 @@ Then /^click print form restrictions button$/ do
   step 'expect restrictions modal is present'
 end
 
-
-##
-#
-#
-#
-#
-#
-#
-#
-#
 Then /^[Ee]xpect Print form Domestic Address Field is present$/ do
   pending
   #expect(stamps.mail.print_form.mail_to.mail_address.textarea).to be_present, "Print form Domestic Address Field is NOT present"
