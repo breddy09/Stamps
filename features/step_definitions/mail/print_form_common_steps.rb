@@ -42,7 +42,7 @@ Then /^set print form pounds to (.+)$/ do |str|
   step 'blur out on print form'
 end
 
-Then /^set print form pounds to (\d+) by arrows$/ do |lbs|
+Then /^set print form pounds by arrows to (\d+)$/ do |lbs|
   weight = SdcMail.print_form.weight
   iterations = lbs.to_i - weight.lbs.text_value.to_i
   iterations.abs.times do weight.lbs.increment.click end if iterations > 0
@@ -52,7 +52,7 @@ Then /^set print form pounds to (\d+) by arrows$/ do |lbs|
   step 'blur out on print form'
 end
 
-Then /^set print form ounces to (\d+)$/ do |oz|
+Then /^set print form ounces to (.+)$/ do |oz|
   SdcMail.print_form.weight.oz.set(oz)
   TestData.hash[:oz] = oz.to_f
 end
@@ -95,9 +95,9 @@ Then /^decrement print form ounces by (\d+)$/ do |oz|
   TestData.hash[:oz] = oz
 end
 
-Then /^expect print form pounds is (?:correct|(\d+))$/ do |lbs|
+Then /^expect print form pounds is (?:correct|(.+))$/ do |lbs|
   lbs = lbs.nil? ? TestData.hash[:lbs] : lbs
-  expect(SdcMail.print_form.weight.lbs.text_value.to_i).to eql lbs
+  expect(SdcMail.print_form.weight.lbs.text_value.to_i).to eql lbs.to_i
 end
 
 Then /^expect print form ounces is (?:correct|(\d+))$/ do |oz|
@@ -342,7 +342,7 @@ Then /^[Ee]xpect on [Pp]rint [Pp]review [Pp]anel, right side label is selected$/
   #expect(stamps.mail.print_preview.right_selected?).to be(true), "Right Label image doesn't exists on Print form"
 end
 
-Then /^[Ss]et Print Form Ship-To Country to a random country in PMI Flat Rate price group (.*)$/ do |group|
+Then /^set Print Form Ship-To Country to a random country in PMI Flat Rate price group (.*)$/ do |group|
   country_list = data_for(:country_groups_PMI_flat_rate, {})["group" + group].values
   TestData.hash[:country] = country_list[rand(country_list.size)]
   step "set print form mail-to country to #{TestData.hash[:country]}" unless SdcMail.print_form.mail_to.text_field.text_value.eql?(TestData.hash[:country])
@@ -368,12 +368,15 @@ Then /^set print form mail-to country to (.*)$/ do |str|
   text_field = mail_to.text_field
   text_field.safe_wait_until_present(timeout: 1)
   text_field = mail_to.text_field if mail_to.text_field.present?
+  p str
   unless text_field.text_value.eql?(str)
+    p 'str1'
+    p str
     text_field.set(str)
     mail_to.selection_element.safe_wait_until_present(timeout: 2)
     mail_to.selection_element.safe_click if mail_to.selection_element.present?
   end
-  expect(text_field.text_value).to eql(str)
+  expect(text_field.text_value).to include(str)
 end
 
 Then /^expect print form mail-to country is disabled$/ do
@@ -474,16 +477,6 @@ Then /^click print form restrictions button$/ do
   step 'expect restrictions modal is present'
 end
 
-
-##
-#
-#
-#
-#
-#
-#
-#
-#
 Then /^[Ee]xpect Print form Domestic Address Field is present$/ do
   pending
   #expect(stamps.mail.print_form.mail_to.mail_address.textarea).to be_present, "Print form Domestic Address Field is NOT present"

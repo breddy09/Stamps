@@ -1,5 +1,6 @@
 
-default: --backtrace --profile alex_history
+default: --backtrace --profile local_browser
+
 
 cuke_reports: --format json --out report.json --backtrace -f pretty -r features --format pretty --format html --out reports
 
@@ -14,9 +15,9 @@ sauce_mobile: --tags @mail_authentication_mobile --guess URL=stg USR=sauce0020 P
 #sauce_browser: --tags @history_filter_direct_url URL=stg USR=bvtstgw7ff8 PW=pass111 SELENIUM_BROWSER=safari SELENIUM_VERSION=latest SELENIUM_PLATFORM='macOS 10.13' TUNNEL_IDENTIFIER=rob LOG_LEVEL=info SCREEN_RESOLUTION=1376x1032
 sauce_browser: --tags @history_filter_direct_url_1 --guess URL=cc USR=cctruer0u PW=pass111 SELENIUM_BROWSER=chrome SELENIUM_VERSION=latest SELENIUM_PLATFORM='macOS 10.13' TUNNEL_IDENTIFIER=rob LOG_LEVEL=info SCREEN_RESOLUTION=1376x1032
 #sauce_browser: --tags @bvt_orders_ship_date URL=cc USR=bvtsauce00020cc PW=pass111 SELENIUM_BROWSER=firefox SELENIUM_VERSION=latest SELENIUM_PLATFORM='Mac 10.12' TUNNEL_IDENTIFIER=rob LOG_LEVEL=info SCREEN_RESOLUTION=1152x864
-#mhossain1_cc: --tags @registration_normal_workflow JENKINS=true URL=cc LOG_LEVEL=info BROWSER=ff MAX_WINDOW=false WEB_APP=registration USR=mhossain1 PW=Password1
-#mhossain1_cc: --tags @pp_header_favicons_browser_mobile JENKINS=true URL=qacc BROWSER=gc BROWSER_MOBILE_EMULATOR=gc,'iPhone X' USR=wteam@stamps.com PW=password1 WEB_DEV=true
-#mhossain1_cc: --tags @pp_log_in_page_validation JENKINS=true URL=stg BROWSER=ff USR=wteam@stamps.com PW=password1 FIREFOX_PROFILE=true WEB_DEV=true
+
+local_aloha: --tags @rates_mail_pme_comm_base_zone_2 or @rates_mail_pme_comm_base_zone_8 URL=qasc BROWSER=gc USR=bvtqascw10gc20 PW=passs111 PRINTER=factory LOG_LEVEL=info WINDOW_SIZE=1300x900
+local_aloha1: --tags @rates_mail_pmei_comm_base_group_1 or @rates_mail_pmei_comm_base_group_2 or @rates_mail_pmei_comm_base_group_3 or @rates_mail_pmei_comm_base_group_4 or @rates_mail_pmei_comm_base_group_5 URL=qasc BROWSER=gc USR=bvtqascw10gc20 PW=passs111 PRINTER=factory LOG_LEVEL=info WINDOW_SIZE=1300x900
 
 kaushal_cc: --tags @ewwr_security_question_page_validation URL=stg BROWSER=gc #USR=qawebdevelopment@stamps.com PW=password1
 
