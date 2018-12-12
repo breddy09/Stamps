@@ -491,6 +491,9 @@ bugs_stamps_print: --tags @bugs_stamps_print --guess
 bugs_stamps: --tags @bugs_stamps --guess
 mail_authentication: --tags @mail_authentication --guess
 mail_authentication_mobile: --tags @mail_authentication_mobile --guess
+mail_bvt_envelope_10: --tags @mail_bvt_envelope_10 --guess LOG_LEVEL=info
+mail_bvt_shipping_label_paper: --tags @mail_bvt_shipping_label_paper --guess LOG_LEVEL=info
+mail_print_on_lov: --tags @mail_print_on_lov --guess LOG_LEVEL=info
 mail_bvt_ship_date: --tags @mail_bvt_ship_date --guess
 mail_bvt_address_cleansing: --tags @mail_bvt_address_cleansing --guess
 mail_bvt_contacts: --tags @mail_bvt_contacts --guess
