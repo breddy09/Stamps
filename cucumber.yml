@@ -292,7 +292,6 @@ rates_orders_pmei_comm_plus_group_17: --tags @rates_orders_pmei_comm_plus_group_
 bvt_mail_piece_validation: --tags @bvt_mail_piece_validation --guess PRINTER=factory
 pam_db_user_appscap_provisioning: --tags @pam_db_user_appscap_provisioning --guess WEB_APP=pam --guess LOG_LEVEL=info MAX_WINDOW=false
 registration_normal_workflow: --tags @registration_normal_workflofoxw WEB_APP=registration --guess MAX_WINDOW=true
-mail_bvt_shipping_label_paper: --tags @mail_bvt_shipping_label_paper --guess LOG_LEVEL=info
 registration_profile_page_ui_validation: --tags @registration_profile_page_ui_validation WEB_APP=registration --guess MAX_WINDOW=true
 registration_membership_page_ui_validation: --tags @registration_membership_page_ui_validation WEB_APP=registration --guess MAX_WINDOW=true
 registration_ui_validation_add_postage_page: --tags @registration_ui_validation_add_postage_page WEB_APP=registration --guess MAX_WINDOW=true
@@ -608,9 +607,6 @@ ewwr_session_state_data_validation: --tags @ewwr_session_state_data_validation -
 ewwr_security_question_page_validation: --tags @ewwr_security_question_page_validation --guess  LOG_LEVEL=info
 ewwr_header_footer_validation: --tags @ewwr_header_footer_validation --guess  LOG_LEVEL=info
 swwr_create_your_account_page_validation: --tags @swwr_create_your_account_page_validation --guess LOG_LEVEL=info
-mail_print_on_lov: --tags @mail_print_on_lov --guess LOG_LEVEL=info
-
-
 
 aloha_contacts: --tags @multiple_shipto_contacts_view URL=stg LOG_LEVEL=info HEALTHCHECK=false BROWSER=ff MAX_WINDOW=false USR=tcs_core002 PW=password1
 #aloha: --tags @sdc_contact_add_new_contact URL=stg LOG_LEVEL=info HEALTHCHECK=false BROWSER=ff MAX_WINDOW=false USR=tcs_core004 PW=password1

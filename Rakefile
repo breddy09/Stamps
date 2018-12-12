@@ -3143,8 +3143,8 @@ Cucumber::Rake::Task.new(:mail_print_certified_mail_hidden_postage) do |t|
   t.cucumber_opts = "-p cuke_reports"
 end
 
-Cucumber::Rake::Task.new(:mail_print_envelope_10) do |t|
-  t.profile = 'mail_print_envelope_10'
+Cucumber::Rake::Task.new(:mail_bvt_envelope_10) do |t|
+  t.profile = 'mail_bvt_envelope_10'
   t.cucumber_opts = "-p cuke_reports"
 end
 
