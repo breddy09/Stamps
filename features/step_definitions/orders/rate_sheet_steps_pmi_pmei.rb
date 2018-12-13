@@ -460,6 +460,7 @@ Then /^run rates sheet (.*) in country price group (\d+)$/ do |param_sheet, grou
           row[@rate_sheet_columns[:service]].should_not be nil
           service = row[@rate_sheet_columns[:service]]
           SdcLogger.info "#{"#" * 10} Desired Service: #{service}"
+          SdcLogger.info "#{"#" * 10} Selected Country: #{TestData.hash[:country]}"
           TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:service]] = service
 
           # record execution time as time service was selected.
