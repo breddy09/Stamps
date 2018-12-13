@@ -80,6 +80,7 @@ module SdcMail
         end
 
         def selection(name, str)
+          str = str.gsub("'", %q(\\\'))
           page_object(name) { { xpath: "//li[text()='#{str}']" } }
         end
 
