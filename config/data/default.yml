@@ -234,6 +234,7 @@ mail_services:
   FCMI Large Envelope/Flat: sdc-servicedroplist-fcilargeenvelopeorflat
   FCMI Package/Thick Envelope: sdc-servicedroplist-fcithickenvelope
   PMI Package/Flat/Thick Envelope: sdc-servicedroplist-pmipackage
+  PMI Package: sdc-servicedroplist-pmipackage
   PMI Flat Rate Envelope: sdc-servicedroplist-pmiflatrateenvelope
   PMI Padded Flat Rate Envelope: sdc-servicedroplist-pmiflatratepaddedenvelope
   PMI Legal Flat Rate Envelope: sdc-servicedroplist-pmilegalflatrateenvelope
