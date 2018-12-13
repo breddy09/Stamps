@@ -187,7 +187,6 @@ end
 
 #ship date
 Then /^hover on history grid column ship date$/ do
-
   SdcHistory.grid.body.safe_wait_until_present(timeout: 60)
   column = SdcHistory.grid.grid_column(:ship_date)
   column.scroll_into_view
