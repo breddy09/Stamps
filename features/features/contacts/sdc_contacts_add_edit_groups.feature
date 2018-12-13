@@ -20,7 +20,7 @@ Feature:  Contacts BVT - Contacts ToolBar
     Then click on save button of add groups pop up window
     Then expect error message is not displayed on add groups pop up window
     Then expect manage groups pop up is displayed
-    Then expect group name added is available in the manage group pop up table
+    Then expect group name added is present in the manage group pop up table
 
 
   @sdc_contacts_toolbar_change_group_add_remove
@@ -32,12 +32,12 @@ Feature:  Contacts BVT - Contacts ToolBar
     Then select Change Groups from groups menu dropdown of contacts toolbar
     Then search and choose existing group from groups list from change groups popup to add
     Then click on save button of change groups pop up window
-    Then expect added group is available in details groups textbox
+    Then expect added group is present in details groups textbox
     Then click on groups menu dropdown on contacts toolbar
     Then select Change Groups from groups menu dropdown of contacts toolbar
     Then search and choose existing group from groups list from change groups popup to remove
     Then click on save button of change groups pop up window
-    Then expect removed group is not available in details groups textbox
+    Then expect removed group is not present in details groups textbox
 
 
   @sdc_contacts_toolbar_edit_delete_group
@@ -58,9 +58,9 @@ Feature:  Contacts BVT - Contacts ToolBar
     Then click on save button of edit groups pop up
     Then expect error message is not displayed on edit groups pop up window
     Then expect manage groups pop up is displayed
-    Then expect group name added is available in the manage group pop up table
+    Then expect group name added is present in the manage group pop up table
     Then click existing row in manage group table
     Then click delete button on manage groups window toolbar
     Then click on yes button of delete groups pop up
-    Then expect group name deleted is not available in the manage group pop up table
+    Then expect group name deleted is not present in the manage group pop up table
 

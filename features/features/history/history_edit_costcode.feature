@@ -9,13 +9,16 @@ Feature:  History : Verify "Cost code" edit works
     Then select print on Shipping Label - 8 ½" x 11" Paper
     Then set print form mail-from to default
     Then set print form mail-to to a random address in zone 1
+    Then set print form email tracking aanand@stamps.com
     Then set print form weight to lbs 0 oz 1
     Then select print form service PM Large/Thick Envelope
     Then click mail toolbar print label
+    Then click continue on confirm print modal
+    Then cancel print on gif printing dialog
     Then expect postage message panel tracking label is Postage was sent to your printer. Your Tracking Number is
     Then save tracking number on print form message panel
     Then navigate to History
-    Then set search prints to newly added tracking number on history filter panel
+    Then set search prints tracking number on history filter panel to newly added
     Then click search icon on history filter panel
     Then check row for saved tracking number on history grid
     Then click cost codes button on history toolbar

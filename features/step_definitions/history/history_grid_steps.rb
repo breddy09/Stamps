@@ -20,7 +20,7 @@ end
 
 Then /^check row for saved tracking number on history grid$/ do
   expect(TestData.hash[:tracking_number]).to be_truthy
-  expect(TestData.hash[:tracking_number].size).to be > 15
+  expect(TestData.hash[:tracking_number].size).to be > 12
   tracking = SdcHistory.grid.grid_column(:tracking_number)
   row_number = tracking.row_num(TestData.hash[:tracking_number])
   checkbox = SdcHistory.grid.grid_column(:checkbox)
@@ -76,37 +76,34 @@ Then /^expect history grid Ship Date is correct for row (\d+)$/ do |row|
   step "expect history grid column Weight is #{TestData.hash[:ship_date]} for row #{row}"
 end
 
-
-
-  Then /^expect prints within date range (.*) for column (.*) are retrieved in the grid$/ do |date_range,column_name|
+Then /^expect prints within date range (.*) for column (.*) are retrieved in the grid$/ do |date_range,column_name|
   #Get the search counts
   search_results = SdcHistory.filter_panel.search_results
   search_count = search_results.count.text_value.to_i
 
   case date_range
   when 'Past 7 Days'
-    new_date=Date.today-7
+    new_date = Date.today - 7
   when 'Past 30 Days'
-    new_date=Date.today-30
+    new_date = Date.today - 30
   when 'Past 6 Months'
-    new_date=Date.today<<6
+    new_date = Date.today << 6
   when 'Past 12 Months'
-    new_date=Date.today<<12
+    new_date = Date.today << 12
   when 'Past 2 Years'
-    new_date=Date.today<<24
+    new_date = Date.today << 24
   end
 
   SdcHistory.grid.body.safe_wait_until_present(timeout: 60)
   column = SdcHistory.grid.grid_column(:date_printed)
 
-  i =1
+  i = 1
   while i < search_count
     grid_date = column.text_at_row(i)
-    formated_date=Date.strptime(grid_date,'%m/%d/%Y')
+    formated_date = Date.strptime(grid_date,'%m/%d/%Y')
     #actual_convert_new_date_format = actual_date_desired_format.to_date
     expect(formated_date.between?(new_date,Date.today)).to be(true)
-    i=i+1
+    i = i + 1
   end
-
-  end
+end
 

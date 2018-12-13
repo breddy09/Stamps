@@ -45,22 +45,22 @@ Feature: Search Contacts Modal for selecting multiple contacts in Mail
     Then expect search contacts modal is present
     Then expect title on search contacts modal is Search Contacts
     #Then expect Background Color: #f7f7f7, Selected Filter Highlight Color: #E9E9E9 or Number Background Color: #999999
-    Then expect checkbox column is available in search contacts modal grid header
-    Then expect Name column is available in search contacts modal grid header
-    Then expect Streed Address column is available in search contacts modal grid header
-    Then expect City column is available in search contacts modal grid header
-    Then expect State column is available in search contacts modal grid header
-    Then expect Country column is available in search contacts modal grid header
-    Then expect Country column is available in search contacts modal grid header
+    Then expect checkbox column is present in search contacts modal grid header
+    Then expect Name column is present in search contacts modal grid header
+    Then expect Streed Address column is present in search contacts modal grid header
+    Then expect City column is present in search contacts modal grid header
+    Then expect State column is present in search contacts modal grid header
+    Then expect Country column is present in search contacts modal grid header
+    Then expect Country column is present in search contacts modal grid header
     Then hover on Name column on contacts grid
     Then click on Name column header dropdown trigger
     Then expect contacts header dropdown menu is displayed
     #hovering over any column will display the same drop down for managing columns as the Contacts page
-    Then expect Sort Ascending is available in the contacts header dropdown menu list
-    Then expect Sort Descending is available in the contacts header dropdown menu list
-    Then expect Columns is available in the contacts header dropdown menu list
-    Then expect Unfreeze is available in the contacts header dropdown menu list
-    Then expect Freeze Column is available in the contacts header dropdown menu list
+    Then expect Sort Ascending is present in the contacts header dropdown menu list
+    Then expect Sort Descending is present in the contacts header dropdown menu list
+    Then expect Columns is present in the contacts header dropdown menu list
+    Then expect Unfreeze is present in the contacts header dropdown menu list
+    Then expect Freeze Column is present in the contacts header dropdown menu list
    #expect X Close icon/Esc Key: Closes out of dialog
 
   @search_contacts_modal

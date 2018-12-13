@@ -45,7 +45,7 @@ Then /^check for server error$/ do
   expect(error_msg).to be_nil
 end
 
-Then /^wait until orders available$/ do
+Then /^wait until orders present$/ do
   step 'wait for js to stop'
   SdcOrders.toolbar.add.wait_until_present(timeout: 10)
   SdcOrders.grid.body.wait_until_present(timeout: 20)

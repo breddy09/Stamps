@@ -1,4 +1,4 @@
-Then /^expect search bar is available on the contacts left navigation panel$/ do
+Then /^expect search bar is present on the contacts left navigation panel$/ do
   contacts_left_navigation = SdcContacts.contacts_filter
   contacts_left_navigation.search_bar.safe_wait_until_present(timeout: 15)
   expect(contacts_left_navigation.search_bar.present?).to be (true)
@@ -10,7 +10,7 @@ Then /^click on search bar of contacts left navigation panel$/ do
   contacts_left_navigation.search_bar.click
 end
 
-Then /^expect selected filter on the contacts left navigation panel is available$/ do
+Then /^expect selected filter on the contacts left navigation panel is present$/ do
   contacts_left_navigation = SdcContacts.contacts_filter
   contacts_left_navigation.selected_filter.safe_wait_until_present(timeout: 15)
   expect(contacts_left_navigation.selected.present?).to be (true)
@@ -37,7 +37,7 @@ Then /^expect contacts grid message for selected contact is (.*)$/ do |message|
   expect(grid.grid_message.text_value).to eql(message)
 end
 
-Then /^expect all contacts filter is available on the contacts left navigation panel$/ do
+Then /^expect all contacts filter is present on the contacts left navigation panel$/ do
   contacts_left_navigation = SdcContacts.contacts_filter
   contacts_left_navigation.all_contacts_filter.safe_wait_until_present(timeout: 15)
   expect(contacts_left_navigation.all_contacts.present?).to be (true)
@@ -50,13 +50,13 @@ Then /^click on all contacts filter of contacts left navigation panel$/ do
   SdcContacts.grid.body.safe_wait_until_present(timeout: 15)
 end
 
-Then /^expect groups filter is available on the contacts left navigation panel$/ do
+Then /^expect groups filter is present on the contacts left navigation panel$/ do
   contacts_left_navigation = SdcContacts.contacts_filter
   contacts_left_navigation.groups_filter.safe_wait_until_present(timeout: 15)
   expect(contacts_left_navigation.groups.present?).to be (true)
 end
 
-Then /^expect cost codes filter is available on the contacts left navigation panel$/ do
+Then /^expect cost codes filter is present on the contacts left navigation panel$/ do
   contacts_left_navigation = SdcContacts.contacts_filter
   contacts_left_navigation.cost_codes_filter.safe_wait_until_present(timeout: 15)
   expect(contacts_left_navigation.cost_codes.present?).to be (true)
@@ -77,7 +77,7 @@ Then /^expect contacts filter panel search result count is (\d+)$/ do |count|
   expect(search_results.search_results_count.text_value.to_i).to eql count.to_i
 end
 
-Then /^delete all available contacts with the value (.*)$/ do |str|
+Then /^delete all present contacts with the value (.*)$/ do |str|
   step "search contacts from contacts filter panel with name #{str}"
   search_results = SdcContacts.contacts_filter.search_results
   actual_count = search_results.search_results_count.text_value.to_i
@@ -108,7 +108,7 @@ Then /^click search button on contacts left navigation search bar$/ do
   contacts_left_navigation.search_icon.click
 end
 
-Then /^expect search results is available on the contacts left navigation panel$/ do
+Then /^expect search results is present on the contacts left navigation panel$/ do
   contacts_left_navigation = SdcContacts.contacts_filter
   contacts_left_navigation.search_results_filter.safe_wait_until_present(timeout: 15)
   expect(contacts_left_navigation.search_results_filter.present?).to be (true)

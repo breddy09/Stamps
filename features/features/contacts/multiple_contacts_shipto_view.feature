@@ -5,7 +5,7 @@ Feature:  Batch Print: Create Multiple Ship To Contacts View
     Then sign-in to orders
     Then navigate to Contacts
     #Delete existing contacts
-    Then delete all available contacts with the value Diana Doly
+    Then delete all present contacts with the value Diana Doly
     Then expect count of contact search results is 0
     Then click add button on contacts toolbar
     Then set contact details to
@@ -13,7 +13,7 @@ Feature:  Batch Print: Create Multiple Ship To Contacts View
       |Diana Doly |Company a123 |United States|1 Cortlandt St  |New York|New York|10007    |random| random |random        |random           |random    |
     Then save contact details of Diana
     Then in contacts grid uncheck row 1
-    Then delete all available contacts with the value Alex Persih
+    Then delete all present contacts with the value Alex Persih
     Then click add button on contacts toolbar
     Then set contact details to
       | full_name  | company | country       | street_address | city     | state    | postal_code | phone        |  email | groups | reference_number|cost_code |
@@ -52,7 +52,7 @@ Feature:  Batch Print: Create Multiple Ship To Contacts View
 
   @multiple_shipto_contacts_view
   Scenario: Multiple Contacts Selected and contact is removed from list
-    Then expect remove button is available for contact Diana
-    Then expect remove button is available for contact Alex
+    Then expect remove button is present for contact Diana
+    Then expect remove button is present for contact Alex
     Then click remove button on contact Diana
     Then expect multiple contacts view is not displayed

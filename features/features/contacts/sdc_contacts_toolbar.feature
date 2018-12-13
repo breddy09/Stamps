@@ -7,7 +7,7 @@ Feature:  Contacts BVT - Contacts ToolBar
   Scenario: Contacts BVT Scenario 1 : Click add, add new contact  and the open and view details
     Then sign-in to orders
     Then navigate to Contacts
-    Then delete all available contacts with the value AddNewContact
+    Then delete all present contacts with the value AddNewContact
     Then expect count of contact search results is 0
     Then click remove button on search results of contacts filter
     Then click add button on contacts toolbar
@@ -45,7 +45,7 @@ Feature:  Contacts BVT - Contacts ToolBar
   Scenario: Delete Contact Top Nav Scenario 1 :Delete a newly added contact from top navigation
     Then sign-in to orders
     Then navigate to Contacts
-    Then delete all available contacts with the value RuthAnand
+    Then delete all present contacts with the value RuthAnand
     Then expect count of contact search results is 0
     Then click remove button on search results of contacts filter
     Then click add button on contacts toolbar
@@ -66,7 +66,7 @@ Feature:  Contacts BVT - Contacts ToolBar
   Scenario: Delete Contact Top Nav Scenario 2 :Delete multiple contacts from top navigation
     Then sign-in to orders
     Then navigate to Contacts
-    Then delete all available contacts with the value Jon
+    Then delete all present contacts with the value Jon
     Then expect count of contact search results is 0
     Then click remove button on search results of contacts filter
     Then click add button on contacts toolbar
@@ -97,7 +97,7 @@ Feature:  Contacts BVT - Contacts ToolBar
   Scenario: Add Reference Number from Top Nav Scenario 1 :Add Invalid, valid Reference to a contact
     Then sign-in to orders
     Then navigate to Contacts
-    Then delete all available contacts with the value AddReference
+    Then delete all present contacts with the value AddReference
     Then expect count of contact search results is 0
     Then click remove button on search results of contacts filter
     Then click add button on contacts toolbar
@@ -134,8 +134,8 @@ Feature:  Contacts BVT - Contacts ToolBar
     Then click on settings button of contacts toolbar
     Then select columns from contacts toolbar settings dropdown menu
     Then check all the columns from the list to show all columns in the contacts grid
-    Then expect all columns are available on the contacts grid
+    Then expect all columns are present on the contacts grid
     Then click on settings button of contacts toolbar
     Then select columns from contacts toolbar settings dropdown menu
     Then uncheck all the columns from the list to hide all columns in the contacts grid
-    Then expect all columns are not available on the contacts grid
+    Then expect all columns are not present on the contacts grid
