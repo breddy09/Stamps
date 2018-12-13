@@ -20,7 +20,7 @@ group :web_dev do
 end
 
 group :watir do
-  gem 'watir', '6.10.3'
+  gem 'watir', '6.15.1'
 end
 
 group :selenium do
