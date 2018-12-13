@@ -396,7 +396,7 @@ country_groups_PMI:
     8:  Central African Republic|66
     9:  Chad|44
     10: Democratic Republic Of The Congo|66
-    11: Cote d'Ivoire (Ivory Coast)|66
+    11: Cote d\\'Ivoire (Ivory Coast)|66
     12: Djibouti|44
     13: Equatorial Guinea|22
     14: Eritrea|44
@@ -612,7 +612,7 @@ country_groups_PMI_flat_rate:
     31: Democratic Republic Of The Congo
     32: Republic Of The Congo
     33: Costa Rica
-    34: Cote d'Ivoire (Ivory Coast)
+    34: Cote d\\'Ivoire (Ivory Coast)
     35: Croatia
     36: Cuba
     37: Curacao
@@ -839,7 +839,7 @@ country_groups_PMEI:
     8:  Central African Republic|66
     9:  Chad|66
     10: Democratic Republic Of The Congo|66
-    #11: Cote d'Ivoire (Ivory Coast)|66
+    #11: Cote d\\'Ivoire (Ivory Coast)|66
     12: Djibouti|44
     13: Equatorial Guinea|44
     14: Eritrea|66
@@ -1046,7 +1046,7 @@ country_groups_PMEI_flat_rate:
     31: Democratic Republic Of The Congo
     32: Republic Of The Congo
     33: Costa Rica
-    34: Cote d'Ivoire (Ivory Coast)
+    34: Cote d\\'Ivoire (Ivory Coast)
     35: Croatia
     36: Cuba
     37: Curacao
@@ -1503,7 +1503,7 @@ countries:
     CO:  Colombia
     KM:  Comoros
     CR:  Costa Rica
-    CI:  Cote d'Ivoire (Ivory Coast)
+    CI:  Cote d\\'Ivoire (Ivory Coast)
     HR:  Croatia
     CU:  Cuba
     CW:  Curacao
