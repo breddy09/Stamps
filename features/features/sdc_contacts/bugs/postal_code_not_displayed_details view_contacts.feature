@@ -7,7 +7,7 @@ Feature: Contacts Modal Bugs
   Scenario: BUG  WEBAPPS-11912 : Postal Code is not displayed in Details view for Contacts
     Then sign-in to orders
     Then navigate to Contacts
-    Then delete all available contacts with the value Contact postalcode
+    Then delete all present contacts with the value Contact postalcode
     #creating first valid contact with out postal code
     Then click add button on contacts toolbar
     Then set contact details to

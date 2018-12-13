@@ -87,7 +87,7 @@ Feature:  History Filter Panel
     Then set date range drop down value to Past 7 Days
     Then click search button on advance search modal
     Then expect advance search modal is not displayed
-    Then expect search results is available on the history filter panel
+    Then expect search results is present on the history filter panel
     Then expect date printed on history filter panel is collapsed
 
 
@@ -108,7 +108,7 @@ Feature:  History Filter Panel
     Then set date range drop down value to Past 30 Days
     Then click search button on advance search modal
     Then expect advance search modal is not displayed
-    Then expect search results is available on the history filter panel
+    Then expect search results is present on the history filter panel
     Then expect date printed on history filter panel is collapsed
 
     Then hover on history grid column date printed
@@ -132,7 +132,7 @@ Feature:  History Filter Panel
     Then set date range drop down value to Past 6 Months
     Then click search button on advance search modal
     Then expect advance search modal is not displayed
-    Then expect search results is available on the history filter panel
+    Then expect search results is present on the history filter panel
     Then expect date printed on history filter panel is collapsed
 #    Then expect prints are displayed within given date range
     Then hover on history grid column date delivered
@@ -156,7 +156,7 @@ Feature:  History Filter Panel
     Then set date range drop down value to Past 12 Months
     Then click search button on advance search modal
     Then expect advance search modal is not displayed
-    Then expect search results is available on the history filter panel
+    Then expect search results is present on the history filter panel
     Then expect date printed on history filter panel is collapsed
 
     Then hover on history grid column ship date
@@ -180,7 +180,7 @@ Feature:  History Filter Panel
     Then set date range drop down value to Past 2 Years
     Then click search button on advance search modal
     Then expect advance search modal is not displayed
-    Then expect search results is available on the history filter panel
+    Then expect search results is present on the history filter panel
     Then expect date printed on history filter panel is collapsed
     Then hover on history grid column ship date
     Then click on header dropdown trigger of column ship date

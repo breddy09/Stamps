@@ -22,7 +22,7 @@ and  buy the item  from seller  e-stamps MWS Test
 
 3.       Add the desired item to the cart.
 4.       Now login into http://amazon.com using the same buyer credentials and select the cart.
-5.       The item you placed in the cart should be available. Go ahead and purchase the item and make note of the ORDER ID.
+5.       The item you placed in the cart should be present. Go ahead and purchase the item and make note of the ORDER ID.
 6.       Now head over to the seller profile, select Manage Orders and search for your order based on the ORDERID ,. It will take up to 30 minutes for the order to show up as shipping on seller’s side
 
 

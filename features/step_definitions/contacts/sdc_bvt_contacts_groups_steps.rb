@@ -12,15 +12,15 @@ Then /^click on groups collapse button of contacts left navigation$/ do
   expect(left_nav_group.groups_expand_button.present?).to be(true)
 end
 
-Then /^fetch total against each group available$/ do
+Then /^fetch total against each group present$/ do
   left_nav_group = SdcContacts.contacts_filter.groups
   row_count = left_nav_group.total_groups.count
   i = 1
   while i <= row_count.to_i
     group_label = left_nav_group.group('name',i).text_value
-    SdcLogger.info  "name : #{group_label.to_s}"
+    SdcLogger.debug  "name : #{group_label.to_s}"
     count = left_nav_group.group('count',i).text_value
-    SdcLogger.info "count of #{group_label} is : #{count.to_s}"
+    SdcLogger.debug "count of #{group_label} is : #{count.to_s}"
     i = i + 1
   end
 end
@@ -91,7 +91,7 @@ Then /^set group name on add group pop up to (.*)$/ do |name|
       manage_groups = SdcContacts.modals.manage_groups
       row_count = manage_groups.manage_groups_table.count
       TestData.hash[:group_count] = row_count
-      SdcLogger.info "exsisting group count #{row_count.to_s}"
+      SdcLogger.debug "exsisting group count #{row_count.to_s}"
       if row_count != 0
         str = manage_groups.group_name(row_count).text_value
         group_name = str
@@ -102,7 +102,7 @@ Then /^set group name on add group pop up to (.*)$/ do |name|
       left_nav_group = SdcContacts.contacts_filter.groups
       row_count = left_nav_group.total_groups.count
       TestData.hash[:group_count] = row_count
-      SdcLogger.info  "Total no of groups : #{row_count.to_s}"
+      SdcLogger.debug  "Total no of groups : #{row_count.to_s}"
       if row_count != 0
         str = left_nav_group.group('name',row_count - 1).text_value
         group_name = str
@@ -135,19 +135,19 @@ Then /^expect error message is not displayed on add groups pop up window$/ do
   expect(add_groups.add_groups_error_message.present?).to be(false)
 end
 
-Then /^expect group name added is available in the manage group pop up table$/ do
+Then /^expect group name added is present in the manage group pop up table$/ do
   actual_added = TestData.hash[:group_name]
   manage_groups = SdcContacts.modals.manage_groups
   #manage_groups.manage_groups_table.safe_wait_until_present(timeout:15)
   row_count = manage_groups.manage_groups_table.count
-    SdcLogger.info "exsisting group count #{row_count.to_s}"
+    SdcLogger.debug "exsisting group count #{row_count.to_s}"
     i = 1
     group_name_available = 'no'
     while  i <= row_count
       str = manage_groups.group_name(i).text_value
       if str.eql? actual_added
         group_name_available = 'yes'
-        SdcLogger.info  'Group is available in the Manange Groups table'
+        SdcLogger.debug  'Group is present in the Manange Groups table'
         break
       end
       i = i + 1
@@ -155,24 +155,24 @@ Then /^expect group name added is available in the manage group pop up table$/ d
   expect(group_name_available).to eql('yes')
 end
 
-Then /^expect group name deleted is not available in the manage group pop up table$/ do
+Then /^expect group name deleted is not present in the manage group pop up table$/ do
   actual_added = TestData.hash[:group_name]
   manage_groups = SdcContacts.modals.manage_groups
   row_count = manage_groups.manage_groups_table.count
-  SdcLogger.info "existing group count #{row_count.to_s}"
+  SdcLogger.debug "existing group count #{row_count.to_s}"
   i = 1
   group_name_available = 'no'
   while  i <= row_count
     str = manage_groups.group_name(i).text_value
     if str.eql? 'actual_added'
       group_name_available = 'yes'
-      SdcLogger.info 'Group is available in the Manange Groups table'
+      SdcLogger.debug 'Group is present in the Manange Groups table'
       break
     end
     i = i + 1
   end
   expect(group_name_available.eql? 'yes').to eql(false)
-  SdcLogger.info 'Group is not available in the Manange Groups table'
+  SdcLogger.debug 'Group is not present in the Manange Groups table'
 end
 
 Then /^expect change groups pop up is displayed$/ do
@@ -188,7 +188,7 @@ Then /^search and choose (.*) group from groups list from change groups popup to
  case group_name
  when "existing"
    row_count = group_popup.change_groups_table.count
-   SdcLogger.info "row count#{row_count.to_s}"
+   SdcLogger.debug "row count#{row_count.to_s}"
    if row_count != 0
      i = 1
       str = ""
@@ -200,13 +200,13 @@ Then /^search and choose (.*) group from groups list from change groups popup to
         i = i + 1
       end
       if str.eql? ''
-        SdcLogger.info ' All Groups available have already been added'
+        SdcLogger.debug ' All Groups present have already been added'
         else
           group_popup.change_groups_search.set(str)
           TestData.hash[:group_added_value] = str
       end
     else
-      SdcLogger.info 'No groups available for this account'
+      SdcLogger.debug 'No groups present for this account'
     end
   else
     group_popup.change_groups_search.set(group_name)
@@ -214,11 +214,11 @@ Then /^search and choose (.*) group from groups list from change groups popup to
  end
   sleep(2)
   search_count = group_popup.change_groups_table.count
-  SdcLogger.info "search count" + search_count.to_s
+  SdcLogger.debug "search count" + search_count.to_s
   if search_count != 0
     step 'check change groups grid row 1'
   else
-    SdcLogger.info 'no such group found for this account'
+    SdcLogger.debug 'no such group found for this account'
   end
 end
 
@@ -228,7 +228,7 @@ Then /^search and choose (.*) group from groups list from change groups popup to
   case group_name
   when 'existing'
     row_count = group_popup.change_groups_table.count
-    #SdcLogger.info "row count" + row_count.to_s
+    #SdcLogger.debug "row count" + row_count.to_s
     if row_count != 0
       i = 1
       str = ""
@@ -240,14 +240,14 @@ Then /^search and choose (.*) group from groups list from change groups popup to
         i = i + 1
       end
       if str.eql? ''
-        #SdcLogger.info "No Groups available on the selected contact to remove"
+        #SdcLogger.debug "No Groups present on the selected contact to remove"
       else
         group_popup.change_groups_search.set(str)
         TestData.hash[:group_removed_value] = str
 
       end
     else
-      SdcLogger.info  'No groups available for this account'
+      SdcLogger.debug  'No groups present for this account'
     end
   else
     group_popup.change_groups_search.set(group_name)
@@ -255,12 +255,12 @@ Then /^search and choose (.*) group from groups list from change groups popup to
   end
   sleep(2)
   search_count = group_popup.change_groups_table.count
-  SdcLogger.info  "search_count #{search_count.to_s}"
+  SdcLogger.debug  "search_count #{search_count.to_s}"
   if search_count != 0
     step 'uncheck change groups grid row 1'
   else
     expect(group_popup.change_groups_empty_table.present?).to be (true)
-    SdcLogger.info  'No such group found for this account'
+    SdcLogger.debug  'No such group found for this account'
   end
 end
 
@@ -291,7 +291,7 @@ Then /^click on save button of change groups pop up window$/ do
   group_popup.groups_save_button.click
 end
 
-Then /^expect added group is available in details groups textbox$/ do
+Then /^expect added group is present in details groups textbox$/ do
   group_popup = SdcContacts.modals.change_groups
   str = TestData.hash[:group_added_value]
   group_count = group_popup.details_groups_list.count
@@ -302,7 +302,7 @@ Then /^expect added group is available in details groups textbox$/ do
     while i <= group_count
       if str.eql? group_popup.group_list_name(i).text_value
         included = "true"
-        SdcLogger.info  "#{str} is included in the group details"
+        SdcLogger.debug  "#{str} is included in the group details"
         break
       end
       i = i + 1
@@ -310,11 +310,11 @@ Then /^expect added group is available in details groups textbox$/ do
   end
   #expect(included == "true").to be(true)
   if included .eql? 'false'
-    SdcLogger.info  "#{str} is not included in the group details"
+    SdcLogger.debug  "#{str} is not included in the group details"
   end
 end
 
-Then /^expect removed group is not available in details groups textbox$/ do
+Then /^expect removed group is not present in details groups textbox$/ do
   group_popup = SdcContacts.modals.change_groups
   str = TestData.hash[:group_removed_value]
   group_count = group_popup.details_groups_list.count
@@ -325,7 +325,7 @@ Then /^expect removed group is not available in details groups textbox$/ do
     while i <= group_count
       if str.eql?  group_popup.group_list_name(i).text_value
         included = "true"
-        SdcLogger.info  "#{str} is included in the group details"
+        SdcLogger.debug  "#{str} is included in the group details"
         break
       end
       i = i + 1
@@ -333,7 +333,7 @@ Then /^expect removed group is not available in details groups textbox$/ do
   end
   #expect(included.eql? 'true').to be(true)
   if included .eql? 'false'
-    SdcLogger.info  "#{str} + is not included in the group details"
+    SdcLogger.debug  "#{str} + is not included in the group details"
   end
 end
 

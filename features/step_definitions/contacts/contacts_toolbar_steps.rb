@@ -111,19 +111,19 @@ Then /^unchoose (.*) on contact settings columns menu list$/ do |column|
   #step 'click on search bar of contacts left navigation panel'
 end
 
-Then /^expect (.*) column is available on contacts grid$/ do |column|
+Then /^expect (.*) column is present on contacts grid$/ do |column|
   column_header = SdcContacts.grid.column.contacts_header_element(column)
   column_header.scroll_into_view
   #column_header.flash
-  SdcLogger.info "Header Element Present? : #{column} - #{column_header.present?.to_s}"
+  SdcLogger.debug "Header Element Present? : #{column} - #{column_header.present?.to_s}"
   expect(column_header.present?).to be (true)
 end
 
-Then /^expect (.*) column is not available on contacts grid$/ do |column|
+Then /^expect (.*) column is not present on contacts grid$/ do |column|
   column_header = SdcContacts.grid.column.contacts_header_element(column)
   #todo-Aloha check with rob
   column_header.scroll_into_view
-  SdcLogger.info "Header Element Present? : #{column} - #{column_header.present?.to_s}"
+  SdcLogger.debug "Header Element Present? : #{column} - #{column_header.present?.to_s}"
   expect(column_header.present?).to be (false)
 end
 
@@ -144,19 +144,19 @@ Then /^expect (.*) column is unfreezed on contacts grid$/ do |column|
 end
 
 
-Then /^expect all columns are available on the contacts grid$/ do
+Then /^expect all columns are present on the contacts grid$/ do
   columns = ['Name','Prefix','First Name','Middle','Last Name','Suffix','Company','Title','Department',
            'Email','Phone','Ext.','City','State/Prv','Street Address','Postal Code','Country','Cost Code','Reference #']
   columns.each{|col|
-    step "expect #{col} column is available on contacts grid"
+    step "expect #{col} column is present on contacts grid"
   }
 end
 
-Then /^expect all columns are not available on the contacts grid$/ do
+Then /^expect all columns are not present on the contacts grid$/ do
   columns = ['Name','Prefix','First Name','Middle','Last Name','Suffix','Company','Title','Department',
            'Email','Phone','Ext.','City','State/Prv','Street Address','Postal Code','Country','Cost Code','Reference #']
   columns.each{|col|
-    step "expect #{col} column is not available on contacts grid"
+    step "expect #{col} column is not present on contacts grid"
   }
 end
 

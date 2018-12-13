@@ -398,7 +398,7 @@ Feature:  BVT tests for Orders
     Then set bulk update pounds to 0
     Then set bulk update ounces to 3
     Then click bulk update update order button
-    Then wait until orders available
+    Then wait until orders present
 
 #  # Uncheck both orders
     Then uncheck orders grid row 1
@@ -571,4 +571,15 @@ Feature:  BVT tests for Orders
     Then add customs associated item 2, description Item 2, qty 2, Price 2, Made In Japan, Tariff 2
     Then check customs form i agree to the usps privacy act statement
     Then close customs information form
+    Then sign out
+
+  #  WEBAPPS-13017
+  @bvt_orders_print_all
+  Scenario:  BVT Orders print all
+    Then sign-in to orders
+    Then add new order
+    Then uncheck orders grid row 1
+    Then click orders top toolbar print button
+    Then expect orders modal no orders is present
+    Then close orders modal no orders
     Then sign out

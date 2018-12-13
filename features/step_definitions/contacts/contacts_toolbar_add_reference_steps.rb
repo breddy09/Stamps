@@ -5,7 +5,7 @@ Then /^set reference number to (.*)$/ do |value|
     value =''
   end
   ref.reference_num.set(value)
-  SdcLogger.info "value: #{value}"
+  SdcLogger.debug "value: #{value}"
 end
 
 Then /^click on change reference close button$/ do
@@ -22,7 +22,7 @@ end
 
 Then /^expect reference number error is displayed$/ do
   ref = SdcContacts.modals.change_reference
-  SdcLogger.info "availability :#{ref.reference_error.present?}"
+  SdcLogger.debug "availability :#{ref.reference_error.present?}"
   expect(ref.reference_error.present?).to be(true)
 end
 
@@ -35,6 +35,6 @@ end
 
 Then /^expect reference number error is not displayed$/ do
   ref = SdcContacts.modals.change_reference
-  SdcLogger.info "availability :#{ref.reference_error.present?}"
+  SdcLogger.debug "availability :#{ref.reference_error.present?}"
   expect(ref.reference_error.present?).to be(false)
 end

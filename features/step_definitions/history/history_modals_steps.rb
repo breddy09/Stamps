@@ -362,6 +362,8 @@ Then /^select service on return label modal (.*)$/ do |str|
 end
 
 Then /^expect service on return label modal is (.*)$/ do |str|
+  expect(service.text_field.text_value).to include str
+
   expect(SdcHistory.modals.return_label.service.text_field.text_value).to eql(str)
 end
 
@@ -437,21 +439,27 @@ end
 
 Then /^click save button on change cost code modal$/ do
   SdcHistory.modals.change_cost_code.save.click
+  step 'expect change cost code modal on history is not present'
 end
 
-Then /^select new cost code on change cost code modal (.*)$/ do |str|
-  new_cost_code = SdcHistory.modals.change_cost_code.new_cost_code
-  unless new_cost_code.text_field.text_value.include?(str)
-    new_cost_code.drop_down.click
-    new_cost_code.selection(str)
-    new_cost_code.drop_down.click unless selection_obj.present?
-    selection_obj.scroll_into_view unless selection_obj.present?
-    selection_obj.click if selection_obj.present?
+Then /^select new cost code on change cost code modal (?:to existing|(.*))$/ do |str|
+  cost_code = SdcHistory.modals.change_cost_code.new_cost_code
+  cost_code.drop_down.click
+  count = cost_code.costcode_list.count
+  str ||= cost_code.costcode_random(Random.rand(2..count-1)).text_value
+  unless cost_code.text_field.text_value.include?(str)
+    cost_code.drop_down.click
+    cost_code.selection(str)
+    cost_code.drop_down.click unless cost_code.selection(str).present?
+    cost_code.selection(str).scroll_into_view unless cost_code.selection(str).present?
+    cost_code.selection(str).click if cost_code.selection(str).present?
+    expect(cost_code.text_field.text_value).to include(str)
   end
-  step "expect new cost code on return label modal is #{str}"
+  step "expect new cost code on change cost code modal is #{str}"
+  TestData.hash[:cost_code] = str
 end
 
-Then /^expect new cost code on return label modal is (.*)$/ do |str|
+Then /^expect new cost code on change cost code modal is (.*)$/ do |str|
   expect(SdcHistory.modals.change_cost_code.new_cost_code.text_field.text_value).to eql(str)
 end
 
@@ -502,7 +510,7 @@ Then /^click print button on ready to print modal$/ do
   rescue
     # ignore
   end
-  step 'expect your container label modal on history is not present'
+  step 'expect your container label modal on history is present'
 end
 
 Then /^click printing on drop down on ready to print modal$/ do
@@ -588,6 +596,36 @@ end
 Then /^click reprint button on reprint modal$/ do
   SdcHistory.modals.reprint.reprint.click
   step 'expect your container label modal on history is present'
+end
+
+Then /^expect (.*) is present on printing on on reprint modal$/ do |str|
+  printing_on = SdcHistory.modals.reprint.printing_on
+  printing_on.selection_element(value: str)
+  expect(printing_on.selection).to be_present
+end
+
+Then /^expect (.*) is not present on printing on on reprint modal$/ do |str|
+  printing_on = SdcHistory.modals.reprint.printing_on
+  printing_on.selection_element(value: str)
+  expect(printing_on.selection).not_to be_present
+end
+
+Then /^select (.*) on printing on drop down on reprint modal$/ do |str|
+  printing_on = SdcHistory.modals.reprint.printing_on
+  printing_on.drop_down.click
+  printing_on.selection_element(value: str)
+  expect(printing_on.selection).to be_present
+  printing_on.selection.click
+  step "expect printing on on ready to print modal is #{str}"
+end
+
+Then /^blur out on reprint modal$/ do
+  SdcHistory.modals.reprint.blur_element.blur_out
+end
+
+Then /^close reprint modal$/ do
+  SdcHistory.modals.reprint.x_btn.click
+  step 'expect reprint modal on history is not present'
 end
 
 #welcome modal
@@ -701,6 +739,92 @@ Then /^select ship date radio button in advance search modal/ do
   advance_search_modal.ship_date_chooser.select
   expect(advance_search_modal.ship_date_chooser.selected?).to be(true)
 end
+
+
+
+
+#Insurance Claim Form
+Then /^expect insurance claim form modal is displayed$/ do
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.window.safe_wait_until_present(timeout: 10)
+  expect(ins_claim_form.window.present?).to be (true)
+end
+
+Then /^expect insurance claim form modal is not displayed$/ do
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.window.safe_wait_until_present(timeout: 10)
+  expect(ins_claim_form.window.present?).to be (false)
+end
+
+Then /^click print form button on insurance claim form modal$/ do
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.close_button.safe_wait_until_present(timeout: 10)
+  ins_claim_form.close_button.click
+end
+
+Then /^click close button on insurance claim form modal$/ do
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.close_button.safe_wait_until_present(timeout: 10)
+  ins_claim_form.close_button.click
+end
+
+Then /^click cancel button on insurance claim form modal$/ do
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.cancel_button.safe_wait_until_present(timeout: 10)
+  ins_claim_form.cancel_button.click
+end
+
+Then /^expect package recipient's name field on insurance claim form modal is present$/ do
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.package_recipient_name_label.safe_wait_until_present(timeout: 10)
+  expect(ins_claim_form.package_recipient_name_label.present?).to be (true)
+end
+
+Then /^expect date mailed field on insurance claim form modal is present$/ do
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.date_mailed_label.safe_wait_until_present(timeout: 10)
+  expect(ins_claim_form.date_mailed_label.present?).to be (true)
+end
+
+Then /^expect customer id field on insurance claim form modal is present$/ do
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.customer_id_label.safe_wait_until_present(timeout: 10)
+  expect(ins_claim_form.customer_id_label.present?).to be (true)
+end
+
+Then /^expect insurance id field on insurance claim form modal is present$/ do
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.insurance_id_label.safe_wait_until_present(timeout: 10)
+  expect(ins_claim_form.insurance_id_label.present?).to be (true)
+end
+
+Then /^expect claim type field on insurance claim form modal is present$/ do
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.claim_type_label.safe_wait_until_present(timeout: 10)
+  expect(ins_claim_form.claim_type_label.present?).to be (true)
+end
+
+Then /^expect package recipient's name value on insurance claim form modal is (.*)$/ do |str|
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.recipient_name_value.safe_wait_until_present(timeout: 10)
+  if str.eql? 'blank'
+    expect(ins_claim_form.recipient_name_value.text_value).to be('')
+  else
+    expect(ins_claim_form.recipient_name_value.text_value).to eql(str)
+  end
+end
+
+Then /^expect date mailed value on insurance claim form modal is (?:correct|(.*))$/ do |str|
+  ins_claim_form=SdcHistory.modals.insurance_claim_form
+  ins_claim_form.date_mailed_value.safe_wait_until_present(timeout: 10)
+  str ||= TestData.hash[:date_mailed]
+  p str
+  actual_value = ins_claim_form.date_mailed_value.text_value
+  p actual_value
+  expect(actual_value.strip).to eql str
+end
+
+
 
 
 

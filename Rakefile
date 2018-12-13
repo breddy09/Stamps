@@ -67,13 +67,77 @@ Cucumber::Rake::Task.new(:extra_services_cost_for_rrb_service) do |t|
   t.cucumber_opts = "-p cuke_reports"
 end
 
+#HISTORY
+#
+Cucumber::Rake::Task.new(:history_details_header_file_ins_claim_email_tracking_info) do |t|
+  t.profile = 'history_details_header_file_ins_claim_email_tracking_info'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:history_details_file_ins_claim_email_tracking_info) do |t|
+  t.profile = 'history_details_file_ins_claim_email_tracking_info'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:history_details_file_ins_claim_print_receipt) do |t|
+  t.profile = 'history_details_file_ins_claim_print_receipt'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:file_claim_link_for_print_with_sdc_insurance) do |t|
+  t.profile = 'file_claim_link_for_print_with_sdc_insurance'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:file_claim_link_for_print_with_extra_services_usps_insurance) do |t|
+  t.profile = 'file_claim_link_for_print_with_extra_services_usps_insurance'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:history_change_costcode) do |t|
+  t.profile = 'history_change_costcode'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:transaction_details_email_tracking_info) do |t|
+  t.profile = 'transaction_details_email_tracking_info'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:transaction_address_6lines) do |t|
+  t.profile = 'transaction_address_6lines'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:transaction_address_5lines) do |t|
+  t.profile = 'transaction_address_5lines'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:create_scan_form) do |t|
+  t.profile = 'create_scan_form'
+  t.cucumber_opts = "-p cuke_reports"
+end
+Cucumber::Rake::Task.new(:file_insurance_claim) do |t|
+  t.profile = 'file_insurance_claim'
+  t.cucumber_opts = "-p cuke_reports"
+end
+Cucumber::Rake::Task.new(:history_change_costcode) do |t|
+  t.profile = 'history_change_costcode'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:transaction_address_4lines) do |t|
+  t.profile = 'transaction_address_4lines'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
 Cucumber::Rake::Task.new(:advanced_search_date_printed_date_ranges) do |t|
   t.profile = 'advanced_search_date_printed_date_ranges'
   t.cucumber_opts = "-p cuke_reports"
 end
 #CONTACTS
-#
-#
+
 Cucumber::Rake::Task.new(:contacts_print_postage_multiple_from_top_nav) do |t|
   t.profile = 'contacts_print_postage_multiple_from_top_nav'
   t.cucumber_opts = "-p cuke_reports"
@@ -696,6 +760,11 @@ end
 
 Cucumber::Rake::Task.new(:mail_bvt_advanced_options) do |t|
   t.profile = 'mail_bvt_advanced_options'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:mail_bvt_certified_mail) do |t|
+  t.profile = 'mail_bvt_certified_mail'
   t.cucumber_opts = "-p cuke_reports"
 end
 
@@ -2058,6 +2127,11 @@ Cucumber::Rake::Task.new(:bvt_orders_ship_date) do |t|
   t.cucumber_opts = "-p cuke_reports"
 end
 
+Cucumber::Rake::Task.new(:bvt_orders_print_all) do |t|
+  t.profile = 'bvt_orders_print_all'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
 Cucumber::Rake::Task.new(:bvt_shipstation_search) do |t|
   t.profile = 'bvt_shipstation_search'
   t.cucumber_opts = "-p cuke_reports"
@@ -3068,8 +3142,8 @@ Cucumber::Rake::Task.new(:mail_print_certified_mail_hidden_postage) do |t|
   t.cucumber_opts = "-p cuke_reports"
 end
 
-Cucumber::Rake::Task.new(:mail_print_envelope_10) do |t|
-  t.profile = 'mail_print_envelope_10'
+Cucumber::Rake::Task.new(:mail_bvt_envelope_10) do |t|
+  t.profile = 'mail_bvt_envelope_10'
   t.cucumber_opts = "-p cuke_reports"
 end
 
@@ -3989,7 +4063,25 @@ Cucumber::Rake::Task.new(:mail_print_postage_fields) do |t|
   t.cucumber_opts = "-p cuke_reports"
 end
 
+Cucumber::Rake::Task.new(:mail_bvt_shipping_label_paper) do |t|
+  t.profile = 'mail_bvt_shipping_label_paper'
+  t.cucumber_opts = "-p cuke_reports"
+end
 
+Cucumber::Rake::Task.new(:mail_print_on_lov) do |t|
+  t.profile = 'mail_print_on_lov'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:mail_bvt_toolbar_settings) do |t|
+  t.profile = 'mail_bvt_toolbar_settings'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:mail_bvt_advanced_options) do |t|
+  t.profile = 'mail_bvt_advanced_options'
+  t.cucumber_opts = "-p cuke_reports"
+end
 #--------------------### Mail Bugs ##---------------------
 
 Cucumber::Rake::Task.new(:bugs_advanced_options) do |t|
@@ -4118,14 +4210,17 @@ Cucumber::Rake::Task.new(:mail_bvt_ui_validation) do |t|
   t.cucumber_opts = "-p cuke_reports"
 end
 
-Cucumber::Rake::Task.new(:mail_dropdown_tooltip) do |t|
-  t.profile = 'mail_dropdown_tooltip'
+Cucumber::Rake::Task.new(:dropdown_tooltips) do |t|
+  t.profile = 'dropdown_tooltips'
   t.cucumber_opts = "-p cuke_reports"
 end
+
 Cucumber::Rake::Task.new(:mail_contacts_comm_error) do |t|
   t.profile = 'mail_contacts_comm_error'
   t.cucumber_opts = "-p cuke_reports"
 end
+
+
 
 
 
@@ -4205,5 +4300,9 @@ end
 
 Cucumber::Rake::Task.new(:reports_filter_panel) do |t|
   t.profile = 'reports_filter_panel'
+  t.cucumber_opts = "-p cuke_reports"
+end
+Cucumber::Rake::Task.new(:refund_assist) do |t|
+  t.profile = 'refund_assist'
   t.cucumber_opts = "-p cuke_reports"
 end

@@ -8,30 +8,30 @@ Given /^I launched the browser$/ do
 end
 
 Then /^configure saucelabs$/ do
-  # SdcLogger.info "SELENIUM_HOST: #{SauceLabs.host}"
-  # SdcLogger.info "SELENIUM_PORT: #{SauceLabs.port}"
-  # SdcLogger.info "SELENIUM_PLATFORM: #{SauceLabs.platform}"
-  # SdcLogger.info "SELENIUM_VERSION: #{SauceLabs.version}"
-  # SdcLogger.info "SELENIUM_BROWSER: #{SauceLabs.browser}"
-  # SdcLogger.info "SELENIUM_DRIVER: #{SauceLabs.driver}"
-  # SdcLogger.info "SELENIUM_URL: #{SauceLabs.url}"
-  # SdcLogger.info "SAUCE_USERNAME: #{SauceLabs.sauce_username}"
-  # SdcLogger.info "SAUCE_ACCESS_KEY: #{SauceLabs.sauce_access_key}"
-  # SdcLogger.info "SELENIUM_STARTING_URL: #{SauceLabs.selenium_starting_url}"
-  # SdcLogger.info "SAUCE_ONDEMAND_BROWSERS: #{SauceLabs.sauce_on_demand_browsers}"
-  # SdcLogger.info 'Jenkins....'
-  # SdcLogger.info "JOB_NAME: #{ENV['JOB_NAME']}"
-  # SdcLogger.info "JOB_BASE_NAME: #{ENV['JOB_BASE_NAME']}"
-  # SdcLogger.info "BUILD_TAG: #{ENV['BUILD_TAG']}"
-  # SdcLogger.info "BUILD_NUMBER: #{ENV['BUILD_NUMBER']}"
-  # SdcLogger.info "BUILD_ID: #{ENV['BUILD_ID']}"
-  # SdcLogger.info "NODE_NAME: #{ENV['NODE_NAME']}"
-  # SdcLogger.info "EXECUTOR_NUMBER: #{ENV['EXECUTOR_NUMBER']}"
-  # SdcLogger.info "NODE_LABELS: #{ENV['NODE_LABELS']}"
-  # SdcLogger.info "WORKSPACE: #{ENV['WORKSPACE']}"
-  # SdcLogger.info "JENKINS_URL: #{ENV['JENKINS_URL']}"
-  # SdcLogger.info "BUILD_URL: #{ENV['BUILD_URL']}"
-  # SdcLogger.info "JOB_URL: #{ENV['JOB_URL']}"
+  # SdcLogger.debug "SELENIUM_HOST: #{SauceLabs.host}"
+  # SdcLogger.debug "SELENIUM_PORT: #{SauceLabs.port}"
+  # SdcLogger.debug "SELENIUM_PLATFORM: #{SauceLabs.platform}"
+  # SdcLogger.debug "SELENIUM_VERSION: #{SauceLabs.version}"
+  # SdcLogger.debug "SELENIUM_BROWSER: #{SauceLabs.browser}"
+  # SdcLogger.debug "SELENIUM_DRIVER: #{SauceLabs.driver}"
+  # SdcLogger.debug "SELENIUM_URL: #{SauceLabs.url}"
+  # SdcLogger.debug "SAUCE_USERNAME: #{SauceLabs.sauce_username}"
+  # SdcLogger.debug "SAUCE_ACCESS_KEY: #{SauceLabs.sauce_access_key}"
+  # SdcLogger.debug "SELENIUM_STARTING_URL: #{SauceLabs.selenium_starting_url}"
+  # SdcLogger.debug "SAUCE_ONDEMAND_BROWSERS: #{SauceLabs.sauce_on_demand_browsers}"
+  # SdcLogger.debug 'Jenkins....'
+  # SdcLogger.debug "JOB_NAME: #{ENV['JOB_NAME']}"
+  # SdcLogger.debug "JOB_BASE_NAME: #{ENV['JOB_BASE_NAME']}"
+  # SdcLogger.debug "BUILD_TAG: #{ENV['BUILD_TAG']}"
+  # SdcLogger.debug "BUILD_NUMBER: #{ENV['BUILD_NUMBER']}"
+  # SdcLogger.debug "BUILD_ID: #{ENV['BUILD_ID']}"
+  # SdcLogger.debug "NODE_NAME: #{ENV['NODE_NAME']}"
+  # SdcLogger.debug "EXECUTOR_NUMBER: #{ENV['EXECUTOR_NUMBER']}"
+  # SdcLogger.debug "NODE_LABELS: #{ENV['NODE_LABELS']}"
+  # SdcLogger.debug "WORKSPACE: #{ENV['WORKSPACE']}"
+  # SdcLogger.debug "JENKINS_URL: #{ENV['JENKINS_URL']}"
+  # SdcLogger.debug "BUILD_URL: #{ENV['BUILD_URL']}"
+  # SdcLogger.debug "JOB_URL: #{ENV['JOB_URL']}"
 end
 
 Then /^Start test driver$/ do
@@ -68,7 +68,31 @@ Then /^confirm print on gif printing dialog$/ do
   browser.wait_until(timeout: 5) do |browser|
     browser.windows.count.eql?(2)
   end
-  browser.windows.last.use
-  browser.send_keys(:enter)
-  browser.windows.first.use
+  begin
+    browser.windows.last.use
+    browser.send_keys(:enter)
+    browser.windows.first.use
+  rescue
+    # ignore
+  end
+end
+
+
+Then /^cancel print on gif printing dialog$/ do
+  browser = SdcPage.browser
+  browser.wait_until(timeout: 5) do |browser|
+    browser.windows.count.eql?(2)
+  end
+  begin
+    browser.windows.last.use
+    browser.send_keys(:tab)
+    browser.send_keys(:enter)
+  rescue
+    # ignore
+  end
+  begin
+    browser.windows.first.use
+  rescue
+    # ignore
+  end
 end

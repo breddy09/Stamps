@@ -88,21 +88,21 @@ Then /^[Oo]n PAM ACH Purchase page, set Amount to \$(\d+)\.(\d+)$/ do |dollars, 
 end
 
 Then /^[Oo]n PAM Customer Profile page, get Available Mail Amount$/ do
-  SdcLogger.info "PAM: Available Mail ############################"
-  SdcLogger.info "PAM: Available Mail ############################"
-  SdcLogger.info "PAM: Available Mail ############################"
-  SdcLogger.info "PAM: Available Mail $#{@customer_profile.available_postage.text}"
-  SdcLogger.info "PAM: Available Mail $#{@customer_profile.available_postage.text}"
-  SdcLogger.info "PAM: Available Mail $#{@customer_profile.available_postage.text}"
-  SdcLogger.info "PAM: Available Mail ############################"
-  SdcLogger.info "PAM: Available Mail ############################"
-  SdcLogger.info "PAM: Available Mail ############################"
+  SdcLogger.debug "PAM: Available Mail ############################"
+  SdcLogger.debug "PAM: Available Mail ############################"
+  SdcLogger.debug "PAM: Available Mail ############################"
+  SdcLogger.debug "PAM: Available Mail $#{@customer_profile.available_postage.text}"
+  SdcLogger.debug "PAM: Available Mail $#{@customer_profile.available_postage.text}"
+  SdcLogger.debug "PAM: Available Mail $#{@customer_profile.available_postage.text}"
+  SdcLogger.debug "PAM: Available Mail ############################"
+  SdcLogger.debug "PAM: Available Mail ############################"
+  SdcLogger.debug "PAM: Available Mail ############################"
 end
 
 Then /^[Ss]end username to standard out$/ do
-  SdcLogger.info " ############## NEW USER ID "
-  SdcLogger.info " ############## #{TestData.hash[:username]}"
-  SdcLogger.info " ############## NEW USER ID "
+  SdcLogger.debug " ############## NEW USER ID "
+  SdcLogger.debug " ############## #{TestData.hash[:username]}"
+  SdcLogger.debug " ############## NEW USER ID "
 end
 
 

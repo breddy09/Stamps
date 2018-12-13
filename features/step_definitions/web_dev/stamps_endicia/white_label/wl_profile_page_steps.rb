@@ -33,7 +33,7 @@ Then /^WL: set profile page email to (?:random value|(.*))$/ do |str|
 
   TestData.hash[:atg_promotion] =  WhiteLabel.choose_supplies.atg_promotion
   TestData.hash[:email] = str
-  SdcLogger.info "Email = #{TestData.hash[:email]}"
+  SdcLogger.debug "Email = #{TestData.hash[:email]}"
 end
 
 Then /^WL: expect profile page email tooltip count is (.*)$/ do |count|
@@ -76,7 +76,7 @@ Then /^WL: set profile page username to (?:random value|(.*))$/ do |str|
   expect(username.text_value.strip).not_to eql('')
   step "WL: blur_out on profile page"
   TestData.hash[:username_taken] = WhiteLabel.common_page.username_query(TestData.hash[:username_taken])
-  SdcLogger.info "UserName = #{str}"
+  SdcLogger.debug "UserName = #{str}"
   TestData.hash[:username] = str
 end
 
@@ -131,7 +131,7 @@ Then /^WL: set profile page password to (?:random value|(.*))$/ do |str|
   end
   expect(password.text_value.strip).not_to eql('')
   step 'WL: blur_out on profile page'
-  SdcLogger.info  "Password = #{str}"
+  SdcLogger.debug  "Password = #{str}"
   TestData.hash[:account_password] = str
 end
 

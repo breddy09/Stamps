@@ -202,7 +202,7 @@ Then /^close customs information form$/ do
     customs_form.close.safe_wait_while_present(timeout: 1)
     ready_to_print.window.safe_wait_while_present(timeout: 2)
     if ready_to_print.window.present?
-      SdcLogger.info ready_to_print.body.text_value
+      SdcLogger.debug ready_to_print.body.text_value
       ready_to_print.close.safe_click
       ready_to_print.close.safe_wait_while_present(timeout: 1)
     end

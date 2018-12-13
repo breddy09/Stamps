@@ -1,5 +1,17 @@
 
 # common Print form steps for Envelope|Label|Roll|CM
+Then /^set print form mail-to address to empty$/ do
+  mail_to = SdcMail.print_form.mail_to
+  # 5.times do
+  mail_to.text_area.set('')
+  step 'blur out on print form'
+  #   sleep 1
+  #   break if mail_to.add_button.present?
+  # end
+  step 'blur out on print form'
+  TestData.hash[:address] = ''
+  TestData.hash[:mail_from_address] = ''
+end
 
 Then /^set print form mail-to (?:|to )(?:|a )(?:|random )address(?: to| in| between|) (.*)$/ do |str|
   address = TestHelper.address_helper(str)
@@ -7,12 +19,12 @@ Then /^set print form mail-to (?:|to )(?:|a )(?:|random )address(?: to| in| betw
   5.times do
     mail_to.text_area.set(address)
     step 'blur out on print form'
-    sleep 1
+    sleep 2
     break if mail_to.add_button.present?
   end
-
   step 'blur out on print form'
-  TestData.hash[:address] = address
+  TestData.hash[:address] = mail_to.text_area.text_value
+  TestData.hash[:mail_from_address] = SdcMail.print_form.mail_from.text_field.text_value
 end
 
 Then /^select address from print form mail-to (.+), (.+)$/ do |name, company|
@@ -128,14 +140,14 @@ end
 Then /^on mail-to text box hover over contact (.*)$/ do |contact|
   contact_name = SdcMail.modals.add_address.contacts_view
   contact_count = contact_name.contacts_list.count
-  #SdcLogger.info "Total no of contacts to hover are :#{contact_count}"
+  #SdcLogger.debug "Total no of contacts to hover are :#{contact_count}"
   i=0
   while i< contact_count
     if contact_name.contacts_list[i].attribute_value('title').include? contact
       #contact_name.contacts_list[i].flash
       contact_name.contacts_list[i].hover
       break
-      #SdcLogger.info "Hover successful for contact ID:#{i}"
+      #SdcLogger.debug "Hover successful for contact ID:#{i}"
     end
     i=i+1
   end
@@ -152,21 +164,21 @@ Then /^expect tooltip of contact (.*) is correct$/ do |name|
       tooltip = contact_tooltip_data_contact.split("<br>#{name}")
       address = tooltip[1].split("','AddressSummary'")
       concatenated_tooltip = name + address[0] +" " +contact_tooltip_data_email
-      #SdcLogger.info "Concatenated tooltip for contact #{i} is " "\n" +" #{concatenated_tooltip}"
+      #SdcLogger.debug "Concatenated tooltip for contact #{i} is " "\n" +" #{concatenated_tooltip}"
       tooltip_to_verify = "#{TestData.hash["#{name}_name"]}" + "<br>" "#{TestData.hash["#{name}_company"]}<br>#{TestData.hash["#{name}_street_address"]}<br>#{TestData.hash["#{name}_city"]}, #{TestData.hash["#{name}_state_abbvr"]} #{TestData.hash["#{name}_zip"]} #{contact_tooltip_data_email}"
-      #SdcLogger.info "tooltip to verify for contact #{i} is " "\n" +" #{tooltip_to_verify}"
+      #SdcLogger.debug "tooltip to verify for contact #{i} is " "\n" +" #{tooltip_to_verify}"
       expect(tooltip_to_verify).to eql(concatenated_tooltip)
-      #SdcLogger.info "Expected and Actual tooltip for contact #{i} are same. Displayed as below : Actual #{concatenated_tooltip} and Expected :#{tooltip_to_verify} "
+      #SdcLogger.debug "Expected and Actual tooltip for contact #{i} are same. Displayed as below : Actual #{concatenated_tooltip} and Expected :#{tooltip_to_verify} "
     end
     i=i+1
   end
 
 end
 
-Then /^expect remove button is available for contact (.*)$/ do |name|
+Then /^expect remove button is present for contact (.*)$/ do |name|
   contact_name = SdcMail.modals.add_address.contacts_view
   contact_count = contact_name.contacts_list.count
-  #SdcLogger.info "Total no of contacts to hover are :#{contact_count}"
+  #SdcLogger.debug "Total no of contacts to hover are :#{contact_count}"
   i=0
   while i< contact_count
     if contact_name.contacts_list[i].attribute_value("title").include? name
@@ -180,7 +192,7 @@ end
 Then /^click remove button on contact (.*)$/ do |name|
   contact_name = SdcMail.modals.add_address.contacts_view
   contact_count = contact_name.contacts_list.count
-  #SdcLogger.info "Total no of contacts to hover are :#{contact_count}"
+  #SdcLogger.debug "Total no of contacts to hover are :#{contact_count}"
   i=0
   while i< contact_count
     if contact_name.contacts_list[i].attribute_value("title").include? name
@@ -271,4 +283,10 @@ Then /^set print form tracking (.+)$/ do |value|
   expect(tracking.selection).to be_present, "#{value} is not present in Tracking list"
   tracking.selection.click
   expect(tracking.text_field.text_value).to include(value)
+end
+
+Then /^expect error icon is not present on the print form$/ do
+  error_icon = SdcMail.print_form.mail_to.error_icon
+  error_icon.safe_wait_until_present(timeout: 2)
+  expect(error_icon.present?).not_to be(true)
 end

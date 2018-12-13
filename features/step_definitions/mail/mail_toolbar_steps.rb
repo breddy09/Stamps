@@ -72,7 +72,7 @@ Then /^expect mail toolbar print button label is (.+)$/ do |str|
 end
 
 Then /^expect mail toolbar print is present$/ do
-  expect(SdcMail.toolbar.print).to be_present
+  expect(SdcMail.toolbar.print_button).to be_present
 end
 
 Then /^hover on mail toolbar print dropdown$/ do
@@ -94,7 +94,7 @@ Then /^expect mail toolbar print dropdown tooltip is not present$/ do
 end
 
 Then /^wait for mail toolbar print dropdown tooltip$/ do
-  SdcMail.toolbar.print_dropdown_tooltip.wait_until_present
+  SdcMail.toolbar.print_dropdown_tooltip.safe_wait_until_present(timeout: 2)
 end
 
 Then /^hover on mail toolbar print dropdown tooltip$/ do
@@ -110,10 +110,10 @@ Then /^click mail toolbar print sample$/ do
 end
 
 Then /^expect mail toolbar print (?:postage|label|stamps|envelope) is present$/ do
-  expect(SdcMail.toolbar.print).to be_present, "Toolbar Print button is not present"
+  expect(SdcMail.toolbar.print).to be_present
 end
 Then /^expect mail toolbar print sample is present$/ do
-  expect(SdcMail.toolbar.print).to be_present, "Toolbar Print button is not present"
+  expect(SdcMail.toolbar.print).to be_present
 end
 
 Then /^click mail toolbar favorites$/ do
@@ -122,12 +122,30 @@ Then /^click mail toolbar favorites$/ do
   step 'hover on mail toolbar favorites tooltip'
 end
 
+Then /^hover on mail toolbar favorites dropdown/ do
+  SdcMail.toolbar.favorites.hover
+end
+
 Then /^hover on mail toolbar favorites tooltip$/ do
   SdcMail.toolbar.favorites_tooltip.hover if SdcMail.toolbar.favorites_tooltip.present?
 end
 
+Then /^wait for mail toolbar favorites tooltip$/ do
+  SdcMail.toolbar.favorites_tooltip.safe_wait_until_present(timeout: 2)
+end
+
+Then /^expect mail toolbar favorites tooltip is present$/ do
+  step 'wait for mail toolbar favorites tooltip'
+  expect(SdcMail.toolbar.favorites_tooltip).to be_present
+end
+
+Then /^expect mail toolbar favorites tooltip is not present$/ do
+  step 'wait for mail toolbar favorites tooltip'
+  expect(SdcMail.toolbar.favorites_tooltip).not_to be_present
+end
+
 Then /^expect mail toolbar favorites is present$/ do
-  expect(SdcMail.toolbar.favorites).to be_present, "Toolbar Favorites button is not present"
+  expect(SdcMail.toolbar.favorites).to be_present
 end
 
 Then /^click mail toolbar save as favorite$/ do
@@ -142,8 +160,8 @@ Then /^click mail toolbar manage favorites$/ do
 end
 
 Then /^expect mail toolbar save as favorite is present$/ do
-  expect(SdcMail.toolbar.save_as_favorite).to be_present, "Toolbar Save as favorite is not present"
+  expect(SdcMail.toolbar.save_as_favorite).to be_present
 end
 Then /^expect mail toolbar manage favorites is present$/ do
-  expect(SdcMail.toolbar.manage_favorites).to be_present, "Toolbar Manage favorites is not present"
+  expect(SdcMail.toolbar.manage_favorites).to be_present
 end

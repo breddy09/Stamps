@@ -33,7 +33,9 @@ end
 
 Then /^wait while loading history grid$/ do
   SdcHistory.loading.safe_wait_until_present(timeout: 8)
+  SdcHistory.loading.safe_wait_until_present(timeout: 8)
   SdcHistory.loading.wait_while_present(timeout: 240)
+  SdcHistory::Grid.body.safe_wait_until_present(timeout: 20)
 end
 
 Then /^hover on navigation history then select (.+)$/ do |str|
@@ -41,6 +43,7 @@ Then /^hover on navigation history then select (.+)$/ do |str|
   nav_element.wait_until_present(timeout: 20)
   nav_element.hover
   SdcNavigation.history_selection(str).click
+  step 'wait while loading history grid'
 end
 
 Then /^save balance amount$/ do
@@ -78,7 +81,8 @@ Then /^on add funds modal, click purchase button$/ do
 end
 
 Then /^buy mail confirm transction: click confirm button$/ do
-  pending
+  #pending
+  SdcWebsite.navigation.balance.confirm_transaction.confirm.safe_wait_until_present(timeout:15)
   SdcWebsite.navigation.balance.confirm_transaction.confirm.click
   SdcWebsite.navigation.balance.processing_purchase.title.wait_while_present(timeout: 15)
   expect(SdcWebsite.navigation.balance.transaction_complete.title).to be_present

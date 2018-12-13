@@ -1,12 +1,11 @@
-
-default: --backtrace --profile aloha
-
+default: --backtrace --profile local_browser
 cuke_reports: --format json --out report.json --backtrace -f pretty -r features --format pretty --format html --out reports
 
-# tests: bvt_shipstation_updates_domestic
+# Rob's profiles:
+#local_browser: --tags @rates_mail_pmi_comm_base_group_7 URL=stg BROWSER=gc MAX_WINDOW=false USR=stgmacgc6 PW=pass111 PRINTER=factory LOG_LEVEL=info WINDOW_SIZE=1300x900
 #local_mobile: --tags @mail_authentication_mobile URL=stg USR=sauce0020 PW=pass111 SELENIUM_DEVICE='iPhone X 11.3' SELENIUM_PLATFORM=iOS SELENIUM_BROWSER=Safari SELENIUM_VERSION=11.3 LOG_LEVEL=debug
+local_browser: --tags @history_change_costcode URL=stg BROWSER=gc MAX_WINDOW=false USR=stgmacgc6 PW=pass111 PRINTER=factory LOG_LEVEL=info WINDOW_SIZE=1300x900
 #local_mobile: --tags @multiple_contact_email_not_required URL=cc USR=bvtsauce00019cc PW=pass111 SELENIUM_DEVICE='iPhone X 11.3' SELENIUM_PLATFORM=iOS SELENIUM_BROWSER=Safari SELENIUM_VERSION=11.3 LOG_LEVEL=debug
-local_browser: --tags @mail_advanced_options_paper URL=stg BROWSER=gc MAX_WINDOW=false USR=stgmacgc6 PW=pass111 PRINTER=factory LOG_LEVEL=info WINDOW_SIZE=1300x900
 #local_browser: --tags @mail_bvt_international --guess URL=cc BROWSER=gc MAX_WINDOW=false USR=bvtccosxgc9 PW=pass111 PRINTER=factory LOG_LEVEL=info #WINDOW_SIZE=1300x900
 #local_browser: --tags @bvt_shipstation_updates_domestic URL=sc BROWSER=ff MAX_WINDOW=false USR=scsejsglwa PW=pass111 PRINTER=factory LOG_LEVEL=info
 sauce_mobile: --tags @mail_authentication_mobile --guess URL=stg USR=sauce0020 PW=pass111 SELENIUM_DEVICE='iPhone X Simulator' SELENIUM_PLATFORM=iOS SELENIUM_BROWSER=Safari SELENIUM_VERSION=12.0 TUNNEL_IDENTIFIER=rob LOG_LEVEL=info
@@ -14,24 +13,27 @@ sauce_mobile: --tags @mail_authentication_mobile --guess URL=stg USR=sauce0020 P
 #sauce_browser: --tags @history_filter_direct_url URL=stg USR=bvtstgw7ff8 PW=pass111 SELENIUM_BROWSER=safari SELENIUM_VERSION=latest SELENIUM_PLATFORM='macOS 10.13' TUNNEL_IDENTIFIER=rob LOG_LEVEL=info SCREEN_RESOLUTION=1376x1032
 sauce_browser: --tags @history_filter_direct_url_1 --guess URL=cc USR=cctruer0u PW=pass111 SELENIUM_BROWSER=chrome SELENIUM_VERSION=latest SELENIUM_PLATFORM='macOS 10.13' TUNNEL_IDENTIFIER=rob LOG_LEVEL=info SCREEN_RESOLUTION=1376x1032
 #sauce_browser: --tags @bvt_orders_ship_date URL=cc USR=bvtsauce00020cc PW=pass111 SELENIUM_BROWSER=firefox SELENIUM_VERSION=latest SELENIUM_PLATFORM='Mac 10.12' TUNNEL_IDENTIFIER=rob LOG_LEVEL=info SCREEN_RESOLUTION=1152x864
-#mhossain1_cc: --tags @registration_normal_workflow JENKINS=true URL=cc LOG_LEVEL=info BROWSER=ff MAX_WINDOW=false WEB_APP=registration USR=mhossain1 PW=Password1
-#mhossain1_cc: --tags @pp_header_favicons_browser_mobile JENKINS=true URL=qacc BROWSER=gc BROWSER_MOBILE_EMULATOR=gc,'iPhone X' USR=wteam@stamps.com PW=password1 WEB_DEV=true
-#mhossain1_cc: --tags @pp_log_in_page_validation JENKINS=true URL=stg BROWSER=ff USR=wteam@stamps.com PW=password1 FIREFOX_PROFILE=true WEB_DEV=true
 
-kaushal_cc: --tags @ewwr_security_question_page_validation URL=stg BROWSER=edge #USR=qawebdevelopment@stamps.com PW=password1
-web_apps_dev: --tags @bvt_new_order USR=default PW=pass111 URL=tcarney-win7-3.corp.stamps.com --guess BROWSER=ff MAX_WINDOW=false
-eli_dev: --tags @sdc_contacts_print_to_mail --guess JENKINS=false WEB_APP=mail URL=cc BROWSER=ff USR=hal9000qa12 PW=password1 PRINTER=factory
-ray_dev: --tags @rates_parcel_select_ground --guess JENKINS=false URL=stg BROWSER=ff USR=default PW=pass111
-sap: --tags @registration_orders WEB_APP=registration URL=cc --guess BROWSER=ff MAX_WINDOW=false
-alex_history:  --tags @container_label_reprint BROWSER=gc URL=stg USR=gapstage02 PW=password1 new_framework=true  --guess LOG_LEVEL=info HEALTHCHECK=true
-alex_reports:  --tags @reports_filter_panel BROWSER=gc URL=qasc USR=abqascsas1 PW=password1 new_framework=true  --guess LOG_LEVEL=info HEALTHCHECK=true
-alex_mail:  --tags @mail_dropdown_tooltip BROWSER=firefox URL=stg USR=abqasttest1 PW=password1 new_framework=true  --guess LOG_LEVEL=info HEALTHCHECK=true
+# Aloha's Profiles
+local_aloha: --tags @rates_mail_pme_comm_base_zone_2 or @rates_mail_pme_comm_base_zone_8 URL=qasc BROWSER=gc USR=bvtqascw10gc20 PW=passs111 PRINTER=factory LOG_LEVEL=info WINDOW_SIZE=1300x900
+local_aloha1: --tags @rates_mail_pmei_comm_base_group_1 or @rates_mail_pmei_comm_base_group_2 or @rates_mail_pmei_comm_base_group_3 or @rates_mail_pmei_comm_base_group_4 or @rates_mail_pmei_comm_base_group_5 URL=qasc BROWSER=gc USR=bvtqascw10gc20 PW=passs111 PRINTER=factory LOG_LEVEL=info WINDOW_SIZE=1300x900
+# Kaushal's Profiles
+kaushal_cc: --tags @ewwr_security_question_page_validation URL=stg BROWSER=gc #USR=qawebdevelopment@stamps.com PW=password1
+# Elie's Profiles
+eli_dev: --tags @sdc_contacts_print_to_mail --guess KJENKINS=false WEB_APP=mail URL=cc BROWSER=ff USR=hal9000qa12 PW=password1 PRINTER=factory
+# Alex's Profiles
+alex_history:  --tags @container_label_return_address_selected BROWSER=ff URL=sc USR=abqascsas4 PW=password1 new_framework=true  --guess LOG_LEVEL=info HEALTHCHECK=true
+alex_mail:  --tags @dropdown_tooltips BROWSER=firefox URL=qasc USR=abqascsas1 PW=password1 new_framework=true  --guess LOG_LEVEL=info HEALTHCHECK=true
+alex_contacts:  --tags @validate_contacts_without_name BROWSER=firefox URL=stg USR=abqastsas1 PW=password1 new_framework=true  --guess LOG_LEVEL=info HEALTHCHECK=true
 alex_regress:  --tags @bvt_shipping_address_management BROWSER=ff WEB_APP=orders URL=cc USR=abqacc10 PW=password1  --guess LOG_LEVEL=info HEALTHCHECK=false MAX_WINDOW=false
 alex_rates:  --tags @rates_orders_pme_comm_plus_zone_5 BROWSER=ff URL=stg USR=abqast2 PW=password1  --guess LOG_LEVEL=info HEALTHCHECK=false
 alex_rates_pmi:  --tags @rates_mail_pmei_comm_base_group_2 BROWSER=ff URL=stg USR=abqast5 PW=password1  --guess LOG_LEVEL=info HEALTHCHECK=false MAX_WINDOW=false
-alex_orders:  --tags @bvt_orders_ui_validation BROWSER=ff URL=prod USR=abqaprod2 PW=password1  PRINTER=factory --guess LOG_LEVEL=info HEALTHCHECK=false
+alex_orders:  --tags @bvt_orders_print_all BROWSER=ff URL=sc USR=wbap-631 PW=pass111  PRINTER=factory --guess LOG_LEVEL=info HEALTHCHECK=false
 alex_test:  --tags @bvt_shipping_address_management BROWSER=ff URL=qacc USR=abqacc10 PW=password1  --guess LOG_LEVEL=info HEALTHCHECK=false MAX_WINDOW=false
 saucelabs_alex: --tags @history_filter_direct_url URL=qacc USR=abqaccsas1 PW=password1 --guess SAUCE_USERNAME=robcruz SAUCE_ACCESS_KEY=0e60dbc9-5bbf-425a-988b-f81c42d6b7ef SELENIUM_BROWSER=firefox SELENIUM_VERSION=latest SELENIUM_PLATFORM='Windows 10' SELENIUM_HOST=ondemand.saucelabs.com SELENIUM_PORT=443
+
+
+
 mail_print_envelope_11: --tags @mail_print_envelope_11 --guess PRINTER=factory
 poc_stg_chrome: --tags @authentication --guess URL=stg BROWSER=ff
 poc_stg_firefox: --tags @authentication --guess URL=stg BROWSER=ff
@@ -287,9 +289,8 @@ rates_orders_pmei_comm_plus_group_14: --tags @rates_orders_pmei_comm_plus_group_
 rates_orders_pmei_comm_plus_group_15: --tags @rates_orders_pmei_comm_plus_group_15 --guess LOG_LEVEL=info
 rates_orders_pmei_comm_plus_group_16: --tags @rates_orders_pmei_comm_plus_group_16 --guess LOG_LEVEL=info
 rates_orders_pmei_comm_plus_group_17: --tags @rates_orders_pmei_comm_plus_group_17 --guess LOG_LEVEL=info
-bvt_mail_piece_validation: --tags @bvt_mail_piece_validation --guess PRINTER=factory
+
 pam_db_user_appscap_provisioning: --tags @pam_db_user_appscap_provisioning --guess WEB_APP=pam --guess LOG_LEVEL=info MAX_WINDOW=false
-mail_bvt_advanced_options: --tags @mail_bvt_advanced_options --guess
 registration_normal_workflow: --tags @registration_normal_workflofoxw WEB_APP=registration --guess MAX_WINDOW=true
 registration_profile_page_ui_validation: --tags @registration_profile_page_ui_validation WEB_APP=registration --guess MAX_WINDOW=true
 registration_membership_page_ui_validation: --tags @registration_membership_page_ui_validation WEB_APP=registration --guess MAX_WINDOW=true
@@ -344,6 +345,7 @@ bvt_orders_ship_date: --tags @bvt_orders_ship_date --guess
 bvt_orders_ship_date_calendar: --tags @bvt_orders_ship_date_calendar --guess
 bvt_form_validation_orders_details: --tags @bvt_form_validation_orders_details --guess
 bvt_form_validation_bulk_update: --tags @bvt_form_validation_bulk_update --guess
+bvt_orders_print_all: --tags @bvt_orders_print_all --guess
 bvt_all_tests: --tags @bvt_all_tests --guess
 dev_bvt_shipping_address_management: --tags @bvt_shipping_address_management --guess
 dev_bvt_address_cleansing: --tags @bvt_address_cleansing --guess
@@ -489,6 +491,9 @@ bugs_stamps_print: --tags @bugs_stamps_print --guess
 bugs_stamps: --tags @bugs_stamps --guess
 mail_authentication: --tags @mail_authentication --guess
 mail_authentication_mobile: --tags @mail_authentication_mobile --guess
+mail_bvt_envelope_10: --tags @mail_bvt_envelope_10 --guess LOG_LEVEL=info
+mail_bvt_shipping_label_paper: --tags @mail_bvt_shipping_label_paper --guess LOG_LEVEL=info
+mail_print_on_lov: --tags @mail_print_on_lov --guess LOG_LEVEL=info
 mail_bvt_ship_date: --tags @mail_bvt_ship_date --guess
 mail_bvt_address_cleansing: --tags @mail_bvt_address_cleansing --guess
 mail_bvt_contacts: --tags @mail_bvt_contacts --guess
@@ -499,6 +504,10 @@ mail_bvt_stamps: --tags @mail_bvt_stamps --guess PRINTER=factory
 mail_bvt_international: --tags @mail_bvt_international --guess
 mail_reset: --tags @mail_reset --guess
 mail_bvt_ui_validation: --tags @mail_bvt_ui_validation --guess
+mail_bvt_toolbar_settings: --tags @mail_bvt_toolbar_settings --guess
+mail_bvt_advanced_options: --tags @mail_bvt_advanced_options --guess
+mail_bvt_certified_mail: --tags @mail_bvt_certified_mail --guess
+
 dev_mail_authentication: --tags @mail_authentication --guess HEALTHCHECK=false
 dev_mail_bvt_address_cleansing: --tags @mail_bvt_address_cleansing --guess HEALTHCHECK=false
 dev_mail_bvt_contacts: --tags @mail_bvt_contacts --guess HEALTHCHECK=false
@@ -602,7 +611,8 @@ ewwr_session_state_data_validation: --tags @ewwr_session_state_data_validation -
 ewwr_security_question_page_validation: --tags @ewwr_security_question_page_validation --guess  LOG_LEVEL=info
 ewwr_header_footer_validation: --tags @ewwr_header_footer_validation --guess  LOG_LEVEL=info
 swwr_create_your_account_page_validation: --tags @swwr_create_your_account_page_validation --guess LOG_LEVEL=info
-aloha: --tags @advanced_search_ship_date_ranges URL=stg LOG_LEVEL=info HEALTHCHECK=false BROWSER=ff MAX_WINDOW=false USR=tcs_core002 PW=password1
+
+aloha_contacts: --tags @multiple_shipto_contacts_view URL=stg LOG_LEVEL=info HEALTHCHECK=false BROWSER=ff MAX_WINDOW=false USR=tcs_core002 PW=password1
 #aloha: --tags @sdc_contact_add_new_contact URL=stg LOG_LEVEL=info HEALTHCHECK=false BROWSER=ff MAX_WINDOW=false USR=tcs_core004 PW=password1
 #aloha: --tags @sdc_contacts_show_all_columns URL=qacc LOG_LEVEL=debug HEALTHCHECK=false BROWSER=gc MAX_WINDOW=false USR=Tmaheryar PW=password1
 sdc_contacts_delete_single_from_top_navigation: --tags @sdc_contacts_delete_single_from_top_navigation --guess LOG_LEVEL=info
@@ -640,12 +650,15 @@ sdc_contact_columns_sort_asc_dec: --tags @sdc_contact_columns_sort_asc_dec --gue
 sdc_contact_columns_name_sort:  --tags @sdc_contact_columns_name_sort --guess LOG_LEVEL=info
 sdc_contacts_left_navigation_selected_filter:  --tags @sdc_contacts_left_navigation_selected_filter --guess LOG_LEVEL=info
 sdc_contacts_print_to_mail:  --tags @sdc_contacts_print_to_mail --guess LOG_LEVEL=info
+validate_contacts_without_name:  --tags @validate_contacts_without_name --guess LOG_LEVEL=info
 history_toolbar:  --tags @history_toolbar --guess LOG_LEVEL=info
 history_filter_direct_url:  --tags @history_filter_direct_url --guess LOG_LEVEL=info
 container_label_reprint:  --tags @container_label_reprint --guess LOG_LEVEL=info
 container_label_return_address:  --tags @container_label_return_address --guess LOG_LEVEL=info
 reports_toolbar:  --tags @reports_toolbar --guess LOG_LEVEL=info
 reports_filter_panel:  --tags @reports_filter_panel --guess LOG_LEVEL=info
+refund_assist:  --tags @refund_assist --guess LOG_LEVEL=info
+changes_to_landing_page:  --tags @changes_to_landing_page --guess LOG_LEVEL=info
 
 sdc_contacts_pagination_navigate_different_pages: --tags @sdc_contacts_pagination_navigate_different_pages --guess LOG_LEVEL=info
 sdc_contacts_search_country_results: --tags @sdc_contacts_search_country_results --guess LOG_LEVEL=info
@@ -654,7 +667,24 @@ bug_postal_code_not_added_contact_details: --tags @bug_postal_code_not_added_con
 multiple_shipto_contacts_view: --tags @multiple_shipto_contacts_view --guess LOG_LEVEL=info
 contacts_print_postage_single_from_details: --tags @contacts_print_postage_single_from_details --guess LOG_LEVEL=info
 contacts_print_postage_multiple_from_top_nav: --tags @contacts_print_postage_multiple_from_top_nav --guess LOG_LEVEL=info
+dropdown_tooltips:  --tags @dropdown_tooltips --guess LOG_LEVEL=info
 
+create_scan_form: --tags @create_scan_form --guess LOG_LEVEL=info
+transaction_address_4lines: --tags @transaction_address_4lines --guess LOG_LEVEL=info
+transaction_address_5lines: --tags @transaction_address_5lines --guess LOG_LEVEL=info
+transaction_address_6lines: --tags @transaction_address_6lines --guess LOG_LEVEL=info
+
+transaction_details_email_tracking_info: --tags @transaction_details_email_tracking_info --guess LOG_LEVEL=info
+history_change_costcode: --tags @history_change_costcode --guess LOG_LEVEL=info
+file_claim_link_for_print_with_sdc_insurance: --tags @file_claim_link_for_print_with_sdc_insurance --guess LOG_LEVEL=info
+file_claim_link_for_print_with_extra_services_usps_insurance: --tags @file_claim_link_for_print_with_extra_services_usps_insurance --guess LOG_LEVEL=info
+history_details_file_ins_claim_print_receipt: --tags @history_details_file_ins_claim_print_receipt --guess LOG_LEVEL=info
+history_details_file_ins_claim_email_tracking_info: --tags @history_details_file_ins_claim_email_tracking_info --guess LOG_LEVEL=info
+history_details_header_file_ins_claim_email_tracking_info: --tags @history_details_header_file_ins_claim_email_tracking_info --guess LOG_LEVEL=info
+
+aloha_history: --tags @transaction_address_6lines URL=stg LOG_LEVEL=info HEALTHCHECK=false BROWSER=gc MAX_WINDOW=false USR=tcs_core007 PW=password1
 history_export:  --tags @history_export --guess LOG_LEVEL=info
+file_insurance_claim:  --tags @file_insurance_claim --guess LOG_LEVEL=info
 
-advanced_search_date_printed_date_ranges: --tags @advanced_search_date_printed_date_ranges --guess LOG_LEVEL=info
+
+

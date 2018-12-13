@@ -9,6 +9,24 @@ Then /^click date link on reports toolbar$/ do
   step 'expect date menu on reports toolbar has correct values'
 end
 
+Then /^hover on date link on reports toolbar$/ do
+  SdcReports.toolbar.date.link.hover
+end
+
+Then /^wait for date tooltip on reports toolbar$/ do
+  SdcReports.toolbar.date.tooltip.safe_wait_until_present(timeout: 2)
+end
+
+Then /^expect date tooltip on reports toolbar is present$/ do
+  step 'wait for date tooltip on reports toolbar'
+  expect(SdcReports.toolbar.date.tooltip).to be_present
+end
+
+Then /^expect date tooltip on reports toolbar is not present$/ do
+  step 'wait for date tooltip on reports toolbar'
+  expect(SdcReports.toolbar.date.tooltip).not_to be_present
+end
+
 Then /^hover on date tooltip on reports toolbar$/ do
   SdcReports.toolbar.date.tooltip.safe_wait_until_present(timeout: 5)
   SdcReports.toolbar.date.tooltip.hover if SdcReports.toolbar.date.tooltip.present?
@@ -100,6 +118,7 @@ Then /^expect (.*) selected on reports toolbar date$/ do |str|
   expect(SdcReports.toolbar.date.selection.text_value).to include(str)
 end
 
+# view
 Then /^click view link on reports toolbar$/ do
   SdcReports.toolbar.view.link.click
   SdcReports.toolbar.view.tooltip.safe_wait_until_present(timeout: 3)
@@ -114,6 +133,24 @@ end
 Then /^hover on view tooltip on reports toolbar$/ do
   SdcReports.toolbar.view.tooltip.safe_wait_until_present(timeout: 5)
   SdcReports.toolbar.view.tooltip.hover if SdcReports.toolbar.view.tooltip.present?
+end
+
+Then /^hover on view link on reports toolbar$/ do
+  SdcReports.toolbar.view.link.hover
+end
+
+Then /^wait for view tooltip on reports toolbar$/ do
+  SdcReports.toolbar.view.tooltip.safe_wait_until_present(timeout: 2)
+end
+
+Then /^expect view tooltip on reports toolbar is present$/ do
+  step 'wait for view tooltip on reports toolbar'
+  expect(SdcReports.toolbar.view.tooltip).to be_present
+end
+
+Then /^expect view tooltip on reports toolbar is not present$/ do
+  step 'wait for view tooltip on reports toolbar'
+  expect(SdcReports.toolbar.view.tooltip).not_to be_present
 end
 
 Then /^expect view menu on reports toolbar has correct values$/ do
@@ -211,6 +248,24 @@ end
 Then /^hover on interval tooltip on reports toolbar$/ do
   SdcReports.toolbar.interval.tooltip.safe_wait_until_present(timeout: 5)
   SdcReports.toolbar.interval.tooltip.hover if SdcReports.toolbar.interval.tooltip.present?
+end
+
+Then /^hover on interval link on reports toolbar$/ do
+  SdcReports.toolbar.interval.link.hover
+end
+
+Then /^wait for interval tooltip on reports toolbar$/ do
+  SdcReports.toolbar.interval.tooltip.safe_wait_until_present(timeout: 2)
+end
+
+Then /^expect interval tooltip on reports toolbar is present$/ do
+  step 'wait for interval tooltip on reports toolbar'
+  expect(SdcReports.toolbar.interval.tooltip).to be_present
+end
+
+Then /^expect interval tooltip on reports toolbar is not present$/ do
+  step 'wait for interval tooltip on reports toolbar'
+  expect(SdcReports.toolbar.interval.tooltip).not_to be_present
 end
 
 Then /^expect interval menu on reports toolbar has correct values$/ do
