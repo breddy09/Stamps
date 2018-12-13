@@ -117,7 +117,7 @@ rates_test:
   rates_fcm_package: FCM Package
   test_dir: C:\Stamps\binaries
   results_dir: \\jenkinsvm01\Public\share\share\rates_test_data\results\
-  source_dir: \\jenkinsvm01\Public\share\share\rates_test_data\tests\
+  source_dir: \\jenkinsvm01\Public\share\share\rates_test_data\tests
 
 import_orders_test:
   import_orders_dir: \\jenkinsvm01\Public\automation\data
