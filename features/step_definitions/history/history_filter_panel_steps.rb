@@ -47,7 +47,6 @@ end
 Then /^click on advanced search arrow on history filter panel$/ do
   advanced_search = SdcHistory.filter_panel.search
   advanced_search.advanced_search_arrow.safe_wait_until_present(timeout: 10)
-  # advanced_search.advanced_search_arrow.flash
   advanced_search.advanced_search_arrow.click
 end
 
