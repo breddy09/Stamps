@@ -80,9 +80,7 @@ module SdcMail
         end
 
         def selection(name, str)
-          xpath='//li[text()="#{str}"]'
-          #page_object(name) { { xpath: '//li[text()="#{str}"]' } }
-          page_object(name) { { xpath: xpath } }
+          page_object(name) { { xpath: "//li[text()='#{str}']" } }
         end
 
         def list_of_values(name, company)
