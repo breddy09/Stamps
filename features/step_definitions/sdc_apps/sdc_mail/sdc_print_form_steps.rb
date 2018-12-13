@@ -140,14 +140,14 @@ end
 Then /^on mail-to text box hover over contact (.*)$/ do |contact|
   contact_name = SdcMail.modals.add_address.contacts_view
   contact_count = contact_name.contacts_list.count
-  #SdcLogger.info "Total no of contacts to hover are :#{contact_count}"
+  #SdcLogger.debug "Total no of contacts to hover are :#{contact_count}"
   i=0
   while i< contact_count
     if contact_name.contacts_list[i].attribute_value('title').include? contact
       #contact_name.contacts_list[i].flash
       contact_name.contacts_list[i].hover
       break
-      #SdcLogger.info "Hover successful for contact ID:#{i}"
+      #SdcLogger.debug "Hover successful for contact ID:#{i}"
     end
     i=i+1
   end
@@ -164,11 +164,11 @@ Then /^expect tooltip of contact (.*) is correct$/ do |name|
       tooltip = contact_tooltip_data_contact.split("<br>#{name}")
       address = tooltip[1].split("','AddressSummary'")
       concatenated_tooltip = name + address[0] +" " +contact_tooltip_data_email
-      #SdcLogger.info "Concatenated tooltip for contact #{i} is " "\n" +" #{concatenated_tooltip}"
+      #SdcLogger.debug "Concatenated tooltip for contact #{i} is " "\n" +" #{concatenated_tooltip}"
       tooltip_to_verify = "#{TestData.hash["#{name}_name"]}" + "<br>" "#{TestData.hash["#{name}_company"]}<br>#{TestData.hash["#{name}_street_address"]}<br>#{TestData.hash["#{name}_city"]}, #{TestData.hash["#{name}_state_abbvr"]} #{TestData.hash["#{name}_zip"]} #{contact_tooltip_data_email}"
-      #SdcLogger.info "tooltip to verify for contact #{i} is " "\n" +" #{tooltip_to_verify}"
+      #SdcLogger.debug "tooltip to verify for contact #{i} is " "\n" +" #{tooltip_to_verify}"
       expect(tooltip_to_verify).to eql(concatenated_tooltip)
-      #SdcLogger.info "Expected and Actual tooltip for contact #{i} are same. Displayed as below : Actual #{concatenated_tooltip} and Expected :#{tooltip_to_verify} "
+      #SdcLogger.debug "Expected and Actual tooltip for contact #{i} are same. Displayed as below : Actual #{concatenated_tooltip} and Expected :#{tooltip_to_verify} "
     end
     i=i+1
   end
@@ -178,7 +178,7 @@ end
 Then /^expect remove button is present for contact (.*)$/ do |name|
   contact_name = SdcMail.modals.add_address.contacts_view
   contact_count = contact_name.contacts_list.count
-  #SdcLogger.info "Total no of contacts to hover are :#{contact_count}"
+  #SdcLogger.debug "Total no of contacts to hover are :#{contact_count}"
   i=0
   while i< contact_count
     if contact_name.contacts_list[i].attribute_value("title").include? name
@@ -192,7 +192,7 @@ end
 Then /^click remove button on contact (.*)$/ do |name|
   contact_name = SdcMail.modals.add_address.contacts_view
   contact_count = contact_name.contacts_list.count
-  #SdcLogger.info "Total no of contacts to hover are :#{contact_count}"
+  #SdcLogger.debug "Total no of contacts to hover are :#{contact_count}"
   i=0
   while i< contact_count
     if contact_name.contacts_list[i].attribute_value("title").include? name

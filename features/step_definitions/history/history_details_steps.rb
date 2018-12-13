@@ -43,7 +43,7 @@ Then /^expect address shipped to contains (\d+) lines$/ do |lines|
   address = address.split("\n")
   address_lines_count = address.length
   expect(address_lines_count.to_i). to eql(lines.to_i)
-  SdcLogger.info "Shipped to address contains #{address_lines_count} lines"
+  SdcLogger.debug "Shipped to address contains #{address_lines_count} lines"
 end
 
 Then /^set search prints tracking number on history filter panel to (?:newly added|(.*))$/ do |str|

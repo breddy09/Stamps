@@ -102,13 +102,13 @@ Then /^expect newly added cost codes included in the cost code grid$/ do
   while i<= row_count
     if add_cost_code.cost_code_table(i).text_value.eql? TestData.hash[:costcode_val]
       included = true
-      SdcLogger.info "Newly added cost code #{TestData.hash[:costcode_val]} included in the table"
+      SdcLogger.debug "Newly added cost code #{TestData.hash[:costcode_val]} included in the table"
       break
     end
     i = i+1
   end
   if included .eql? false
-    SdcLogger.info "Newly added cost code #{TestData.hash[:costcode_val]} not included in the table"
+    SdcLogger.debug "Newly added cost code #{TestData.hash[:costcode_val]} not included in the table"
   end
 end
 
@@ -186,13 +186,13 @@ end
 Then /^fetch total against each cost code present$/ do
   left_nav_costcode = SdcContacts.contacts_filter.cost_codes
   row_count = left_nav_costcode.total_costcodes.count
-  SdcLogger.info "Total no of cost codes : #{row_count.to_s}"
+  SdcLogger.debug "Total no of cost codes : #{row_count.to_s}"
   i = 1
   while i <= row_count.to_i
     cost_code_label = left_nav_costcode.cost_code_name(i).text_value
-    SdcLogger.info "Costcode name : #{cost_code_label}"
+    SdcLogger.debug "Costcode name : #{cost_code_label}"
     count = left_nav_costcode.cost_code_count(i).text_value
-    SdcLogger.info "count of #{cost_code_label} is : #{count}"
+    SdcLogger.debug "count of #{cost_code_label} is : #{count}"
     i = i + 1
   end
 end
@@ -208,12 +208,12 @@ Then /^on left navigation expect (.*) is avilable under costcode filter$/ do |co
 
   left_nav_costcode = SdcContacts.contacts_filter.cost_codes
   row_count = left_nav_costcode.total_costcodes.count
-  SdcLogger.info "Count :#{row_count}"
+  SdcLogger.debug "Count :#{row_count}"
   if row_count.to_i != 0
     i = 1
     while i <= row_count.to_i
       if (left_nav_costcode.cost_code_name(i).text_value).eql? value
-        SdcLogger.info "Cost code Name : #{left_nav_costcode.cost_code_name(i).text_value}"
+        SdcLogger.debug "Cost code Name : #{left_nav_costcode.cost_code_name(i).text_value}"
         result = left_nav_costcode.cost_code_name(i).text_value
         expect(result).to eql(value)
       end

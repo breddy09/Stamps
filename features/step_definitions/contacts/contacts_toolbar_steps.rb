@@ -115,7 +115,7 @@ Then /^expect (.*) column is present on contacts grid$/ do |column|
   column_header = SdcContacts.grid.column.contacts_header_element(column)
   column_header.scroll_into_view
   #column_header.flash
-  SdcLogger.info "Header Element Present? : #{column} - #{column_header.present?.to_s}"
+  SdcLogger.debug "Header Element Present? : #{column} - #{column_header.present?.to_s}"
   expect(column_header.present?).to be (true)
 end
 
@@ -123,7 +123,7 @@ Then /^expect (.*) column is not present on contacts grid$/ do |column|
   column_header = SdcContacts.grid.column.contacts_header_element(column)
   #todo-Aloha check with rob
   column_header.scroll_into_view
-  SdcLogger.info "Header Element Present? : #{column} - #{column_header.present?.to_s}"
+  SdcLogger.debug "Header Element Present? : #{column} - #{column_header.present?.to_s}"
   expect(column_header.present?).to be (false)
 end
 

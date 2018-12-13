@@ -122,5 +122,5 @@ end
 
 Then /^[Oo]n PAM AppCap Overrides page, Submit$/ do
   result = pam.appcap_overrides_page.submit.ok
-  SdcLogger.info " ############## #{TestData.hash[:username]}: #{result}"
+  SdcLogger.debug " ############## #{TestData.hash[:username]}: #{result}"
 end

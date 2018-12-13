@@ -74,7 +74,7 @@ Then /^set contact details to$/ do |table|
       step 'click on groups collapse button of contacts left navigation'
       step "set contact details groups to #{groups}"
     else
-      SdcLogger.info 'No Groups for this account to add'
+      SdcLogger.debug 'No Groups for this account to add'
     end
   else
     step "set contact details groups to #{groups}"
@@ -391,7 +391,7 @@ Then /^expect email error is displayed$/ do
   contacts_detail = SdcContacts.details
   contacts_detail.email_error.safe_wait_until_present(timeout:10)
   expect(contacts_detail.email_error.present?).to be(true)
-  SdcLogger.info "Error message: #{contacts_detail.email_error_message.text_value}"
+  SdcLogger.debug "Error message: #{contacts_detail.email_error_message.text_value}"
 end
 
 Then /^expect email error is not displayed$/ do
@@ -621,7 +621,7 @@ Then /^set street address on contact page details to maximum lines (\d+)$/ do |l
     total_address = address[0] + " " + address[1] + " " + address[2] + " " + address[3]
   end
   TestData.hash[:street_address] = total_address
-  SdcLogger.info "Given street address #{total_address}"
+  SdcLogger.debug "Given street address #{total_address}"
   contacts_detail.postal_code.click
 end
 
@@ -644,7 +644,7 @@ Then /^set address to (.*)$/ do |address|
     us_states = data_for(:us_states, {})
     states = us_states.values
     state = states[rand(us_states.size)]
-    SdcLogger.info "state value from random states value #{state}"
+    SdcLogger.debug "state value from random states value #{state}"
     postal_code = TestHelper.rand_postal_code
   when 'international'
     countries = data_for(:countries, {})
@@ -655,14 +655,14 @@ Then /^set address to (.*)$/ do |address|
     us_states = data_for(:us_states, {})
     states = us_states.values
     state = states[rand(us_states.size)]
-    SdcLogger.info "state value from random states value #{state}"
+    SdcLogger.debug "state value from random states value #{state}"
     postal_code = TestHelper.rand_postal_code
   when 'apo'
     country = 'United States'
     apo_states = {"AA (Armed Forces)" => "AA", "AE (Armed Forces)" => "AE"}
     apo_states = apo_states.keys
     state = apo_states[rand(apo_states.size)]
-    SdcLogger.info "state value from random states value #{state}"
+    SdcLogger.debug "state value from random states value #{state}"
     street_address = TestHelper.rand_street1_address
     city = TestHelper.rand_city_name
     postal_code = TestHelper.rand_postal_code
@@ -712,7 +712,7 @@ Then /^search contact details country with value (.*)$/ do |str|
   end
   TestData.hash[:country_list] = Array.new
   TestData.hash[:country_list] = country_list
-  SdcLogger.info "#{search_list_count.count} countries are avaliable in search of #{str}"
+  SdcLogger.debug "#{search_list_count.count} countries are avaliable in search of #{str}"
 end
 
 Then /^expect search country list contains value (.*)$/ do |country_name|
@@ -721,7 +721,7 @@ Then /^expect search country list contains value (.*)$/ do |country_name|
   i = 1
   while i < search_list_count
     expect(country.search_countries(TestData.hash[:country_list][i],'name').present?).to be (true)
-    SdcLogger.info "#{TestData.hash[:country_list][i]} is present in search list of #{country_name}"
+    SdcLogger.debug "#{TestData.hash[:country_list][i]} is present in search list of #{country_name}"
     i = i + 1
   end
 end

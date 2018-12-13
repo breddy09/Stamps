@@ -19,7 +19,7 @@ end
 Then /^expect count on selected filter is (.*)$/ do |count|
   sel = SdcContacts.contacts_filter.selected
   actual_count = sel.selected_count.text_value
-  SdcLogger.info "actual : #{actual_count}"
+  SdcLogger.debug "actual : #{actual_count}"
   expect(actual_count.to_i).to eql(count.to_i)
 end
 
@@ -89,9 +89,9 @@ Then /^delete all present contacts with the value (.*)$/ do |str|
     end
     step 'click delete button on contacts toolbar'
     step 'click yes button on delete contacts modal'
-    #SdcLogger.info 'actual :' + actual_count
+    #SdcLogger.debug 'actual :' + actual_count
     new_count = search_results.search_results_count.text_value
-    #SdcLogger.info 'new_count :' + new_count
+    #SdcLogger.debug 'new_count :' + new_count
     expect(new_count.to_i).to eql (0)
   end
 end
@@ -117,7 +117,7 @@ end
 Then /^expect contacts with (.*) containing the value (.*) are retrieved in the grid/ do |column_name,value|
   search_results = SdcContacts.contacts_filter.search_results
   search_count = search_results.search_results_count.text_value
-  SdcLogger.info "Search Count : #{search_count}"
+  SdcLogger.debug "Search Count : #{search_count}"
   case column_name
   when 'Name'
     column = SdcContacts.grid.grid_column(:name)
@@ -127,8 +127,8 @@ Then /^expect contacts with (.*) containing the value (.*) are retrieved in the 
   i = 1
   while i <= search_count.to_i
     actual_value = column.text_at_row(i).downcase.to_sym
-    SdcLogger.info "value of #{column_name} at row #{i} is #{actual_value}"
-    SdcLogger.info "value passed is #{value}"
+    SdcLogger.debug "value of #{column_name} at row #{i} is #{actual_value}"
+    SdcLogger.debug "value passed is #{value}"
     expect(actual_value.to_s.include? value.to_s).to be true
     i = i + 1
   end
@@ -169,13 +169,13 @@ end
 Then /^fetch total count of all contacts$/ do
   left_nav_all_contacts = SdcContacts.contacts_filter.all_contacts
   left_nav_all_contacts.all_contacts.safe_wait_until_present(timeout: 15)
-  SdcLogger.info "All Contacts count : #{left_nav_all_contacts.all_contacts_count.text_value}"
+  SdcLogger.debug "All Contacts count : #{left_nav_all_contacts.all_contacts_count.text_value}"
 end
 
 Then /^fetch count of selected contacts$/ do
   left_nav_selected = SdcContacts.contacts_filter.selected
   left_nav_selected.selected.safe_wait_until_present(timeout: 15)
-  SdcLogger.info "Selected Contacts count #{left_nav_selected.selected_count.text_value}"
+  SdcLogger.debug "Selected Contacts count #{left_nav_selected.selected_count.text_value}"
 end
 
 Then /^select an existing cost code from left navigation filter panel/ do
@@ -185,7 +185,7 @@ Then /^select an existing cost code from left navigation filter panel/ do
   if row_count > 1
     left_nav_costcode.cost_code_element(row_count - 1).click
   else
-    SdcLogger.info 'No cost codes for this account to select'
+    SdcLogger.debug 'No cost codes for this account to select'
     left_nav_costcode.cost_code_element(row_count).click
   end
   step 'click on cost codes collapse button of contacts left navigation'
@@ -198,7 +198,7 @@ Then /^select an existing group from left navigation filter panel/ do
   if row_count > 1
     left_nav_group.group_element(row_count - 1).click
   else
-    SdcLogger.info 'No cost codes for this account to select'
+    SdcLogger.debug 'No cost codes for this account to select'
     left_nav_group.group_element(row_count).click
   end
   step 'click on groups collapse button of contacts left navigation'

@@ -24,7 +24,7 @@ end
 
 Then /^expect (.*) page is enabled$/ do |value|
   pagination = SdcContacts.pagination
-  SdcLogger.info "#{value} Page disabled #{pagination.page_arrow_disabled(value)}"
+  SdcLogger.debug "#{value} Page disabled #{pagination.page_arrow_disabled(value)}"
   expect(pagination.page_arrow_disabled(value)).to be(false)
 end
 
@@ -35,13 +35,13 @@ end
 
 Then /^expect (.*) page is disabled$/ do|value|
   pagination = SdcContacts.pagination
-  SdcLogger.info "#{value}Page disabled #{pagination.page_arrow_disabled(value)}"
+  SdcLogger.debug "#{value}Page disabled #{pagination.page_arrow_disabled(value)}"
   expect(pagination.page_arrow_disabled(value)).to be(true)
 end
 
 Then /^expect all the page arrows are disabled$/ do
   pagination = SdcContacts.pagination
-  SdcLogger.info "First Page disabled #{pagination.page_arrow_disabled('first')}"
+  SdcLogger.debug "First Page disabled #{pagination.page_arrow_disabled('first')}"
   expect(pagination.page_arrow_disabled('first')).to be(true)
 
   # pagination.page_arrow.next.item.attribute_value("class").include?("disabled")
@@ -55,11 +55,11 @@ Then /^expect all the page arrows are disabled$/ do
 
   #etc
 
-  SdcLogger.info "Last Page disabled #{pagination.page_arrow_disabled('last')}"
+  SdcLogger.debug "Last Page disabled #{pagination.page_arrow_disabled('last')}"
   expect(pagination.page_arrow_disabled('last')).to be(true)
-  SdcLogger.info "Previous Page disabled #{pagination.page_arrow_disabled('prev')}"
+  SdcLogger.debug "Previous Page disabled #{pagination.page_arrow_disabled('prev')}"
   expect(pagination.page_arrow_disabled('prev')).to be(true)
-  SdcLogger.info "Next Page disabled #{pagination.page_arrow_disabled('next')}"
+  SdcLogger.debug "Next Page disabled #{pagination.page_arrow_disabled('next')}"
   expect(pagination.page_arrow_disabled('next')).to be(true)
 end
 
@@ -72,7 +72,7 @@ Then /^expect contacts on contacts grid is reflected according to the selected p
   max_pages_text = pagination.max_pages.text_value
   max_pages_text = max_pages_text.split(" ")
   max_pages = max_pages_text[1]
-  SdcLogger.info "max_pages #{max_pages}"
+  SdcLogger.debug "max_pages #{max_pages}"
 
   if all_contacts_count.to_i > pagination_count.to_i
     while current_page.to_i <= max_pages.to_i
@@ -81,8 +81,8 @@ Then /^expect contacts on contacts grid is reflected according to the selected p
       current_selected_count = pagination.selected_contacts_count.text_value
       step 'uncheck row header in contacts grid'
       total_selected_count = total_selected_count+ current_selected_count.to_i
-      SdcLogger.info "total grid count #{total_selected_count}"
-      SdcLogger.info "remaining grid count #{current_selected_count}"
+      SdcLogger.debug "total grid count #{total_selected_count}"
+      SdcLogger.debug "remaining grid count #{current_selected_count}"
       if current_page.to_i == 1
         step 'expect next and last page arrows are enabled'
         step 'expect first and prev page arrows are disabled'
@@ -116,7 +116,7 @@ Then /^click on the pagination next button of contacts page$/ do
     TestData.hash[:current_page] = pagination.current_page.text_value
     if pagination.current_page.text_value.to_i.eql?TestData.hash[:max_pages_count]
       step 'expect next and last page arrows are disabled'
-      SdcLogger.info 'As the current page is max next arrow is disabled'
+      SdcLogger.debug 'As the current page is max next arrow is disabled'
     else
       pagination.page_next.click
       step 'expect current page text box is reflected accordingly'
@@ -135,7 +135,7 @@ Then /^click on the pagination prev button of contacts page$/ do
     TestData.hash[:current_page] = pagination.current_page.text_value
     if pagination.current_page.text_value.to_i.eql?1
       step 'expect first and prev page arrows are disabled'
-      SdcLogger.info 'As the current page is 1 prev arrow is disabled'
+      SdcLogger.debug 'As the current page is 1 prev arrow is disabled'
     else
       pagination.page_previous.click
       step 'expect current page text box is reflected accordingly'
@@ -154,7 +154,7 @@ Then /^click on the pagination first button of contacts page$/ do
     TestData.hash[:current_page] = pagination.current_page.text_value
     if pagination.current_page.text_value.to_i.eql?1
       step 'expect first and prev page arrows are disabled'
-      SdcLogger.info 'As the current page is 1 first arrow is disabled'
+      SdcLogger.debug 'As the current page is 1 first arrow is disabled'
     else
       pagination.page_first.click
       step 'expect current page text box is reflected accordingly'
@@ -172,7 +172,7 @@ Then /^click on the pagination last button of contacts page$/ do
     TestData.hash[:current_page] = pagination.current_page.text_value
     if pagination.current_page.text_value.to_i.eql?TestData.hash[:max_pages_count]
       step 'expect next and last page arrows are disabled'
-      SdcLogger.info 'As the current page is max last arrow is disabled'
+      SdcLogger.debug 'As the current page is max last arrow is disabled'
     else
       pagination.page_last.click
       step 'expect current page text box is reflected accordingly'
@@ -201,7 +201,7 @@ Then /^fetch the maximum page count in contacts pagination$/ do
   max_pages_text = pagination.max_pages.text_value
   max_pages_text = max_pages_text.split(" ")
   max_pages = max_pages_text[1]
-  SdcLogger.info "max_pages #{max_pages}"
+  SdcLogger.debug "max_pages #{max_pages}"
   TestData.hash[:max_pages_count] = max_pages.to_i
 end
 
@@ -217,6 +217,6 @@ Then /^expect current page text box is reflected accordingly$/ do
   when 'last'
     expect(pagination.current_page.text_value.to_i).to eql(TestData.hash[:max_pages_count].to_i)
   else
-    SdcLogger.info 'All the arrows are disabled'
+    SdcLogger.debug 'All the arrows are disabled'
   end
 end

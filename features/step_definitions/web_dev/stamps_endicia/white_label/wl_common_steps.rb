@@ -83,8 +83,8 @@ Then /^WL: navigates to default registration page for stamps with the following 
   expect(SdcPage.browser.url).to include(target_url.to_s)
 
   common_page.get_started.click!
-  SdcLogger.info "Sourceid = #{source_id}"
-  SdcLogger.info "Offerid = #{offer_id}"
+  SdcLogger.debug "Sourceid = #{source_id}"
+  SdcLogger.debug "Offerid = #{offer_id}"
 
   TestData.hash[:source_id] = source_id
   TestData.hash[:content] = content
@@ -107,8 +107,8 @@ Then /^WL: navigates to default registration page for endicia with the following
 
   WhiteLabel::EWWebsite.visit
 
-  SdcLogger.info "VendorId = #{vendor_id}"
-  SdcLogger.info "OfferId = #{offer_id}"
+  SdcLogger.debug "VendorId = #{vendor_id}"
+  SdcLogger.debug "OfferId = #{offer_id}"
 
   TestData.hash[:source_id] = source_id
   TestData.hash[:vendor_id] = vendor_id
@@ -301,7 +301,7 @@ Then /^WL: if username taken is present then set username to (?:random value|(.*
     expect(membership_page.username_taken_header).to be_present
     membership_page.new_username.set ((TestData.hash[:username]=(str.nil?)?(TestHelper.rand_usr) : str))
 
-    SdcLogger.info "UserName = #{TestData.hash[:username]}"
+    SdcLogger.debug "UserName = #{TestData.hash[:username]}"
     step 'WL: click username taken continue button'
   end
 end
@@ -318,7 +318,7 @@ Then /^WL: set username taken to (?:random value|(.*))/ do |str|
 
   new_username.click
   new_username.send_keys(:tab)
-  SdcLogger.info "UserName Taken = #{TestData.hash[:username]}"
+  SdcLogger.debug "UserName Taken = #{TestData.hash[:username]}"
 end
 
 Then /^WL: set username taken username to an existing username from db$/ do

@@ -41,7 +41,7 @@ Then /^[Ss]ave password to (?:default parameter file|parameter file (.*))$/ do |
 end
 
 Then /^[Oo]n PAM Customer Search page, set username from parameter file$/ do
-  SdcLogger.info "On PAM Customer Search page, set username from parameter file"
+  SdcLogger.debug "On PAM Customer Search page, set username from parameter file"
   step "On PAM Customer Search page, set username to #{TestData.hash['username']}"
 end
 
