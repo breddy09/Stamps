@@ -1,25 +1,30 @@
-Then /^run rate test PME Comm Base in Zone (\d+)$/ do |zone|
+Then /^run rates test PME Comm Base in Zone (\d+)$/ do |zone|
   param_sheet = data_for(:rates_test, {})['rates_pme_comm_base']
   step "run rates sheet #{param_sheet} in Zone #{zone}"
 end
 
-Then /^run rate test PME Comm Plus in Zone (\d+)$/ do |zone|
+Then /^run rates test PME Comm Plus in Zone (\d+)$/ do |zone|
   param_sheet = data_for(:rates_test, {})['rates_pme_comm_plus']
   step "run rates sheet #{param_sheet} in Zone #{zone}"
 end
 
-Then /^run rate test PM Comm Base in Zone (\d+)$/ do |zone|
+Then /^run rates test PM Comm Base in Zone (\d+)$/ do |zone|
   param_sheet = data_for(:rates_test, {})['rates_pm_comm_base']
   step "run rates sheet #{param_sheet} in Zone #{zone}"
 end
 
-Then /^run rate test PM Comm Plus in Zone (\d+)$/ do |zone|
+Then /^run rates test PM Comm Plus in Zone (\d+)$/ do |zone|
   param_sheet = data_for(:rates_test, {})['rates_pm_comm_plus']
   step "run rates sheet #{param_sheet} in Zone #{zone}"
 end
 
-Then /^run rate test Parcel Select Ground in Zone (\d+)$/ do |zone|
+Then /^run rates test Parcel Select Ground in Zone (\d+)$/ do |zone|
   param_sheet = data_for(:rates_test, {})['rates_parcel_select_ground']
+  step "run rates sheet #{param_sheet} in Zone #{zone}"
+end
+
+Then /^run rates test FCPS Comm Base in Zone (\d+)$/ do |zone|
+  param_sheet = data_for(:rates_test, {})['rates_fcps_comm_base']
   step "run rates sheet #{param_sheet} in Zone #{zone}"
 end
 
@@ -281,8 +286,12 @@ Then /^run rates sheet (.*) in Zone (\d+)$/ do |param_sheet, zone|
 
   step "set order details ship-to to a random address in Zone #{zone}"  if SdcGlobal.web_app == :orders
   step "set print form mail-to to a random address in zone #{zone}" if SdcGlobal.web_app == :mail
+
   step "save print form mail from" if SdcGlobal.web_app == :mail
   step 'save order details data' if SdcGlobal.web_app == :orders
+
+  step "click mail ship date picker today plus 1" if SdcGlobal.web_app == :mail
+  # step 'save order details data' if SdcGlobal.web_app == :orders
 
   @rate_sheet.each_with_index do |row, row_number|
     @row = row
@@ -341,7 +350,7 @@ Then /^run rates sheet (.*) in Zone (\d+)$/ do |param_sheet, zone|
             end
           end
 
-          weight_oz += row[@rate_sheet_columns[:weight_oz]].to_i if @rate_sheet_columns[:weight_oz]
+          weight_oz += row[@rate_sheet_columns[:weight_oz]].to_f if @rate_sheet_columns[:weight_oz]
 
           SdcLogger.info "#{"#" * 10} "
           SdcLogger.info "#{"#" * 10} Weight: #{weight_lb} lb #{weight_oz} oz"
@@ -350,7 +359,8 @@ Then /^run rates sheet (.*) in Zone (\d+)$/ do |param_sheet, zone|
           SdcLogger.info "#{"#" * 50}"
 
 
-          step "set print form weight to lbs #{weight_lb} oz #{weight_oz} by arrows"
+          step "set print form weight to lbs #{weight_lb} oz #{weight_oz}"
+          # step "set print form weight to lbs #{weight_lb} oz #{weight_oz} by arrows"
           TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight]] = "#{weight_lb} lb #{weight_oz} oz"
 
           # if TestHelper.is_whole_number?(weight_lb)
@@ -390,10 +400,10 @@ Then /^run rates sheet (.*) in Zone (\d+)$/ do |param_sheet, zone|
           # Write tracking to spreadsheet
           TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:tracking_selected]] = TestData.hash[:tracking]
           # sleep(0.525)
-          step 'wait for js to stop'
-          step 'blur out on print form' if SdcGlobal.web_app == :mail
-          step 'blur out on order details form' if SdcGlobal.web_app == :orders
-          step 'pause for 1 second'
+          # step 'wait for js to stop'
+          # step 'blur out on print form' if SdcGlobal.web_app == :mail
+          # step 'blur out on order details form' if SdcGlobal.web_app == :orders
+          # step 'pause for 1 second'
 
           # get total cost actual value from UI
           step 'save order details data' if SdcGlobal.web_app == :orders

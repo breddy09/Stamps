@@ -8,7 +8,7 @@ Feature: PM Comm Base Rates
 
   @rates_mail_fcps_comm_base_zone_1
   Scenario: FCPS Comm Base Zone 1
-    Then run rate test FCPS Comm Base in Zone 1
+    Then run rates test FCPS Comm Base in Zone 1
     Then Rates: Number of failed test should be less than 1
     Then sign out
 #

@@ -28,7 +28,7 @@ Then /^[Cc]heck Print form [Ee]mail [Tt]racking checkbox$/ do
   # stamps.mail.print_form.email_tracking.email_checkbox.click
 end
 
-Then /^set print form weight to lbs (\d+) oz (\d+)$/ do |lbs, oz|
+Then /^set print form weight to lbs (\d+) oz (.+)$/ do |lbs, oz|
   step "set print form pounds to #{lbs}"
   step "set print form ounces to #{oz}"
   step 'blur out on print form'

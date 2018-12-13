@@ -1,7 +1,4 @@
-Then /^run rate test FCPS Comm Base in Zone (\d+)$/ do |zone|
-  param_sheet = data_for(:rates_test, {})['rates_fcps_comm_base']
-  step "run rate sheet #{param_sheet} in Zone #{zone}"
-end
+
 
 # Then /^run rate test PME Comm Plus in Zone (\d+)$/ do |zone|
 #   param_sheet = data_for(:rates_test, {})['rates_pme_comm_plus']
