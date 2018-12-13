@@ -228,22 +228,6 @@ Then /^expect placeholder for disabled cost code on print form is (.+)$/ do |str
   expect(placeholder).to eql str
 end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Then /^expect print form ship date is (\d+) (?:day|days) from today$/ do |day|
   step "expect print form ship date dropdown is present"
   expectation = TestHelper.mail_date_text_field_format(day)

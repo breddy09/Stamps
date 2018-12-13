@@ -116,8 +116,8 @@ rates_test:
   rates_pmi_comm_plus: PMI Comm Plus
   rates_fcm_package: FCM Package
   test_dir: C:\Stamps\binaries
-  results_dir: \\jenkinsvm01\Public\share\share\rates_test_data\results\
-  source_dir: \\jenkinsvm01\Public\share\share\rates_test_data\tests\
+  results_dir: \\jenkinsvm01\Public\share\share\rates_test_data\results\2019
+  source_dir: \\jenkinsvm01\Public\share\share\rates_test_data\tests\2019
 
 import_orders_test:
   import_orders_dir: \\jenkinsvm01\Public\automation\data
