@@ -491,7 +491,6 @@ Then /^run rates sheet (.*) in country price group (\d+)$/ do |param_sheet, grou
           SdcLogger.info "#{"#" * 10} "
           SdcLogger.info "#{"#" * 10} Selected Weight: #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight]]}"
           SdcLogger.info "#{"#" * 10} Selected Service: #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:service_selected]]}"
-          SdcLogger.info "#{"#" * 10} Selected Country: #{TestData.hash[:country]}"
           SdcLogger.info "#{"#" * 10} #{"*" * 5} Test #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:status]] } - Expected #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:group]]}, Got #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:total_ship_cost]]} #{"*" * 5}"
           SdcLogger.info "#{"#" * 10} "
         end

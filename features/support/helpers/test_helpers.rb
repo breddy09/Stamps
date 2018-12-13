@@ -437,6 +437,35 @@ module SdcCore
       def to_bool(str)
         str.nil? ? false : str.downcase == 'true'
       end
+
+      def select_random_country(service, group)
+        country_list = data_for(service, {})["group" + group].values
+        # country_array = (country_list[rand(country_list.size)]).split("|")
+        # country_name = country_array[0]
+        # country_pounds = country_array[1].to_i
+        # country_name = ""
+        # country_pounds = 0
+        100.times do
+          unless TestData.hash[:pounds].nil?
+            country_name, country_pounds = pick_rand_country_pair(country_list)
+            return country_name if TestData.hash[:pounds] <= country_pounds.to_i
+
+
+            # if TestData.hash[:pounds] <= country_pounds
+            #   country_array = country_list[rand(country_list.size)].split("|")
+            #   country_name = country_array[0]
+            #   country_pounds = country_array[1].to_i
+            # else
+            #   break
+            # end
+          end
+        end
+        false
+      end
+
+      def pick_rand_country_pair(list)
+        (list[rand(list.size)]).split("|")
+      end
     end
   end
 end
