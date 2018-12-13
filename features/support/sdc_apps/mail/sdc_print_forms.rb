@@ -31,7 +31,7 @@ module SdcMail
         page_objects(:int_text_field,index:1 ,tag: :text_fields) { { xpath: '//input[@name="ShipCountryCode"]' } }
 
         page_objects(:text_fields, tag: :text_fields) { { xpath: '//input[@name="ShipCountryCode"]' } }
-        page_objects(:drop_downs, tag: :text_fields) { { xpath: '' } }
+        page_objects(:drop_downs) { { xpath: '//input[@name="ShipCountryCode"]/../..//*[contains(@class, "arrow")]' } }
 
         page_object(:link) { { xpath: '//label[contains(@class, "sdc-mainpanel-shiptolinkbtn")]//b' } }
         # Domestic Address
@@ -80,9 +80,7 @@ module SdcMail
         end
 
         def selection(name, str)
-          xpath='//li[text()="#{str}"]'
-          #page_object(name) { { xpath: '//li[text()="#{str}"]' } }
-          page_object(name) { { xpath: xpath } }
+          page_object(name) { { xpath: "//li[text()='#{str}']" } }
         end
 
         def list_of_values(name, company)
