@@ -1252,6 +1252,12 @@ Cucumber::Rake::Task.new(:rates_mail_pme_comm_plus_zone_9) do |t|
   t.cucumber_opts = "-p cuke_reports"
 end
 
+# FCPS
+Cucumber::Rake::Task.new(:rates_mail_fcps_comm_base_zone_1) do |t|
+  t.profile = 'rates_mail_fcps_comm_base_zone_1'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
 Cucumber::Rake::Task.new(:rates_mail_pm_comm_base_zone_1) do |t|
   t.profile = 'rates_mail_pm_comm_base_zone_1'
   t.cucumber_opts = "-p cuke_reports"
