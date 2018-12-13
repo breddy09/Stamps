@@ -390,14 +390,20 @@ Then /^run rates sheet (.*) in country price group (\d+)$/ do |param_sheet, grou
             step "set Print Form Ship-To Country to a random country in PMI price group #{group}" if SdcGlobal.web_app == :mail
           end
         end
+        # next if TestData.hash[:country].eql?('')
 
         # spreadsheet price for group
 
-        if row[group_column] == nil
+        if row[group_column] == nil || TestData.hash[:country].eql?('')
           # SdcLogger.info "#{"#" * 10} "
           # SdcLogger.info "#{"#" * 10} "
           # SdcLogger.info "#{"#" * 10} Test Row #{row_number} Skipped. No rates found on sheet."
-           SdcLogger.info "Test Row #{row_number} Skipped. No rates found on sheet."
+          if row[group_column]
+            SdcLogger.info "Test Row #{row_number} Skipped. No countries available by weight."
+          else
+            SdcLogger.info "Test Row #{row_number} Skipped. No rates found on sheet."
+          end
+
           # SdcLogger.info "#{"#" * 10} "
           # SdcLogger.info "#{"#" * 10} "
           # SdcLogger.info "#{"#" * 80} "

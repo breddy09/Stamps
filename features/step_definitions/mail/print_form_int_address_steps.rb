@@ -41,7 +41,8 @@ Then /^set Print Form Ship-To Country to a random country in PMI price group (.*
   #   end
   # end
   country_name = TestHelper.select_random_country(:country_groups_PMI, group)
-  step "set print form mail-to country to #{country_name}"
+  TestData.hash[:country] = country_name
+  step "set print form mail-to country to #{country_name}" if country_name
 end
 
 Then /^set Print Form Ship-To Country to a random country in PMI Flat Rate price group (.*)$/ do |group|

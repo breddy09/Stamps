@@ -445,7 +445,7 @@ module SdcCore
         # country_pounds = country_array[1].to_i
         # country_name = ""
         # country_pounds = 0
-        100.times do
+        30.times do
           unless TestData.hash[:pounds].nil?
             country_name, country_pounds = pick_rand_country_pair(country_list)
             return country_name if TestData.hash[:pounds] <= country_pounds.to_i
@@ -460,7 +460,7 @@ module SdcCore
             # end
           end
         end
-        false
+        ''
       end
 
       def pick_rand_country_pair(list)
