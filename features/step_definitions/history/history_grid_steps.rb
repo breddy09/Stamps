@@ -107,3 +107,20 @@ Then /^expect prints within date range (.*) for column (.*) are retrieved in the
   end
 end
 
+Then /^save the row number containing recipient number$/ do
+  TestData.hash[:tracking_number] = '9405511899564363347314'
+  expect(TestData.hash[:tracking_number]).to be_truthy
+  expect(TestData.hash[:tracking_number].size).to be > 15
+  tracking = SdcHistory.grid.grid_column(:tracking_number)
+  row_number = tracking.row_num(TestData.hash[:tracking_number])
+  TestData.hash[:row_number] = row_number
+  p TestData.hash[:row_number]
+end
+
+Then /^expect recipient column at row (?:saved|(.*)) to include (.*)$/ do |row, str|
+  SdcHistory.grid.body.safe_wait_until_present(timeout: 60)
+  row ||= TestData.hash[:row_number]
+  recipient_name = SdcHistory.grid.grid_column(:recipient).text_at_row(row)
+  expect(recipient_name.include? str).to be(true)
+end
+

@@ -223,7 +223,7 @@ Then /^expect contacts grid phone ext column at row (\d+) is (?:correct|(.*))$/ 
   expect(actual_value.strip).to eql str
 end
 
-Then /^expect contacts grid reference no column at row (\d+) is (?:correct|(.*))$/ do |row, str|
+Then /^ expect contacts grid reference no column at row (\d+) is (?:correct|(.*))$/ do |row, str|
   SdcContacts.grid.body.safe_wait_until_present(timeout: 60)
   step 'expect number of visible contacts grid column is correct'
   str ||= TestData.hash[:reference_number]

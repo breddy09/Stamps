@@ -46,10 +46,10 @@ Then /^expect address shipped to contains (\d+) lines$/ do |lines|
   SdcLogger.debug "Shipped to address contains #{address_lines_count} lines"
 end
 
-Then /^set search prints tracking number on history filter panel to (?:newly added|(.*))$/ do |str|
-  search =  SdcHistory.filter_panel.search
-  search.search_prints.safe_wait_until_present(timeout: 10)
+Then /^set tracking number on search prints of history filter panel to (?:newly added|(.*))$/ do |str|
+  search = SdcHistory.filter_panel.search
+  search.search_bar.safe_wait_until_present(timeout: 10)
   str ||= TestData.hash[:tracking_number]
-  search.search_prints.set(str)
+  search.search_bar.set(str)
 end
 

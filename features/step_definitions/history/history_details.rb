@@ -116,4 +116,6 @@ Then /^click email tracking info link on transaction detail panel$/ do
   history_detail.email_tracking_info.click
 end
 
-
+Then /^expect history filter panel search results tab is present$/ do
+  expect(SdcHistory.filter_panel.search_results.search_results_label).present?
+end

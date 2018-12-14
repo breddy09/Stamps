@@ -72,29 +72,28 @@ Feature:  History Filter Panel
     Then sign out
 
 
-  @history_search_by_recipient_name_with_tracking_number
-  Scenario: Verify for File Insurance Claim Search Recipient works
+  @search_recipient_name_with_tracking_number
+  Scenario: History grid search with recipient name works
     Then sign-in to mail
     Then select print on Shipping Label - 5 ½" x 8 ½"
     Then set print form mail-from to default
-    Then set print form mail-to to address  Diana Dolly, random company, Attn RMA Department, 3345 Point Pleasant Road, Hebron, KY 41048-9711
+    Then set print form mail-to to address Diana Dolly, random company, Attn RMA Department, 3345 Point Pleasant Road, Hebron, KY 41048-9711
     Then select print form service PM Large/Thick Envelope
     Then set print form weight to lbs 0 oz 1
     Then click print label
     Then confirm print on gif printing dialog
     Then click continue on confirm print modal
-    Then expect postage message panel tracking label is Postage was sent to your printer. Your Tracking Number is
+    Then expect postage message panel tracking number is Postage was sent to your printer. Your Tracking Number is
     Then save tracking number on print form message panel
     Then navigate to History
-    Then set search prints tracking number on history filter panel to Diana Dolly
+    Then set tracking number on search prints of history filter panel to Diana Dolly
     Then click search icon on history filter panel
-    Then expect history filter panel search results tab is present
+    Then expect search results is present on the history filter panel
     Then save the row number containing recipient number
-    Then expect recipient column include Diana Dolly
+    Then expect recipient column at row saved to include Diana Dolly
 
-
-  @history_search_by_recipient_name_without_tracking_number
-  Scenario: Verify for File Insurance Claim Search Recipient works
+  @search_recipient_name_without_tracking_number
+  Scenario: History grid search with recipient name works
     Then sign-in to mail
     Then select print on Shipping Label - 5 ½" x 8 ½"
     Then set print form mail-from to default
@@ -106,10 +105,10 @@ Feature:  History Filter Panel
     Then click continue on confirm print modal
     Then expect postage message panel tracking label is Postage was sent to your printer.
     Then navigate to History
-    Then set search prints tracking number on history filter panel to Diana Dolly
+    Then set tracking number on search prints of history filter panel to Diana Dolly
     Then click search icon on history filter panel
-    Then expect history filter panel search results tab is present
-    Then expect recipient column include Diana Dolly
+    Then expect search results is present on the history filter panel
+    Then expect recipient column at row 1 to include Diana Dolly
 
   @search_prints_different_date_ranges
   Scenario: History: Verify Date Selections generates search range of prints
