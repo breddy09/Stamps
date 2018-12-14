@@ -290,6 +290,7 @@ Then /^run rates sheet (.*) in Zone (\d+)$/ do |param_sheet, zone|
   step "save print form mail from" if SdcGlobal.web_app == :mail
   step 'save order details data' if SdcGlobal.web_app == :orders
 
+  step 'show advanced options'
   step "click mail ship date picker today plus 1" if SdcGlobal.web_app == :mail
   # step 'save order details data' if SdcGlobal.web_app == :orders
 
