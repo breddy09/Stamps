@@ -298,7 +298,6 @@ Then /^run rates sheet (.*) in Zone (\d+)$/ do |param_sheet, zone|
     TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:zone]] = "zone#{zone}"
     begin
       if row_number > 0
-        next
         #SdcLogger.info "#{"#" * 80} Rate Sheet: #{param_sheet}: Zone #{zone} - Row #{row_number}"
         SdcLogger.info "#{"#" * 10}"
         SdcLogger.info "Rate Sheet: #{param_sheet}: Zone #{zone} - Row #{row_number}"
