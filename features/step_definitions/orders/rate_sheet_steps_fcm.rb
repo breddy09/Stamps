@@ -8,7 +8,7 @@ Then /^run rate sheet (.*)$/ do |param_sheet|
 
   #TestData.store[:starting_time]=Time.now
   #TestData.store[:max_time]=60 #seconds or 4 min
-
+  SdcLogger.debug "******"
   TestData.hash[:result_file] = Spreadsheet::Workbook.new
   TestData.hash[:result_sheet] = TestData.hash[:result_file].create_worksheet
 
@@ -28,92 +28,95 @@ Then /^run rate sheet (.*)$/ do |param_sheet|
   @bold = Spreadsheet::Format.new(:weight => :bold)
 
   @rate_sheet_header.each_with_index do |column_name, row_number|
-    if column_name == 'weight_oz'
+
+    case column_name
+
+    when 'weight_oz'
       @rate_sheet_columns[:weight_oz] = row_number
       TestData.hash[:result_sheet_columns][:weight_oz] = row_number
       TestData.hash[:result_sheet].row(0)[row_number] = 'weight_oz'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
+
     #AB_ORDERSAUTO_3580 - changes to order of columns. Column=Row_number, not Row_number minus offset
-    if column_name == 'zone1'
+    when 'zone1'
       @rate_sheet_columns[:zone1] = row_number
       TestData.hash[:result_sheet_columns][:zone] = row_number
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:zone]] = 'zone1'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'service'
+
+    when 'service'
       @rate_sheet_columns[:service] = row_number
       TestData.hash[:result_sheet_columns][:service] = row_number
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:service]] = 'service'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'tracking'
+
+    when 'tracking'
       @rate_sheet_columns[:tracking] = row_number
       TestData.hash[:result_sheet_columns][:tracking] = row_number
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:tracking]] = 'tracking'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'execution_date'
+
+    when 'execution_date'
       @rate_sheet_columns[:execution_date] = row_number
       TestData.hash[:result_sheet_columns][:execution_date] = row_number
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:execution_date]] = 'execution_date'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'username'
+
+    when 'username'
       @rate_sheet_columns[:username] = row_number
       TestData.hash[:result_sheet_columns][:username] = row_number
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:username]] = 'username'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'ship_from'
+
+    when 'ship_from'
       @rate_sheet_columns[:ship_from] = row_number
       TestData.hash[:result_sheet_columns][:ship_from] = row_number
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:ship_from]] = 'ship_from'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'ship_to_domestic'
+
+    when 'ship_to_domestic'
       @rate_sheet_columns[:ship_to_domestic] = row_number
       TestData.hash[:result_sheet_columns][:ship_to_domestic] = row_number
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:ship_to_domestic]] = 'ship_to_domestic'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'weight'
+
+    when 'weight'
       @rate_sheet_columns[:weight] = row_number
       TestData.hash[:result_sheet_columns][:weight] = row_number
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:weight]] = 'weight'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'service_selected'
+
+    when 'service_selected'
       @rate_sheet_columns[:service_selected] = row_number
       TestData.hash[:result_sheet_columns][:service_selected] = row_number
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:service_selected]] = 'service_selected'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'tracking_selected'
+
+    when 'tracking_selected'
       @rate_sheet_columns[:tracking_selected] = row_number
       TestData.hash[:result_sheet_columns][:tracking_selected] = row_number
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:tracking_selected]] = 'tracking_selected'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'total_ship_cost'
+
+    when 'total_ship_cost'
       @rate_sheet_columns[:total_ship_cost] = row_number
       TestData.hash[:result_sheet_columns][:total_ship_cost] = row_number
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:total_ship_cost]] = 'total_ship_cost'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'results'
+
+    when  'results'
       @rate_sheet_columns[:results] = row_number
       TestData.hash[:result_sheet_columns][:results] = row_number
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:results]] = 'results'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'status'
+
+    when 'status'
       @rate_sheet_columns[:status] = row_number
       TestData.hash[:result_sheet_columns][:status] = row_number
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:status]] = 'status'
       TestData.hash[:result_sheet].row(0).set_format(row_number, @bold)
-    end
-    if column_name == 'error_msg'
+
+    when 'error_msg'
       @rate_sheet_columns[:error_msg] = row_number
       TestData.hash[:result_sheet_columns][:error_msg] = row_number
       TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:error_msg]] = 'error_msg'
@@ -195,7 +198,8 @@ Then /^run rate sheet (.*)$/ do |param_sheet|
     TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:zone]] = "zone#{zone}"
     begin
       if row_number > 0
-        SdcLogger.info "#{"#" * 80} Rate Sheet: #{param_sheet}: Zone #{zone} - Row #{row_number}"
+        # SdcLogger.debug "#{"#" * 80} Rate Sheet: #{param_sheet}: Zone #{zone} - Row #{row_number}"
+        SdcLogger.debug "Rate Sheet: #{param_sheet}: Zone #{zone} - Row #{row_number}"
 
         # Set address to proper zone
         # step "set order details ship-to to random address between zone 1 and 4"  if SdcEnv.sdc_app == :orders
@@ -204,12 +208,13 @@ Then /^run rate sheet (.*)$/ do |param_sheet|
         # spreadsheet price for zone
 
         if row[zone_column] == nil
-          SdcLogger.info "#{"#" * 10} "
-          SdcLogger.info "#{"#" * 10} "
-          SdcLogger.info "#{"#" * 10} Test Row #{row_number} Skipped. No rates found on sheet."
-          SdcLogger.info "#{"#" * 10} "
-          SdcLogger.info "#{"#" * 10} "
-          SdcLogger.info "#{"#" * 80} "
+          #SdcLogger.debug "#{"#" * 10} "
+          #SdcLogger.debug "#{"#" * 10} "
+          #SdcLogger.debug "#{"#" * 10} Test Row #{row_number} Skipped. No rates found on sheet."
+          SdcLogger.debug "Test Row #{row_number} Skipped. No rates found on sheet."
+          #SdcLogger.debug "#{"#" * 10} "
+          #SdcLogger.debug "#{"#" * 10} "
+          #SdcLogger.debug "#{"#" * 80} "
           TestData.hash[:result_sheet].row(row_number).set_format(TestData.hash[:result_sheet_columns][:zone], format)
           TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight_oz]] = row[@rate_sheet_columns[:weight_oz]]
           TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:zone]] = row[zone_column]
@@ -243,11 +248,13 @@ Then /^run rate sheet (.*)$/ do |param_sheet|
 
           # Set weight per spreadsheet
           weight_oz = row[@rate_sheet_columns[:weight_oz]]
-          SdcLogger.info "#{"#" * 10} "
-          SdcLogger.info "#{"#" * 10} Weight: #{weight_oz}"
-          SdcLogger.info "#{"#" * 10} Price: #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:zone]]}"
-          SdcLogger.info "#{"#" * 10} "
-          SdcLogger.info "#{"#" * 50}"
+          # SdcLogger.debug "#{"#" * 10} "
+          # SdcLogger.debug "#{"#" * 10} Weight: #{weight_oz}"
+           SdcLogger.debug "Weight: #{weight_oz}"
+          # SdcLogger.debug "#{"#" * 10} Price: #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:zone]]}"
+           SdcLogger.debug "Price: #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:zone]]}"
+          # SdcLogger.debug "#{"#" * 10} "
+          # SdcLogger.debug "#{"#" * 50}"
 
           weight_oz = weight_oz.to_f
           TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight_oz]] = weight_oz
@@ -292,19 +299,24 @@ Then /^run rate sheet (.*)$/ do |param_sheet|
             TestData.hash[:result_sheet].row(row_number).set_format(TestData.hash[:result_sheet_columns][:status], fail_format)
             TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:results]] = "Expected #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:zone]]}, Got #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:total_ship_cost]]}"
           end
-          SdcLogger.info "#{"#" * 10} "
-          SdcLogger.info "#{"#" * 10} Weight: #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight]]}"
-          SdcLogger.info "#{"#" * 10} Selected Service: #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:service_selected]]}"
-          SdcLogger.info "#{"#" * 10} Ship-To Address: #{TestData.hash[:address]}" if SdcGlobal.web_app == :mail
-          SdcLogger.info "#{"#" * 10} Ship-To Address: #{TestData.hash[:full_name]}, #{TestData.hash[:street_address]}, #{TestData.hash[:city]}, #{TestData.hash[:state]}, #{TestData.hash[:zip]}" if SdcGlobal.web_app == :orders
-          SdcLogger.info "#{"#" * 10} #{"*" * 5} Test #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:status]] } - Expected #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:zone]]}, Got #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:total_ship_cost]]} #{"*" * 5}"
-          SdcLogger.info "#{"#" * 10} "
+          # SdcLogger.debug "#{"#" * 10} "
+          # SdcLogger.debug "#{"#" * 10} Weight: #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight]]}"
+           SdcLogger.debug "Weight: #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight]]}"
+          # SdcLogger.debug "#{"#" * 10} Selected Service: #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:service_selected]]}"
+           SdcLogger.debug "Selected Service: #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:service_selected]]}"
+          # SdcLogger.debug "#{"#" * 10} Ship-To Address: #{TestData.hash[:address]}" if SdcGlobal.web_app == :mail
+           SdcLogger.debug "Ship-To Address: #{TestData.hash[:address]}" if SdcGlobal.web_app == :mail
+          # SdcLogger.debug "#{"#" * 10} Ship-To Address: #{TestData.hash[:full_name]}, #{TestData.hash[:street_address]}, #{TestData.hash[:city]}, #{TestData.hash[:state]}, #{TestData.hash[:zip]}" if SdcGlobal.web_app == :orders
+          SdcLogger.debug "Ship-To Address: #{TestData.hash[:full_name]}, #{TestData.hash[:street_address]}, #{TestData.hash[:city]}, #{TestData.hash[:state]}, #{TestData.hash[:zip]}" if SdcGlobal.web_app == :orders
+          # SdcLogger.debug "#{"#" * 10} #{"*" * 5} Test #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:status]] } - Expected #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:zone]]}, Got #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:total_ship_cost]]} #{"*" * 5}"
+          SdcLogger.debug "Test #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:status]] } - Expected #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:zone]]}, Got #{TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:total_ship_cost]]}"
+          # SdcLogger.debug "#{"#" * 10} "
         end
 
       end
-    rescue Exception => e
-      SdcLogger.info e.message
-      SdcLogger.info e.backtrace.join("\n")
+    rescue StandardError => e
+      SdcLogger.debug e.message
+      SdcLogger.debug e.backtrace.join("\n")
       TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:error_msg]] = "Zone #{zone} - Row #{row_number}: #{e.message}"
     end
   end
@@ -321,34 +333,36 @@ Then /^run rate sheet (.*)$/ do |param_sheet|
       if row_number > 0
         if row[TestData.hash[:result_sheet_columns][:status]].casecmp("failed") == 0 || (row[TestData.hash[:result_sheet_columns][:status]].casecmp("passed") != 0 && !row[TestData.hash[:result_sheet_columns][:error_msg]].nil?)
           @failed_test_count += 1
-          SdcLogger.info "Zone #{zone} - Row #{row_number} Failed"
+          SdcLogger.debug "Zone #{zone} - Row #{row_number} Failed"
         end
       end
     end
   end
-  SdcLogger.info "#{"*" * 80}"
-  SdcLogger.info "#{"*" * 80}"
-  SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
-  SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
-  SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
-  SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
-  SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
-  SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
-  SdcLogger.info "#{"*" * 80}"
-  SdcLogger.info "#{"*" * 80}"
+  # SdcLogger.debug "#{"*" * 80}"
+  # SdcLogger.debug "#{"*" * 80}"
+  # SdcLogger.debug "Number of Failed Tests: #{@failed_test_count}"
+  # SdcLogger.debug "Number of Failed Tests: #{@failed_test_count}"
+  # SdcLogger.debug "Number of Failed Tests: #{@failed_test_count}"
+  # SdcLogger.debug "Number of Failed Tests: #{@failed_test_count}"
+  # SdcLogger.debug "Number of Failed Tests: #{@failed_test_count}"
+  # SdcLogger.debug "Number of Failed Tests: #{@failed_test_count}"
+  # SdcLogger.debug "#{"*" * 80}"
+  # SdcLogger.debug "#{"*" * 80}"
+  # SdcLogger.debug "Number of Failed Tests: #{@failed_test_count}"
 end
 
 
 Then /^Rates: Number of failed test should be less than (\d+)$/ do |count|
-  SdcLogger.info "#{"*" * 80}"
-  SdcLogger.info "Rates: Number of failed test should be less than #{count}"
+  #SdcLogger.debug "#{"*" * 80}"
+  SdcLogger.debug "Rates: Number of failed test should be less than #{count}"
   count = count.to_i
-  SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
-  SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
-  SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
-  SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
-  SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
-  SdcLogger.info "Number of Failed Tests: #{@failed_test_count}"
+  # SdcLogger.debug "Number of Failed Tests: #{@failed_test_count}"
+  # SdcLogger.debug "Number of Failed Tests: #{@failed_test_count}"
+  # SdcLogger.debug "Number of Failed Tests: #{@failed_test_count}"
+  # SdcLogger.debug "Number of Failed Tests: #{@failed_test_count}"
+  # SdcLogger.debug "Number of Failed Tests: #{@failed_test_count}"
+  # SdcLogger.debug "Number of Failed Tests: #{@failed_test_count}"
+  SdcLogger.debug "Number of Failed Tests: #{@failed_test_count}"
   expect(@failed_test_count).to be < count
-  SdcLogger.info "#{"*" * 80}"
+  #SdcLogger.debug "#{"*" * 80}"
 end

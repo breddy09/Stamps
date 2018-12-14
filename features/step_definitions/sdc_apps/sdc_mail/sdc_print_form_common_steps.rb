@@ -44,7 +44,7 @@ Then /^select print on (.+)$/ do |str|
     print_on.selection_element.click
   end
   expect(print_on.text_field.text_value).to eql(str) unless str.include? 'Manage'
-  #step 'blur out on print form'
+  step 'blur out on print form'
   TestData.hash[:print_media] = str
 end
 
@@ -181,18 +181,6 @@ Then /^expect placeholder for disabled reference # on print form is (.+)$/ do |s
 end
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 Then /^set print form cost code (.+)$/ do |value|
   cost_code = SdcMail.print_form.advanced_options.cost_code
   cost_code.selection_element(value: value)
@@ -239,22 +227,6 @@ Then /^expect placeholder for disabled cost code on print form is (.+)$/ do |str
   placeholder = advanced_options.cost_code_disabled.attribute_value('placeholder').strip
   expect(placeholder).to eql str
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 Then /^expect print form ship date is (\d+) (?:day|days) from today$/ do |day|
   step "expect print form ship date dropdown is present"

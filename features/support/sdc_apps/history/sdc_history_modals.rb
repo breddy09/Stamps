@@ -56,6 +56,15 @@ module SdcHistory
       def welcome
         Welcome.new
       end
+
+      def advance_search
+        AdvanceSearch.new
+      end
+
+      def insurance_claim_form
+        InsuranceClaimForm.new
+      end
+
     end
 
     class SchedulePickupState < SdcPage
@@ -79,9 +88,15 @@ module SdcHistory
     class NewCostCode < SdcPage
       page_object(:text_field, tag: :text_field) { { xpath: '//div[contains(@id, "changeCostCode")]//input' } }
       page_object(:drop_down) { { xpath: '//div[contains(@id, "changeCostCode")]//*[contains(@class, "arrow")]' } }
+      page_objects(:costcode_list){ { xpath: '//div[contains(@id, "changeCostCode")]//following::li' } }
 
-      def selection(str)
-        page_object(:selection_obj) { { xpath: "//li[text()='#{str}']" } }
+      def costcode_random(position)
+        xpath_text = "//div[contains(@id, 'changeCostCode')]//following::li[#{position}]"
+        page_object(:costcode_text, required: true, timeout: 10) { { xpath: xpath_text } }
+      end
+
+      def selection(value)
+        page_object(:selection_obj) { { xpath: "//li[text()='#{value}']" } }
       end
     end
 
@@ -139,7 +154,7 @@ module SdcHistory
       page_object(:drop_down) { { xpath: '//div[contains(@id, "printmediadroplist")]//div[contains(@class, "arrow")]' } }
 
       def selection_element(name: :selection, value: 'factory')
-        page_object(name) { { xpath: "//li[text()='#{value}']" } }
+        page_object(name) { { xpath: "//li[contains(text(), '#{value}')]" } }
       end
     end
 
@@ -306,7 +321,7 @@ module SdcHistory
       text_field(:nc_text_field, tag: :text_field) { { xpath: '//*[contains(@id, "containerLabelModal")]//input' } }
       page_object(:nc_increment) { { xpath: '//*[contains(@id, "containerLabelModal")]//*[contains(@class, "up")]' } }
       page_object(:nc_decrement) { { xpath: '//*[contains(@id, "containerLabelModal")]//*[contains(@class, "down")]' } }
-      sdc_number(:number_container, :nc_text_field, :nc_increment, :nc_decrement)
+      sdc_number(:number_containers, :nc_text_field, :nc_increment, :nc_decrement)
     end
 
     class ReadyToPrint < SdcPage
@@ -339,10 +354,12 @@ module SdcHistory
       page_object(:reprint) { {xpath: '//span[text()="Reprint"]'} }
       page_object(:total_cost) { {xpath: '//*[text()="Total Cost:"]/..//div[contains(test(), "$")]'} }
       page_object(:x_btn) { {xpath: '//*[contains(@class, "sdc-icon-mobile-close-light")]'} }
+      page_object(:blur_element) { {xpath: '//*[text()="Printing On:"]'} }
 
       def printing_on
         PrintingOn.new
       end
+
       def printer
         Printer.new
       end
@@ -359,5 +376,128 @@ module SdcHistory
       page_object(:close) { {xpath: '//*[text()="Close"]'} }
       page_object(:learn_more) { {xpath: '//*[text()="Learn More"]'} }
     end
+
+    class AdvanceSearch < SdcPage
+
+
+      page_object(:title) { { xpath: '//div[contains(@id , "advance-search-window-")]//div[text()="Advanced Search"]' } }
+      page_object(:date_printed) { { xpath: '//div[contains(@id , "advance-search-window-")]//*[contains(@id, "radiofield-")][text()="Date Printed"]/preceding-sibling::input[1]' } }
+      page_object(:date_delivered) { { xpath: '//div[contains(@id , "advance-search-window-")]//*[contains(@id, "radiofield-")][text()="Date Delivered"]/preceding-sibling::input[1]' } }
+      page_object(:ship_date) { { xpath: '//div[contains(@id , "advance-search-window-")]//*[contains(@id, "radiofield-")][text()="Ship Date"]/preceding-sibling::input[1]' } }
+
+      def date_range
+        DateRange.new
+      end
+
+      text_field(:from_date_text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advFromDate"]' } }
+      page_object(:from_date_calender_icon) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advFromDate"]/following::div[contains(@id,"-trigger-picker")][1]' } }
+
+      button(:from_date_today_button_selection , tag: :button) {{xpath:'//span[contains(@id, "button-")][text()="Today"]'}}
+
+      text_field(:to_date_text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advToDate"]' } }
+      page_object(:to_date_calender_icon) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advToDate"]/following::div[contains(@id,"-trigger-picker")][1]' } }
+      button(:to_date_today_button_selection , tag: :button) {{xpath:'//span[contains(@id, "button-")][text()="Today"]'}}
+
+      text_field(:recepient_text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advRecipient"]' } }
+
+      text_field(:cost_code_text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advCostCode"]' } }
+      page_object(:drop_down) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advCostCode"]/following::div[contains(@id,"-trigger-picker")][1]' } }
+
+      def selection_cost_code(name: 'selection', value: 'None')
+        page_object(name) { { xpath: "//li[text()='#{value}']" } }
+      end
+
+      text_field(:user_text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advUser"]' } }
+      page_object(:drop_down) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advUser"]/following::div[contains(@id,"-trigger-picker")][1]' } }
+
+      def selection_user(name: 'selection', value: 'None')
+        page_object(name) { { xpath: "//li[text()='#{value}']" } }
+      end
+
+      text_field(:print_message_text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advPrintMessage"]' } }
+
+      text_field(:tracking_id_text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advTracking"]' } }
+
+      text_field(:service_text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advService"]' } }
+      page_object(:drop_down) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advService"]/following::div[contains(@id,"-trigger-picker")][1]' } }
+
+      def selection_service(name: 'selection', value: 'None')
+        page_object(name) { { xpath: "//li[text()='#{value}']" } }
+      end
+
+      text_field(:status_text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advStatus"]' } }
+      page_object(:drop_down) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advStatus"]/following::div[contains(@id,"-trigger-picker")][1]' } }
+
+      def selection_status(name: 'selection', value: 'None')
+        page_object(name) { { xpath: "//li[text()='#{value}']" } }
+      end
+
+      text_field(:refund_type_text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advRefundType"]' } }
+      page_object(:drop_down) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advRefundType"]/following::div[contains(@id,"-trigger-picker")][1]' } }
+
+      def selection_refund_type(name: 'selection', value: 'None')
+        page_object(name) { { xpath: "//li[text()='#{value}']" } }
+      end
+
+      text_field(:carrier_text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advCarrier"]' } }
+      page_object(:drop_down) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advCarrier"]/following::div[contains(@id,"-trigger-picker")][1]' } }
+
+      def selection_carrier(name: 'selection', value: 'None')
+        page_object(name) { { xpath: "//li[text()='#{value}']" } }
+      end
+
+      page_object(:search_button) { { xpath:'//div[contains(@id , "advance-search-window-")]//span[contains(@id, "button-")][text()="Search"]' } }
+      page_object(:reset_advanced_search) { { xpath:'//div[contains(@id , "advance-search-window-")]//span[contains(@id, "button-")][text()="Reset"]' } }
+
+    end
+
+    class DateRange < SdcPage
+      text_field(:text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//*[contains(@id, "combo-")]//*[contains(@name, "advDateRange")]' } }
+      page_object(:drop_down) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advDateRange"]/following::div[contains(@id,"-trigger-picker")][1]' } }
+
+      def selection_date_range(name: 'selection', value: 'None')
+        page_object(name) { { xpath: "//li[text()='#{value}']" } }
+      end
+    end
+
+
+
+    class InsuranceClaimForm < SdcPage
+
+      page_object(:window){{xpath: '//div[contains(@id,"insurance-claim-form-window")][contains(@class,"x-window-closable")]'}}
+      page_object(:title) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//div[contains(@class,"x-title-text")]'} }
+      page_object(:close_button) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(@class,"sdc-icon-mobile-close-light")]'} }
+      page_object(:print_form_button) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[text()="Print Form"]'} }
+      page_object(:cancel_button) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[text()="Cancel"]'} }
+
+      page_object(:package_recipient_name_label){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(text(),"Package Recipient:")]'}}
+      page_object(:recipient_name_value){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="recipientname"]'}}
+      page_object(:recipient_name_error) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="recipientname"]//following::div[contains(@class,"error-msg")][1]'} }
+
+      page_object(:date_mailed_label){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(text(),"Date Mailed:")]'}}
+      page_object(:date_mailed_value){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="mailDate"]'}}
+      page_object(:date_mailed_error) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="mailDate"]//following::div[contains(@class,"error-msg")][1]'} }
+
+      page_object(:customer_id_label){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(text(),"Your Customer ID:")]'}}
+      page_object(:customer_id_value){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="id"]'}}
+      page_object(:customer_id_error) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="id"]//following::div[contains(@class,"error-msg")][1]'} }
+
+      page_object(:insurance_id_label){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(text(),"Stamps.com Insurance ID/Tracking #:")]'}}
+      page_object(:insurance_id_value){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="insuranceId"]'}}
+      page_object(:insurance_id_error) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="insuranceId"]//following::div[contains(@class,"error-msg")][1]'} }
+
+      page_object(:claim_type_label){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(text(),"Claim Type:")]'}}
+      page_object(:claim_type_value){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="claimType"]'}}
+      page_object(:claim_type_error) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="claimType"]//following::div[contains(@class,"error-msg")][1]'} }
+
+      page_object(:customer_id_label){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//span[contains(text(),"Description of items:")]'}}
+      page_object(:customer_id_value){{xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="id"]'}}
+      page_object(:customer_id_error) { { xpath: '//div[contains(@id,"insurance-claim-form-window")]//input[@name="id"]//following::div[contains(@class,"error-msg")][1]'} }
+
+
+    end
+
   end
+
+
 end

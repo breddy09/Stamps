@@ -5,7 +5,8 @@ module SdcOrders
     page_object(:settings) { {id: 'settingsButton-btnWrap'} }
     page_object(:print) { {xpath: '//*[text()="Print"]'} }
     page_object(:move) { {xpath: '//*[text()="Move"]'} }
-    page_object(:tags) { {xpath: '//*[text()="Tags"]'} }
+    page_object(:tags) { {xpath: '//*[text()="Tags"][contains(@id, "button")]'} }
+    page_object(:tags_tooltip) { {xpath: '//b[contains(text(), "Tags")]'} }
     page_object(:more_actions) { {xpath: '//*[text()="More Actions"]'} }
     page_object(:import) { {xpath: '//*[contains(@class, "sdc-icon-import")]'} }
     page_object(:export) { {xpath: '//*[contains(@class, "sdc-icon-export")]'} }

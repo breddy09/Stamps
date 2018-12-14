@@ -6,7 +6,8 @@ module SdcMail
       page_object(:drop_down) { { xpath: '//input[contains(@name, "printers")]/parent::*/parent::*/div[contains(@id, "trigger-picker")]' } }
 
       def selection_element(name: :selection, value: 'factory')
-        page_object(name) { { xpath: "//li[text()='#{value}']" } }
+        # page_object(name) { { xpath: "//li[text()='#{value}']" } }
+        page_object(name) { { xpath: "//li[contains(text(), '#{value}')]" } }
       end
     end
 
@@ -228,8 +229,8 @@ module SdcMail
       end
 
       def checkbox_for_row(num)
-        page_objects("chooser#{num}", index: num) { { xpath: '//div[@id="contactsGrid-normal-body"]//div[@class="x-grid-row-checker"]' } }
-        page_objects("verify#{num}", index: num) { { xpath: '//div[@id="contactsGrid-normal-body"]//table' } }
+        page_object("chooser#{num}") { { xpath: "(//div[@id='contactsGrid-normal-body']//div[@class='x-grid-row-checker'])[#{num}]" } }
+        page_object("verify#{num}") { { xpath: "(//div[@id='contactsGrid-normal-body']//table)[#{num}]" } }
         checkbox("checkbox_for_row#{num}", "chooser#{num}", "verify#{num}", 'class', 'selected')
       end
     end
@@ -242,6 +243,7 @@ module SdcMail
 
       text_field(:search_text, tag: :text_field) { { xpath: '//input[@placeholder="Search Contacts"]' } }
       page_object(:search_icon) { { xpath: '//*[contains(@class, "search-trigger-grey")]' } }
+      page_object(:loading) { { xpath: '//*[text()="Loading Contacts..."]' } }
 
       def grid
         SdcSearchContactsGrid.new
@@ -367,6 +369,7 @@ module SdcMail
       page_object(:accept_button) { { xpath: '//span[text()="Accept"]' } }
       page_object(:exclude_all_button) { { xpath: '//span[text()="//span[text()="Exclude All"]"]' } }
       page_object(:exclude_button) { { xpath: '//span[text()="//span[text()="Exclude"]"]' } }
+      page_object(:error_icon) { { xpath: '//*[contains(@class, "sdc-icon-stop")]' } }
     end
 
     class CleansingAcceptErrorModal < SdcPage
@@ -409,6 +412,19 @@ module SdcMail
       page_object(:title) { { xpath: '//*[text()="Server Error"]' } }
       page_object(:body) { { xpath: '//div[contains(@class, "sdc-warning")]//div[contains(@id, "-innerCt")]' } }
       page_object(:ok) { { xpath: '//span[text()="OK"]' } }
+    end
+
+    class YourInternationalLabel < SdcPage
+      page_object(:title) { { xpath: '//*[text()="Your International Label"]' } }
+      page_object(:ok) { { xpath: '//span[text()="OK"]' } }
+      page_object(:x_btn) { { xpath: '//span[contains(@class, "icon-mobile-close-light")]' } }
+    end
+
+    class YourGlobalPostLabel < SdcPage
+      page_object(:title) { { xpath: '//*[text()="Your GlobalPost Label"]' } }
+      page_object(:continue) { { xpath: '//span[text()="Continue"]' } }
+      page_object(:more_info) { { xpath: '//span[text()="More Info"]' } }
+      page_object(:x_btn) { { xpath: '//span[contains(@class, "icon-mobile-close-light")]' } }
     end
 
     class << self
@@ -507,6 +523,16 @@ module SdcMail
       def address_cleansing_accept
         CleansingAcceptErrorModal.new
       end
+
+      def your_international_label
+        YourInternationalLabel.new
+      end
+
+      def your_global_post_label
+        YourGlobalPostLabel.new
+      end
+
+
 
       # def settings
       #   SdcSettings.new

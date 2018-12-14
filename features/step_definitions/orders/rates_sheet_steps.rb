@@ -11,13 +11,13 @@ Then /^excel rate sheet is loaded$/ do
   @rate_file_loc = "#{data_for(:rates_test, {})['test_dir']}\\#{rate_file}"
   FileUtils.cp(source_file, @rate_file_loc) if !File.file?(@rate_file_loc) || File.mtime(source_file) > File.mtime(@rate_file_loc)
 
-  SdcLogger.info "Rate File: #{@rate_file_loc}"
+  SdcLogger.debug "Rate File: #{@rate_file_loc}"
   expect("Rate File: #{@rate_file_loc}").to eql "Rate File does not exist!" unless File.exist?(@rate_file_loc)
   begin
     @rate_file = Spreadsheet.open(@rate_file_loc)
   rescue StandardError => e
-    SdcLogger.info e.message
-    SdcLogger.info e.backtrace.join("\n")
+    SdcLogger.debug e.message
+    SdcLogger.debug e.backtrace.join("\n")
     raise e, 'Cannot load rate sheet'
   end
   @failed_test_count = 0

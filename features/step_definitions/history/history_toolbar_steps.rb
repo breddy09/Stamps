@@ -12,6 +12,24 @@ Then /^click schedule pickup button on history toolbar$/ do
   SdcHistory.toolbar.schedule_pickup.link.click
 end
 
+Then /^hover on schedule pickup button on history toolbar$/ do
+  SdcHistory.toolbar.schedule_pickup.link.hover
+end
+
+Then /^wait for schedule pickup tooltip on history toolbar$/ do
+  SdcHistory.toolbar.schedule_pickup.tooltip.safe_wait_until_present(timeout: 2)
+end
+
+Then /^expect schedule pickup tooltip on history toolbar is present$/ do
+  step 'wait for schedule pickup tooltip on history toolbar'
+  expect(SdcHistory.toolbar.schedule_pickup.tooltip).to be_present
+end
+
+Then /^expect schedule pickup tooltip on history toolbar is not present$/ do
+  step 'wait for schedule pickup tooltip on history toolbar'
+  expect(SdcHistory.toolbar.schedule_pickup.tooltip).not_to be_present
+end
+
 Then /^click create scan form button on history toolbar$/ do
   create_scan_form = SdcHistory.toolbar.create_scan_form
   create_scan_form.link.click
@@ -22,9 +40,28 @@ Then /^click create scan form button on history toolbar$/ do
   end
 end
 
+Then /^hover on create scan form button on history toolbar$/ do
+  SdcHistory.toolbar.create_scan_form.link.hover
+end
+
 Then /^hover on create scan form button tooltip on history toolbar$/ do
   SdcHistory.toolbar.create_scan_form.tooltip.hover if SdcHistory.toolbar.create_scan_form.tooltip.present?
 end
+
+Then /^wait for create scan form tooltip on history toolbar$/ do
+  SdcHistory.toolbar.create_scan_form.tooltip.safe_wait_until_present(timeout: 2)
+end
+
+Then /^expect create scan form tooltip on history toolbar is present$/ do
+  step 'wait for create scan form tooltip on history toolbar'
+  expect(SdcHistory.toolbar.create_scan_form.tooltip).to be_present
+end
+
+Then /^expect create scan form tooltip on history toolbar is not present$/ do
+  step 'wait for create scan form tooltip on history toolbar'
+  expect(SdcHistory.toolbar.create_scan_form.tooltip).not_to be_present
+end
+
 
 Then /^click create return label button on history toolbar$/ do
   SdcHistory.toolbar.create_return_label.link.click
@@ -48,14 +85,27 @@ Then /^hover on cost codes button tooltip on history toolbar$/ do
   SdcHistory.toolbar.cost_codes.tooltip.hover if SdcHistory.toolbar.cost_codes.tooltip.present?
 end
 
+Then /^wait for cost codes tooltip on history toolbar$/ do
+  SdcHistory.toolbar.cost_codes.tooltip.safe_wait_until_present(timeout: 2)
+end
 
-Then /^click create container label button on history toolbar$/ do
+Then /^expect cost codes tooltip on history toolbar is present$/ do
+  step 'wait for cost codes tooltip on history toolbar'
+  expect(SdcHistory.toolbar.cost_codes.tooltip).to be_present
+end
+
+Then /^expect cost codes tooltip on history toolbar is not present$/ do
+  step 'wait for cost codes tooltip on history toolbar'
+  expect(SdcHistory.toolbar.create_scan_form.tooltip).not_to be_present
+end
+
+Then /^click create container label on history toolbar$/ do
   create_container_label = SdcHistory.toolbar.create_container_label
   create_container_label.link.click
-  create_container_label.tooltip.safe_wait_until_present(timeout: 2)
+  create_container_label.tooltip.safe_wait_until_present(timeout: 3)
   if create_container_label.tooltip.present?
-    create_container_label.tooltip.hover
-    create_container_label.link.click if create_container_label.tooltip.present?
+    create_container_label.link.click
+    create_container_label.tooltip.safe_wait_until_present(timeout: 2)
     create_container_label.link.click
   end
 end
@@ -100,11 +150,19 @@ end
 
 #cost code
 Then /^expect change cost codes button on history toolbar cost codes is enabled$/ do
-  expect(SdcHistory.toolbar.cost_codes.change_cost_code.class_disabled?).to be_falsy
+  expect(SdcHistory.toolbar.cost_codes.change_cost_code.disabled?).to be(false)
+end
+
+Then /^expect change cost codes button on history toolbar cost codes is disabled$/ do
+  SdcHistory.toolbar.cost_codes.change_cost_code.flash
+  p SdcHistory.toolbar.cost_codes.change_cost_code.disabled?
+  expect(SdcHistory.toolbar.cost_codes.change_cost_code.disabled?).to be(true)
 end
 
 Then /^click change cost codes button on history toolbar cost codes$/ do
+  SdcHistory.toolbar.cost_codes.change_cost_code.wait_until_present(timeout: 5)
   SdcHistory.toolbar.cost_codes.change_cost_code.click
+  step 'expect change cost code modal on history is present'
 end
 
 Then /^click add\/edit cost codes button on history toolbar cost codes$/ do
@@ -121,7 +179,7 @@ Then /^expect selected packages button on history toolbar create container label
   expect(SdcHistory.toolbar.create_container_label.selected_packages.class_disabled?).to be_falsy
 end
 
-Then /^click selected packages button on history toolbar create container label$/ do
+Then /^click selected packages on history toolbar create container label$/ do
   step 'expect selected packages button on history toolbar create container label is enabled'
   SdcHistory.toolbar.create_container_label.selected_packages.click
   step 'expect container label modal on history is present'
@@ -136,4 +194,17 @@ Then /^click reprint last label button on history toolbar create container label
   # expect modal step ''
 end
 
+#export
+#
+Then /^expect export button on history toolbar is present$/ do
+  toolbar=SdcHistory.toolbar.toolbar
+  toolbar.export.wait_until_present(timeout: 10)
+  expect(toolbar.export.present?).to be(true)
+end
+
+Then /^click export button on history toolbar$/ do
+  toolbar=SdcHistory.toolbar.toolbar
+  toolbar.export.wait_until_present(timeout: 10)
+  toolbar.export.click
+end
 

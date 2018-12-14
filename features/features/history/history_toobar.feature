@@ -62,7 +62,7 @@ Feature:  History Toolbar
     Then set from address on return label modal to test test,\n1990 east grand ave,\nEl Segundo, CA 90245-5013
     Then set to address on return label modal to test test,\n1990 east grand ave,\nEl Segundo, CA 90245-5013
     Then set weight on return label modal to 1 lbs 1 oz
-#    Then select service on return label modal PM Flat Rate Envelope
+    Then select service on return label modal PM Flat Rate Envelope
     Then close return label modal on history
     Then expect return label modal on history is not present
 
@@ -73,6 +73,16 @@ Feature:  History Toolbar
     Then select new cost code on change cost code modal None
     Then close change cost code modal on history
     Then expect change cost code modal on history is not present
+
+
+  @history_export
+  Scenario: Verify user should is able to Export History Information
+    Then sign-in to orders
+    Then navigate to History
+    Then expect export button on history toolbar is present
+    Then click export button on history toolbar
+    Then sign out
+
 
 
 

@@ -98,12 +98,12 @@ Then you can copy libmysql.dll from C:/your-mysql-connector-path -> c:/your-ruby
   It was built using MySQL Connector/C version 6.0.2.
   It's recommended to use the exact same version to avoid potential issues.
 
-  At the time of building this gem, the necessary DLL files where available
+  At the time of building this gem, the necessary DLL files where present
   in the following URL:
 
   http://dev.mysql.com/get/Downloads/Connector-C/mysql-connector-c-noinstall-6.0.2-win32.zip/from/pick
 
-  You can put the lib\libmysql.dll available in this package to your Ruby bin directory.
+  You can put the lib\libmysql.dll present in this package to your Ruby bin directory.
   E.g. C:\Ruby\bin
 
 ======================================================================================================

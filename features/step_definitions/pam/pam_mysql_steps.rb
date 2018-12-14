@@ -1,20 +1,3 @@
-Then /^[Ss]et PAM AppCap Overrides to Always On for all Required Fields for all users in the database$/ do
-  credentials_list = SdcUserCredentials.all_user_credentials
-  SdcLogger.debug "Number of users in the database: #{credentials_list.size}"
-  credentials_list.each_with_index do |row, index|
-    step "load PAM Customer Search page"
-    step "search PAM Customer Search page for username #{row[:username]}"
-    step "click PAM AppCap Overrides link"
-    step "set PAM AppCap Overrides Allow High Risk Countries to Always On"
-    step "On PAM AppCap Overrides page, set Internet Mail Printing to Always On"
-    step "On PAM AppCap Overrides page, set Netstamps Printing to Always On"
-    step "On PAM AppCap Overrides page, set Shipping Label Printing to Always On"
-    step "On PAM AppCap Overrides page, set International Shipping to Always On"
-    step "On PAM AppCap Overrides page, set Allow High Risk Countries to Always On"
-    step "On PAM AppCap Overrides page, Submit"
-  end
-
-end
 
 Then /^[Ss]eeart PAM Customer Search page username from parameter file$/ do
   step "set PAM Customer Search page username to #{SdcTest['username']}"
@@ -139,5 +122,5 @@ end
 
 Then /^[Oo]n PAM AppCap Overrides page, Submit$/ do
   result = pam.appcap_overrides_page.submit.ok
-  SdcLogger.info " ############## #{TestData.hash[:username]}: #{result}"
+  SdcLogger.debug " ############## #{TestData.hash[:username]}: #{result}"
 end

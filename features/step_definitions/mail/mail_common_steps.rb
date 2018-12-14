@@ -19,7 +19,8 @@ Then /^[Ee]xpect [Pp]rint [Ff]orm [Pp]rint [Oo]n [Ff]ield is present$/ do
 end
 
 Then /^[Ee]xpect [Pp]rint [Ff]orm [Mm]ail [Ff]rom Field is present$/ do
-  pending #expect(stamps.mail.print_form.mail_from.textbox.present?).to be(true)
+  pending
+  #expect(stamps.mail.print_form.mail_from.textbox.present?).to be(true)
 end
 
 Then /^[Ee]xpect [Pp]rint [Ff]orm [Mm]ail [Tt]o [Ll]ink is present$/ do

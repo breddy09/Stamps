@@ -6,7 +6,7 @@ Feature: PAM AppCap Provisioning
     Given I launched the browser
 
   Scenario:
-    Then set PAM AppCap Overrides to Always On for all Required Fields for all users in the database
+#    Then set PAM AppCap Overrides to Always On for all Required Fields for all users in the database
 
 #    Then set PAM Customer Search page username from parameter file
 #    Then set PAM Customer Search page 5.2 or lower

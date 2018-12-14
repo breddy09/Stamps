@@ -232,6 +232,7 @@ mail_services:
   FCMI Large Envelope/Flat: sdc-servicedroplist-fcilargeenvelopeorflat
   FCMI Package/Thick Envelope: sdc-servicedroplist-fcithickenvelope
   PMI Package/Flat/Thick Envelope: sdc-servicedroplist-pmipackage
+  PMI Package: sdc-servicedroplist-pmipackage
   PMI Flat Rate Envelope: sdc-servicedroplist-pmiflatrateenvelope
   PMI Padded Flat Rate Envelope: sdc-servicedroplist-pmiflatratepaddedenvelope
   PMI Legal Flat Rate Envelope: sdc-servicedroplist-pmilegalflatrateenvelope
@@ -445,7 +446,7 @@ country_groups_PMI:
     11: Oman|44
     12: Qatar|70
     13: Saudi Arabia|66
-    14: Syria|70
+#    14: Syria|70
     15: Tunisia|66
     16: United Arab Emirates|70
     17: Yemen|66
@@ -793,14 +794,14 @@ country_groups_PMEI:
     1:  Bangladesh|44
     2:  Bhutan|66
     3:  Brunei Darussalam|66
-    4:  Burma (Myanmar)|44
+    #4:  Burma (Myanmar)|44
     5:  Cambodia|66
     6:  Fiji|66
     7:  French Polynesia|66
     8:  India|70
     9:  Indonesia|66
     10: Kazakhstan|66
-    11: Kiribati|66
+    #11: Kiribati|66
     12: Kyrgyzstan|66
     13: Laos|66
     14: Macao|44
@@ -820,7 +821,7 @@ country_groups_PMEI:
     28: Taiwan|33
     29: Tajikistan|66
     30: Thailand|66
-    31: Tonga|66
+    #31: Tonga|66
     32: Turkmenistan|66
     33: Uzbekistan|66
     34: Vanuatu|55
@@ -836,7 +837,7 @@ country_groups_PMEI:
     8:  Central African Republic|66
     9:  Chad|66
     10: Democratic Republic Of The Congo|66
-    11: Cote d'Ivoire (Ivory Coast)|66
+    #11: Cote d'Ivoire (Ivory Coast)|66
     12: Djibouti|44
     13: Equatorial Guinea|44
     14: Eritrea|66
@@ -879,12 +880,12 @@ country_groups_PMEI:
     6:  Israel|44
     7:  Jordan|66
     8:  Kuwait|66
-    9:  Lebanon|66
+    #9:  Lebanon|66 - No PMEI
     10: Morocco|68
     11: Oman|66
     12: Qatar|66
     13: Saudi Arabia|66
-    14: Syria|44
+    #14: Syria|44 - No PMEI
     15: Tunisia|66
     16: United Arab Emirates|70
     17: Yemen|66

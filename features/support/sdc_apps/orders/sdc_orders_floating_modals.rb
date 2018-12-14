@@ -1,5 +1,9 @@
 module SdcOrders
   module SdcOrdersModals
+    class VerifyingRates < SdcPage
+      page_object(:verifying_rates) { { xpath: '//*[text()="Verifying rates..."]' } }
+    end
+
     class SdcExactAddressNotFound < SdcPage
       page_object(:title) { { xpath: '//*[text()="Exact Address Not Found"]' } }
       page_object(:accept) { { xpath: '//*[text()="Accept"]' } }
@@ -198,6 +202,12 @@ module SdcOrders
       end
     end
 
+    class NoOrders < SdcPage
+      page_object(:title) { { xpath: '//*[text()="No Orders"]' } }
+      page_object(:ok) { { xpath: '//*[text()="OK"]' } }
+      page_object(:x_btn) { { xpath: '//*[contains(@class, "sdc-icon-mobile-close-light")]' } }
+    end
+
     class << self
       def print
         OrdersPrintModal.new
@@ -229,6 +239,14 @@ module SdcOrders
 
       def exact_address_not_found
         SdcExactAddressNotFound.new
+      end
+
+      def verifying_rates
+        VerifyingRates.new
+      end
+
+      def no_orders
+        NoOrders.new
       end
     end
   end

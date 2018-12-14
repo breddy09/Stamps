@@ -44,21 +44,6 @@ Then /^initialize test parameters$/ do
   TestData.hash[:test] = ENV['USER_CREDENTIALS']
 end
 
-Then /^fetch user credentials from MySQL$/ do
-  unless TestData.hash[:username]
-    if TestSession.env.usr.nil? || TestSession.env.usr.downcase == 'default'
-      credentials = SdcUserCredentials.fetch(SdcGlobal.scenario.tags[0].name)
-      usr = credentials[:username]
-      pw = credentials[:password]
-    else
-      usr = TestSession.env.usr
-      pw = TestSession.env.pw
-    end
-    TestData.hash[:username] = usr
-    TestData.hash[:password] = pw
-  end
-end
-
 Then /^sign-in to orders$/ do
  # step 'verify health check for Orders' if TestSession.env.healthcheck
   step 'visit Orders landing page'
@@ -334,6 +319,8 @@ Then /^expect resulting web reg url is correct$/ do
                    'https://staging-registration.stamps.com/registration/#!&p=profile'
                  when :prod
                    'https://registration.stamps.com/registration/#!&p=profile'
+                 when :qasc
+                   'https://registrationext.qasc.stamps.com/registration/#!&p=profile'
                  else
                    "https://#{TestSession.env.url}-win10.corp.stamps.com/registration/#!&p=profile"
                  end
@@ -348,10 +335,10 @@ Then /^expect resulting web reg url is correct$/ do
   expect(actual_url).to eql expected_url
 end
 
-Then /^click on visit our learning center link on landing page$/ do
+Then /^click on help link on landing page$/ do
   landing_page = SdcWebsite.landing_page
-  landing_page.learning_center.wait_until_present(timeout: 5)
-  landing_page.learning_center.click
+  landing_page.help_link.wait_until_present(timeout: 5)
+  landing_page.help_link.click
 end
 
 Then /^expect resulting help page url is correct$/ do
@@ -365,4 +352,15 @@ Then /^expect resulting help page url is correct$/ do
   end
   actual_url = SdcPage.browser.url
   expect(actual_url).to eql expected_url
+end
+
+Then /^verify landing page help link url$/ do
+  SdcWebsite.landing_page.help_link.click
+  browser = SdcPage.browser
+  browser.wait_until(timeout: 5) do |browser|
+    browser.windows.count.eql?(2)
+  end
+  browser.windows.last.use
+  expect(browser.title).to eql("Support Home Page")
+  browser.windows.first.use
 end

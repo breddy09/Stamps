@@ -19,8 +19,8 @@ Then /^WL: navigates to default registration page for shipworks with the followi
     common_page.try_it_free[0].click
   end
 
-  SdcLogger.info "Source_id = #{source_id}"
-  SdcLogger.info "Offer_id = #{offer_id}"
+  SdcLogger.debug "Source_id = #{source_id}"
+  SdcLogger.debug "Offer_id = #{offer_id}"
 
   TestData.hash[:source_id] = source_id
   TestData.hash[:promo_code] = promo_code

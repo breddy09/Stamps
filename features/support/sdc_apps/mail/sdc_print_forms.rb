@@ -7,7 +7,12 @@ module SdcMail
         page_object(:text_field, tag: :text_field) { { xpath: '//*[@name="ShipFrom"]' } }
 
         def selection(name, str)
-          page_object(name) { { xpath: "//li[contains(text(), '#{str}')]" } }
+          xpath = if str.casecmp('default').zero?
+                    '//li[contains(text()," - ")][@data-recordindex="0"]'
+                  else
+                    "//li[contains(text(), '#{str}')]"
+                  end
+          page_object(name) { { xpath: xpath } }
         end
       end
 
@@ -42,6 +47,8 @@ module SdcMail
         page_objects(:phone, tag: :text_fields, index: 0) { { xpath: '//input[@name="ShipPhone"]' } }
         page_objects(:int_phone, tag: :text_fields, index: 1) { { xpath: '//input[@name="ShipPhone"]' } }
 
+        page_object(:error_icon) { { xpath: '//*[contains(@class, "sdc-icon-stop")]' } }
+
         def add_button
           add_buttons.each do |button|
             return SdcElement.new(button) if button.present?
@@ -73,7 +80,9 @@ module SdcMail
         end
 
         def selection(name, str)
-          page_object(name) { { xpath: "//li[text()='#{str}']" } }
+          xpath = '//li[text()="#{str}"]'
+          #page_object(name) { { xpath: "//li[text()='#{str}']" } }
+          page_object(name){{xpath:xpath}}
         end
 
         def list_of_values(name, company)
@@ -427,7 +436,7 @@ module SdcMail
       chooser(:certified_mail, :cm_chooser, :cm_verify, :class, :checked)
       page_object(:certified_mail_cost) { { xpath: '//*[@id="sdc-mainpanel-cmpricelabel"]' } }
 
-      page_object(:rr_chooser) { { xpath: '//*[@id="sdc-mainpanel-rrcheckbox-inputEl"]' } }
+      page_object(:rr_chooser) { { xpath: '//span[@id="sdc-mainpanel-rrcheckbox-displayEl"]' } }
       page_object(:rr_verify) { { xpath: '//*[@id="sdc-mainpanel-rrcheckbox"]' } }
       chooser(:return_receipt, :rr_chooser, :rr_verify, :class, :checked)
       page_object(:return_receipt_cost) { { xpath: '//*[@id="sdc-mainpanel-rrpricelabel"]' } }
@@ -437,7 +446,7 @@ module SdcMail
       chooser(:electronic_return_receipt, :err_chooser, :err_verify, :class, :checked)
       page_object(:electronic_return_receipt_cost) { { xpath: '//*[@id="sdc-mainpanel-rrepricelabel"]' } }
 
-      page_object(:rd_chooser) { { xpath: '//input[contains(@class, "sdc-mainpanel-rdcheckbox")]' } }
+      page_object(:rd_chooser) { { xpath: '//span[contains(@class, "sdc-mainpanel-rdcheckbox")]' } }
       page_object(:rd_verify) { { xpath: '//input[contains(@class, "sdc-mainpanel-rdcheckbox")]/../../..' } }
       chooser(:restricted_delivery, :rd_chooser, :rd_verify, :class, :checked)
       page_object(:restricted_delivery_cost) { { xpath: '//*[@id="restrictedDeliveryCostLabel"]' } }
@@ -451,6 +460,7 @@ module SdcMail
       include DimensionsContainer
       include ExtraServicesContainer
       include MailDateContainer
+      include PostageMessagePanelContainer
 
       def contents
         Contents.new

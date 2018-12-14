@@ -343,7 +343,7 @@ Then /^PP: set dashboard page from date field to (?:random date|(.*))$/ do |str|
   from_date_field.set(TestData.hash[:from_date] = (str.nil?) ? (TestData.hash[:from_date]) : str)
   from_date_field.parent.focus
   from_date_field.parent.click
-  SdcLogger.info "From: #{TestData.hash[:from_date]}\n"
+  SdcLogger.debug "From: #{TestData.hash[:from_date]}\n"
 end
 
 Then /^PP: set dashboard page to date field to (?:random date|(.*))$/ do |str|
@@ -356,7 +356,7 @@ Then /^PP: set dashboard page to date field to (?:random date|(.*))$/ do |str|
   to_date_field.set(TestData.hash[:to_date] = (str.nil?) ? (TestData.hash[:to_date]) : str)
   to_date_field.parent.focus
   to_date_field.parent.click
-  SdcLogger.info "To:: #{TestData.hash[:to_date]}\n"
+  SdcLogger.debug "To:: #{TestData.hash[:to_date]}\n"
 end
 
 Then /^PP: expect from date and to date are cleared$/ do
