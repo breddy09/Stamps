@@ -28,6 +28,11 @@ Then /^run rates test FCPS Comm Base in Zone (\d+)$/ do |zone|
   step "run rates sheet #{param_sheet} in Zone #{zone}"
 end
 
+Then /^run rates test FCPS Retail in Zone (\d+)$/ do |zone|
+  param_sheet = data_for(:rates_test, {})['rates_fcps_retail']
+  step "run rates sheet #{param_sheet} in Zone #{zone}"
+end
+
 Then /^run rates sheet (.*) in Zone (\d+)$/ do |param_sheet, zone|
   zone = zone.to_i
 

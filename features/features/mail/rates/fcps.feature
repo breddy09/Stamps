@@ -59,6 +59,60 @@ Feature: PM Comm Base Rates
     Then run rates test FCPS Comm Base in Zone 9
     Then Rates: Number of failed test should be less than 1
     Then sign out
+
+  @rates_mail_fcps_retail_zone_1
+  Scenario: FCPS Retail Zone 1
+    Then run rates test FCPS Retail in Zone 1
+    Then Rates: Number of failed test should be less than 1
+    Then sign out
+
+  @rates_mail_fcps_retail_zone_2
+  Scenario: FCPS Retail Zone 2
+    Then run rates test FCPS Retail in Zone 2
+    Then Rates: Number of failed test should be less than 1
+    Then sign out
+
+  @rates_mail_fcps_retail_zone_3
+  Scenario: FCPS Retail Zone 3
+    Then run rates test FCPS Retail in Zone 3
+    Then Rates: Number of failed test should be less than 1
+    Then sign out
+
+  @rates_mail_fcps_retail_zone_4
+  Scenario: FCPS Retail Zone 4
+    Then run rates test FCPS Retail in Zone 4
+    Then Rates: Number of failed test should be less than 1
+    Then sign out
+
+  @rates_mail_fcps_retail_zone_5
+  Scenario: FCPS Retail Zone 5
+    Then run rates test FCPS Retail in Zone 5
+    Then Rates: Number of failed test should be less than 1
+    Then sign out
+
+  @rates_mail_fcps_retail_zone_6
+  Scenario: FCPS Retail Zone 6
+    Then run rates test FCPS Retail in Zone 6
+    Then Rates: Number of failed test should be less than 1
+    Then sign out
+
+  @rates_mail_fcps_retail_zone_7
+  Scenario: FCPS Retail Zone 7
+    Then run rates test FCPS Retail in Zone 7
+    Then Rates: Number of failed test should be less than 1
+    Then sign out
+
+  @rates_mail_fcps_retail_zone_8
+  Scenario: FCPS Retail Zone 8
+    Then run rates test FCPS Retail in Zone 8
+    Then Rates: Number of failed test should be less than 1
+    Then sign out
+
+  @rates_mail_fcps_retail_zone_9
+  Scenario: FCPS Retail Zone 9
+    Then run rates test FCPS Retail in Zone 9
+    Then Rates: Number of failed test should be less than 1
+    Then sign out
 #
 #  @rates_mail_pm_comm_base_zone_2
 #  Scenario: PM Comm Base Zone 2
