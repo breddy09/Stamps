@@ -116,6 +116,14 @@ rates_mail_pme_comm_plus_zone_7: --tags @rates_mail_pme_comm_plus_zone_7 --guess
 rates_mail_pme_comm_plus_zone_8: --tags @rates_mail_pme_comm_plus_zone_8 --guess LOG_LEVEL=info
 rates_mail_pme_comm_plus_zone_9: --tags @rates_mail_pme_comm_plus_zone_9 --guess LOG_LEVEL=info
 rates_mail_fcps_comm_base_zone_1: --tags @rates_mail_fcps_comm_base_zone_1 --guess LOG_LEVEL=info
+rates_mail_fcps_comm_base_zone_2: --tags @rates_mail_fcps_comm_base_zone_2 --guess LOG_LEVEL=info
+rates_mail_fcps_comm_base_zone_3: --tags @rates_mail_fcps_comm_base_zone_3 --guess LOG_LEVEL=info
+rates_mail_fcps_comm_base_zone_4: --tags @rates_mail_fcps_comm_base_zone_4 --guess LOG_LEVEL=info
+rates_mail_fcps_comm_base_zone_5: --tags @rates_mail_fcps_comm_base_zone_5 --guess LOG_LEVEL=info
+rates_mail_fcps_comm_base_zone_6: --tags @rates_mail_fcps_comm_base_zone_6 --guess LOG_LEVEL=info
+rates_mail_fcps_comm_base_zone_7: --tags @rates_mail_fcps_comm_base_zone_7 --guess LOG_LEVEL=info
+rates_mail_fcps_comm_base_zone_8: --tags @rates_mail_fcps_comm_base_zone_8 --guess LOG_LEVEL=info
+rates_mail_fcps_comm_base_zone_9: --tags @rates_mail_fcps_comm_base_zone_9 --guess LOG_LEVEL=info
 rates_mail_pm_comm_base_zone_1: --tags @rates_mail_pm_comm_base_zone_1 --guess LOG_LEVEL=info
 rates_mail_pm_comm_base_zone_2: --tags @rates_mail_pm_comm_base_zone_2 --guess LOG_LEVEL=info
 rates_mail_pm_comm_base_zone_3: --tags @rates_mail_pm_comm_base_zone_3 --guess LOG_LEVEL=info
