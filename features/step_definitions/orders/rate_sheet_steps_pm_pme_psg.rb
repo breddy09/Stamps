@@ -298,6 +298,7 @@ Then /^run rates sheet (.*) in Zone (\d+)$/ do |param_sheet, zone|
     TestData.hash[:result_sheet].row(0)[TestData.hash[:result_sheet_columns][:zone]] = "zone#{zone}"
     begin
       if row_number > 0
+        next
         #SdcLogger.info "#{"#" * 80} Rate Sheet: #{param_sheet}: Zone #{zone} - Row #{row_number}"
         SdcLogger.info "#{"#" * 10}"
         SdcLogger.info "Rate Sheet: #{param_sheet}: Zone #{zone} - Row #{row_number}"
@@ -310,20 +311,20 @@ Then /^run rates sheet (.*) in Zone (\d+)$/ do |param_sheet, zone|
           # SdcLogger.info "#{"#" * 10} "
           # SdcLogger.info "#{"#" * 80} "
           SdcLogger.info "Test Row #{row_number} Skipped. No rates found on sheet."
-          TestData.hash[:result_sheet].row(row_number).set_format(TestData.hash[:result_sheet_columns][:zone], format)
-          TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight_lb]] = row[@rate_sheet_columns[:weight_lb]]
-          TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:zone]] = row[zone_column]
-          TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:username]] = "--"
-          TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:ship_from]] = "--"
-          TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:ship_to_domestic]] = "--"
-          TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight]] = "--"
-          TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:service]] = "--"
-          TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:execution_date]] = "--"
-          TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:service_selected]] = "--"
-          TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:tracking_selected]] = "--"
-          TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:total_ship_cost]] = "--"
-          TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:status]] = "--"
-          TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:results]] = "--"
+          # TestData.hash[:result_sheet].row(row_number).set_format(TestData.hash[:result_sheet_columns][:zone], format)
+          # TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight_lb]] = row[@rate_sheet_columns[:weight_lb]]
+          # TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:zone]] = row[zone_column]
+          # TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:username]] = "--"
+          # TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:ship_from]] = "--"
+          # TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:ship_to_domestic]] = "--"
+          # TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:weight]] = "--"
+          # TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:service]] = "--"
+          # TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:execution_date]] = "--"
+          # TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:service_selected]] = "--"
+          # TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:tracking_selected]] = "--"
+          # TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:total_ship_cost]] = "--"
+          # TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:status]] = "--"
+          # TestData.hash[:result_sheet][row_number, TestData.hash[:result_sheet_columns][:results]] = "--"
         else
           price = (row[zone_column].to_f * 100).round / 100.0
           # set expectation column for this row to zone price
