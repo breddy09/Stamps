@@ -221,7 +221,6 @@ Then /^save (.*) date range value on grid for column ship date$/ do |str|
   if search_count > 0
     SdcHistory.grid.body.safe_wait_until_present(timeout: 60)
     column = SdcHistory.grid.grid_column(:ship_date)
-    column.safe_wait_until_present(timeout: 60)
     column.scroll_into_view
     grid_date = column.text_at_row(1)
     tmp_date=Date.strptime(grid_date,'%m/%d/%Y')
