@@ -37,8 +37,8 @@ end
 
 Then /^expect postage message panel tracking label is (.+)$/ do |str|
   message_panel = SdcMail.print_form.message_panel
-  message_panel.tracking_label.wait_until_present(timeout: 40)
-  expect(message_panel.tracking_label.text.strip).to include str
+  message_panel.print_label.wait_until_present(timeout: 40)
+  expect(message_panel.print_label.text.strip).to include str
 end
 
 Then /^save tracking number on print form message panel$/ do

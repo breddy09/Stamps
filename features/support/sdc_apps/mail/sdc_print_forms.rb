@@ -328,7 +328,8 @@ module SdcMail
       class MessagePanel < SdcPage
         page_object(:tracking_number) { { xpath: '//span[@id="trackingNumber"]' } }
         page_object(:tracking_label) { { xpath: '//span[@id="trackingNumber"]/..' } }
-        page_object(:copy_tracking) { { xpath: '//span[text()="Copy Tracking"]' } }
+        page_object(:print_label) { { xpath: '//*[text()="Postage was sent to your printer."]' } }
+         page_object(:copy_tracking) { { xpath: '//span[text()="Copy Tracking"]' } }
         page_object(:reprint) { { xpath: '//span[text()="Reprint"]' } }
         page_object(:save_as_favorite) { { xpath: '//span[text()="Save as Favorite"]' } }
       end

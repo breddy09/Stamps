@@ -73,3 +73,12 @@ Then /^expect history grid Ship Date is correct for row (\d+)$/ do |row|
   step "expect history grid column Weight is #{TestData.hash[:ship_date]} for row #{row}"
 end
 
+Then /^save the row number containing recipient number$/ do
+  TestData.hash[:tracking_number] = '9405511899564363869168'
+  expect(TestData.hash[:tracking_number]).to be_truthy
+  expect(TestData.hash[:tracking_number].size).to be > 15
+  tracking = SdcHistory.grid.grid_column(:tracking_number)
+  row_number = tracking.row_num(TestData.hash[:tracking_number])
+  p row_number
+  TestData.hash[:row_number] = row_number
+end
