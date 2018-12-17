@@ -27,6 +27,21 @@ module SdcContacts
         page_object(name) { { xpath: "//li[text()='#{value}']" } }
       end
 
+      def search_countries(str,value)
+        case value
+        when 'count'
+          page_objects(:namelist) { { xpath: "//*[contains(@id,'boundlist')]//li[contains(text(),'#{str.to_s.upcase!}')]" } }
+        when 'name'
+          page_object(name)  { { xpath: "//*[contains(@id,'boundlist')]//li[contains(text(),'#{str.to_s.upcase!}')]" } }
+        end
+      end
+
+      def search_countries_list(str,row)
+        page_object(:namelist) { { xpath: "//*[contains(@id,'boundlist')]//li[contains(text(),'#{str.to_s.upcase!}')][#{row}]" } }
+      end
+
+
+
     end
 
     class State < SdcPage
