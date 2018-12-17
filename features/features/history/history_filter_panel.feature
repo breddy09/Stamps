@@ -71,7 +71,6 @@ Feature:  History Filter Panel
     Then expect undeliverable is selected on history filter panel status
     Then sign out
 
-
   @search_recipient_name_with_tracking_number
   Scenario: History grid search with recipient name works
     Then sign-in to mail
