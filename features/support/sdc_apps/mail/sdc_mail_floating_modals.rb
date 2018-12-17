@@ -427,6 +427,28 @@ module SdcMail
       page_object(:x_btn) { { xpath: '//span[contains(@class, "icon-mobile-close-light")]' } }
     end
 
+    class MissingEmailAddress < SdcPage
+      page_object(:title) { { xpath: '//*[text()="Warning - Missing Email Address"]' } }
+      text_field(:email_tracking, tag: :text_field) { { xpath: '//*[text()="Warning - Missing Email Address"]/following::input[contains(@id,"textfield")]' } }
+      page_object(:continue_printing) { { xpath: '//span[text()="Continue Printing"]' } }
+      page_object(:x_btn) { { xpath: '//span[contains(@class, "icon-mobile-close-light")]' } }
+
+      page_object(:checkbox) { { xpath: '//*[text()="Warning - Missing Email Address"]/following::div[contains(@class, "wrap-inner")][contains(@id, "checkbox")]' } }
+      page_object(:verify) { { xpath: '//*[text()="Warning - Missing Email Address"]/following::div[contains(@class, "wrap-inner")][contains(@id, "checkbox")]/span' } }
+      checkbox(:dont_show_this_again, :checkbox, :verify, 'class', 'checked')
+    end
+
+    class USPSTerms < SdcPage
+      page_object(:title) { { xpath: '//*[text()="USPS Terms"]' } }
+      page_object(:agree) { { xpath: '//span[text()="I Agree"]' } }
+      page_object(:cancel) { { xpath: '//span[text()="Cancel"]' } }
+      page_object(:x_btn) { { xpath: '//span[contains(@class, "icon-mobile-close-light")]' } }
+
+      page_object(:checkbox) { { xpath: '//*[text()="USPS Terms"]/following::div[contains(@class, "wrap-inner")][contains(@id, "checkbox")]' } }
+      page_object(:verify) { { xpath: '//*[text()="USPS Terms"]/following::div[contains(@class, "wrap-inner")][contains(@id, "checkbox")]/span' } }
+      checkbox(:dont_show_this_again, :checkbox, :verify, 'class', 'checked')
+    end
+
     class << self
       def notification_bar
         SdcNotificationBar.new
@@ -532,6 +554,13 @@ module SdcMail
         YourGlobalPostLabel.new
       end
 
+      def missing_email_address
+        MissingEmailAddress.new
+      end
+
+      def usps_terms
+        USPSTerms.new
+      end
 
 
       # def settings

@@ -1685,3 +1685,11 @@ countries:
     YE:  Yemen
     ZM:  Zambia
     ZW:  Zimbabwe
+
+mail_abbrevations:
+  PM: Priority Mail
+  MM:  Media Mail
+  FCM: First Class Mail
+  PME: Priority Mail Express
+  PSG: Parcel Select Ground
+  FCMI: First Class Mail International

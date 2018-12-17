@@ -278,8 +278,8 @@ Then /^select refund on history filter panel eligible for$/ do
 end
 
 Then /^expect refund on history filter panel eligible for is selected$/ do
-  date_printed = SdcHistory.filter_panel.date_printed
-  expect(date_printed.past_7_days.selected?).to be true
+  eligible = SdcHistory.filter_panel.eligible_for
+  expect(eligible.refund.selected?).to be true
 end
 
 Then /^select container label on history filter panel eligible for$/ do

@@ -120,10 +120,21 @@ module SdcMail
 
       class AdvancedOptionsCostCode < SdcPage
         text_field(:text_field, tag: :text_field) { { xpath: '//input[contains(@id, "costcodesdroplist")]' } }
-        page_object(:drop_down) { { xpath: '//*[contains(@id, "costcodesdroplist")][contains(@class, "arrow")]' } }
+        page_object(:drop_down) { { xpath: '//*[contains(@id, "costcodesdroplist")][contains(@class, "arrow")]' }}
+        page_objects(:costcode_list){ { xpath: '//div[contains(@id,"costcodesdroplist")]//following::li' } }
 
-        def selection_element(name: 'selection', value: 'None')
-          page_object(name) { { xpath: "//li[text()='#{value}']" } }
+
+        def costcode_random_value(position)
+          xpath_text = "//div[contains(@id, 'costcodesdroplist')]//following::li[#{position}]"
+          page_object(:costcode_text, required: true, timeout: 10) { { xpath: xpath_text } }
+        end
+
+        # def selection_element(name: 'selection', value: 'None')
+        #   page_object(name) { { xpath: "//li[text()='#{value}']" } }
+        # end
+
+        def selection(value)
+          page_object(:selection_obj) { { xpath: "//li[text()='#{value}']" } }
         end
       end
 

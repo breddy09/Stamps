@@ -190,6 +190,13 @@ Then /^close your international label modal$/ do
   step 'expect your international label modal is not present'
 end
 
+Then /^click ok on your international label modal$/ do
+  modal = SdcMail.modals.your_international_label
+  modal.title.safe_wait_until_present(timeout: 1)
+  modal.ok.click if modal.title.present?
+  step 'expect your international label modal is not present'
+end
+
 #your global post label
 Then /^expect your global post label modal is present$/ do
   expect(SdcMail.modals.your_global_post_label.title).to be_present
@@ -206,3 +213,9 @@ Then /^close your global post label modal$/ do
   step 'expect your global post label modal is not present'
 end
 
+Then /^click ok on your global post label modal$/ do
+  modal = SdcMail.modals.your_global_post_label
+  modal.title.safe_wait_until_present(timeout: 1)
+  modal.continue.click if modal.title.present?
+  step 'expect your global post label modal is not presentt'
+end

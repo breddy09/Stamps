@@ -232,6 +232,7 @@ Then /^set print form insure for to \$(.+)$/ do |str|
   step 'blur out on print form'
   expect(insure_for.insurance.text_value.to_f).to eql(str.to_f)
   TestData.hash[:insure_for] = str
+  TestData.hash[:insure_for_extra_price] = insure_for.cost.text_value
 end
 
 Then /^click through insurance terms and conditions$/ do
@@ -283,6 +284,8 @@ Then /^set print form tracking (.+)$/ do |value|
   expect(tracking.selection).to be_present, "#{value} is not present in Tracking list"
   tracking.selection.click
   expect(tracking.text_field.text_value).to include(value)
+  TestData.hash[:tracking] =  SdcMail.print_form.tracking.text_field.text_value
+  TestData.hash[:tracking_cost] =  SdcMail.print_form.tracking.cost.text_value
 end
 
 Then /^expect error icon is not present on the print form$/ do

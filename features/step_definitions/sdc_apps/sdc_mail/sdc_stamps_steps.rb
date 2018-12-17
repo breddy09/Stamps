@@ -41,7 +41,7 @@ Then /^[Ss]et Print form Amount to (\d*.?\d+)$/ do |value|
   SdcMail.print_form.amt_text_field.set(TestData.hash[:stamp_amount])
 end
 
-Then /^[Ss]et Print form Quantity to (\d+)$/ do |value|
+Then /^set print form quantity to (\d+)$/ do |value|
   TestData.hash[:quantity] = value
   SdcMail.print_form.qty_text_field.set(TestData.hash[:quantity])
 end

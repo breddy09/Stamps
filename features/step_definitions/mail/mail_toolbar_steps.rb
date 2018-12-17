@@ -13,7 +13,7 @@ Then /^click mail toolbar settings$/ do
 end
 
 Then /^click print stamps$/ do
-  SdcMail.toolbar.print_label.click
+  SdcMail.toolbar.print_stamps.click
 end
 
 Then /^click print label$/ do
@@ -164,4 +164,37 @@ Then /^expect mail toolbar save as favorite is present$/ do
 end
 Then /^expect mail toolbar manage favorites is present$/ do
   expect(SdcMail.toolbar.manage_favorites).to be_present
+end
+
+Then /^click continue printing on missing email address modal$/ do
+  comfirm_print = SdcMail.modals.missing_email_address
+  comfirm_print.continue_printing.safe_wait_until_present(timeout: 2)
+  step "set email tracking on missing email address modal to test@test.com"
+  if comfirm_print.continue_printing.present?
+    p 'insdie if'
+    3.times do
+      comfirm_print.continue_printing.flash
+      comfirm_print.continue_printing.click
+      break unless comfirm_print.continue_printing.present?
+    end
+  end
+  expect(comfirm_print.continue_printing.present?).to be(false)
+end
+
+Then /^set email tracking on missing email address modal to(.*)$/ do |str|
+  comfirm_print = SdcMail.modals.missing_email_address
+  comfirm_print.email_tracking.safe_wait_until_present(timeout: 2)
+  comfirm_print.email_tracking.set(str)
+end
+
+Then /^click continue on usps terms modal$/ do
+  comfirm_print = SdcMail.modals.usps_terms
+  comfirm_print.title.safe_wait_until_present(timeout: 2)
+  if comfirm_print.agree.present?
+    3.times do
+      comfirm_print.agree.safe_click
+      break unless comfirm_print.agree.present?
+    end
+  end
+  expect(comfirm_print.agree.present?).to be(false)
 end

@@ -139,6 +139,7 @@ Then /^set print form reference number (.+)$/ do |value|
   advanced_options = SdcMail.print_form.advanced_options
   advanced_options.reference_num.wait_until_present(timeout: 5)
   advanced_options.reference_num.set(value)
+  TestData.hash[:reference_number] =advanced_options.reference_num.text_value
 end
 
 Then /^expect use reference # from contact list on print form is present$/ do
@@ -181,12 +182,20 @@ Then /^expect placeholder for disabled reference # on print form is (.+)$/ do |s
 end
 
 
-Then /^set print form cost code (.+)$/ do |value|
+Then /^set print form cost code to (?:existing|(.*))$/ do |str|
   cost_code = SdcMail.print_form.advanced_options.cost_code
-  cost_code.selection_element(value: value)
-  cost_code.drop_down.click unless cost_code.selection.present?
-  cost_code.selection.click
-  expect(cost_code.text_field.text_value).to include(value)
+  cost_code.drop_down.click
+  count=cost_code.costcode_list.count
+  str||=cost_code.costcode_random_value(Random.rand(2..count-1)).text_value
+  unless cost_code.text_field.text_value.include?(str)
+    cost_code.drop_down.click
+    cost_code.selection(str)
+    cost_code.drop_down.click unless cost_code.selection(str).present?
+    cost_code.selection(str).scroll_into_view unless cost_code.selection(str).present?
+    cost_code.selection(str).click if cost_code.selection(str).present?
+    expect(cost_code.text_field.text_value).to include(str)
+  end
+  TestData.hash[:cost_code]=str
 end
 
 Then /^expect use cost code from contact list on print form is present$/ do
@@ -227,22 +236,6 @@ Then /^expect placeholder for disabled cost code on print form is (.+)$/ do |str
   placeholder = advanced_options.cost_code_disabled.attribute_value('placeholder').strip
   expect(placeholder).to eql str
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 Then /^expect print form ship date is (\d+) (?:day|days) from today$/ do |day|
   step "expect print form ship date dropdown is present"
