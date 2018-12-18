@@ -609,7 +609,7 @@ Then /^set street address on contact page details to maximum lines (\d+)$/ do |l
   street1 = TestHelper.rand_street1_address
   street2 = TestHelper.rand_street2_address
   street3 = TestHelper.rand_street3_address
-  if lines.eql? '3'
+  if lines.eql? 3
     contacts_detail.street_address.send_keys(street1 + "\n" + street2 + "\n" + street3)
     address = contacts_detail.street_address.text_value
     address = address.split("\n")
