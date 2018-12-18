@@ -169,6 +169,7 @@ Then /^except create return label on history transaction details is disabled$/ d
   return_label = SdcHistory.details.create_return_label
   return_label.scroll_into_view
   expect(return_label.attribute_value('class').include?('disabled')).to be true
+  return_label.class_disabled?
 end
 
 Then /^expect transaction details for single print is available$/ do
@@ -323,7 +324,7 @@ Then /^expect cost code on history transaction details is (?:correct|(.*))$/ do 
   expect(details.text_field.text_value).to eq(cost_code)
 end
 
-Then /^expect user on history transaction details is (?:correct|(.*))$/ do |user|
+Then(/^expect user on history transaction details is (?:correct|(.*))$/) do |user|
   details = SdcHistory.details.reference
   user ||= TestData.hash[:username]
   details.user.flash

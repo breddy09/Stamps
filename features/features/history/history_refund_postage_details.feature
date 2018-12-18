@@ -3,7 +3,6 @@ Feature: Refund Postage
   Background:
     Given Start test driver
 
-
   @net_stamps_domestic
   Scenario: History: View Transaction Details for Refund Postage for Print Stamps
     Then sign-in to mail
@@ -23,6 +22,7 @@ Feature: Refund Postage
     Then expect date printed on history filter panel is collapsed
     Then expect eligible for on history filter panel is expanded
     Then expect refund on history filter panel eligible for is selected
+    #As there is no tracking number displayed checking row 1 on history grid
     Then check row 1 on history grid
     Then expect transaction details for single print is available
     Then click transaction details header menu dropdown
@@ -44,7 +44,6 @@ Feature: Refund Postage
     Then expect reference on history transaction details is correct
     Then expect user on history transaction details is correct
     Then sign out
-
 
   @label_domestic_with_sdc_ins
   Scenario: History: View Transaction Details for Refund Postage with SDC Insurance
@@ -103,7 +102,6 @@ Feature: Refund Postage
     Then expect reference on history transaction details is correct
     Then expect user on history transaction details is correct
     Then sign out
-
 
   @label_domestic_without_sdc_ins
   Scenario: History: View Transaction Details for Refund Postage with SDC Insurance
