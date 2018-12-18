@@ -219,3 +219,52 @@ Then /^click ok on your global post label modal$/ do
   modal.continue.click if modal.title.present?
   step 'expect your global post label modal is not presentt'
 end
+
+#Missig email address
+Then /^click continue printing on missing email address modal$/ do
+  comfirm_print = SdcMail.modals.missing_email_address
+  comfirm_print.continue_printing.safe_wait_until_present(timeout: 2)
+  step "set email tracking on missing email address modal to test@test.com"
+  if comfirm_print.continue_printing.present?
+    3.times do
+      comfirm_print.continue_printing.flash
+      comfirm_print.continue_printing.click
+      break unless comfirm_print.continue_printing.present?
+    end
+  end
+  expect(comfirm_print.continue_printing.present?).to be(false)
+end
+
+Then /^set email tracking on missing email address modal to(.*)$/ do |str|
+  comfirm_print = SdcMail.modals.missing_email_address
+  comfirm_print.email_tracking.safe_wait_until_present(timeout: 2)
+  comfirm_print.email_tracking.set(str)
+end
+
+#usps terms modal
+Then /^click continue on usps terms modal$/ do
+  comfirm_print = SdcMail.modals.usps_terms
+  comfirm_print.title.safe_wait_until_present(timeout: 2)
+  if comfirm_print.agree.present?
+    3.times do
+      comfirm_print.agree.safe_click
+      break unless comfirm_print.agree.present?
+    end
+  end
+  expect(comfirm_print.agree.present?).to be(false)
+end
+
+#Print Quantity Modal
+
+Then /^click agree and continue on missing email address modal$/ do
+  comfirm_print = SdcMail.modals.print_quantity_warning
+  comfirm_print.title.safe_wait_until_present(timeout: 2)
+  if comfirm_print.agreenconttinue.present?
+    3.times do
+      comfirm_print.agreenconttinue.flash
+      comfirm_print.agreenconttinue.click
+      break unless comfirm_print.agreenconttinue.present?
+    end
+  end
+  expect(comfirm_print.agreenconttinue.present?).to be(false)
+end

@@ -1,7 +1,7 @@
 
 #Search
 Then /^click search icon on history filter panel$/ do
-  SdcHistory.filter_panel.search.click
+  SdcHistory.filter_panel.search.search_icon.click
 end
 
 Then /^set search prints to (?:newly added|(.*)) tracking number on history filter panel$/ do |str|

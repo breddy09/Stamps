@@ -449,6 +449,17 @@ module SdcMail
       checkbox(:dont_show_this_again, :checkbox, :verify, 'class', 'checked')
     end
 
+    class PrintQuantityWarning < SdcPage
+      page_object(:title) { { xpath: '//*[text()="Print Quantity Warning"]' } }
+      page_object(:agreenconttinue) { { xpath: '//span[text()="Agree and Continue"]' } }
+      page_object(:cancel) { { xpath: '//span[text()="Cancel"]' } }
+      page_object(:x_btn) { { xpath: '//span[contains(@class, "icon-mobile-close-light")]' } }
+
+      page_object(:checkbox) { { xpath: '//*[text()="Print Quantity Warning"]/following::div[contains(@class, "wrap-inner")][contains(@id, "checkbox")]' } }
+      page_object(:verify) { { xpath: '//*[text()="Print Quantity Warning"]/following::div[contains(@class, "wrap-inner")][contains(@id, "checkbox")]/span' } }
+      checkbox(:dont_show_this_again, :checkbox, :verify, 'class', 'checked')
+    end
+
     class << self
       def notification_bar
         SdcNotificationBar.new
@@ -560,6 +571,10 @@ module SdcMail
 
       def usps_terms
         USPSTerms.new
+      end
+
+      def print_quantity_warning
+        PrintQuantityWarning.new
       end
 
 

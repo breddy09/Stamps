@@ -22,6 +22,12 @@ module SdcHistory
         klass.new.tracking
       end
 
+      def tracking_number
+        klass = Class.new(SdcPage) do
+          page_object(:tracking) { { xpath: '//div[contains(@class, "tracking-collapsed")][not(contains(@class, "disabled"))]//div[@role="textbox"]' } }
+        end
+        klass.new.tracking
+      end
       def create_return_label
         klass = Class.new(SdcPage) do
           page_object(:create_return_label) { { xpath: '//*[text()="Create Return Label"][contains(@class, "small")]/../../..' } }
@@ -62,6 +68,11 @@ module SdcHistory
       def customs_information
         CustomsInformation.new
       end
+
+      def parcel_guard_information
+        ParcelGuardInformation.new
+      end
+
     end
 
     class CustomsInformation <SdcPage

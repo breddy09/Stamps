@@ -364,10 +364,22 @@ Then /^expect non delivery information on customer information section of histor
   expect(customs_info.non_delivery.text_value).to eq(option)
 end
 
-Then /^expect ITN on customer information section of history transaction details is (?:correct|(.*))$/ do |itn|
+Then /^expect ITN on customs information section of history transaction details is (?:correct|(.*))$/ do |itn|
   customs_info = SdcHistory.details.customs_information
   itn ||=  TestData.hash[:customs_itn_no]
   customs_info.itn.scroll_into_view
   expect(customs_info.itn.text_value).to eq(itn)
+end
 
+Then /^expect parcel guard information section on history transaction details is present$/ do
+  customs_info = SdcHistory.details.parcel_guard_information
+  customs_info.title.scroll_into_view
+  customs_info.title.to be_present
+end
+
+Then /^expect status of parcel guard information section on history transaction details is (?:correct|(.*))$/ do |status|
+  customs_info = SdcHistory.details.parcel_guard_information
+  customs_info.status.scroll_into_view
+  status ||= 'Eligible'
+  expect(customs_info.status.text_value).to eq(status)
 end
