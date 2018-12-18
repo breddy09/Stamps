@@ -30,11 +30,10 @@ Then /^check row for saved tracking number on history grid$/ do
 end
 
 Then /^expect history grid column (.+) is (.+) for row (\d+)$/ do |column, value, row|
-  column_symbol = column.gsub(' ', '_').downcase.to_sym
+  column_symbol = column.tr(' ', '_').downcase.to_sym
   column = SdcHistory.grid.grid_column(column_symbol)
   expect(column.text_at_row(row)).to eql(value)
 end
-
 
 Then /^expect history grid column (.+) is (.+) for saved tracking number$/ do |column, value|
   grid_column = SdcHistory.grid.grid_column(:tracking_number)
@@ -76,8 +75,8 @@ Then /^expect history grid Ship Date is correct for row (\d+)$/ do |row|
   step "expect history grid column Weight is #{TestData.hash[:ship_date]} for row #{row}"
 end
 
-Then /^expect prints within date range (.*) for column (.*) are retrieved in the grid$/ do |date_range,column_name|
-  #Get the search counts
+Then /^expect prints within date range (.*) for column (.*) are retrieved in the grid$/ do |date_range, _column_name|
+  # Get the search counts
   search_results = SdcHistory.filter_panel.search_results
   search_count = search_results.count.text_value.to_i
 
@@ -100,10 +99,10 @@ Then /^expect prints within date range (.*) for column (.*) are retrieved in the
   i = 1
   while i < search_count
     grid_date = column.text_at_row(i)
-    formated_date = Date.strptime(grid_date,'%m/%d/%Y')
-    #actual_convert_new_date_format = actual_date_desired_format.to_date
-    expect(formated_date.between?(new_date,Date.today)).to be(true)
-    i = i + 1
+    formated_date = Date.strptime(grid_date, '%m/%d/%Y')
+    # actual_convert_new_date_format = actual_date_desired_format.to_date
+    expect(formated_date.between?(new_date, Date.today)).to be(true)
+    i += 1
   end
 end
 
@@ -121,6 +120,5 @@ Then /^expect recipient column at row (?:saved|(.*)) to include (.*)$/ do |row, 
   SdcHistory.grid.body.safe_wait_until_present(timeout: 60)
   row ||= TestData.hash[:row_number]
   recipient_name = SdcHistory.grid.grid_column(:recipient).text_at_row(row)
-  expect(recipient_name.include? str).to be(true)
+  expect(recipient_name.include?(str)).to be(true)
 end
-
