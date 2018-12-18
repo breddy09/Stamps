@@ -21,7 +21,8 @@ Feature:  History :Create Scan Form
     Then set search prints tracking number on history filter panel to newly added
     Then click search icon on history filter panel
     Then check row 1 on history grid
-    Then expect shipment status is Printed
+    Then expect on transaction detail panel status is Printed
+    Then expect shipment status on history grid is Printed
     Then expect refund button on history toolbar is enabled
     Then click refund button on history toolbar
     Then expect refund modal on history is present
@@ -30,7 +31,9 @@ Feature:  History :Create Scan Form
     Then set search prints tracking number on history filter panel to newly added
     Then click search icon on history filter panel
     Then check row 1 on history grid
-    Then expect shipment status is Refund Pending
+    Then expect on transaction detail panel status is Refund Pending
+    Then expect shipment status on history grid is Refund Pending
+
 
     Then sign out
 

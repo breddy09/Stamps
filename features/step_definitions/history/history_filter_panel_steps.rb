@@ -352,5 +352,10 @@ Then /^blur out on history/ do
 end
 #Eligible For
 
-
-
+Then /^expect on transaction detail panel status is (.*)$/ do |str|
+  history_detail = SdcHistory.details
+  history_detail.status.safe_wait_until_present(timeout: 10)
+  shipment_status = history_detail.status.text_value
+  p history_detail.status.text_value
+  expect(shipment_status.include?str).to be(true)
+end

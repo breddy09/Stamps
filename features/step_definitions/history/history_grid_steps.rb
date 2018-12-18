@@ -107,9 +107,9 @@ Then /^expect prints within date range (.*) for column (.*) are retrieved in the
   end
 end
 
-Then /^expect shipment status is (.*)$/ do |str|
+Then /^expect shipment status on history grid is (.*)$/ do |str|
   SdcHistory.grid.body.safe_wait_until_present(timeout: 60)
   shipment_status = SdcHistory.grid.grid_column(:shipment_status).text_at_row(1)
-  p shipment_status
-  expect(shipment_status.include? str).to be(true)
+  SdcLogger.info "shipment_status #{shipment_status}"
+  expect(shipment_status.include?str).to be(true)
 end
