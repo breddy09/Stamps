@@ -61,7 +61,7 @@ Then /^click transaction details header menu dropdown$/ do
   history_detail.toolbar_menu.click
 end
 
-Then /^expect email tracking info link on the transaction detail menu dropdown is available$/ do
+Then /^expect email tracking info link on the transaction detail menu dropdown is present$/ do
   history_detail = SdcHistory.details.header
   history_detail.email_tracking_info.flash
   expect(history_detail.email_tracking_info.present?).to be true
@@ -73,7 +73,7 @@ Then /^click email tracking info link on transaction detail menu dropdown$/ do
   history_detail.email_tracking_info.click
 end
 
-Then /^expect print receipt link on the transaction detail menu dropdown is available$/ do
+Then /^expect print receipt link on the transaction detail menu dropdown is present$/ do
   history_detail = SdcHistory.details.header
   history_detail.print_receipt.flash
   expect(history_detail.print_receipt.present?).to be true
@@ -86,25 +86,25 @@ Then /^click print receipt link on transaction detail menu dropdown$/ do
   sleep 3
 end
 
-Then /^expect create return label link on the transaction detail menu dropdown is available$/ do
+Then /^expect create return label link on the transaction detail menu dropdown is present$/ do
   history_detail = SdcHistory.details.header
   history_detail.create_return_label.flash
   expect(history_detail.create_return_label.present?).to be true
 end
 
-Then /^expect track on usps.com link on the transaction detail menu dropdown is available$/ do
+Then /^expect track on usps.com link on the transaction detail menu dropdown is present$/ do
   history_detail = SdcHistory.details.header
   history_detail.track_on_usps.flash
   expect(history_detail.track_on_usps.present?).to be true
 end
 
-Then /^expect file claim link on the transaction detail menu dropdown is available$/ do
+Then /^expect file claim link on the transaction detail menu dropdown is present$/ do
   history_detail = SdcHistory.details.header
   history_detail.file_claim.flash
   expect(history_detail.file_claim.present?).to be true
 end
 
-Then /^expect file claim link on the transaction detail menu dropdown is not available$/ do
+Then /^expect file claim link on the transaction detail menu dropdown is not present$/ do
   history_detail = SdcHistory.details.header
   expect(history_detail.file_claim.present?).to be false
 end
@@ -116,7 +116,7 @@ Then /^click file claim link on transaction detail menu dropdown$/ do
   step 'expect insurance claim form modal is displayed'
 end
 
-Then /^expect collapse panel link on the transaction detail menu dropdown is available$/ do
+Then /^expect collapse panel link on the transaction detail menu dropdown is present$/ do
   history_detail = SdcHistory.details.header
   history_detail.collapse_panel.flash
   expect(history_detail.collapse_panel.present?).to be true
@@ -144,7 +144,7 @@ Then /^except create return label on history transaction details is enabled$/ do
   expect(return_label.attribute_value('class').include?('disabled')).to be false
 end
 
-Then /^expect file claim link on the transaction detail panel is available$/ do
+Then /^expect file claim link on the transaction detail panel is present$/ do
   history_detail = SdcHistory.details
   history_detail.file_claim.flash
   expect(history_detail.file_claim.present?).to be true
@@ -159,7 +159,7 @@ Then /^expect printed status on history transaction details is not present$/ do
   expect(SdcHistory.details.status).not_to be_present
 end
 
-Then /^expect file claim link on the transaction detail panel is not available$/ do
+Then /^expect file claim link on the transaction detail panel is not present$/ do
   history_detail = SdcHistory.details
   history_detail.file_claim.flash
   expect(history_detail.file_claim.present?).to be false
@@ -172,7 +172,7 @@ Then /^except create return label on history transaction details is disabled$/ d
   return_label.class_disabled?
 end
 
-Then /^expect transaction details for single print is available$/ do
+Then /^expect transaction details for single print is present$/ do
   step 'wait while loading history details panel'
   expect(SdcHistory.details.header.title).to be_present
 end

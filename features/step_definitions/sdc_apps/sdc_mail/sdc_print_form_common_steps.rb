@@ -135,10 +135,15 @@ Then /^hide advanced options$/ do
   show.wait_until_present(timeout: 3)
 end
 
-Then /^set print form reference number (.+)$/ do |value|
+Then /^set print form reference number (.*)$/ do |value|
   advanced_options = SdcMail.print_form.advanced_options
   advanced_options.reference_num.wait_until_present(timeout: 5)
-  advanced_options.reference_num.set(value)
+  if value.to_s.downcase.include?('random')
+  reference_number = TestHelper.rand_reference_number
+  advanced_options.reference_num.set(reference_number)
+  else
+    advanced_options.reference_num.set(value)
+  end
   TestData.hash[:reference_number] =advanced_options.reference_num.text_value
 end
 

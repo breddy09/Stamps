@@ -13,19 +13,19 @@ end
 
 #Services
 
-Then /^expect file claim link in services section of transaction detail panel is not available$/ do
+Then /^expect file claim link in services section of transaction detail panel is not present$/ do
   services=SdcHistory.details.services
   expect(services.file_claim.present?).to be (false)
 end
 
-Then /^expect file claim link in services section of transaction detail panel is available$/ do
+Then /^expect file claim link in services section of transaction detail panel is present$/ do
   services = SdcHistory.details.services
   expect(services.file_claim.present?).to be (true)
 end
 
 Then /^expect file claim link in services section of transaction detail panel is enabled$/ do
   services = SdcHistory.details.services
-  expect(services.file_claim.enabled?).to be (true)
+  expect(services.file_claim.class_enabled?).to be (true)
 end
 
 Then /^click file claim link in services section of transaction detail panel$/ do
@@ -35,7 +35,7 @@ Then /^click file claim link in services section of transaction detail panel$/ d
   step 'expect insurance claim form modal is displayed'
 end
 
-Then /^expect email tracking info link on the transaction detail panel is available$/ do
+Then /^expect email tracking info link on the transaction detail panel is present$/ do
   history_detail = SdcHistory.details
   history_detail.email_tracking_info.flash
   expect(history_detail.email_tracking_info.present?).to be (true)
@@ -43,7 +43,7 @@ end
 
 Then /^expect email tracking info link on the transaction detail panel is enabled$/ do
   history_detail = SdcHistory.details
-  expect(history_detail.email_tracking_info.enabled?).to be (true)
+  expect(history_detail.email_tracking_info.class_enabled?).to be (true)
 end
 
 Then /^click email tracking info link on transaction detail panel$/ do
