@@ -1,6 +1,7 @@
 
 #Search
 Then /^click search icon on history filter panel$/ do
+  SdcHistory.filter_panel.search.search_icon.safe_wait_until_present(timeout: 10)
   SdcHistory.filter_panel.search.search_icon.click
 end
 

@@ -1,6 +1,6 @@
 #
 Then /^expect refund button on history toolbar is enabled$/ do
-  expect(SdcHistory.toolbar.refund.class_disabled?).to be_falsy
+  expect(SdcHistory.toolbar.refund.link.class_disabled?).to be_falsy
 end
 
 Then /^click refund button on history toolbar$/ do
